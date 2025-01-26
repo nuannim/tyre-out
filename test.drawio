@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="10" border="0">
     <diagram id="RrSnb8na4pvMSzzhe3lu" name="use case diagram">
-        <mxGraphModel dx="823" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="576" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -22,7 +22,7 @@
                 <mxCell id="36" style="edgeStyle=none;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#1ba1e2;strokeColor=#006EAF;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" source="4" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" style="edgeStyle=none;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#1ba1e2;strokeColor=#006EAF;" edge="1" parent="1" source="4" target="41">
+                <mxCell id="43" style="edgeStyle=none;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#1ba1e2;strokeColor=#006EAF;" parent="1" source="4" target="41" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="ลูกค้า" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=none;fontColor=#000000;strokeColor=#006EAF;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" vertex="1">
@@ -85,7 +85,7 @@
                 <mxCell id="32" value="แสดงสาขาของศูนย์บริการ" style="ellipse;whiteSpace=wrap;html=1;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="340" y="100" width="170" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="แสดง Promotion" style="ellipse;whiteSpace=wrap;html=1;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" vertex="1">
+                <mxCell id="35" value="แสดงโปรโมชัน" style="ellipse;whiteSpace=wrap;html=1;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="340" y="180" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="แสดงวันที่สามารถจอง&lt;br&gt;เข้ารับบริการได้" style="ellipse;whiteSpace=wrap;html=1;fontFamily=th sarabunPSK;fontSize=16;rounded=1;" parent="1" vertex="1">
