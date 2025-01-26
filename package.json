@@ -1,0 +1,15 @@
+{
+  "name": "tyre-out",
+  "version": "1.0.0",
+  "description": "**Tyre Out Car Center**  \r 06066302 Fundamental Web Programming  \r School of Information Technology, KMITL  \r Year 2/2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
