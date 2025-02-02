@@ -1,1 +1,1 @@
-### เก็บพวก styles.css & script.js
+### เก็บพวก styles.css & script.js (+ html)
