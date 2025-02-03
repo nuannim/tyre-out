@@ -1,0 +1,47 @@
+*{
+    font-family: "Prompt";
+    text-decoration: none;
+}
+body{
+    margin: 0;
+    background-color: #041728;
+}
+#nav{
+    background-color: #041728;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: end;
+    position: fixed;
+}
+#nav-menu{
+    display: flex;
+    width: auto;
+    height: 5vh;
+    margin: 3vh;
+    font-size: 3vh;
+}
+#nav-menu a{
+    color: white;
+    font-weight: 300;
+}
+#nav-menu p{
+    color: white;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 200;
+}
+#main{
+    width: 100%;
+    height: 100vh;
+}
+#promotion{
+    width: 100%;
+    height: 100vh;
+    background-color: #F5F6F8;
+}
+#branch{
+    width: 100%;
+    height: 100vh;
+}
