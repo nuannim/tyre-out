@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Appointment</title>
+</head>
+<style>
+    .mytabs{
+        display: flex;
+        flex-wrap: wrap;
+        /* max-width: 600px; */
+        width: 1400px; /*ปรับความยาวกล่องตรงนี้ */
+        margin: 50px auto;
+    }
+    .mytabs input[type="radio"]{
+        display: none;
+    }
+    .mytabs label{
+        font-size: 24px;
+        color: rgb(255, 255, 255);
+        padding: 15px 40px 25px 40px;
+        background: #104B82;
+        order: 0;
+        border-radius: 30px 30px 0px 0px;
+        height: 25px;
+    }
+    .mytabs .tab{
+        width: 100%;
+        height: auto; /*ปรับความสูงกล่องตรงนี้ */
+        padding: 60px 60px;
+        background: #fff;
+        order: 1;
+        display: none;
+        border-radius: 0 30px 30px 30px;
+        text-align: left;
+        /* border: 1px solid rgb(204, 21, 21); */
+    }
+    .mytabs input[type='radio']:checked + label +.tab {
+        display: block;
+    }
+    .mytabs input[type='radio']:checked + label {
+        background: rgb(255, 255, 255);
+        color: #104B82;
+    }
+
+/* box-container & box */
+    #box-container {
+        width: auto;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    #box{
+        width: 220px;
+        height: 140px;
+        border: 1px solid #B6B6B6;
+        border-radius: 30px;
+        color: #104B82;
+        padding: 20px 35px;
+        line-height: 1;
+    }
+    #box h2{
+        font-size: 22px;
+        font-weight: 700;
+    }
+    #box p{
+        font-size: 20px;
+    }
+/* *** */
+
+/* select branch */
+    .main-container{
+        margin: 0;
+        align-items: center;
+        text-align: center;
+        /* border: 1px solid rgb(236, 236, 200); */
+    }
+    #branch-lb{
+        margin-left: 50px;
+        color: white;
+        font-size: 24px;
+    }
+    #selectBranch{
+        font-size: 24px;
+        width: 200px;
+        height: 50px;
+        padding-left: 15px;
+        margin-left: 15px;
+        border-radius: 15px;
+    }
+/* *** */
+
+</style>
+<body>
+    <!-- navbar -->
+    <div id="nav">
+        <div id="nav-menu">
+            <a href="/front/client/appointment.html">การนัดหมาย</a>
+            <p>|</p>
+            <a href="/front/client/history.html">ประวัติการนัดหมาย</a>
+        </div>
+    </div>
+
+    <div style="height: 150px;"></div>
+
+    <div class="main-container">
+        <!-- choose branch -->
+        <label id="branch-lb" for="selectBranch">เลือกสาขา</label>
+        <select name="selectBranch" id="selectBranch">
+            <option value="b1">ทุ่งลุยลาย</option>
+            <option value="b2">ลาดกระบัง</option>
+            <option value="b3">ทุ่งมะขามป้อม</option>
+        </select>
+        <!-- *** -->
+
+        <!-- main content -->
+        <div class="mytabs">
+            <input type="radio" id="tab1" name="mytabs" checked="checked">
+            <label for="tab1">การนัดหมายที่ยังมาไม่ถึง</label>
+            <div class="tab">
+                <div id="box-container">
+                    <div id="box">
+                        <h2>เปลี่ยนล้อ</h2>
+                        <p>สาขาทุ่งมะขามป้อม</p>
+                        <p>30 ม.ค. 2568 ช่วงบ่าย</p>
+                    </div>
+    
+                    <div id="box">
+                        <h2>เปลี่ยนล้อ</h2>
+                        <p>สาขาทุ่งมะขามป้อม</p>
+                        <p>30 ม.ค. 2568 ช่วงบ่าย</p>
+                    </div>
+    
+                    <div id="box">
+                        <h2>เปลี่ยนล้อ</h2>
+                        <p>สาขาทุ่งมะขามป้อม</p>
+                        <p>30 ม.ค. 2568 ช่วงบ่าย</p>
+                    </div>
+
+                    <div id="box">
+                        <h2>เปลี่ยนล้อ</h2>
+                        <p>สาขาทุ่งมะขามป้อม</p>
+                        <p>30 ม.ค. 2568 ช่วงบ่าย</p>
+                    </div>
+                </div>
+            </div>
+
+            <input type="radio" id="tab2" name="mytabs">
+            <label for="tab2">การนัดหมายที่ผ่านมาแล้ว</label>
+            <div class="tab">
+                <div id="box">
+                    <h2>ปะยาง</h2>
+                    <p>สาขาทุ่งลุยลาย</p>
+                    <p>29 ม.ค. 2568 ช่วงบ่าย</p>
+                </div>
+        </div>
+        <!-- *** -->
+
+    </div>
+    
+    
+</body>
+</html>
