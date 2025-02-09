@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .mytabs{
+        display: flex;
+        flex-wrap: wrap;
+        /* max-width: 600px; */
+        width: 1400px; /*ปรับความยาวกล่องตรงนี้ */
+        margin: 50px auto;
+    }
+    .mytabs input[type="radio"]{
+        display: none;
+    }
+    .mytabs label{
+        font-size: 24px;
+        color: rgb(255, 255, 255);
+        padding: 15px 40px 25px 40px;
+        background: #104B82;
+        order: 0;
+        border-radius: 30px 30px 0px 0px;
+        height: 25px;
+    }
+    .mytabs .tab{
+        width: 100%;
+        height: auto; /*ปรับความสูงกล่องตรงนี้ */
+        padding: 60px 60px;
+        background: #F5F6F8;
+        order: 1;
+        display: none;
+        border-radius: 0 30px 30px 30px;
+        text-align: left;
+        /* border: 1px solid rgb(204, 21, 21); */
+    }
+    .mytabs input[type='radio']:checked + label +.tab {
+        display: block;
+    }
+    .mytabs input[type='radio']:checked + label {
+        background: #F5F6F8;
+        color: #104B82;
+    }
+
+/* box-container & box */
+    #box-container {
+        width: auto;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    #box{
+        width: 220px;
+        height: 140px;
+        background-color: #FFFFFF;
+        border-radius: 30px;
+        color: #104B82;
+        padding: 20px 35px;
+        line-height: 1;
+    }
+    #box:hover {
+    background-color: #104B82;
+    color: #FFFFFF;
+    }
+    #box h2{
+        font-size: 22px;
+        font-weight: 700;
+    }
+    #box p{
+        font-size: 20px;
+    }
+/* *** */
+
+/* select branch */
+    .main-container{
+        margin: 0;
+        align-items: center;
+        text-align: center;
+        /* border: 1px solid rgb(236, 236, 200); */
+    }
+    #branch-lb{
+        margin-left: 50px;
+        color: white;
+        font-size: 24px;
+    }
+    #selectBranch{
+        font-size: 24px;
+        width: 200px;
+        height: 50px;
+        padding-left: 15px;
+        margin-left: 15px;
+        border-radius: 15px;
+    }
+/* *** */
+
+/* ตาราง */
+#table-apmt{
+        margin: 0 auto;
+        width: 1300px;
+        border: none;
+        border-collapse: collapse;
+    }
+    .c{
+        height: 60px;
+        background-color: #104B82;
+        font-size: 20px;
+        font-weight: 500;
+        color: white;
+        text-align: center;
+    }
+    #c7{
+        width: 100px;
+    }
+    td{
+        height: 60px;
+        background-color: #ffffff;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+    }
+    #column-row{
+        border-radius: 25px 25px 0px 0px;
+    }
+    #info {
+        border-bottom: 1px solid #B6B6B6;
+    }
+    #c1{
+        border-radius: 25px 0px 0px 0px;
+    }
+    #c7{
+        border-radius: 0px 25px 0px 0px;
+    }
+    #onerow td{
+        height: 20px;
+    }
+    #l-border{
+        border-radius: 0px 0px 0px 25px;
+    }
+    #r-border{
+        border-radius: 0px 0px 25px 0px;
+    }
+/* ตาราง */
+
+    #search{
+        height: 30px;
+        font-size: 20px;
+        border-radius: 5px;
+        padding-left: 5px;
+    }
+
+</style>
+<body>
+    <!-- navbar -->
+    <div id="nav">
+        <div id="nav-menu">
+            <a href="/front/client/em_history.html">ประวัติการนัดหมายลูกค้า</a>
+            <p>|</p>
+            <a href="/front/client/em_history.html">login</a>
+        </div>
+    </div>
+
+    <div style="height: 150px;"></div>
+
+    <div class="main-container">
+        <!-- choose branch -->
+        <label id="branch-lb" for="selectBranch">เลือกศูนย์บริการ</label>
+        <select name="selectBranch" id="selectBranch">
+            <option value="b0">ทุกศูนย์</option>
+            <option value="b1">ทุ่งลุยลาย</option>
+            <option value="b2">ลาดกระบัง</option>
+            <option value="b3">ทุ่งมะขามป้อม</option>
+        </select>
+        <!-- *** -->
+
+        <!-- main content -->
+        <div class="mytabs">
+            <input type="radio" id="tab1" name="mytabs" checked="checked">
+            <label for="tab1">การนัดหมายที่ยังมาไม่ถึง</label>
+            <div class="tab">
+                    <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
+                    <input type="text" id="search">
+                    <br></br>
+    
+                    <table id="table-apmt">
+                        <tr id="column-row">
+                            <th class="c" id="c1">วัน-เวลา</th>
+                            <th class="c" id="c2">เบอร์โทร</th>
+                            <th class="c" id="c3">ชื่อ</th>
+                            <th class="c" id="c4">นามสกุล</th>
+                            <th class="c" id="c5">บริการ</th>
+                            <th class="c" id="c6">ศูนย์บริการ</th>
+                            <th class="c" id="c7"></th>
+                        </tr>
+                        <tr id="info">
+                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
+                            <td>123 456 7899</td>
+                            <td>ลีอาห์</td>
+                            <td>แซ่ตั้ง</td>
+                            <td>เปลี่ยนล้อรถยนต์</td>
+                            <td>ลาดกระบัง</td>
+                            <td>
+                                <a><i class="fa fa-pencil-square-o"></i></a>
+                                <a><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                        <tr id="info">
+                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
+                            <td>123 456 7899</td>
+                            <td>ลีอาห์</td>
+                            <td>แซ่ตั้ง</td>
+                            <td>เปลี่ยนล้อรถยนต์</td>
+                            <td>ลาดกระบัง</td>
+                            <td>
+                                <a><i class="fa fa-pencil-square-o"></i></a>
+                                <a><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                        <tr id="info">
+                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
+                            <td>123 456 7899</td>
+                            <td>ลีอาห์</td>
+                            <td>แซ่ตั้ง</td>
+                            <td>เปลี่ยนล้อรถยนต์</td>
+                            <td>ลาดกระบัง</td>
+                            <td>
+                                <a><i class="fa fa-pencil-square-o"></i></a>
+                                <a><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                        <tr id="onerow"> 
+                            <td id="l-border"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="r-border"></td>
+                        </tr>
+                        </table>
+            </div>
+
+            <input type="radio" id="tab2" name="mytabs">
+            <label for="tab2">การนัดหมายที่ผ่านมาแล้ว</label>
+            <div class="tab">
+                <!-- <div id="box">
+                    <h2>ปะยาง</h2>
+                    <p>สาขาทุ่งลุยลาย</p>
+                    <p>29 ม.ค. 2568 ช่วงบ่าย</p>
+                </div> -->
+                
+                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
+                <input type="text" id="search">
+                <br></br>
+
+                <table id="table-apmt">
+                    <tr id="column-row">
+                        <th class="c" id="c1">วัน-เวลา</th>
+                        <th class="c" id="c2">เบอร์โทร</th>
+                        <th class="c" id="c3">ชื่อ</th>
+                        <th class="c" id="c4">นามสกุล</th>
+                        <th class="c" id="c5">บริการ</th>
+                        <th class="c" id="c6">ศูนย์บริการ</th>
+                        <th class="c" id="c7"></th>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+
+                    <tr id="onerow"> 
+                        <td id="l-border"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="r-border"></td>
+                    </tr>
+                    </table>
+        </div>
+        <!-- *** -->
+
+    </div>
+    
+    
+</body>
+</html>
