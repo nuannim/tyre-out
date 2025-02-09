@@ -93,15 +93,15 @@ body{
 }
 .drop{
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.091);
+    border: 1px solid rgba(255, 255, 255, 0.297);
     border-radius: 2vh;
     width: 35vh;
     padding: 1vh;
     color: white;
 }
-#findb{
+.btn{
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.091);
+    border: 1px solid rgba(255, 255, 255, 0.297);
     border-radius: 2vh;
     width: 15vh;
     padding: 1vh;
@@ -109,7 +109,7 @@ body{
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
-#findb:hover{
+.btn:hover{
     border: 1px solid white;
     color: #041728;
     background-color: white;
@@ -144,23 +144,8 @@ body{
     visibility: visible;
     opacity: 1;
 }
-.btn-pro{
-    width: auto;
-    height: 6vh;
-    border-radius: 1vh;
-    border: 1px solid white;
-    background-color: transparent;
-    margin: auto;
-    color: white;
-    transition: ease-in-out 0.2s;
-    cursor: pointer;
-}
-.btn-pro:hover{
-    border: 1px solid #04172819;
-    background-color: #041728b0;
-}
 .overlay{
-    background-color: #04172871;
+    background-color: #041728a3;
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
@@ -170,6 +155,23 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
+}
+.btn-p{
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.297);
+    border-radius: 2vh;
+    width: auto;
+    height: 6vh;
+    padding: 1vh;
+    color: white;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+    margin: auto;
+}
+.btn-p:hover{
+    border: 1px solid white;
+    color: #041728;
+    background-color: white;
 }
 #promotion h1{
     color: #041728;
@@ -233,6 +235,7 @@ body{
     align-items: center;
     gap: 20px;
     padding: 20px;
+    margin-top: 20px;
 }
 #forimg{
     background-image: url(img/download.jpg);
@@ -242,10 +245,12 @@ body{
     height: 100%;
     border-radius: 2vh;
 }
-#branch-area h3, p{
+#branch-area h3{
+    color: #041728;
     margin: 0;
 }
 #branch-area p{
+    margin: 0;
     color: #B6B6B6;
     font-size: 2.5vh;
 }
