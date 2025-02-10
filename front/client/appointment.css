@@ -66,11 +66,16 @@ body{
 }
 #bar{
     width: 45%;
-    height: 10%;
+    height: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+}
+#bar div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .cir{
     width: 10vh;
@@ -79,35 +84,46 @@ body{
     color: #F5F6F8;
     border-radius: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .cir i{
     font-size: 4vh;
 }
+.txt{
+    font-size: 2.5vh;
+    color: #F5F6F8;
+}
 #line{
     position: absolute;
-    background: #F5F6F8;
+    background: #104B82;
     height: 4px;
-    width: 100%;
+    width: 90%;
+    top: 30%;
+    left: 2%;
+    transform: translateY(-50%);
     z-index: -1;
 }
 #indi{
     position: absolute;
     background: #104B82;
     height: 100%;
-    width: 10%;
+    /* width: 10%; */
 }
 #box{
     margin-top: 5vh;
-    width: 70%;
-    height: 60%;
+    width: 45%;
+    height: auto;
     background-color: #F5F6F8;
     border-radius: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #but{
     margin-top: 5vh;
-    width: 70%;
+    width: 45%;
     display: flex;
     justify-content: end;
 }
@@ -124,4 +140,15 @@ button{
 button:hover{
     color: #104B82;
     background-color: white;
+}
+#service{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    padding: 4vh;
+    gap: 1vh;
+}
+#service div{
+    font-size: 2.5vh;
+    width: 24%;
 }
