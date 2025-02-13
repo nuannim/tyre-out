@@ -139,6 +139,7 @@ body{
     width: 60vh;
     height: 50vh;
     border-radius: 2vh;
+    box-shadow: 2px 2px 7px #989898;
 }
 .pic:hover .overlay{
     visibility: visible;
