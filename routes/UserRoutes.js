@@ -5,10 +5,30 @@ module.exports = function(app) {
     // app.get('/user/:id', UserController.getUserDetails);
     // app.post('/user', UserController.createUser);
     // app.delete('/user/:id', UserController.deleteUser);
+    
+    // app.get('/', function (req, res) {
+    //     res.render('booking')
+    //     res.end()
+    // })
 
-    app.get('/', function (req, res) {
-        res.render('booking')
-        res.end()
-    })
+//* chat said การเขียนแบบนี้ไม่ถูก mvc ต้องให้ UserController.js เป็นตัวจัดการ
+    // app.get('/', function (req, res) {
+    //     res.render('index')
+    //     res.end()
+    // })
 
+    // app.get('/appointment', function (req, res) {
+    //     res.render('appointment')
+    //     res.end()
+    // })
+
+    // app.get('/history', function (req, res) {
+    //     res.render('history')
+    //     res.end()
+    // })
+
+//* แชทเลยเปลี่ยนมาเป็นแบบนี้
+    app.get('/', UserController.getIndexPage);
+    app.get('/appointment', UserController.getAppointmentPage);
+    app.get('/history', UserController.getHistoryPage);
 };

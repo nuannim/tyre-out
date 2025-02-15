@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <title>Tyre-Out</title>
+</head>
+<body>
+    <div id="nav">
+        <div id="nav-menu">
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="#">หน้าหลัก</a>
+                <p>|</p>
+                <a href="#promotion">โปรโมชัน</a>
+                <p>|</p>
+                <a href="#branch">ศูนย์บริการ</a>
+                <p>|</p>
+                <a href="/appointment">การนัดหมาย</a>
+                <p>|</p>
+                <a href="/history">ประวัติการนัดหมาย</a>
+            </div>
+            <div id="las">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+    <section id="main">
+        <div id="check">
+            <p>บริการเช็กระยะตามกำหนด</p>
+            <div id="forsel">
+                <select name="sel1" class="drop" id="sel1">
+                    <option value="" selected>เลือกรุ่นรถยนต์</option>
+                </select>
+                <select name="sel2" class="drop" id="sel2">
+                    <option value="" selected>เลือกรุ่นปี</option>
+                </select>
+                <select name="sel3" class="drop" id="sel3">
+                    <option value="" selected>เลือกเกรด</option>
+                </select>
+                <select name="sel4" class="drop" id="sel4">
+                    <option value="" selected>เลือกระยะทาง</option>
+                </select>
+                <button class="btn" id="btn-service">ค้นหา</button>
+            </div>
+        </div>
+    </section>
+    <section id="promotion">
+        <h1>โปรโมชันที่น่าสนใจ</h1>
+        <div id="container">
+            <div class="pic" id="pic1">
+                <div class="overlay">
+                    <button  class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div class="pic" id="pic2">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div class="pic" id="pic3">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div class="pic" id="pic4">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div class="pic" id="pic5">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div class="pic" id="pic6">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            <div id="popup-bg">
+                <div id="fori">
+                    <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
+                </div>
+            </div>
+            <div id="popup-ov" onclick="bac()"></div>
+        </div>
+    </section>
+    <section id="branch">
+        <h1>ศูนย์บริการ</h1>
+        <div id="select-branch">
+            <select name="branchvince" class="drop" id="branchvince">
+                <option value="" selected>เลือกจังหวัด</option>
+            </select>
+            <select name="branch-district" class="drop" id="branch-district">
+                <option value="" selected>เลือกอำเภอ/เขต</option>
+            </select>
+            <button class="btn" id="btn-branch">ค้นหา</button>
+        </div>
+        <div id="branch-area">
+            <!-- นี่คือ แสดงสาขา -->
+            <div id="forimg"></div>
+            <div id="fortext">
+                <h3>สาขาทุ่งหนองแจ๋ม</h3>
+                <p>ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่</p>
+                <p>โทรศัพท์ 090-909-0909</p>
+                <p>เปิดให้บริการเวลา 09:00 - 21:00</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function bac(){
+            document.getElementById("popup-bg").style.visibility = "hidden";
+            document.getElementById("popup-ov").style.visibility = "hidden";
+            document.getElementById("popup-bg").style.opacity = 0;
+            document.getElementById("popup-ov").style.opacity = 0;
+        }
+        function showpop(){
+            document.getElementById("popup-bg").style.visibility = "visible";
+            document.getElementById("popup-ov").style.visibility = "visible";
+            document.getElementById("popup-bg").style.opacity = 1;
+            document.getElementById("popup-ov").style.opacity = 1;
+        }
+        
+    </script>
+</body>
+</html>

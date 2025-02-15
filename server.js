@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //* routing
-require('./routes/UserRoutes')(app);
+require('./routes/UserRoutes.js')(app);
 
 // from lab class
 app.listen(port, () => {
