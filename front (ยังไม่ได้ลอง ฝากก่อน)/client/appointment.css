@@ -1,0 +1,337 @@
+*{
+    font-family: "Prompt";
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    background-color: #041728;
+}
+#nav{
+    width: 100%;
+    height: 14vh;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+}
+#nav-menu{
+    background-color: #041728dc;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4vh;
+    padding: 2vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    font-size: 2.5vh;
+}
+#nav-menu a{
+    color: white;
+    font-weight: 300;
+    transition: ease-in-out 0.2s;
+}
+#nav-menu a:hover{
+    text-shadow: 0px 0px 2px white;
+}
+#nav-menu p{
+    color: white;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 200;
+}
+#fis{
+    width: 10%;
+    text-align: start;
+}
+#fis p{
+    font-weight: 400;
+    margin: 0;
+}
+#las{
+    width: 10%;
+    text-align: end;
+}
+#mid{
+    display: flex;
+}
+#main{
+    padding-bottom: 7vh;
+    padding-top: 12vh;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#bar{
+    width: 45%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+#bar div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cir{
+    width: 10vh;
+    height: 10vh;
+    background-color: #104B82;
+    color: #F5F6F8;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cir i{
+    font-size: 4vh;
+}
+.cir-active{
+    background-color: #F5F6F8;
+    color: #104B82;
+}
+.txt{
+    font-size: 2.5vh;
+    color: #F5F6F8;
+}
+#line{
+    position: absolute;
+    background: #F5F6F8;
+    height: 4px;
+    width: 90%;
+    top: 30%;
+    left: 2%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+#indi{
+    position: absolute;
+    background: #104B82;
+    height: 100%;
+    width: 10%;
+}
+#box{
+    margin-top: 5vh;
+    width: 100vh;
+    height: auto;
+    background-color: #F5F6F8;
+    border-radius: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#but{
+    margin-right: 4vh;
+    width: 95%;
+    display: flex;
+    justify-content: end;
+}
+.but-pn{
+    margin-right: 4vh;
+    margin-left: 4vh;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.but-pn2{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    background-color: #104B82;
+    border: 0;
+    border-radius: 2vh;
+    width: 15vh;
+    height: 6vh;
+    color: white;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+    font-size: 2.5vh;
+}
+button:hover{
+    background-color: #0d3a63;
+}
+#serv{
+    margin-bottom: 4vh;
+}
+#service{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    padding: 4vh;
+    gap: 1vh;
+}
+#service div{
+    font-size: 2.5vh;
+    width: 24%;
+}
+#bran{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    width: 100vh;
+}
+#select-branch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 4vh;
+    margin-bottom: 4vh;
+}
+#branch-area{
+    background-color: white;
+    width: 80%;
+    height: auto;
+    border-radius: 2vh;
+    display: flex;
+    align-items: center;
+    gap: 4vh;
+    padding: 4vh;
+    margin-bottom: 4vh;
+    /* justify-content: space-between; */
+}
+#bran-btn{
+    background-color: transparent;
+    border: 1px solid #104B82;
+    border-radius: 2vh;
+    width: 15vh;
+    height: 6vh;
+    color: #104B82;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+    font-size: 2.5vh;
+}
+#bran-btn:hover{
+    background-color: #104B82;
+    color: white;
+}
+#forimg{
+    background-image: url(img/download.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 25%;
+    height: 17vh;
+    border-radius: 2vh;
+}
+#branch-area h4{
+    color: #041728;
+    margin: 0;
+}
+#branch-area p{
+    margin: 0;
+    color: #B6B6B6;
+    font-size: 2.5vh;
+}
+#branchvince, #branch-district{
+    font-size: 2.5vh;
+    border: 0;
+    border-radius: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+#fortext {
+    height: 100%;
+    width: 65%;
+}
+#forday, #fortime{
+    display: flex;
+    flex-direction: column;
+    font-size: 2.5vh;
+    gap: 2vh;
+}
+#dateinput{
+    width: 25vh;
+    height: 7vh;
+    font-size: 2.5vh;
+    border: 0;
+    border-radius: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+#timeinput{
+    width: 29vh;
+    height: 7vh;
+    font-size: 2.5vh;
+    border: 0;
+    border-radius: 2vh;
+}
+#day{
+    padding: 4vh;
+    gap: 4vh;
+    display: flex;
+    flex-direction: column;
+    width: 92vh;
+}
+a{
+    color: white;
+}
+#persona-container{
+    display: flex;
+    flex-direction: column;
+    padding: 4vh;
+    gap: 4vh;
+    width: 92vh;
+}
+#persona{
+    display: flex;
+    justify-content: center;
+    font-size: 2.5vh;
+}
+#persona p, h4{
+    margin: 0;
+}
+.eachinput{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+#forinput{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+#forinfor{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+.inp{
+    width: 80%;
+    height: 6vh;
+    border-radius: 2vh;
+    border: 0;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+#forwhatyouvedone{
+    width: 90%;
+    height: auto;
+    background-color: white;
+    border-radius: 2vh;
+    padding: 2vh;
+}
+.form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+}
+.form-step-active {
+    display: block;
+}
+.show{
+    color: #041728;
+}
+.header{
+    color: #B6B6B6;
+}
