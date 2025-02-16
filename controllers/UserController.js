@@ -2,27 +2,54 @@ const UserModel = require('../models/UserModel');
 // const conn = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 
-// require('dbQuery');
-
 const UserController = {
     getIndexPage: async (req, res) => {
-        const query = `select * from Promotion `; // ! เดี๋ยวย้ายไป UserModel.js
-        db.all(query, (err, p) => {
-            if (err) {
-                console.log("err query Promotion: " + err.message);
-            }
-            const query2 = `select * from ServiceBranch `;
-                db.all(query2, (err2, sb) => {
-                    if (err2) {
-                        console.log("err query2 ServiceBranch :"+ err2.message);
-                    }
-                    console.log("no err query Promotion: " + p);
-                    res.render('index', {
+
+        const p = await UserModel.allPromotion();
+        const sb = await UserModel.allServiceBranch();
+
+        console.log(p);
+        console.log(sb);
+
+        res.render('index', {
                         promotions: p,
                         servicebranches: sb});
-                })
-        })
 
+
+        // db.all(`select * from Promotion `, (err, p) => {
+        //     if (err) {
+        //         console.log("err query Promotion: ", err.message);
+        //     }
+        //         db.all(`select * from ServiceBranch `, (err2, sb) => {
+        //             if (err2) {
+        //                 console.log("err query2 ServiceBranch :", err2.message);
+        //             }
+        //             console.log("no err query Promotion: " + p);
+        //             res.render('index', {
+        //                 promotions: p,
+        //                 servicebranches: sb});
+        //         })
+        // })
+
+        // * ของเก่า
+        // const query = `select * from Promotion `; // ! เดี๋ยวย้ายไป UserModel.js
+        // db.all(query, (err, p) => {
+        //     if (err) {
+        //         console.log("err query Promotion: ", err.message);
+        //     }
+        //     const query2 = `select * from ServiceBranch `;
+        //         db.all(query2, (err2, sb) => {
+        //             if (err2) {
+        //                 console.log("err query2 ServiceBranch :", err2.message);
+        //             }
+        //             console.log("no err query Promotion: " + p);
+        //             res.render('index', {
+        //                 promotions: p,
+        //                 servicebranches: sb});
+        //         })
+        // })
+
+        // * ไว้ดูเป็นตัวอย่าง
         // db.serialize(() => {
         //     // ตัวอย่าง Query หลายตารางแบบต่อเนื่อง
         //     db.all("SELECT * FROM Promotion", (err, promotions) => {
