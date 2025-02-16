@@ -1,20 +1,30 @@
 const UserModel = require('../models/UserModel');
-const conn = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserController.js
+// const conn = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
+const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 
 const UserController = {
     getIndexPage: async (req, res) => {
-        try {
-            let sql = `select * from users; `;
-            console.log("sql: " + sql)
-            conn.query(sql, function(err, results, fields) {
-                if (err) throw err;
-                console.log("result: " + results)
-                res.render('index', { data: results });
-                res.end();
-            })
-        } catch (error) {
-            res.status(500).send('Error fetching users');
-        }
+        // try {
+        //     let sql = `select * from users; `;
+        //     console.log("sql: " + sql)
+        //     conn.query(sql, function(err, results, fields) {
+        //         if (err) throw err;
+        //         console.log("result: " + results)
+        //         res.render('index', { data: results });
+        //         res.end();
+        //     })
+        // } catch (error) {
+        //     res.status(500).send('Error fetching users');
+        // }
+
+        const query = `select * from Promotion `;
+        db.all(query, (err, rows) => {
+            if (err) {
+                console.log(err.message);
+            }
+            console.log(rows);
+            res.render('index', {data: rows});
+        })
     },
 
     getAppointmentPage: async (req, res) => {

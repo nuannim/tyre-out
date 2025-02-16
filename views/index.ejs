@@ -62,9 +62,10 @@
 
 
             <% data.forEach((element)=> { %>
-                <div class="pic">
+                <div class="pic" 
+                style="background-image: url('<%=element.promotionPhotoURL%>');">
                     <div class="overlay">
-                        <h3><%=element.username%></h3>
+                        <h3><%=element.promotionName%></h3>
                         <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
                     </div>
                 </div>
