@@ -75,6 +75,10 @@
                         <div id="fori">
                             <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
                         </div>
+                        <!-- * แชทให้เพิ่มมา ดูต่อพน -->
+                        <div id="popup-content">
+
+                        </div>
                     </div>
                     <div id="popup-ov" onclick="bac()"></div>
         </div>
@@ -122,6 +126,32 @@
             document.getElementById("popup-bg").style.opacity = 1;
             document.getElementById("popup-ov").style.opacity = 1;
         }
+        
+        // * ดูต่อพน
+ 
+        // function showpop(promotionId) {
+        // // หาข้อมูลโปรโมชันจาก EJS ข้อมูล
+        // const promotion = <%= JSON.stringify(promotions) %>.find(p => p.promotionId == promotionId);
+        
+        // if (promotion) {
+        //     // สร้างเนื้อหา Popup
+        //     const content = `
+        //     <div class="popup-detail">
+        //         <h3>${promotion.promotionName}</h3>
+        //         <img src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
+        //         <p>${promotion.promotionDescription}</p>
+        //         <p class="promo-code">รหัสโปรโมชัน: ${promotion.promotionCode}</p>
+        //     </div>
+        //     `;
+            
+        //     // แทรกเนื้อหาและแสดง Popup
+        //     document.getElementById("popup-content").innerHTML = content;
+        //     document.getElementById("popup-bg").style.visibility = "visible";
+        //     document.getElementById("popup-ov").style.visibility = "visible";
+        //     document.getElementById("popup-bg").style.opacity = 1;
+        //     document.getElementById("popup-ov").style.opacity = 1;
+        //     }
+        // }
 
     </script>
 </body>

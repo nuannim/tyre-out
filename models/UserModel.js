@@ -41,6 +41,8 @@ const UserModel = {
 
 module.exports = UserModel;
 
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// & ตัวอย่าง UserModel ของแชท
 // const UserModel = {
 //     findAll: () => {
 //         return new Promise((resolve, reject) => {
