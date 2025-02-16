@@ -38,17 +38,21 @@
             <div id="forsel">
                 <select name="sel1" class="drop" id="sel1">
                     <option value="" selected>เลือกรุ่นรถยนต์</option>
+                    <option value="atemodel">รุ่นเสว</option>
                 </select>
                 <select name="sel2" class="drop" id="sel2">
                     <option value="" selected>เลือกรุ่นปี</option>
+                    <option value="2525">2525</option>
                 </select>
                 <select name="sel3" class="drop" id="sel3">
                     <option value="" selected>เลือกเกรด</option>
+                    <option value="4">4.00</option>
                 </select>
                 <select name="sel4" class="drop" id="sel4">
                     <option value="" selected>เลือกระยะทาง</option>
+                    <option value="twentythousand">20,000 กม.</option>
                 </select>
-                <button class="btn" id="btn-service">ค้นหา</button>
+                <button class="btn" id="btn-service" onclick="checkshowpop()">ค้นหา</button>
             </div>
         </div>
     </section>
@@ -57,38 +61,39 @@
         <div id="container">
             <div class="pic" id="pic1">
                 <div class="overlay">
-                    <button  class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div class="pic" id="pic2">
                 <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div class="pic" id="pic3">
                 <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div class="pic" id="pic4">
                 <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div class="pic" id="pic5">
                 <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div class="pic" id="pic6">
                 <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                    <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
                 </div>
             </div>
             <div id="popup-bg">
                 <div id="fori">
                     <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
                 </div>
+                <div id="content"></div>
             </div>
             <div id="popup-ov" onclick="bac()"></div>
         </div>
@@ -115,21 +120,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        function bac(){
-            document.getElementById("popup-bg").style.visibility = "hidden";
-            document.getElementById("popup-ov").style.visibility = "hidden";
-            document.getElementById("popup-bg").style.opacity = 0;
-            document.getElementById("popup-ov").style.opacity = 0;
-        }
-        function showpop(){
-            document.getElementById("popup-bg").style.visibility = "visible";
-            document.getElementById("popup-ov").style.visibility = "visible";
-            document.getElementById("popup-bg").style.opacity = 1;
-            document.getElementById("popup-ov").style.opacity = 1;
-        }
-        
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>

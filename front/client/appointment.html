@@ -36,9 +36,9 @@
         <div id="bar">
             <div>
                 <span class="cir cir-active">
-                    <i class="fa-solid fa-wrench"></i>
+                    <i class="fa-solid fa-car"></i>
                 </span>
-                <p class="txt">เลือกบริการ</p>
+                <p class="txt">ข้อมูลรถยนต์</p>
             </div>
             <div>
                 <span class="cir">
@@ -64,107 +64,29 @@
         </div>
         <div id="box">
             <form action="">
-                <div class="form-step form-step-active" id="serv">
+                <div class="form-step form-step-active">
                     <div id="service">
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
+                        <div id="forsel">
+                            <select name="sel1" class="drop" id="sel1">
+                                <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                <option value="atemodel">รุ่นเสว</option>
+                            </select>
+                            <select name="sel2" class="drop" id="sel2">
+                                <option value="" selected>เลือกรุ่นปี</option>
+                                <option value="2525">2525</option>
+                            </select>
+                            <select name="sel3" class="drop" id="sel3">
+                                <option value="" selected>เลือกเกรด</option>
+                                <option value="4">4.00</option>
+                            </select>
+                            <select name="sel4" class="drop" id="sel4">
+                                <option value="" selected>เลือกระยะทาง</option>
+                                <option value="twentythousand">20,000 กม.</option>
+                            </select>
                         </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
+                        <div id="but">
+                            <button class="btn btn-next" type="button">ถัดไป</button>
                         </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">นี่ย์ นะคะ
-                        </div>
-                    </div>
-                    <div id="but">
-                        <button class="btn btn-next"><a href="#">ถัดไป</a></button>
                     </div>
                 </div>
                 <div class="form-step">
@@ -176,7 +98,7 @@
                             <select name="branch-district" class="drop" id="branch-district">
                                 <option value="" selected>เลือกอำเภอ/เขต</option>
                             </select>
-                            <button class="btn" id="btn-branch">ค้นหา</button>
+                            <button class="btn" id="btn-branch" type="button">ค้นหา</button>
                         </div>
                         <div id="branch-area">
                             <div id="forimg"></div>
@@ -186,38 +108,37 @@
                                 <p>โทรศัพท์ 090-909-0909</p>
                                 <p>เปิดให้บริการเวลา 09:00 - 21:00</p>
                             </div>
-                            <button id="bran-btn">เลือก</button>
+                            <button class="bran-btn" id="bran-btn-nongjam" type="button">เลือก</button>
                         </div>
                         <div class="but-pn">
-                            <button class="btn btn-prev"><a href="#">ย้อนกลับ</a></button>
-                            <button class="btn btn-next"><a href="#">ถัดไป</a></button>
+                            <button class="btn btn-prev" type="button">ย้อนกลับ</button>
+                            <button class="btn btn-next" type="button">ถัดไป</button>
                         </div>
                     </div>
                 </div>
                 <div class="form-step">
                     <div id="day">
-                        <div id="forday">
-                            <label for="reserve-day">เลือกวัน</label>
-                            <input type="date" id="dateinput" name="reserve-day"/>
-                        </div>
-                        <div id="fortime">
-                            <label for="reserve-day">เลือกเวลา</label>
-                            <select name="timeinput" id="timeinput">
-                                <option value="8">08:00 น.</option>
-                                <option value="9">09:00 น.</option>
-                                <option value="10">10:00 น.</option>
-                                <option value="11">11:00 น.</option>
-                                <option value="12">12:00 น.</option>
-                                <option value="13">13:00 น.</option>
-                                <option value="14">14:00 น.</option>
-                                <option value="15">15:00 น.</option>
-                                <option value="16">16:00 น.</option>
-                                <option value="17">17:00 น.</option>
-                            </select>
+                        <div id="day-container">
+                            <div id="forday">
+                                <label for="reserve-day">เลือกวัน</label>
+                                <input type="date" id="dateinput" name="reserve-day"/>
+                            </div>
+                            <div id="fortime">
+                                <label for="reserve-day">เลือกเวลา</label>
+                                <div class="fortime-container">
+                                    <input type="radio" name="timeinput" id="timeinput-mor">ช่วงเช้า
+                                </div>
+                                <div class="fortime-container">
+                                    <input type="radio" name="timeinput" id="timeinput-noon">ช่วงบ่าย
+                                </div>
+                                <div class="fortime-container">
+                                    <input type="radio" name="timeinput" id="timeinput-even">ช่วงเย็น
+                                </div>
+                            </div>
                         </div>
                         <div class="but-pn2">
-                            <button class="btn btn-prev"><a href="#">ย้อนกลับ</a></button>
-                            <button class="btn btn-next"><a href="#">ถัดไป</a></button>
+                            <button class="btn btn-prev" type="button">ย้อนกลับ</button>
+                            <button class="btn btn-next" type="button">ถัดไป</button>
                         </div>
                     </div>
                 </div>
@@ -248,12 +169,15 @@
                                     <p class="header">วันเวลา</p>
                                     <p class="show" id="show-date">31 กุมภาพันธ์ 2525 05:99 น.</p>
                                 </div>
-                                <p>พนักงานจะทำการติดต่อกลับ</p>
+                                <div id="more">
+                                    <p>พนักงานจะทำการติดต่อกลับ</p>
+                                    <p>หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999</p>
+                                </div>
                             </div>
                         </div>
                         <div class="but-pn2">
-                            <button class="btn btn-prev"><a href="#">ย้อนกลับ</a></button>
-                            <button type="submit" value="Submit" class="btn"><a href="#">ถัดไป</a></button>
+                            <button class="btn btn-prev" type="button">ย้อนกลับ</button>
+                            <button type="submit" value="Submit" class="btn">นัดหมาย</button>
                         </div>
                     </div>
                 </div>
