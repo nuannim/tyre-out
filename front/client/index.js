@@ -33,14 +33,14 @@ function checkshowpop(){
     table.appendChild(thead);
     div.appendChild(table);
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = "นัดหมาย";
-    button.className = "btn-pop";
+    // const button = document.createElement("button");
+    // button.type = "button";
+    // button.textContent = "นัดหมาย";
+    // button.className = "btn-pop";
 
     const divbtn = document.createElement("div");
     divbtn.id = "check-btn";
-    divbtn.appendChild(button);
+    divbtn.innerHTML = '<button class="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
     div.appendChild(divbtn);
 
     document.getElementById("content").innerHTML = "";
@@ -53,4 +53,8 @@ function checkshowpop(){
 function showpromotion(){
     document.getElementById("content").innerHTML = "";
     showpop();
+}
+function gotoapp(){
+    // ไว้ส่ง value ของ dropdown ไปหน้า appointment
+    
 }
