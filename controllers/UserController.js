@@ -4,7 +4,7 @@ const conn = require('../models/dbconn.js'); // ! เดี๋ยวย้าย
 const UserController = {
     getIndexPage: async (req, res) => {
         try {
-            let sql = `select * from Promotion; `;
+            let sql = `select * from users; `;
             console.log("sql: " + sql)
             conn.query(sql, function(err, results, fields) {
                 if (err) throw err;
