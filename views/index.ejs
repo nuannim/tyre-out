@@ -61,11 +61,12 @@
         <div id="container">
 
 
-            <% data.forEach((element)=> { %>
-                <div class="pic" 
-                style="background-image: url('<%=element.promotionPhotoURL%>');">
+            <% promotions.forEach((element)=> { %>
+                <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');">
                     <div class="overlay">
-                        <h3><%=element.promotionName%></h3>
+                        <h3>
+                            <%=element.promotionName%>
+                        </h3>
                         <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
                     </div>
                 </div>
@@ -89,16 +90,23 @@
             </select>
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
-        <div id="branch-area">
-            <!-- นี่คือ แสดงสาขา -->
-            <div id="forimg"></div>
-            <div id="fortext">
-                <h3>สาขาทุ่งหนองแจ๋ม</h3>
-                <p>ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่</p>
-                <p>โทรศัพท์ 090-909-0909</p>
-                <p>เปิดให้บริการเวลา 09:00 - 21:00</p>
+
+
+        <% servicebranches.forEach((element)=> { %>
+
+            <div id="branch-area">
+                <!-- นี่คือ แสดงสาขา -->
+                <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
+                <div id="fortext">
+                    <h3><%=element.centerName%></h3>
+                    <p><%=element.address%> <%=element.subdistrict%> <%=element.district%> <%=element.province%> <%=element.postcode%></p>
+                    <p>โทรศัพท์ <%=element.telephone%></p>
+                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+                </div>
             </div>
-        </div>
+
+        <% }); %>
+
     </section>
 
     <script>

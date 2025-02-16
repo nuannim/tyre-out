@@ -2,29 +2,39 @@ const UserModel = require('../models/UserModel');
 // const conn = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 
+// require('dbQuery');
+
 const UserController = {
     getIndexPage: async (req, res) => {
-        // try {
-        //     let sql = `select * from users; `;
-        //     console.log("sql: " + sql)
-        //     conn.query(sql, function(err, results, fields) {
-        //         if (err) throw err;
-        //         console.log("result: " + results)
-        //         res.render('index', { data: results });
-        //         res.end();
-        //     })
-        // } catch (error) {
-        //     res.status(500).send('Error fetching users');
-        // }
-
-        const query = `select * from Promotion `;
-        db.all(query, (err, rows) => {
+        const query = `select * from Promotion `; // ! เดี๋ยวย้ายไป UserModel.js
+        db.all(query, (err, p) => {
             if (err) {
-                console.log(err.message);
+                console.log("err query Promotion: " + err.message);
             }
-            console.log(rows);
-            res.render('index', {data: rows});
+            const query2 = `select * from ServiceBranch `;
+                db.all(query2, (err2, sb) => {
+                    if (err2) {
+                        console.log("err query2 ServiceBranch :"+ err2.message);
+                    }
+                    console.log("no err query Promotion: " + p);
+                    res.render('index', {
+                        promotions: p,
+                        servicebranches: sb});
+                })
         })
+
+        // db.serialize(() => {
+        //     // ตัวอย่าง Query หลายตารางแบบต่อเนื่อง
+        //     db.all("SELECT * FROM Promotion", (err, promotions) => {
+        //       if (err) throw err;
+              
+        //       db.all("SELECT * FROM Users", (err, users) => {
+        //         if (err) throw err;
+                
+        //         res.render('index', { promotions, users });
+        //       });
+        //     });
+        //   });
     },
 
     getAppointmentPage: async (req, res) => {
