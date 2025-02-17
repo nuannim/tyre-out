@@ -11,20 +11,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <style>
     .mytabs{
         display: flex;
         flex-wrap: wrap;
         /* max-width: 600px; */
-        width: 1400px; /*ปรับความยาวกล่องตรงนี้ */
+        width: 1700px; /*ปรับความยาวกล่องตรงนี้ */
         margin: 50px auto;
     }
     .mytabs input[type="radio"]{
         display: none;
     }
     .mytabs label{
-        font-size: 22px;
+        font-size: 26px;
         color: rgb(255, 255, 255);
         padding: 15px 30px 25px 30px;
         background: #104B82;
@@ -74,7 +75,7 @@
 /* ตาราง */
     #table-apmt{
         margin: 0 auto;
-        width: 1300PX;
+        width: 1600PX;
         border: none;
         border-collapse: collapse;
         color: rgb(61, 61, 61);
@@ -85,7 +86,7 @@
         height: 60px;
         background-color: #ffffff;
         background-color: none;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 500;
         color: #104B82;
         text-align: center;
@@ -93,12 +94,15 @@
         cursor: default;
     }
     #c7{
-        width: 100px;
+        width: 200px;
+    }
+    #c1 {
+        width: 300px;
     }
     td{
         height: 60px;
         /* background-color: #ffffff; */
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 400;
         text-align: center;
     }
@@ -111,15 +115,15 @@
     tr:hover {
         background-color: #f7f7f7;
         color: #000000;
-        cursor: pointer;
     }
 
 /* search bar */
     #search{
-        height: 30px;
-        font-size: 20px;
+        height: 35px;
+        font-size: 24px;
         border-radius: 5px;
         padding-left: 5px;
+        margin-bottom: 20px;
     }
 
 /* popup */
@@ -129,12 +133,12 @@
         visibility: hidden;
         opacity: 0;
         position: fixed;
-        top: 50%;
+        top: 53%;
         left: 50%;
         transform: translate(-50%, -50%);
         /* appearance */
-        width: 700px;
-        height: 700px;
+        width: 800px;
+        height: 850px;
         background-color: #f7f7f7;
         border-radius: 25px;
         /* child */
@@ -144,7 +148,7 @@
     #brach-info {
         display: flex;
         background-color: rgb(255, 255, 255);
-        width: 600px;
+        width: 700px;
         height: 200px;
         border-radius: 25px;
         justify-content: center;
@@ -156,11 +160,36 @@
     #right {
         width: 60%;
         text-align: left;
-        padding-left: 15px;
+        /* padding-top: 15px;
+        padding-left: 15px; */
+        font-size: 22px;
+        padding: 0px 20px;
+        line-height: 1;
     }
     #branch-img {
         width: 200px;
         height: 200px;
+    }
+    #aptm-info {
+        background-color: rgb(255, 255, 255);
+        width: 700px;
+        height: 470px;
+        border-radius: 25px;
+        /* justify-content: left; */
+        align-self: center;
+        text-align: left;
+        margin-top: 20px;
+        padding: 15px 40px;
+        box-sizing: border-box; /*ไม่ให้ขยาย*/
+        line-height: 0.9;
+    }
+    .info-p {
+        color: #b3b3b3;
+        font-size: 22px;
+    }
+    .info-c {
+        color: rgb(0, 0, 0);
+        font-size: 22px;
     }
 
 /* button */
@@ -173,7 +202,7 @@
         cursor: pointer;
         outline: inherit;
         font-size: 24px;
-        margin-right: 5px;
+        margin-right: 20px;
     }
     #close-button{
         font-size: 30px;
@@ -252,30 +281,6 @@
                                 <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
-                        <tr id="info">
-                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
-                            <td>123 456 7899</td>
-                            <td>ลีอาห์</td>
-                            <td>แซ่ตั้ง</td>
-                            <td>เปลี่ยนล้อรถยนต์</td>
-                            <td>ลาดกระบัง</td>
-                            <td>
-                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
-                        <tr id="info">
-                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
-                            <td>123 456 7899</td>
-                            <td>ลีอาห์</td>
-                            <td>แซ่ตั้ง</td>
-                            <td>เปลี่ยนล้อรถยนต์</td>
-                            <td>ลาดกระบัง</td>
-                            <td>
-                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
                     </table>
             </div>
 
@@ -307,19 +312,6 @@
                             <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
                             <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <!-- tab3 -->
@@ -338,6 +330,18 @@
                         <th class="c" id="c5">บริการ</th>
                         <th class="c" id="c6">ศูนย์บริการ</th>
                         <th class="c" id="c7"></th>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
+                        </td>
                     </tr>
                     <tr id="info">
                         <td>29 ม.ค. 2568 ช่วงบ่าย</td>
@@ -407,6 +411,18 @@
                             <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
                 </table>
             </div>
         <!-- *** -->
@@ -415,7 +431,7 @@
     <!-- popup -->
     <div id="popup1">
         <i id="close-button" onclick="closepop()" class="material-icons">close</i>
-        <p style="font-size: 24px; margin-top: 50px; font-weight: 500;">รายละเอียดการนัดหมาย</p>
+        <p style="font-size: 24px; margin-top: 40px; font-weight: 500;">รายละเอียดการนัดหมาย</p>
         
         <div id="brach-info">
             <div id="left">
@@ -424,22 +440,33 @@
             <div id="right">
                 <p id="branch-name">ชื่อสาขา</p>
                 <p id="branch-address">ที่อยู่</p>
-                <p id="branch-tel">เบอร์</p>
-                <p id="branch-time">เวลาเปิดปิด</p>
+                <p id="branch-tel">เบอร์โทร</p>
+                <p id="branch-time">เวลาเปิด-ปิด</p>
             </div>
         </div>
 
-        <p id="aptm-info"></p>
+        <div id="aptm-info">
+            <p class="info-p">บริการ</p>
+                <p class="info-c">เปลี่ยนล้อรถยนต์</p>
+            <p class="info-p">วันเวลา</p>
+                <p class="info-c">30 ม.ค. 2568 ช่วงบ่าย</p>
+            <p class="info-p">ชื่อ</p>
+                <p class="info-c">ลีอาห์</p>
+            <p class="info-p">สกุล</p>
+                <p class="info-c">แซ่ตั้ง</p>
+            <p class="info-p">เบอร์โทร</p>
+                <p class="info-c">123 456 7899</p>
+        </div>
     </div>
     
     <script>
         function edit_info() {
-            document.getElementById("aptm-info").innerHTML = "";
+            // document.getElementById("aptm-info").innerHTML = "";
             showpop()
         }
 
         function delete_info() {
-            document.getElementById("aptm-info").innerHTML = "";
+            // document.getElementById("aptm-info").innerHTML = "";
             showpop()
         }
 
@@ -456,13 +483,3 @@
 </body>
 </html>
 
-<!-- <div class="pic" id="pic1">
-    <div class="overlay">
-        <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
-    </div>
-</div> -->
-
-<!-- function showpromotion(){
-    document.getElementById("content").innerHTML = "";
-    showpop();
-} -->
