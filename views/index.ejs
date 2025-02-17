@@ -44,17 +44,21 @@
             <div id="forsel">
                 <select name="sel1" class="drop" id="sel1">
                     <option value="" selected>เลือกรุ่นรถยนต์</option>
+                    <option value="atemodel">รุ่นเสว</option>
                 </select>
                 <select name="sel2" class="drop" id="sel2">
                     <option value="" selected>เลือกรุ่นปี</option>
+                    <option value="2525">2525</option>
                 </select>
                 <select name="sel3" class="drop" id="sel3">
                     <option value="" selected>เลือกเกรด</option>
+                    <option value="4">4.00</option>
                 </select>
                 <select name="sel4" class="drop" id="sel4">
                     <option value="" selected>เลือกระยะทาง</option>
+                    <option value="twentythousand">20,000 กม.</option>
                 </select>
-                <button class="btn" id="btn-service">ค้นหา</button>
+                <button class="btn" id="btn-service" onclick="checkshowpop()">ค้นหา</button>
             </div>
         </div>
     </section>
@@ -70,22 +74,24 @@
                             <%=element.promotionName%>
                         </h3> -->
                         <!-- <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button> -->
-                        <button class="btn-p" onclick="showpop(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button>
+                        <!-- <button class="btn-p" onclick="showpop(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button> -->
+                        <button class="btn-p" onclick="showpromotion(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button>
                     </div>
                 </div>
-                <%});%>
-                    <div id="popup-bg">
-                        <div id="fori">
-                            <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
-                        </div>
-                        <!-- * แชทให้เพิ่มมา ดูต่อพน -->
-                        <div id="popup-content">
-
-                        </div>
+            <%});%>
+                <div id="popup-bg">
+                    <div id="fori">
+                        <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
                     </div>
-                    <div id="popup-ov" onclick="bac()"></div>
+
+                    <div id="content"></div>
+
+                </div>
+                <div id="popup-ov" onclick="bac()"></div>
         </div>
     </section>
+
+
     <section id="branch">
         <h1>ศูนย์บริการ</h1>
         <div id="select-branch">
@@ -98,9 +104,7 @@
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
 
-
         <% servicebranches.forEach((element)=> { %>
-
             <div id="branch-area">
                 <!-- นี่คือ แสดงสาขา -->
                 <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
@@ -110,76 +114,21 @@
                     </h3>
                     <p>
                         <%=element.address%>
-                            <%=element.subdistrict%>
-                                <%=element.district%>
-                                    <%=element.province%>
-                                        <%=element.postcode%>
+                        <%=element.subdistrict%>
+                        <%=element.district%>
+                        <%=element.province%>
+                        <%=element.postcode%>
                     </p>
-                    <p>โทรศัพท์ <%=element.telephone%>
-                    </p>
-                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%>
-                    </p>
+                    <p>โทรศัพท์ <%=element.telephone%></p>
+                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
                 </div>
             </div>
-
-            <% }); %>
+        <% }); %>
 
     </section>
 
-    <style>
-        .popup-detail {
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+    <script src="index.js"></script>
 
-        .popup-detail img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
-
-        .promo-code {
-            color: #ff0000;
-            font-weight: bold;
-        }
-    </style>
-
-    <script>
-        function bac() {
-            document.getElementById("popup-bg").style.visibility = "hidden";
-            document.getElementById("popup-ov").style.visibility = "hidden";
-            document.getElementById("popup-bg").style.opacity = 0;
-            document.getElementById("popup-ov").style.opacity = 0;
-        }
-        // function showpop() {
-        //     document.getElementById("popup-bg").style.visibility = "visible";
-        //     document.getElementById("popup-ov").style.visibility = "visible";
-        //     document.getElementById("popup-bg").style.opacity = 1;
-        //     document.getElementById("popup-ov").style.opacity = 1;
-        // }
-
-        function showpop(promotion) {
-            console.log("popuppppppppppp");
-            console.log(promotion.promotionId);
-
-            const content = `<h3>${promotion.promotionName}</h3>
-                            <p>${promotion.promotionDescription}</p>
-                            <img class="pic" src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
-                            `;
-
-            // แทรกเนื้อหาและแสดง Popup
-            document.getElementById("popup-content").innerHTML = content;
-            document.getElementById("popup-bg").style.visibility = "visible";
-            document.getElementById("popup-ov").style.visibility = "visible";
-            document.getElementById("popup-bg").style.opacity = 1;
-            document.getElementById("popup-ov").style.opacity = 1;
-        }
-
-    </script>
 </body>
 
 </html>
