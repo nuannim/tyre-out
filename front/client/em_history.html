@@ -10,6 +10,7 @@
     <title>History</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
     .mytabs{
@@ -112,22 +113,8 @@
         color: #000000;
         cursor: pointer;
     }
-    /* #column-row{
-        border-radius: 25px 25px 0px 0px;
-    } */
-    /* #info {
-        border-bottom: 1px solid #cecece;
-    } */
-    /* #c1{
-        border-radius: 25px 0px 0px 0px;
-    }
-    #c7{
-        border-radius: 0px 25px 0px 0px;
-    } */
 
-
-/* ตาราง */
-
+/* search bar */
     #search{
         height: 30px;
         font-size: 20px;
@@ -136,9 +123,66 @@
     }
 
 /* popup */
-    #popup {
-
+    #popup1 {
+        /* ตำแหน่ง */
+        margin: 0 auto;
+        visibility: hidden;
+        opacity: 0;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* appearance */
+        width: 700px;
+        height: 700px;
+        background-color: #f7f7f7;
+        border-radius: 25px;
+        /* child */
+        display: flex;
+        flex-direction: column;
     }
+    #brach-info {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 600px;
+        height: 200px;
+        border-radius: 25px;
+        justify-content: center;
+        align-self: center;
+    }
+    #left {
+        width: 40%;
+    }
+    #right {
+        width: 60%;
+        text-align: left;
+        padding-left: 15px;
+    }
+    #branch-img {
+        width: 200px;
+        height: 200px;
+    }
+
+/* button */
+    #action-button{
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        font-size: 24px;
+        margin-right: 5px;
+    }
+    #close-button{
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
 
 </style>
 <body>
@@ -204,8 +248,8 @@
                             <td>เปลี่ยนล้อรถยนต์</td>
                             <td>ลาดกระบัง</td>
                             <td>
-                                <a onclick="edit_info"><i class="fa fa-pencil-square-o"></i></a>
-                                <a onclick="delete_info"><i class="fa fa-trash-o"></i></a>
+                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                         <tr id="info">
@@ -216,8 +260,8 @@
                             <td>เปลี่ยนล้อรถยนต์</td>
                             <td>ลาดกระบัง</td>
                             <td>
-                                <a><i class="fa fa-pencil-square-o"></i></a>
-                                <a><i class="fa fa-trash-o"></i></a>
+                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                         <tr id="info">
@@ -228,8 +272,8 @@
                             <td>เปลี่ยนล้อรถยนต์</td>
                             <td>ลาดกระบัง</td>
                             <td>
-                                <a><i class="fa fa-pencil-square-o"></i></a>
-                                <a><i class="fa fa-trash-o"></i></a>
+                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </table>
@@ -260,8 +304,8 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                     <tr id="info">
@@ -272,8 +316,8 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </table>
@@ -303,8 +347,8 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                     <tr id="info">
@@ -315,8 +359,8 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </table>
@@ -347,8 +391,8 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                     <tr id="info">
@@ -359,33 +403,54 @@
                         <td>เปลี่ยนล้อรถยนต์</td>
                         <td>ลาดกระบัง</td>
                         <td>
-                            <a><i class="fa fa-pencil-square-o"></i></a>
-                            <a><i class="fa fa-trash-o"></i></a>
+                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </table>
             </div>
         <!-- *** -->
-            
+    </div>
 
+    <!-- popup -->
+    <div id="popup1">
+        <i id="close-button" onclick="closepop()" class="material-icons">close</i>
+        <p style="font-size: 24px; margin-top: 50px; font-weight: 500;">รายละเอียดการนัดหมาย</p>
+        
+        <div id="brach-info">
+            <div id="left">
+                <img id="branch-img" src="img/branch_1_img.png">
+            </div>
+            <div id="right">
+                <p id="branch-name">ชื่อสาขา</p>
+                <p id="branch-address">ที่อยู่</p>
+                <p id="branch-tel">เบอร์</p>
+                <p id="branch-time">เวลาเปิดปิด</p>
+            </div>
+        </div>
+
+        <p id="aptm-info"></p>
     </div>
     
     <script>
         function edit_info() {
-            document.getElementByid("aptm-info").innerHTML = "";
+            document.getElementById("aptm-info").innerHTML = "";
             showpop()
         }
 
         function delete_info() {
-            document.getElementByid("aptm-info").innerHTML = "";
+            document.getElementById("aptm-info").innerHTML = "";
             showpop()
         }
 
         function showpop(){
             document.getElementById("popup1").style.visibility = "visible";
-            // document.getElementById("popup-ov").style.visibility = "visible";
             document.getElementById("popup1").style.opacity = 1;
-            // document.getElementById("popup-ov").style.opacity = 1;
+        }
+
+        function closepop() {
+            document.getElementById("popup1").style.visibility = "hidden";
+            document.getElementById("popup1").style.opacity = 0;
         }
     </script>
 </body>
