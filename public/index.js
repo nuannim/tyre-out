@@ -29,8 +29,7 @@ function showpromotion(promotion) {
 
 
 
-
-
+// * ของเก่า
 // function bac(){
 //     document.getElementById("popup-bg").style.visibility = "hidden";
 //     document.getElementById("popup-ov").style.visibility = "hidden";
@@ -43,6 +42,11 @@ function showpromotion(promotion) {
 //     document.getElementById("popup-bg").style.opacity = 1;
 //     document.getElementById("popup-ov").style.opacity = 1;
 // }
+// function showpromotion(){
+//     document.getElementById("content").innerHTML = "";
+//     showpop();
+// }
+
 function checkshowpop(){
     const sel1 = document.getElementById("sel1");
     const sel2 = document.getElementById("sel2");
@@ -83,16 +87,14 @@ function checkshowpop(){
     // }
     showpop();
 }
-// function showpromotion(){
-//     document.getElementById("content").innerHTML = "";
-//     showpop();
-// }
+
 function gotoapp(){
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
     const sel1 = document.getElementById("sel1").value;
     const sel2 = document.getElementById("sel2").value;
     const sel3 = document.getElementById("sel3").value;
     const sel4 = document.getElementById("sel4").value;
-    const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
+    // const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
+    const letsend = `/appointment?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
     window.location.href = letsend;
 }
