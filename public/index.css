@@ -1,20 +1,20 @@
-*{
+* {
     font-family: "Prompt";
     text-decoration: none;
     scroll-behavior: smooth;
-}
-body{
+  }
+  body {
     margin: 0;
     background-color: #041728;
-}
-#nav{
+  }
+  #nav {
     width: 100%;
     height: 14vh;
     display: flex;
     position: fixed;
     z-index: 10;
-}
-#nav-menu{
+  }
+  #nav-menu {
     background-color: #041728dc;
     backdrop-filter: blur(10px);
     display: flex;
@@ -25,51 +25,51 @@ body{
     padding-left: 5vh;
     padding-right: 5vh;
     font-size: 2.5vh;
-}
-#nav-menu a{
+  }
+  #nav-menu a {
     color: #ffffff;
     font-weight: 300;
     transition: ease-in-out 0.2s;
-}
-#nav-menu a:hover{
+  }
+  #nav-menu a:hover {
     text-shadow: 0px 0px 2px white;
-}
-#nav-menu p{
+  }
+  #nav-menu p {
     color: #ffffff;
     margin-top: 0;
     margin-left: 20px;
     margin-right: 20px;
     font-weight: 200;
-}
-#fis{
+  }
+  #fis {
     width: 10%;
     text-align: start;
-}
-#fis p{
+  }
+  #fis p {
     font-weight: 400;
     margin: 0;
-}
-#las{
+  }
+  #las {
     width: 10%;
     text-align: end;
-}
-#mid{
+  }
+  #mid {
     display: flex;
-}
-#main{
+  }
+  #main {
     width: 100%;
     height: 100vh;
-    background-image: url(./img/download.jpg);
+    background-image: url(img/download.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: end;
-}
-#check p{
+  }
+  #check p {
     margin: 0;
-}
-#check{
+  }
+  #check {
     padding: 2vh;
     margin-bottom: 3%;
     width: 80%;
@@ -82,24 +82,22 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-#forsel{
+  }
+  #forsel {
     display: flex;
     justify-content: space-evenly;
     border-top: 1px solid rgba(255, 255, 255, 0.091);
     padding-top: 15px;
     padding-bottom: 5px;
     gap: 10px;
-}
-.drop{
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.297);
+  }
+  .drop {
+    border: 0;
     border-radius: 2vh;
     width: 35vh;
     padding: 1vh;
-    color: white;
-}
-.btn{
+  }
+  .btn {
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.297);
     border-radius: 2vh;
@@ -108,21 +106,21 @@ body{
     color: white;
     transition: ease-in-out 0.2s;
     cursor: pointer;
-}
-.btn:hover{
+  }
+  .btn:hover {
     border: 1px solid white;
     color: #041728;
     background-color: white;
-}
-#promotion{
+  }
+  #promotion {
     width: 100%;
     height: auto;
-    background-color: #F5F6F8;
+    background-color: #f5f6f8;
     text-align: center;
     padding-top: 10vh;
     padding-bottom: 10vh;
-}
-#container{
+  }
+  #container {
     margin-bottom: 12vh;
     width: 90%;
     display: flex;
@@ -131,8 +129,8 @@ body{
     flex-wrap: wrap;
     gap: 30px;
     margin: auto;
-}
-.pic{
+  }
+  .pic {
     background-image: url(img/download.jpg);
     background-size: cover;
     background-position: center;
@@ -140,12 +138,12 @@ body{
     height: 50vh;
     border-radius: 2vh;
     box-shadow: 2px 2px 7px #989898;
-}
-.pic:hover .overlay{
+  }
+  .pic:hover .overlay {
     visibility: visible;
     opacity: 1;
-}
-.overlay{
+  }
+  .overlay {
     background-color: #041728a3;
     backdrop-filter: blur(5px);
     display: flex;
@@ -156,8 +154,8 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
-}
-.btn-p{
+  }
+  .btn-p {
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.297);
     border-radius: 2vh;
@@ -168,16 +166,16 @@ body{
     transition: ease-in-out 0.2s;
     cursor: pointer;
     margin: auto;
-}
-.btn-p:hover{
+  }
+  .btn-p:hover {
     border: 1px solid white;
     color: #041728;
     background-color: white;
-}
-#promotion h1{
+  }
+  #promotion h1 {
     color: #041728;
-}
-#popup-ov{
+  }
+  #popup-ov {
     width: 100%;
     height: 100%;
     background-color: #04172871;
@@ -188,34 +186,33 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
-
-}
-#popup-bg{
-    background-color: #F5F6F8;
+  }
+  #popup-bg {
+    background-color: #f5f6f8;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
     border-radius: 2vh;
     z-index: 12;
     padding: 2vh;
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
-}
-#fori{
+  }
+  #fori {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: end;
-}
-#bac{
+  }
+  #bac {
     color: #041728;
     cursor: pointer;
-}
-#branch{
+  }
+  #branch {
     width: 100%;
     height: 100vh;
     padding-top: 10vh;
@@ -223,12 +220,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#branch h1{
+  }
+  #branch h1 {
     color: white;
-}
-#branch-area{
-    background-color: #F5F6F8;
+  }
+  #branch-area {
+    background-color: #f5f6f8;
     width: 60%;
     height: 25%;
     border-radius: 2vh;
@@ -237,24 +234,61 @@ body{
     gap: 20px;
     padding: 20px;
     margin-top: 20px;
-}
-#forimg{
+  }
+  #forimg {
     background-image: url(img/download.jpg);
     background-size: cover;
     background-position: center;
     width: 40vh;
     height: 100%;
     border-radius: 2vh;
-}
-#branch-area h3{
+  }
+  #branch-area h3 {
     color: #041728;
     margin: 0;
-}
-#branch-area p{
+  }
+  #branch-area p {
     margin: 0;
-    color: #B6B6B6;
+    color: #b6b6b6;
     font-size: 2.5vh;
-}
-#fortext {
+  }
+  #fortext {
     height: 100%;
-}
+  }
+  #check-result table {
+    width: 100%;
+    font-size: 2.5vh;
+    border-bottom: 1px solid #104b82;
+  }
+  #check-result th {
+    /* text-align: start; */
+    /* width: 40%; */
+    color: #104b82;
+    font-weight: 400;
+  }
+  #check-result {
+      display: flex;
+      flex-direction: column;
+      padding: 2vh;
+      gap: 2vh;
+  }
+  .btn-pop {
+      background-color: transparent;
+      border: 1px solid #104B82;
+      border-radius: 2vh;
+      width: 15vh;
+      height: 6vh;
+      color: #104B82;
+      transition: ease-in-out 0.2s;
+      cursor: pointer;
+      font-size: 2.5vh;
+  }
+  .btn-pop:hover {
+      background-color: #104B82;
+      color: white;
+  }
+  #check-btn{
+      width: 100%;
+      display: flex;
+      justify-content: end;
+  }
