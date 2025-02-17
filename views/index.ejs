@@ -64,13 +64,14 @@
             <% promotions.forEach((element)=> { %>
                 <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');">
                     <div class="overlay">
-                        <h3>
+                        <!-- <h3>
                             <%=element.promotionName%>
-                        </h3>
-                        <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                        </h3> -->
+                        <!-- <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button> -->
+                        <button class="btn-p" onclick="showpop(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button>
                     </div>
                 </div>
-            <%});%>
+                <%});%>
                     <div id="popup-bg">
                         <div id="fori">
                             <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
@@ -102,16 +103,48 @@
                 <!-- นี่คือ แสดงสาขา -->
                 <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
                 <div id="fortext">
-                    <h3><%=element.centerName%></h3>
-                    <p><%=element.address%> <%=element.subdistrict%> <%=element.district%> <%=element.province%> <%=element.postcode%></p>
-                    <p>โทรศัพท์ <%=element.telephone%></p>
-                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+                    <h3>
+                        <%=element.centerName%>
+                    </h3>
+                    <p>
+                        <%=element.address%>
+                            <%=element.subdistrict%>
+                                <%=element.district%>
+                                    <%=element.province%>
+                                        <%=element.postcode%>
+                    </p>
+                    <p>โทรศัพท์ <%=element.telephone%>
+                    </p>
+                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%>
+                    </p>
                 </div>
             </div>
 
-        <% }); %>
+            <% }); %>
 
     </section>
+
+    <style>
+        .popup-detail {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .popup-detail img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .promo-code {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
 
     <script>
         function bac() {
@@ -120,38 +153,29 @@
             document.getElementById("popup-bg").style.opacity = 0;
             document.getElementById("popup-ov").style.opacity = 0;
         }
-        function showpop() {
+        // function showpop() {
+        //     document.getElementById("popup-bg").style.visibility = "visible";
+        //     document.getElementById("popup-ov").style.visibility = "visible";
+        //     document.getElementById("popup-bg").style.opacity = 1;
+        //     document.getElementById("popup-ov").style.opacity = 1;
+        // }
+
+        function showpop(promotion) {
+            console.log("popuppppppppppp");
+            console.log(promotion.promotionId);
+
+            const content = `<h3>${promotion.promotionName}</h3>
+                            <p>${promotion.promotionDescription}</p>
+                            <img class="pic" src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
+                            `;
+
+            // แทรกเนื้อหาและแสดง Popup
+            document.getElementById("popup-content").innerHTML = content;
             document.getElementById("popup-bg").style.visibility = "visible";
             document.getElementById("popup-ov").style.visibility = "visible";
             document.getElementById("popup-bg").style.opacity = 1;
             document.getElementById("popup-ov").style.opacity = 1;
         }
-        
-        // * ดูต่อพน
- 
-        // function showpop(promotionId) {
-        // // หาข้อมูลโปรโมชันจาก EJS ข้อมูล
-        // const promotion = <%= JSON.stringify(promotions) %>.find(p => p.promotionId == promotionId);
-        
-        // if (promotion) {
-        //     // สร้างเนื้อหา Popup
-        //     const content = `
-        //     <div class="popup-detail">
-        //         <h3>${promotion.promotionName}</h3>
-        //         <img src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
-        //         <p>${promotion.promotionDescription}</p>
-        //         <p class="promo-code">รหัสโปรโมชัน: ${promotion.promotionCode}</p>
-        //     </div>
-        //     `;
-            
-        //     // แทรกเนื้อหาและแสดง Popup
-        //     document.getElementById("popup-content").innerHTML = content;
-        //     document.getElementById("popup-bg").style.visibility = "visible";
-        //     document.getElementById("popup-ov").style.visibility = "visible";
-        //     document.getElementById("popup-bg").style.opacity = 1;
-        //     document.getElementById("popup-ov").style.opacity = 1;
-        //     }
-        // }
 
     </script>
 </body>
