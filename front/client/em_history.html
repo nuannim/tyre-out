@@ -23,12 +23,12 @@
         display: none;
     }
     .mytabs label{
-        font-size: 24px;
+        font-size: 22px;
         color: rgb(255, 255, 255);
-        padding: 15px 40px 25px 40px;
+        padding: 15px 30px 25px 30px;
         background: #104B82;
         order: 0;
-        border-radius: 30px 30px 0px 0px;
+        border-radius: 20px 20px 0px 0px;
         height: 25px;
     }
     .mytabs .tab{
@@ -40,7 +40,6 @@
         display: none;
         border-radius: 0 30px 30px 30px;
         text-align: left;
-        /* border: 1px solid rgb(204, 21, 21); */
     }
     .mytabs input[type='radio']:checked + label +.tab {
         display: block;
@@ -50,42 +49,11 @@
         color: #104B82;
     }
 
-/* box-container & box */
-    #box-container {
-        width: auto;
-        height: auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
-    #box{
-        width: 220px;
-        height: 140px;
-        background-color: #FFFFFF;
-        border-radius: 30px;
-        color: #104B82;
-        padding: 20px 35px;
-        line-height: 1;
-    }
-    #box:hover {
-    background-color: #104B82;
-    color: #FFFFFF;
-    }
-    #box h2{
-        font-size: 22px;
-        font-weight: 700;
-    }
-    #box p{
-        font-size: 20px;
-    }
-/* *** */
-
 /* select branch */
     .main-container{
         margin: 0;
         align-items: center;
         text-align: center;
-        /* border: 1px solid rgb(236, 236, 200); */
     }
     #branch-lb{
         margin-left: 50px;
@@ -103,51 +71,61 @@
 /* *** */
 
 /* ตาราง */
-#table-apmt{
+    #table-apmt{
         margin: 0 auto;
-        width: 1300px;
+        width: 1300PX;
         border: none;
         border-collapse: collapse;
+        color: rgb(61, 61, 61);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        overflow: hidden;
     }
     .c{
         height: 60px;
-        background-color: #104B82;
+        background-color: #ffffff;
+        background-color: none;
         font-size: 20px;
         font-weight: 500;
-        color: white;
+        color: #104B82;
         text-align: center;
+        border-bottom: 1px solid rgb(224, 224, 224);
+        cursor: default;
     }
     #c7{
         width: 100px;
     }
     td{
         height: 60px;
-        background-color: #ffffff;
+        /* background-color: #ffffff; */
         font-size: 20px;
         font-weight: 400;
         text-align: center;
     }
-    #column-row{
+    tr:nth-child(odd) {
+        background-color: #f7f7f7;
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    tr:hover {
+        background-color: #f7f7f7;
+        color: #000000;
+        cursor: pointer;
+    }
+    /* #column-row{
         border-radius: 25px 25px 0px 0px;
-    }
-    #info {
-        border-bottom: 1px solid #B6B6B6;
-    }
-    #c1{
+    } */
+    /* #info {
+        border-bottom: 1px solid #cecece;
+    } */
+    /* #c1{
         border-radius: 25px 0px 0px 0px;
     }
     #c7{
         border-radius: 0px 25px 0px 0px;
-    }
-    #onerow td{
-        height: 20px;
-    }
-    #l-border{
-        border-radius: 0px 0px 0px 25px;
-    }
-    #r-border{
-        border-radius: 0px 0px 25px 0px;
-    }
+    } */
+
+
 /* ตาราง */
 
     #search{
@@ -157,14 +135,32 @@
         padding-left: 5px;
     }
 
+/* popup */
+    #popup {
+
+    }
+
 </style>
 <body>
-    <!-- navbar -->
     <div id="nav">
         <div id="nav-menu">
-            <a href="/front/client/em_history.html">ประวัติการนัดหมายลูกค้า</a>
-            <p>|</p>
-            <a href="/front/client/em_history.html">login</a>
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="#">หน้าหลัก</a>
+                <p>|</p>
+                <a href="#promotion">โปรโมชัน</a>
+                <p>|</p>
+                <a href="#branch">ศูนย์บริการ</a>
+                <p>|</p>
+                <a href="appointment.html">การนัดหมาย</a>
+                <p>|</p>
+                <a href="history.html">ประวัติการนัดหมาย</a>
+            </div>
+            <div id="las">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+            </div>
         </div>
     </div>
 
@@ -183,13 +179,13 @@
 
         <!-- main content -->
         <div class="mytabs">
+            <!-- tab1 -->
             <input type="radio" id="tab1" name="mytabs" checked="checked">
             <label for="tab1">การนัดหมายที่ยังมาไม่ถึง</label>
             <div class="tab">
                     <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                     <input type="text" id="search">
                     <br></br>
-    
                     <table id="table-apmt">
                         <tr id="column-row">
                             <th class="c" id="c1">วัน-เวลา</th>
@@ -208,8 +204,8 @@
                             <td>เปลี่ยนล้อรถยนต์</td>
                             <td>ลาดกระบัง</td>
                             <td>
-                                <a><i class="fa fa-pencil-square-o"></i></a>
-                                <a><i class="fa fa-trash-o"></i></a>
+                                <a onclick="edit_info"><i class="fa fa-pencil-square-o"></i></a>
+                                <a onclick="delete_info"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                         <tr id="info">
@@ -236,31 +232,16 @@
                                 <a><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
-                        <tr id="onerow"> 
-                            <td id="l-border"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td id="r-border"></td>
-                        </tr>
-                        </table>
+                    </table>
             </div>
 
+            <!-- tab2 -->
             <input type="radio" id="tab2" name="mytabs">
             <label for="tab2">การนัดหมายที่ผ่านมาแล้ว</label>
             <div class="tab">
-                <!-- <div id="box">
-                    <h2>ปะยาง</h2>
-                    <p>สาขาทุ่งลุยลาย</p>
-                    <p>29 ม.ค. 2568 ช่วงบ่าย</p>
-                </div> -->
-                
                 <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                 <input type="text" id="search">
                 <br></br>
-
                 <table id="table-apmt">
                     <tr id="column-row">
                         <th class="c" id="c1">วัน-เวลา</th>
@@ -295,22 +276,128 @@
                             <a><i class="fa fa-trash-o"></i></a>
                         </td>
                     </tr>
-
-                    <tr id="onerow"> 
-                        <td id="l-border"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td id="r-border"></td>
+                </table>
+            </div>
+            <!-- tab3 -->
+            <input type="radio" id="tab3" name="mytabs">
+            <label for="tab3">การนัดหมายที่ยังมาไม่ถึงของศูนย์</label>
+            <div class="tab">
+                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
+                <input type="text" id="search">
+                <br></br>
+                <table id="table-apmt">
+                    <tr id="column-row">
+                        <th class="c" id="c1">วัน-เวลา</th>
+                        <th class="c" id="c2">เบอร์โทร</th>
+                        <th class="c" id="c3">ชื่อ</th>
+                        <th class="c" id="c4">นามสกุล</th>
+                        <th class="c" id="c5">บริการ</th>
+                        <th class="c" id="c6">ศูนย์บริการ</th>
+                        <th class="c" id="c7"></th>
                     </tr>
-                    </table>
-        </div>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- tab4 -->
+            <input type="radio" id="tab4" name="mytabs">
+            <label for="tab4">การนัดหมายที่ผ่านมาแล้วของศูนย์</label>
+            <div class="tab">
+                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
+                <input type="text" id="search">
+                <br></br>
+                <table id="table-apmt">
+                    <tr id="column-row">
+                        <th class="c" id="c1">วัน-เวลา</th>
+                        <th class="c" id="c2">เบอร์โทร</th>
+                        <th class="c" id="c3">ชื่อ</th>
+                        <th class="c" id="c4">นามสกุล</th>
+                        <th class="c" id="c5">บริการ</th>
+                        <th class="c" id="c6">ศูนย์บริการ</th>
+                        <th class="c" id="c7"></th>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                    <tr id="info">
+                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
+                        <td>123 456 7899</td>
+                        <td>ลีอาห์</td>
+                        <td>แซ่ตั้ง</td>
+                        <td>เปลี่ยนล้อรถยนต์</td>
+                        <td>ลาดกระบัง</td>
+                        <td>
+                            <a><i class="fa fa-pencil-square-o"></i></a>
+                            <a><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         <!-- *** -->
+            
 
     </div>
     
-    
+    <script>
+        function edit_info() {
+            document.getElementByid("aptm-info").innerHTML = "";
+            showpop()
+        }
+
+        function delete_info() {
+            document.getElementByid("aptm-info").innerHTML = "";
+            showpop()
+        }
+
+        function showpop(){
+            document.getElementById("popup1").style.visibility = "visible";
+            // document.getElementById("popup-ov").style.visibility = "visible";
+            document.getElementById("popup1").style.opacity = 1;
+            // document.getElementById("popup-ov").style.opacity = 1;
+        }
+    </script>
 </body>
 </html>
+
+<!-- <div class="pic" id="pic1">
+    <div class="overlay">
+        <button class="btn-p" onclick="showpromotion()">แสดงรายละเอียด</button>
+    </div>
+</div> -->
+
+<!-- function showpromotion(){
+    document.getElementById("content").innerHTML = "";
+    showpop();
+} -->
