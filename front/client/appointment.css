@@ -335,7 +335,7 @@ a{
     padding-left: 2vh;
     padding-right: 2vh;
 }
-#forwhatyouvedone{
+.forwhatyouvedone{
     width: 90%;
     height: auto;
     background-color: white;
@@ -355,4 +355,19 @@ a{
 }
 .header{
     color: #B6B6B6;
+}
+.header-total, #show-price-total{
+    color: #F5F6F8;
+}
+#show-price-total{
+    text-decoration: underline;
+}
+#total{
+    width: 90%;
+    height: auto;
+    background-color: #104B82;
+    border-radius: 1.5vh;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
 }
