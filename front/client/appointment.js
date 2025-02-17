@@ -9,7 +9,6 @@ const formstep = document.querySelectorAll(".form-step");
 const cir = document.querySelectorAll(".cir");
 const indi = document.getElementById("indi");
 
-
 let formstepnum = 0;
 
 nextbtn.forEach((btn) => {
@@ -47,3 +46,11 @@ function updateform(){
     const progress = (formstepnum/(formstep.length-1)*100);
     indi.style.width = `${progress}%`;
 }
+function getQueryParam(param){
+    const urlparam = new URLSearchParams(window.location.search);
+    return urlparam.get(param);
+}
+document.getElementById("sel1").value = getQueryParam("option1");
+document.getElementById("sel2").value = getQueryParam("option2");
+document.getElementById("sel3").value = getQueryParam("option3");
+document.getElementById("sel4").value = getQueryParam("option4");
