@@ -126,13 +126,13 @@
                             <div id="fortime">
                                 <label for="reserve-day">เลือกเวลา</label>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-mor" value="ช่วงเช้า">ช่วงเช้า
+                                    <input type="radio" name="timeinput" id="timeinput-mor">ช่วงเช้า
                                 </div>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-noon" value="ช่วงบ่าย">ช่วงบ่าย
+                                    <input type="radio" name="timeinput" id="timeinput-noon">ช่วงบ่าย
                                 </div>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-even" value="ช่วงเย็น">ช่วงเย็น
+                                    <input type="radio" name="timeinput" id="timeinput-even">ช่วงเย็น
                                 </div>
                             </div>
                         </div>
@@ -167,27 +167,23 @@
                                 <h4>รายละเอียดการนัดหมาย</h4>
                                 <div class="forwhatyouvedone">
                                     <p class="header">รุ่นรถยนต์</p>
-                                    <p class="show" id="show-model">-</p>
+                                    <p class="show" id="show-model">รุ่นเสว</p>
                                     <p class="header">ระยะทาง</p>
-                                    <p class="show" id="show-kilo">-</p>
+                                    <p class="show" id="show-kilo">20,000 กม.</p>
                                     <p class="header">ศูนย์บริการ</p>
-                                    <p class="show" id="show-branch">-</p>
+                                    <p class="show" id="show-branch">ทุ่งหนองแจ๋ม</p>
                                     <p class="header">วันเวลา</p>
-                                    <div id="showdatetime">
-                                        <p class="show" id="show-date">-
-                                        </p>
-                                        <p class="show" id="show-time"></p>
-                                    </div>
+                                    <p class="show" id="show-date">31 กุมภาพันธ์ 2525 ช่วงเย็น</p>
                                 </div>
                                 <div class="forwhatyouvedone">
                                     <p class="header">รวมราคาอะไหล่และเคมีภัณฑ์</p>
-                                    <p class="show" id="show-price-chemi">-</p>
+                                    <p class="show" id="show-price-chemi">2,000.00</p>
                                     <p class="header">รวมค่าแรง</p>
-                                    <p class="show" id="show-price-labor">-</p>
+                                    <p class="show" id="show-price-labor">2,000.00</p>
                                 </div>
                                 <div id="total">
                                     <p class="header-total">รวมค่าใช้จ่ายทั้งสิ้น</p>
-                                    <p class="show" id="show-price-total">-</p>
+                                    <p class="show" id="show-price-total">4,000.00</p>
                                 </div>
                                 <div id="more">
                                     <p>พนักงานจะทำการติดต่อกลับ</p>
