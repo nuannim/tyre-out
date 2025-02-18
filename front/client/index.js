@@ -50,10 +50,6 @@ function showpromotion(){
 }
 function gotoapp(){
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
-    // const sel1 = document.getElementById("sel1").value;
-    // const sel2 = document.getElementById("sel2").value;
-    // const sel3 = document.getElementById("sel3").value;
-    // const sel4 = document.getElementById("sel4").value;
     const letsend = `appointment.html?option1=${encodeURIComponent(sel1.value)}&option2=${encodeURIComponent(sel2.value)}&option3=${encodeURIComponent(sel3.value)}&option4=${encodeURIComponent(sel4.value)}`;
     window.location.href = letsend;
 }
