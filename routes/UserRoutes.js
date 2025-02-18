@@ -1,4 +1,5 @@
 const UserController = require('../controllers/UserController');
+// const BookingController = require('../controllers/BookingController');
 
 module.exports = function(app) {
     // & ตัวอย่างของ chat
@@ -27,4 +28,5 @@ module.exports = function(app) {
     app.get('/', UserController.getIndexPage);
     app.get('/appointment', UserController.getAppointmentPage);
     app.get('/history', UserController.getHistoryPage);
+    // app.post('/booking', BookingController.createBooking);
 };

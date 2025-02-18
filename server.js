@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 //* routing
 require('./routes/UserRoutes.js')(app);
+// require('./routes/EmployeeRoutes.js')(app);
 
 // from lab class
 app.listen(port, () => {
