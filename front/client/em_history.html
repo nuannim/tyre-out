@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="em_history.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -13,223 +14,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
-<style>
-    .mytabs{
-        display: flex;
-        flex-wrap: wrap;
-        /* max-width: 600px; */
-        width: 1700px; /*ปรับความยาวกล่องตรงนี้ */
-        margin: 50px auto;
-    }
-    .mytabs input[type="radio"]{
-        display: none;
-    }
-    .mytabs label{
-        font-size: 26px;
-        color: rgb(255, 255, 255);
-        padding: 15px 30px 25px 30px;
-        background: #104B82;
-        order: 0;
-        border-radius: 20px 20px 0px 0px;
-        height: 25px;
-    }
-    .mytabs .tab{
-        width: 100%;
-        height: auto; /*ปรับความสูงกล่องตรงนี้ */
-        padding: 60px 60px;
-        background: #F5F6F8;
-        order: 1;
-        display: none;
-        border-radius: 0 30px 30px 30px;
-        text-align: left;
-    }
-    .mytabs input[type='radio']:checked + label +.tab {
-        display: block;
-    }
-    .mytabs input[type='radio']:checked + label {
-        background: #F5F6F8;
-        color: #104B82;
-    }
-
-/* select branch */
-    .main-container{
-        margin: 0;
-        align-items: center;
-        text-align: center;
-    }
-    #branch-lb{
-        margin-left: 50px;
-        color: white;
-        font-size: 24px;
-    }
-    #selectBranch{
-        font-size: 24px;
-        width: 200px;
-        height: 50px;
-        padding-left: 15px;
-        margin-left: 15px;
-        border-radius: 15px;
-    }
-/* *** */
-
-/* ตาราง */
-    #table-apmt{
-        margin: 0 auto;
-        width: 1600PX;
-        border: none;
-        border-collapse: collapse;
-        color: rgb(61, 61, 61);
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        overflow: hidden;
-    }
-    .c{
-        height: 60px;
-        background-color: #ffffff;
-        background-color: none;
-        font-size: 24px;
-        font-weight: 500;
-        color: #104B82;
-        text-align: center;
-        border-bottom: 1px solid rgb(224, 224, 224);
-        cursor: default;
-    }
-    #c7{
-        width: 200px;
-    }
-    #c1 {
-        width: 300px;
-    }
-    td{
-        height: 60px;
-        /* background-color: #ffffff; */
-        font-size: 24px;
-        font-weight: 400;
-        text-align: center;
-    }
-    tr:nth-child(odd) {
-        background-color: #f7f7f7;
-    }
-    tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-    tr:hover {
-        background-color: #f7f7f7;
-        color: #000000;
-    }
-
-/* search bar */
-    #search{
-        height: 35px;
-        font-size: 24px;
-        border-radius: 5px;
-        padding-left: 5px;
-        margin-bottom: 20px;
-    }
-
-/* popup */
-    #popup1 {
-        /* ตำแหน่ง */
-        margin: 0 auto;
-        visibility: hidden;
-        opacity: 0;
-        position: fixed;
-        top: 53%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /* appearance */
-        width: 800px;
-        height: 850px;
-        background-color: #f7f7f7;
-        border-radius: 25px;
-        /* child */
-        display: flex;
-        flex-direction: column;
-    }
-    #brach-info {
-        display: flex;
-        background-color: rgb(255, 255, 255);
-        width: 700px;
-        height: 200px;
-        border-radius: 25px;
-        justify-content: center;
-        align-self: center;
-    }
-    #left {
-        width: 40%;
-    }
-    #right {
-        width: 60%;
-        text-align: left;
-        /* padding-top: 15px;
-        padding-left: 15px; */
-        font-size: 22px;
-        padding: 0px 20px;
-        line-height: 1;
-    }
-    #branch-img {
-        width: 200px;
-        height: 200px;
-    }
-    #aptm-info {
-        background-color: rgb(255, 255, 255);
-        width: 700px;
-        height: 470px;
-        border-radius: 25px;
-        /* justify-content: left; */
-        align-self: center;
-        text-align: left;
-        margin-top: 20px;
-        padding: 15px 40px;
-        box-sizing: border-box; /*ไม่ให้ขยาย*/
-        line-height: 0.9;
-    }
-    .info-p {
-        color: #b3b3b3;
-        font-size: 22px;
-    }
-    .info-c {
-        color: rgb(0, 0, 0);
-        font-size: 22px;
-    }
-
-/* button */
-    #action-button{
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
-        font-size: 24px;
-        margin-right: 20px;
-    }
-    #close-button{
-        font-size: 30px;
-        cursor: pointer;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-
-</style>
 <body>
     <div id="nav">
         <div id="nav-menu">
             <div id="fis">
                 <p>Tyre-Out</p>
-            </div>
-            <div id="mid">
-                <a href="#">หน้าหลัก</a>
-                <p>|</p>
-                <a href="#promotion">โปรโมชัน</a>
-                <p>|</p>
-                <a href="#branch">ศูนย์บริการ</a>
-                <p>|</p>
-                <a href="appointment.html">การนัดหมาย</a>
-                <p>|</p>
-                <a href="history.html">ประวัติการนัดหมาย</a>
             </div>
             <div id="las">
                 <a href="#"><i class="fa-regular fa-user"></i></a>
@@ -237,7 +26,7 @@
         </div>
     </div>
 
-    <div style="height: 150px;"></div>
+    <div style="height: 130px;"></div>
 
     <div class="main-container">
         <!-- choose branch -->
@@ -248,7 +37,6 @@
             <option value="b2">ลาดกระบัง</option>
             <option value="b3">ทุ่งมะขามป้อม</option>
         </select>
-        <!-- *** -->
 
         <!-- main content -->
         <div class="mytabs">
@@ -259,7 +47,7 @@
                     <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                     <input type="text" id="search">
                     <br></br>
-                    <table id="table-apmt">
+                    <table class="table-apmt">
                         <tr id="column-row">
                             <th class="c" id="c1">วัน-เวลา</th>
                             <th class="c" id="c2">เบอร์โทร</th>
@@ -269,16 +57,16 @@
                             <th class="c" id="c6">ศูนย์บริการ</th>
                             <th class="c" id="c7"></th>
                         </tr>
-                        <tr id="info">
-                            <td>30 ม.ค. 2568 ช่วงบ่าย</td>
-                            <td>123 456 7899</td>
-                            <td>ลีอาห์</td>
-                            <td>แซ่ตั้ง</td>
-                            <td>เปลี่ยนล้อรถยนต์</td>
-                            <td>ลาดกระบัง</td>
+                        <tr class="info">
+                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                            <td id="info-phone">123 456 7899</td>
+                            <td id="info-firstname">ลีอาห์</td>
+                            <td id="info-lastname">แซ่ตั้ง</td>
+                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                            <td id="info-branch">ลาดกระบัง</td>
                             <td>
-                                <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                                <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
+                                <button class="edit-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                                <button class="delete-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </table>
@@ -291,7 +79,7 @@
                 <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                 <input type="text" id="search">
                 <br></br>
-                <table id="table-apmt">
+                <table class="table-apmt">
                     <tr id="column-row">
                         <th class="c" id="c1">วัน-เวลา</th>
                         <th class="c" id="c2">เบอร์โทร</th>
@@ -301,17 +89,6 @@
                         <th class="c" id="c6">ศูนย์บริการ</th>
                         <th class="c" id="c7"></th>
                     </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
                 </table>
             </div>
             <!-- tab3 -->
@@ -321,7 +98,7 @@
                 <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                 <input type="text" id="search">
                 <br></br>
-                <table id="table-apmt">
+                <table class="table-apmt">
                     <tr id="column-row">
                         <th class="c" id="c1">วัน-เวลา</th>
                         <th class="c" id="c2">เบอร์โทร</th>
@@ -330,42 +107,6 @@
                         <th class="c" id="c5">บริการ</th>
                         <th class="c" id="c6">ศูนย์บริการ</th>
                         <th class="c" id="c7"></th>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
                     </tr>
                 </table>
             </div>
@@ -377,7 +118,7 @@
                 <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
                 <input type="text" id="search">
                 <br></br>
-                <table id="table-apmt">
+                <table class="table-apmt">
                     <tr id="column-row">
                         <th class="c" id="c1">วัน-เวลา</th>
                         <th class="c" id="c2">เบอร์โทร</th>
@@ -387,98 +128,177 @@
                         <th class="c" id="c6">ศูนย์บริการ</th>
                         <th class="c" id="c7"></th>
                     </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
-                    <tr id="info">
-                        <td>29 ม.ค. 2568 ช่วงบ่าย</td>
-                        <td>123 456 7899</td>
-                        <td>ลีอาห์</td>
-                        <td>แซ่ตั้ง</td>
-                        <td>เปลี่ยนล้อรถยนต์</td>
-                        <td>ลาดกระบัง</td>
-                        <td>
-                            <button id="action-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                            <button id="action-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
-                        </td>
-                    </tr>
                 </table>
             </div>
         <!-- *** -->
     </div>
 
     <!-- popup -->
-    <div id="popup1">
-        <i id="close-button" onclick="closepop()" class="material-icons">close</i>
-        <p style="font-size: 24px; margin-top: 40px; font-weight: 500;">รายละเอียดการนัดหมาย</p>
-        
-        <div id="brach-info">
-            <div id="left">
-                <img id="branch-img" src="img/branch_1_img.png">
-            </div>
-            <div id="right">
-                <p id="branch-name">ชื่อสาขา</p>
-                <p id="branch-address">ที่อยู่</p>
-                <p id="branch-tel">เบอร์โทร</p>
-                <p id="branch-time">เวลาเปิด-ปิด</p>
-            </div>
+    <div class="popup" id="popup-bg">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
         </div>
-
-        <div id="aptm-info">
-            <p class="info-p">บริการ</p>
-                <p class="info-c">เปลี่ยนล้อรถยนต์</p>
-            <p class="info-p">วันเวลา</p>
-                <p class="info-c">30 ม.ค. 2568 ช่วงบ่าย</p>
-            <p class="info-p">ชื่อ</p>
-                <p class="info-c">ลีอาห์</p>
-            <p class="info-p">สกุล</p>
-                <p class="info-c">แซ่ตั้ง</p>
-            <p class="info-p">เบอร์โทร</p>
-                <p class="info-c">123 456 7899</p>
+        <div id="content">
+            <h4 id="h4-style">รายละเอียดการนัดหมาย</h4>
+            <div id="branch-box">
+                <div id="image"></div>
+                <div id="branch-text">
+                    <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
+                    <p class="header">ที่อยู่</p>
+                    <p class="header">เบอร์โทร</p>
+                    <p class="header">เวลาเปิดปิด</p>
+                </div>
+            </div>
+            <div id="inform-box">
+                <div id="left">
+                    <div class="inform-text">
+                        <p class="header">บริการ</p>
+                        <p class="show">เปลี่ยนล้อรถยนต์</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">วันเวลา</p>
+                        <p class="show">29 ม.ค. 2568 9.00-11.00</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">รุ่นรถยนต์</p>
+                        <p class="show">-</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ระยะทาง</p>
+                        <p class="show">-</p>
+                    </div>
+                </div>
+                <div id="right">
+                    <div class="inform-text">
+                        <p class="header">ทะเบียนรถ</p>
+                        <p class="show">-</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ชื่อ - สกุล</p>
+                        <p class="show">-</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">เบอร์โทร</p>
+                        <p class="show">-</p>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">E-mail</p>
+                        <p class="show">-</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
+
+    <!-- popup edit -->
+    <div class="popup" id="popup-edit">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
+        </div>
+        <div id="content">
+            <h4 id="h4-style">รายละเอียดการนัดหมาย</h4>
+            <div id="branch-box">
+                <div id="image"></div>
+                <div id="branch-text">
+                    <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
+                    <p class="header">ที่อยู่</p>
+                    <p class="header">เบอร์โทร</p>
+                    <p class="header">เวลาเปิดปิด</p>
+                </div>
+            </div>
+            <div id="inform-box">
+                <div id="left">
+                    <div class="inform-text">
+                        <p class="header">บริการ</p>
+                        <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์">
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">วันเวลา</p>
+                        <input type="datetime-local" id="edit-date-time" name="edit-date-time" value="2024-01-29T09:00" />
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">รุ่นรถยนต์</p>
+                        <input type="text" id="car" class="popup-input" value="-">
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ระยะทาง</p>
+                        <input type="text" id="lenght" class="popup-input" value="-">
+                    </div>
+                </div>
+                <div id="right">
+                    <div class="inform-text">
+                        <p class="header">ทะเบียนรถ</p>
+                        <input type="text" id="edit-car-license"  class="popup-input" value="-">
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ชื่อ - สกุล</p>
+                        <input type="text" id="edit-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง">
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">เบอร์โทร</p>
+                        <input type="text" id="edit-phone" class="popup-input" value="-">
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">E-mail</p>
+                        <input type="text" id="edit-email" class="popup-input" value="-">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <button class="save-button" onclick="save_info()">บันทึกข้อมูล</button>
+        </div>
+    </div>
+
+    <!-- <div id="popup-ov"></div> -->
+
     <script>
-        function edit_info() {
-            // document.getElementById("aptm-info").innerHTML = "";
-            showpop()
-        }
+        
+function bac(){
+    document.getElementById("popup-bg").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-bg").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
+}
 
-        function delete_info() {
-            // document.getElementById("aptm-info").innerHTML = "";
-            showpop()
-        }
+function bac2(){
+    document.getElementById("popup-edit").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-edit").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
+}
 
-        function showpop(){
-            document.getElementById("popup1").style.visibility = "visible";
-            document.getElementById("popup1").style.opacity = 1;
-        }
+function save_info(){
+    alert("บันทึกข้อมูลสำเร็จ")
+}
 
-        function closepop() {
-            document.getElementById("popup1").style.visibility = "hidden";
-            document.getElementById("popup1").style.opacity = 0;
-        }
+function delete_info(){
+    alert("ทำการยกเลิกการนัดหมายสำเร็จ")
+}
+
+document.querySelectorAll('.info').forEach(a => {
+        a.addEventListener('click', function() {
+            //ให้แยกกับปุ่ม
+            if (event.target.closest('button')) return;
+        document.getElementById("popup-bg").style.visibility = "visible";
+        // document.getElementById("popup-ov").style.visibility = "visible";
+        document.getElementById("popup-bg").style.opacity = 1;
+        // document.getElementById("popup-ov").style.opacity = 1;
+    });
+});
+
+document.querySelectorAll('.edit-button').forEach(a => {
+        a.addEventListener('click', function() {
+            event.stopPropagation(); // กันไว้ให้แยกจากการกดแถว
+        document.getElementById("popup-edit").style.visibility = "visible";
+        // document.getElementById("popup-ov").style.visibility = "visible";
+        document.getElementById("popup-edit").style.opacity = 1;
+        // document.getElementById("popup-ov").style.opacity = 1;
+    });
+});
+
+
+
     </script>
 </body>
 </html>

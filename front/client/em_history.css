@@ -1,0 +1,300 @@
+*{
+    font-family: "Prompt";
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    background-color: #041728;
+    color: #041728;
+}
+
+/* tab */
+.mytabs{
+    width: 80%; /*ปรับความยาวกล่องตรงนี้ */
+    /* height: 70vh; */
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px auto;
+}
+.mytabs input[type="radio"]{
+    display: none;
+}
+.mytabs label{
+    /* font-size: 26px;
+    color: rgb(255, 255, 255);
+    padding: 15px 25px 25px 25px;
+    background: #104B82;
+    order: 0;
+    border-radius: 20px 20px 0px 0px;
+    height: 25px; */
+    color: white;
+    background-color: #104B82;
+    height: 3vh;
+    padding: 2vh;
+    border-radius: 2vh 2vh 0 0;
+    /* display: flex; */
+    align-items: center;
+    order: 0;
+    font-size: 2.5vh;
+    cursor: pointer;
+}
+.mytabs .tab{
+    width: 100%;
+    height: auto; /*ปรับความสูง */
+    /* padding: 60px 60px; */
+    padding: 3vh 6vh;
+    background: #F5F6F8;
+    order: 1;
+    display: none;
+    border-radius: 0 2vh 2vh 2vh;
+    text-align: left;
+}
+.mytabs input[type='radio']:checked + label +.tab {
+    display: block;
+}
+.mytabs input[type='radio']:checked + label {
+    background: #F5F6F8;
+    color: #000000;
+}
+
+/* select branch */
+.main-container{
+    margin: 0;
+    align-items: center;
+    text-align: center;
+}
+#branch-lb{
+    margin-left: 50px;
+    color: white;
+    font-size: 2.5vh;
+}
+#selectBranch{
+    font-size: 2.5vh;
+    width: 25vh;
+    height: 5vh;
+    padding-left: 15px;
+    margin-left: 15px;
+    border-radius: 15px;
+}
+
+/* ตาราง */
+.table-apmt{
+    margin: 0 auto;
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    color: rgb(61, 61, 61);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+.c{
+    width: 20vh;
+    height: 60px;
+    background-color: #ffffff;
+    background-color: none;
+    font-size: 2.5vh;
+    font-weight: 500;
+    color: #104B82;
+    text-align: center;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    cursor: default;
+}
+#c7{
+    width: 20vh;
+}
+#c1 {
+    width: 35vh;
+}
+
+#info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
+    height: 6vh;
+    font-size: 2.5vh;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+}
+tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+tr:hover {
+    background-color: #f7f7f7;
+    color: #000000;
+}
+
+/* search bar */
+#search{
+    height: 3.5vh;
+    font-size: 2.5vh;
+    margin-top: 2vh;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 0.5vh 1vh;
+}
+
+/* button */
+.edit-button {
+    margin-left: 3vh;
+}
+.delete-button {
+    margin-right: 2vh;
+}
+.edit-button, .delete-button{
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0px 1.5vh;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 2.5vh;
+}
+.edit-button:hover {
+    color: rgb(0, 162, 255);
+}
+.delete-button:hover {
+    color: red;
+}
+
+/* popup */
+.popup {
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+/* #popup-bg {
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+} */
+#popup-ov {
+    width: 100%;
+    height: 100%;
+    background-color: #00000071;
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+#fori {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+}
+#bac {
+    color: #041728;
+    cursor: pointer;
+}
+.show{
+    color: #041728;
+    margin: 0;
+    text-align: left;
+    font-size: 2.5vh;
+}
+.header{
+    color: #B6B6B6;
+    margin: 0;
+    text-align: left;
+    font-size: 2.5vh;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+#content h4{
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.5vh;
+}
+#branch-box{
+    display: flex;
+    width: 95.5%;
+    height: auto;
+    background-color: white;
+    border-radius: 2vh;
+    padding: 2vh;
+    gap: 2vh;
+}
+
+#image{
+    width: 20vh;
+    height: 20vh;
+    background-image: url(img/branch_1_img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#inform-box{
+    display: flex;
+    gap: 2vh;
+    justify-content: center;
+    width: 100%;
+}
+#left, #right{
+    background-color: white;
+    border-radius: 2vh;
+    width: 48%;
+    padding: 2vh;
+    text-align: left;
+    line-height: 5vh;
+}
+
+/* popup-edit */
+#bottom {
+    width: 100%;
+    margin-top: 1vh;
+    text-align: right;
+}
+.popup-input, #edit-date-time {
+    color: #041728;
+    margin: 0;
+    text-align: left;
+    font-size: 2.5vh;
+    width: 40vh;
+    align-self: left;
+    padding: 0.5vh 1vh;
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 1vh;
+}
+.save-button {
+    background-color: #000000;
+	color: white;
+	border: none;
+    border-radius: 1vh;
+	padding: 1vh 1vh;
+	cursor: pointer;
+    font-size: 2.5vh;
+}
+.save-button:hover {
+    background-color: #81c0ff;
+    
+}
