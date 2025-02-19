@@ -125,3 +125,90 @@ label{
     flex-direction: column;
     box-shadow: 2px 2px 3px rgb(232, 232, 232);
 }
+.app{
+    cursor: pointer;
+}
+#popup-bg {
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+#popup-ov {
+    width: 100%;
+    height: 100%;
+    background-color: #00000071;
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+#fori {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+}
+#bac {
+    color: #041728;
+    cursor: pointer;
+}
+.show{
+    color: #041728;
+    margin: 0;
+}
+.header{
+    color: #B6B6B6;
+    margin: 0;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+#content h4{
+    margin: 0;
+}
+#branch-box{
+    display: flex;
+    width: 95.5%;
+    height: auto;
+    background-color: white;
+    border-radius: 2vh;
+    padding: 2vh;
+    gap: 2vh;
+}
+
+#image{
+    width: 20vh;
+    height: 20vh;
+    background-image: url(img/branch_1_img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#inform-box{
+    display: flex;
+    gap: 2vh;
+    justify-content: center;
+    width: 100%;
+}
+#left, #right{
+    background-color: white;
+    border-radius: 2vh;
+    width: 48%;
+    padding: 2vh;
+}
