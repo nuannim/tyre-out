@@ -75,7 +75,7 @@ body{
     height: 5vh;
     padding-left: 15px;
     margin-left: 15px;
-    border-radius: 15px;
+    border-radius: 1vh;
 }
 
 /* ตาราง */
@@ -160,7 +160,7 @@ tr:hover {
 }
 
 /* popup */
-.popup {
+#popup-bg, #popup-edit {
     background-color: #f5f6f8;
     position: fixed;
     top: 50%;
@@ -175,21 +175,7 @@ tr:hover {
     opacity: 0;
     transition: ease-in-out 0.2s;
 }
-/* #popup-bg {
-    background-color: #f5f6f8;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: auto;
-    border-radius: 2vh;
-    z-index: 1000;
-    padding: 2vh;
-    visibility: hidden;
-    opacity: 0;
-    transition: ease-in-out 0.2s;
-} */
+
 #popup-ov {
     width: 100%;
     height: 100%;
@@ -293,8 +279,9 @@ tr:hover {
 	padding: 1vh 1vh;
 	cursor: pointer;
     font-size: 2.5vh;
+    opacity: 0.6;
+    transition: 0.5s;
 }
 .save-button:hover {
-    background-color: #81c0ff;
-    
+    opacity: 1;
 }

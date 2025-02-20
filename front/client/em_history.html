@@ -26,7 +26,8 @@
         </div>
     </div>
 
-    <div style="height: 130px;"></div>
+    <!-- ดัน -->
+    <div style="height: 130px;"></div> 
 
     <div class="main-container">
         <!-- choose branch -->
@@ -134,7 +135,7 @@
     </div>
 
     <!-- popup -->
-    <div class="popup" id="popup-bg">
+    <div  class="popup" id="popup-bg">
         <div id="fori">
             <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
         </div>
@@ -250,56 +251,9 @@
         </div>
     </div>
 
-    <!-- <div id="popup-ov"></div> -->
+    <div id="popup-ov"></div>
 
-    <script>
-        
-function bac(){
-    document.getElementById("popup-bg").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-bg").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-}
-
-function bac2(){
-    document.getElementById("popup-edit").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-edit").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-}
-
-function save_info(){
-    alert("บันทึกข้อมูลสำเร็จ")
-}
-
-function delete_info(){
-    alert("ทำการยกเลิกการนัดหมายสำเร็จ")
-}
-
-document.querySelectorAll('.info').forEach(a => {
-        a.addEventListener('click', function() {
-            //ให้แยกกับปุ่ม
-            if (event.target.closest('button')) return;
-        document.getElementById("popup-bg").style.visibility = "visible";
-        // document.getElementById("popup-ov").style.visibility = "visible";
-        document.getElementById("popup-bg").style.opacity = 1;
-        // document.getElementById("popup-ov").style.opacity = 1;
-    });
-});
-
-document.querySelectorAll('.edit-button').forEach(a => {
-        a.addEventListener('click', function() {
-            event.stopPropagation(); // กันไว้ให้แยกจากการกดแถว
-        document.getElementById("popup-edit").style.visibility = "visible";
-        // document.getElementById("popup-ov").style.visibility = "visible";
-        document.getElementById("popup-edit").style.opacity = 1;
-        // document.getElementById("popup-ov").style.opacity = 1;
-    });
-});
-
-
-
-    </script>
+    <script src="em_history.js"></script>
 </body>
 </html>
 
