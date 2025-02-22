@@ -67,7 +67,7 @@
                             <td id="info-branch">ลาดกระบัง</td>
                             <td>
                                 <button class="edit-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                                <button class="delete-button" onclick="delete_info()"><i class="fa fa-trash-o"></i></button>
+                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
                     </table>
@@ -135,12 +135,12 @@
     </div>
 
     <!-- popup -->
-    <div  class="popup" id="popup-bg">
+    <div id="popup-bg">
         <div id="fori">
             <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
         </div>
         <div id="content">
-            <h4 id="h4-style">รายละเอียดการนัดหมาย</h4>
+            <h4>รายละเอียดการนัดหมาย</h4>
             <div id="branch-box">
                 <div id="image"></div>
                 <div id="branch-text">
@@ -192,12 +192,12 @@
     </div>
 
     <!-- popup edit -->
-    <div class="popup" id="popup-edit">
+    <div id="popup-edit">
         <div id="fori">
             <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
         </div>
         <div id="content">
-            <h4 id="h4-style">รายละเอียดการนัดหมาย</h4>
+            <h4>รายละเอียดการนัดหมาย</h4>
             <div id="branch-box">
                 <div id="image"></div>
                 <div id="branch-text">
@@ -249,6 +249,23 @@
         <div id="bottom">
             <button class="save-button" onclick="save_info()">บันทึกข้อมูล</button>
         </div>
+    </div>
+
+    <!-- popup-delete -->
+    <div  id="popup-delete">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac3()"></i>
+        </div>
+        <div id="content">
+            <h4>ยืนยันที่จะลบการนัดหมายนี้หรือไม่</h4>
+            <div class="inform-text">
+                <button class="cancel-del-button" onclick="cancel_del()">ย้อนกลับ</button>
+                <button class="confirm-del-button" onclick="confirm_del()">ยืนยัน</button>
+            </div>
+            
+        </div>
+    </div>
+
     </div>
 
     <div id="popup-ov"></div>
