@@ -16,5 +16,13 @@
     "express": "^4.21.2",
     "mysql": "^2.18.1",
     "sqlite3": "^5.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuannim/tyre-out.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nuannim/tyre-out/issues"
+  },
+  "homepage": "https://github.com/nuannim/tyre-out#readme"
 }
