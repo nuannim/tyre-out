@@ -113,6 +113,7 @@ function checkshowpop(){
 
     const divbtn = document.createElement("div");
     divbtn.id = "check-btn";
+    // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
     divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
     div.appendChild(divbtn);
 
@@ -130,6 +131,8 @@ function gotoapp(){
     // const sel3 = document.getElementById("sel3").value;
     // const sel4 = document.getElementById("sel4").value;
     // const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
-    const letsend = `/appointment?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2.value)}&option3=${encodeURIComponent(sel3.value)}&option4=${encodeURIComponent(sel4.value)}`;
+    const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&option4=${(sel4.value)}`;
     window.location.href = letsend;
+
 }
+
