@@ -375,3 +375,44 @@ a{
     display: flex;
     gap: 1vh;
 }
+@media (max-width: 630px){
+    #mid{
+      display: none;
+    }
+    #hid-drop{
+      display: block;
+      float: left;
+      overflow: hidden;
+    }
+    #hid-drop-i{
+      color: white;
+    }
+    #hid-drop-content{
+      display: none;
+      position: absolute;
+      right: 8%;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 2vh;
+      z-index: 1;
+    }
+    #hid-drop-content a{
+      float: none;
+      color: #041728;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+      font-weight: 400;
+    }
+    #hid-drop-content a:hover{
+      color: #104b82;
+    }
+    #hid-drop:hover #hid-drop-content{
+      display: block;
+    }
+    #las{
+      width: 6%;
+    }
+}
