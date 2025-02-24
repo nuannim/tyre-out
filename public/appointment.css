@@ -66,7 +66,7 @@ body{
     align-items: center;
 }
 #bar{
-    width: 45%;
+    width: 550px;
     height: 20%;
     display: flex;
     justify-content: space-between;
@@ -375,6 +375,57 @@ a{
     display: flex;
     gap: 1vh;
 }
+#hid-drop{
+    display: none;
+}
+@media (max-width: 700px){
+    #nav-menu, #check, .drop, .btn, .btn-p, #fortext p, .txt, #forday, #forday input, #fortime, .bran-btn, #persona p, #persona h4, .eachinput, .inp{
+      font-size: 2vh;
+    }
+    #nav-menu{
+      height: 3vh;
+    }
+    #promotion, #branch{
+      padding-top: 8vh;
+    }
+    #branch-area{
+        padding: 2vh;
+        width: 95%;
+    }
+    #forimg{
+        height: 15vh;
+    }
+    #branch-area h4{
+        font-size: 2.5vh;
+    }
+    .cir{
+        width: 9vh;
+        height: 9vh;
+    }
+    .cir i {
+        font-size: 3vh;
+    }
+    #line{
+        height: 3px;
+    }
+    #box{
+        width: 85vh;
+    }
+    #service, #day, #persona-container, #bran{
+        width: 77vh;
+    }
+    .but-pn{
+        margin: 0;
+        width: 100%;
+    }
+    #bar{
+        width: 400px;
+    }
+    .btn, .bran-btn{
+        width: 12vh;
+        height: 5vh;
+    }
+}
 @media (max-width: 630px){
     #mid{
       display: none;
@@ -413,6 +464,12 @@ a{
       display: block;
     }
     #las{
-      width: 6%;
+      width: 50%;
+      display: flex;
+      gap: 10px;
+      justify-content: end;
+    }
+    #fis{
+        width: 50%;
     }
 }
