@@ -21,13 +21,6 @@ body{
     display: none;
 }
 .mytabs label{
-    /* font-size: 26px;
-    color: rgb(255, 255, 255);
-    padding: 15px 25px 25px 25px;
-    background: #104B82;
-    order: 0;
-    border-radius: 20px 20px 0px 0px;
-    height: 25px; */
     color: white;
     background-color: #104B82;
     height: 3vh;
@@ -109,7 +102,7 @@ body{
 
 #info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
     height: 6vh;
-    font-size: 2.5vh;
+    font-size: 2vh;
     font-weight: 400;
     text-align: center;
     cursor: pointer;
@@ -136,12 +129,12 @@ tr:hover {
 }
 
 /* button */
-.edit-button {
+/* .edit-button {
     margin-left: 3vh;
 }
 .delete-button {
     margin-right: 2vh;
-}
+} */
 .edit-button, .delete-button{
     background: none;
     color: inherit;
@@ -197,12 +190,13 @@ tr:hover {
 #bac {
     color: #041728;
     cursor: pointer;
+    font-size: 2.5vh;
 }
 .show{
     color: #041728;
     margin: 0;
     text-align: left;
-    font-size: 2.5vh;
+    font-size: 2vh;
 }
 .header{
     color: #B6B6B6;
