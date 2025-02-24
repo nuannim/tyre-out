@@ -6,6 +6,7 @@ const UserModel = require('../models/UserModel');
 const UserController = {
     getIndexPage: async (req, res) => {
 
+        const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
 
@@ -13,6 +14,7 @@ const UserController = {
         console.log(sb);
 
         res.render('index', {
+                        email: email,
                         promotions: p,
                         servicebranches: sb});
 
@@ -62,6 +64,7 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     },
+<<<<<<< Updated upstream
 
     getLoginPage: async (req, res) => {
         try {
@@ -70,6 +73,86 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     }
+=======
+    processSignin: async (req, res) => {
+        let formdata = {
+            username2: req.body.username,
+            password2: req.body.password,
+        };
+
+        const p = await UserModel.allPromotion();
+        const sb = await UserModel.allServiceBranch();
+    
+        UserModel.findByEmail(formdata.username2, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.send("<h1>Server Error</h1><a href='/signin'>Try again</a>");
+            }
+            
+            if (result.length === 0) {
+                return res.send("<h1>Cant find</h1><a href='/signin'>Try again</a>");
+            } 
+            
+            const user = result;
+
+            if (!user) {
+                return res.send("<h1>Invalid</h1><a href='/signin'>Try again</a>");
+            }
+    
+            if (user.email === formdata.username2 && user.phoneNumber !== formdata.password2) {
+                return res.send("<h1>Wrong password</h1><a href='/signin'>Try again</a>");
+            } 
+            
+            
+            req.session.user = { email: user.email };
+
+            res.cookie('userSession', user.email, { 
+                httpOnly: true, 
+                secure: false, 
+                sameSite: 'strict', 
+                maxAge: 1000 * 60 * 15
+            });
+    
+            // เช็ค role แล้วรีไดเรกต์ไปหน้าที่ถูกต้อง
+            // if (user.role === 'admin') {
+            //     res.redirect('/admin-dashboard');
+            // } else {
+            //     res.redirect('/user-dashboard');
+            // }
+            // res.send(`
+            //     <h1>Login success</h1>
+            //     <p>Welcome, <b>${user.email}</b>!</p>
+            //     <a href="/user-dashboard">Go to Dashboard</a>
+            // `);
+            res.render('index', { email: user.email,
+                        promotions: p,
+                        servicebranches: sb
+            });
+        });
+        
+    },
+    getUserDashboard: async (req, res) => {
+        if (!req.session.user) {
+            return res.redirect('/signin');
+        }
+        res.render('user-dashboard', { user: req.session.user });
+    },
+
+    logout: async (req, res) => {
+        res.clearCookie('userSession');
+        req.session.destroy((err) => {
+            if (err) {
+                console.error(err);
+            }
+            res.redirect('/signin');
+        });
+    },
+
+    getSigninPage: async (req, res) => {
+        res.render('signin');
+    },
+    
+>>>>>>> Stashed changes
 
 };
 

@@ -26,7 +26,16 @@ const UserModel = {
               else resolve(sb);
             });
         });
+    },
+    findByEmail: (email, callback) => {
+        let sql = `SELECT email, phoneNumber FROM Customers WHERE email = ?`;
+        db.get(sql, [email], (err, result) => {
+            if (err) return callback(err, null);
+            callback(null, result);
+        });
     }
+    
+
 
         // * ใช้ไม่ได้ แต่อย่าเพิ่งลบ
         // return db.all(`select * from ServiceBranch `, (err2, sb) => {

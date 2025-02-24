@@ -3,6 +3,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
+const session = require('express-session');
+
+app.use(session({
+    secret: 'minimax321',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 15 }
+}));
 
 const db = require('./models/dbconn.js');
 

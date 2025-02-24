@@ -12,8 +12,10 @@
   "description": "**Tyre-Out**  \r <br>\r 06066302 Fundamental Web Programming  \r School of Information Technology, KMITL  \r Year 2/2024",
   "dependencies": {
     "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
     "mysql": "^2.18.1",
     "sqlite3": "^5.1.7"
   },

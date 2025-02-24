@@ -1,16 +1,16 @@
 @echo off
-echo อ่านทำไม...
+echo init y
 
 call npm init -y
 
-echo ยังจะอ่านอีก...
+echo express sqlite ejs loading..
 
-call npm install express sqlite3 ejs
+call npm install express sqlite3 ejs express-session cookie-parser
 
-echo ขอตังหน่อย...
+echo opening server..
 
-call nodemon server.js
+call node server.js
 
-echo เปิดแล้วอิอิ...
+echo finish laew
 
 pause
