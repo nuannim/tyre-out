@@ -69,24 +69,21 @@ const UserController = {
             username2: req.body.username,
             password2: req.body.password,
         };
-
-        const p = await UserModel.allPromotion();
-        const sb = await UserModel.allServiceBranch();
     
         UserModel.findByEmail(formdata.username2, (err, result) => {
             if (err) {
                 console.error(err);
-                return res.send("<h1>Server Error</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Server Error</h1><a href='/login'>Try again</a>");
             }
             
             const user = result;
 
             if (!user) {
-                return res.send("<h1>Invalid</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Invalid</h1><a href='/login'>Try again</a>");
             }
     
             if (user.email === formdata.username2 && user.phoneNumber !== formdata.password2) {
-                return res.send("<h1>Wrong password</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Wrong password</h1><a href='/login'>Try again</a>");
             } 
             
             
