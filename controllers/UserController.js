@@ -115,13 +115,6 @@ const UserController = {
         });
         
     },
-    getUserDashboard: async (req, res) => {
-        if (!req.session.user) {
-            return res.redirect('/signin');
-        }
-        res.render('user-dashboard', { user: req.session.user });
-    },
-
     logout: async (req, res) => {
         res.clearCookie('userSession');
         req.session.destroy((err) => {
@@ -132,9 +125,7 @@ const UserController = {
         });
     },
 
-    getSigninPage: async (req, res) => {
-        res.render('signin');
-    },
+
     getLoginPage: async (req, res) => {
         try {
             res.render('login');
