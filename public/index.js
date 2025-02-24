@@ -5,6 +5,11 @@ function bac() {
     document.getElementById("popup-ov").style.opacity = 0;
 }
 
+function bac2(){
+    document.getElementById("hid-drop-content").style.display = "none";
+    document.getElementById("popup-ov2").style.visibility = "hidden";
+}
+
 // * show something
 function showpop() {
     document.getElementById("popup-bg").style.visibility = "visible";
@@ -136,3 +141,7 @@ function gotoapp(){
 
 }
 
+function shownav(){
+    document.getElementById("hid-drop-content").style.display = "block";
+    document.getElementById("popup-ov2").style.visibility = "visible";
+}
