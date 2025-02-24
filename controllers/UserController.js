@@ -124,7 +124,7 @@ const UserController = {
             if (err) {
                 console.error(err);
             }
-            res.redirect('/signin');
+            res.redirect('/');
         });
     },
 
