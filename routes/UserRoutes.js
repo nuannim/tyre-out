@@ -29,4 +29,5 @@ module.exports = function(app) {
     app.get('/appointment', UserController.getAppointmentPage);
     app.get('/history', UserController.getHistoryPage);
     // app.post('/booking', BookingController.createBooking);
+    app.get('/login', UserController.getLoginPage)
 };

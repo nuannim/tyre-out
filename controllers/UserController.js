@@ -61,6 +61,14 @@ const UserController = {
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
+    },
+
+    getLoginPage: async (req, res) => {
+        try {
+            res.render('login');
+        } catch (error) {
+            res.status(500).send('Error fetching users');
+        }
     }
 
 };
