@@ -112,3 +112,13 @@ timeinput.forEach(radio => {
         }
     });
 });
+
+function shownav(){
+    document.getElementById("hid-drop-content").style.display = "block";
+    document.getElementById("popup-ov").style.visibility = "visible";
+}
+
+function bac() {
+    document.getElementById("hid-drop-content").style.display = "none";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+}
