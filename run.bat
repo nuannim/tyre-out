@@ -9,7 +9,7 @@ call npm install express sqlite3 ejs express-session cookie-parser
 
 echo opening server..
 
-call node server.js
+call nodemon server.js
 
 echo finish laew
 

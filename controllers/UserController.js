@@ -114,10 +114,7 @@ const UserController = {
             //     <p>Welcome, <b>${user.email}</b>!</p>
             //     <a href="/user-dashboard">Go to Dashboard</a>
             // `);
-            res.render('index', { email: user.email,
-                        promotions: p,
-                        servicebranches: sb
-            });
+            res.redirect('/');
         });
         
     },
