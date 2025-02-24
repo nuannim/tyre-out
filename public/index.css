@@ -348,6 +348,12 @@ body {
     display: block;
   }
   #las{
-    width: 6%;
+    width: 50%;
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+  }
+  #fis{
+    width: 50%;
   }
 }
