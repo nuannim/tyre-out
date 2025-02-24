@@ -31,6 +31,6 @@ module.exports = function(app) {
     app.get('/signin', UserController.getSigninPage);
     app.post('/process_signin', UserController.processSignin);
     app.get('/logout', UserController.logout);
-    // app.post('/booking', BookingController.createBooking);
     app.get('/login', UserController.getLoginPage)
+    // app.post('/booking', BookingController.createBooking);
 };

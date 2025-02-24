@@ -64,16 +64,6 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     },
-<<<<<<< Updated upstream
-
-    getLoginPage: async (req, res) => {
-        try {
-            res.render('login');
-        } catch (error) {
-            res.status(500).send('Error fetching users');
-        }
-    }
-=======
     processSignin: async (req, res) => {
         let formdata = {
             username2: req.body.username,
@@ -151,8 +141,14 @@ const UserController = {
     getSigninPage: async (req, res) => {
         res.render('signin');
     },
+    getLoginPage: async (req, res) => {
+        try {
+            res.render('login');
+        } catch (error) {
+            res.status(500).send('Error fetching users');
+        }
+    }
     
->>>>>>> Stashed changes
 
 };
 
