@@ -1,8 +1,8 @@
-const EmployeeModel = require('../models/EmployeeModel');
+// const EmployeeModel = require('../models/EmployeeModel');
 
-const EmployeeController = {
+// const EmployeeController = {
 
-};
+// };
 
 
-module.exports = EmployeeController;
+// module.exports = EmployeeController;

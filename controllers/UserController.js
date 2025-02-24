@@ -79,10 +79,6 @@ const UserController = {
                 return res.send("<h1>Server Error</h1><a href='/signin'>Try again</a>");
             }
             
-            if (result.length === 0) {
-                return res.send("<h1>Cant find</h1><a href='/signin'>Try again</a>");
-            } 
-            
             const user = result;
 
             if (!user) {
