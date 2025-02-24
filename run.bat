@@ -9,7 +9,7 @@ call npm install express sqlite3 ejs
 
 echo ขอตังหน่อย...
 
-call node server.js
+call nodemon server.js
 
 echo เปิดแล้วอิอิ...
 
