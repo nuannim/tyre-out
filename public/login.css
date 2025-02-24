@@ -29,7 +29,6 @@ body {
     margin: auto;
     padding: 4vh;
     background-color: #f5f6f8;
-    /* backdrop-filter: blur(10px); */
     border-radius: 2vh;
     display: flex;
     flex-direction: column;
@@ -57,11 +56,11 @@ p{
 }
 
 .getinput input{
-    /* width: 50%; */
     border: 1px solid #104b8252;
     border-radius: 1vh;
     height: 30px;
 }
+
 
 button{
     width: 70px;
