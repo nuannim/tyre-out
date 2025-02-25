@@ -97,6 +97,7 @@ const sel1 = document.getElementById("sel1");
 const sel2 = document.getElementById("sel2");
 const sel3 = document.getElementById("sel3");
 const sel4 = document.getElementById("sel4");
+    // ฟังก์ชันโชว์ pop up ใบเสนอราคา
 function checkshowpop(){
     const div = document.createElement("div");
     div.id = "check-result";
