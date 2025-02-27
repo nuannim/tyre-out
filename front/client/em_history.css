@@ -2,22 +2,57 @@
     font-family: "Prompt";
     text-decoration: none;
     scroll-behavior: smooth;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body{
-    margin: 0;
+    height: 100vh;
     background-color: #041728;
-    color: #041728;
+}
+
+/* nav */
+#nav {
+    width: 100%;
+    height: 14vh;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+}
+  #nav-menu {
+    background-color: #041728dc;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4vh;
+    padding: 2vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    font-size: 2.5vh;
+}
+#fis {
+    width: 10%;
+    text-align: start;
+}
+#fis p {
+    font-weight: 400;
+    margin: 0;
+}
+#las {
+    width: 10%;
+    text-align: end;
 }
 
 /* tab */
-.mytabs{
-    width: 80%; /*ปรับความยาวกล่องตรงนี้ */
-    /* height: 70vh; */
+/* .mytabs{
+    width: 80%; ปรับความยาวกล่องตรงนี้ 
     display: flex;
     flex-wrap: wrap;
     margin: 50px auto;
-}
-.mytabs input[type="radio"]{
+} */
+/* .mytabs input[type="radio"]{
     display: none;
 }
 .mytabs label{
@@ -26,16 +61,14 @@ body{
     height: 3vh;
     padding: 2vh;
     border-radius: 2vh 2vh 0 0;
-    /* display: flex; */
     align-items: center;
     order: 0;
     font-size: 2.5vh;
     cursor: pointer;
-}
-.mytabs .tab{
+} */
+/* .mytabs .tab{
     width: 100%;
-    height: auto; /*ปรับความสูง */
-    /* padding: 60px 60px; */
+    height: auto; ปรับความสูง
     padding: 3vh 6vh;
     background: #F5F6F8;
     order: 1;
@@ -49,7 +82,7 @@ body{
 .mytabs input[type='radio']:checked + label {
     background: #F5F6F8;
     color: #000000;
-}
+} */
 
 /* select branch */
 .main-container{
@@ -86,7 +119,7 @@ body{
     height: 60px;
     background-color: #ffffff;
     background-color: none;
-    font-size: 2.5vh;
+    font-size: 2vh;
     font-weight: 500;
     color: #104B82;
     text-align: center;
@@ -128,13 +161,6 @@ tr:hover {
     padding: 0.5vh 1vh;
 }
 
-/* button */
-/* .edit-button {
-    margin-left: 3vh;
-}
-.delete-button {
-    margin-right: 2vh;
-} */
 .edit-button, .delete-button{
     background: none;
     color: inherit;
@@ -143,7 +169,7 @@ tr:hover {
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    font-size: 2.5vh;
+    font-size: 2vh;
 }
 .edit-button:hover {
     color: rgb(0, 162, 255);
@@ -224,7 +250,6 @@ tr:hover {
     padding: 2vh;
     gap: 2vh;
 }
-
 #image{
     width: 20vh;
     height: 20vh;
@@ -280,6 +305,7 @@ tr:hover {
 .save-button:hover {
     opacity: 1;
 }
+
 /* popup-delete */
 #popup-delete{
     background-color: #f5f6f8;
@@ -313,11 +339,72 @@ tr:hover {
 .cancel-del-button {
     background-color: rgb(0, 0, 0);
 }
-
 .confirm-del-button {
     background-color: rgb(255, 52, 52);
 }
-
 .cancel-del-button:hover, .confirm-del-button:hover {
     opacity: 1;
+}
+
+/* verticaltab */
+.tab-box{
+    display:flex;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform:translate(-50%, -20%);
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px;
+    width: 80%;
+}
+
+.tab-buttons {
+    display: block;
+    width:30%;
+    height:100%;
+    transition: 0.5s;
+}
+
+.tab-buttons .tab-btn {
+    width:100%;
+    height: 70px;
+    border:none;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.tab-buttons .tab-btn:hover{
+    background:#ebebeb;
+}
+.tab-btn {
+    font-size: 2vh;
+}
+
+.tab-container-box{
+    border-left:1px solid rgba(0, 0, 0, 0.19);
+    width:100%;
+    height:100%;
+    color: black;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 0 3px;
+
+    border-radius: 0 1vh 1vh 1vh;
+}
+
+.tab-container-box .tab-content{
+    width:100%;
+    height: 100%;
+    padding: 10px;
+    display:none;
+}
+
+.tab-content{
+    border-radius: 0 2vh 2vh 2vh;
+}
+#tab1 {
+    border-radius: 2vh 0 0 0;
+}
+#tab4 {
+    border-radius: 0 0 0 1vh;
 }
