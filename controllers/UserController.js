@@ -9,6 +9,7 @@ const UserController = {
         const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
+        const car = await UserModel.allCars();
 
         console.log(p);
         console.log(sb);
@@ -16,7 +17,8 @@ const UserController = {
         res.render('index', {
                         email: email,
                         promotions: p,
-                        servicebranches: sb});
+                        servicebranches: sb,
+                    cars: car});
 
         // * ของเก่า (ย้ายไปที่ UserModel.js)
         // db.all(`select * from Promotion `, (err, p) => {
@@ -69,32 +71,40 @@ const UserController = {
             username2: req.body.username,
             password2: req.body.password,
         };
+        
+        if (formdata.username2 === 'admin' && formdata.password2 === '1234') {
+            req.session.user = { email: 'admin', role: 'admin' };
 
-        const p = await UserModel.allPromotion();
-        const sb = await UserModel.allServiceBranch();
-    
-        UserModel.findByEmail(formdata.username2, (err, result) => {
+            res.cookie('userSession', 'admin', { 
+                httpOnly: true, 
+                secure: false, 
+                sameSite: 'strict', 
+                maxAge: 1000 * 60 * 15
+            });
+
+            return res.redirect('/admin');
+        }
+
+        UserModel.findByEmail(formdata.username2, async (err, result) => {
             if (err) {
                 console.error(err);
-                return res.send("<h1>Server Error</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Server Error</h1><a href='/login'>Try again</a>");
             }
-            
-            if (result.length === 0) {
-                return res.send("<h1>Cant find</h1><a href='/signin'>Try again</a>");
-            } 
             
             const user = result;
 
             if (!user) {
-                return res.send("<h1>Invalid</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Invalid</h1><a href='/login'>Try again</a>");
             }
     
             if (user.email === formdata.username2 && user.phoneNumber !== formdata.password2) {
-                return res.send("<h1>Wrong password</h1><a href='/signin'>Try again</a>");
+                return res.send("<h1>Wrong password</h1><a href='/login'>Try again</a>");
             } 
             
             
-            req.session.user = { email: user.email };
+            
+
+            req.session.user = { email: user.email, role: user.role };
 
             res.cookie('userSession', user.email, { 
                 httpOnly: true, 
@@ -102,45 +112,22 @@ const UserController = {
                 sameSite: 'strict', 
                 maxAge: 1000 * 60 * 15
             });
-    
-            // เช็ค role แล้วรีไดเรกต์ไปหน้าที่ถูกต้อง
-            // if (user.role === 'admin') {
-            //     res.redirect('/admin-dashboard');
-            // } else {
-            //     res.redirect('/user-dashboard');
-            // }
-            // res.send(`
-            //     <h1>Login success</h1>
-            //     <p>Welcome, <b>${user.email}</b>!</p>
-            //     <a href="/user-dashboard">Go to Dashboard</a>
-            // `);
-            res.render('index', { email: user.email,
-                        promotions: p,
-                        servicebranches: sb
-            });
+
+            return res.redirect('/');
         });
         
     },
-    getUserDashboard: async (req, res) => {
-        if (!req.session.user) {
-            return res.redirect('/signin');
-        }
-        res.render('user-dashboard', { user: req.session.user });
-    },
-
     logout: async (req, res) => {
         res.clearCookie('userSession');
         req.session.destroy((err) => {
             if (err) {
                 console.error(err);
             }
-            res.redirect('/signin');
+            res.redirect('/');
         });
     },
 
-    getSigninPage: async (req, res) => {
-        res.render('signin');
-    },
+
     getLoginPage: async (req, res) => {
         try {
             res.render('login');

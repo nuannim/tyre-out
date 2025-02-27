@@ -33,8 +33,15 @@ const UserModel = {
             if (err) return callback(err, null);
             callback(null, result);
         });
+    },
+    allCars: () => {
+        return new Promise((resolve, reject) => {
+            db.all("SELECT * from Cars", (err, c) => {
+              if (err) reject(err);
+              else resolve(c);
+            });
+        });
     }
-    
 
 
         // * ใช้ไม่ได้ แต่อย่าเพิ่งลบ

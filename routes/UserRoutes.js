@@ -28,7 +28,6 @@ module.exports = function(app) {
     app.get('/', UserController.getIndexPage);
     app.get('/appointment', UserController.getAppointmentPage);
     app.get('/history', UserController.getHistoryPage);
-    app.get('/signin', UserController.getSigninPage);
     app.post('/process_signin', UserController.processSignin);
     app.get('/logout', UserController.logout);
     app.get('/login', UserController.getLoginPage)

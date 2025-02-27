@@ -15,7 +15,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Tyre-Out</title>
 </head>
-
+<style>
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+</style>
 <body>
     <div id="nav">
         <div id="nav-menu">
@@ -24,7 +30,7 @@
                 <h1>Welcome, <%= email ? email : 'Guest' %>!</h1>
             </div>
             <div id="mid">
-                <a href="/">หน้าหลัก</a>
+                <a href="#main">หน้าหลัก</a>
                 <p>|</p>
                 <a href="#promotion">โปรโมชัน</a>
                 <p>|</p>
@@ -36,7 +42,7 @@
             </div>
             <div id="las">
                 <div id="hid-drop">
-                    <div id="hid-drop-i">
+                    <div id="hid-drop-i" onclick="shownav()">
                         <i class="fa-solid fa-grip-lines"></i>
                     </div>
                     <div id="hid-drop-content">
@@ -47,7 +53,12 @@
                         <a href="/history">ประวัติการนัดหมาย</a>
                     </div>
                 </div>
-                <a href="/login"><i class="fa-regular fa-user"></i></a>
+                <% if (email && email !== 'Guest') { %>
+                    <a href="/login" class="disabled"><i class="fa-regular fa-user"></i></a>
+                    <a href="/logout">Logout</a>
+                <% } else { %>
+                    <a href="/login"><i class="fa-regular fa-user"></i></a>
+                <% } %>
             </div>
         </div>
     </div>
@@ -57,14 +68,38 @@
             <div id="forsel">
                 <select name="sel1" class="drop" id="sel1">
                     <option value="" selected>เลือกรุ่นรถยนต์</option>
+                        <% let uniquecarmodel = new Set();
+                            cars.forEach((element) => {
+                                uniquecarmodel.add(element.carModel);
+                            });
+                        uniquecarmodel.forEach((car) => { 
+                    %>
+                        <option value="<%= car %>"><%= car %></option>
+                    <% }); %>
                     <option value="atemodel">รุ่นเสว</option>
                 </select>
                 <select name="sel2" class="drop" id="sel2">
                     <option value="" selected>เลือกรุ่นปี</option>
+                    <% let uniquecaryear = new Set();
+                            cars.forEach((element) => {
+                                uniquecaryear.add(element.carYear);
+                            });
+                        uniquecaryear.forEach((car) => { 
+                    %>
+                        <option value="<%= car %>"><%= car %></option>
+                    <% }); %>
                     <option value="2525">2525</option>
                 </select>
                 <select name="sel3" class="drop" id="sel3">
                     <option value="" selected>เลือกเกรด</option>
+                    <% let uniquecargrade = new Set();
+                            cars.forEach((element) => {
+                                uniquecargrade.add(element.carGrade);
+                            });
+                        uniquecargrade.forEach((car) => { 
+                    %>
+                        <option value="<%= car %>"><%= car %></option>
+                    <% }); %>
                     <option value="4">4.00</option>
                 </select>
                 <select name="sel4" class="drop" id="sel4">
@@ -92,6 +127,7 @@
                     </div>
                 </div>
             <%});%>
+            <!-- pop up มหาชน -->
                 <div id="popup-bg">
                     <div id="fori">
                         <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
@@ -110,16 +146,31 @@
         <div id="select-branch">
             <select name="branchvince" class="drop" id="branchvince">
                 <option value="" selected>เลือกจังหวัด</option>
+                <% let uniqueProvinces = new Set();
+                        servicebranches.forEach((element) => {
+                            uniqueProvinces.add(element.province);
+                        });
+                        uniqueProvinces.forEach((province) => { 
+                    %>  
+                        <option value="<%= province %>"><%= province %></option>
+                    <% }); %>
             </select>
             <select name="branch-district" class="drop" id="branch-district">
                 <option value="" selected>เลือกอำเภอ/เขต</option>
+                <% let uniqueDistricts = new Set();
+                servicebranches.forEach((element) => {
+                    uniqueDistricts.add(element.district);
+                        });
+                uniqueDistricts.forEach((district) => { 
+                    %>  
+                <option value="<%= district %>"><%= district %></option>
+                <% }); %>
             </select>
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
 
         <% servicebranches.forEach((element)=> { %>
             <div id="branch-area">
-                <!-- นี่คือ แสดงสาขา -->
                 <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
                 <div id="fortext">
                     <h3>
@@ -139,7 +190,7 @@
         <% }); %>
 
     </section>
-
+    <div id="popup-ov2" onclick="bac2()"></div>
     <script src="index.js"></script>
 
 </body>

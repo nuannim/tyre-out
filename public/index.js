@@ -5,6 +5,11 @@ function bac() {
     document.getElementById("popup-ov").style.opacity = 0;
 }
 
+function bac2(){
+    document.getElementById("hid-drop-content").style.display = "none";
+    document.getElementById("popup-ov2").style.visibility = "hidden";
+}
+
 // * show something
 function showpop() {
     document.getElementById("popup-bg").style.visibility = "visible";
@@ -92,6 +97,7 @@ const sel1 = document.getElementById("sel1");
 const sel2 = document.getElementById("sel2");
 const sel3 = document.getElementById("sel3");
 const sel4 = document.getElementById("sel4");
+    // ฟังก์ชันโชว์ pop up ใบเสนอราคา
 function checkshowpop(){
     const div = document.createElement("div");
     div.id = "check-result";
@@ -136,3 +142,43 @@ function gotoapp(){
 
 }
 
+function shownav(){
+    document.getElementById("hid-drop-content").style.display = "block";
+    document.getElementById("popup-ov2").style.visibility = "visible";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+
+    // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+    function loadDistricts() {
+        const selectedProvince = provinceSelect.value;
+        if (!selectedProvince) {
+            districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+            districtSelect.disabled = true;
+            return;
+        }
+
+        // โหลดอำเภอที่เกี่ยวข้อง
+        fetch(`/api/districts?province=${selectedProvince}`)
+            .then(response => response.json())
+            .then(districts => {
+                districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district.district;
+                    option.textContent = district.district;
+                    districtSelect.appendChild(option);
+                });
+                districtSelect.disabled = false;
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+
+    // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+    districtSelect.disabled = true;
+
+    // โหลดอำเภอเมื่อเลือกจังหวัด
+    provinceSelect.addEventListener("change", loadDistricts);
+});

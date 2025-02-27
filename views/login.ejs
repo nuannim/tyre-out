@@ -10,21 +10,34 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Log in</title>
 </head>
+<style>
+    a{
+        color: white;
+        text-decoration: none;
+        font-size: 5vh;
+        padding: 30px;
+        font-weight: bold;
+    }
+</style>
 <body>
+    
     <div id="box">
         <div id="header">
             <h1>Log in</h1>
         </div>
+    <form action="/process_signin" method="POST">
         <div class="getinput">
             <p>E-mail</p>
-            <input type="text" name="email" id="email">
+            <input type="text" name="username" id="email">
         </div>
         <div class="getinput">
             <p>Password</p>
             <input type="password" name="password" id="password">
         </div>
-        <button type="submit">Done</button>
-    </div>
+            <button type="submit">Done</button>
+        </div>
+    </form>
+    <a href="/"><</a>
     <div id="overlay"></div>
 </body>
 </html>
