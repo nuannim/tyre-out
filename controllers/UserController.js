@@ -9,6 +9,7 @@ const UserController = {
         const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
+        const car = await UserModel.allCars();
 
         console.log(p);
         console.log(sb);
@@ -16,7 +17,8 @@ const UserController = {
         res.render('index', {
                         email: email,
                         promotions: p,
-                        servicebranches: sb});
+                        servicebranches: sb,
+                    cars: car});
 
         // * ของเก่า (ย้ายไปที่ UserModel.js)
         // db.all(`select * from Promotion `, (err, p) => {
