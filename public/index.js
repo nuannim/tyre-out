@@ -146,3 +146,39 @@ function shownav(){
     document.getElementById("hid-drop-content").style.display = "block";
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+
+    // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+    function loadDistricts() {
+        const selectedProvince = provinceSelect.value;
+        if (!selectedProvince) {
+            districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+            districtSelect.disabled = true;
+            return;
+        }
+
+        // โหลดอำเภอที่เกี่ยวข้อง
+        fetch(`/api/districts?province=${selectedProvince}`)
+            .then(response => response.json())
+            .then(districts => {
+                districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district.district;
+                    option.textContent = district.district;
+                    districtSelect.appendChild(option);
+                });
+                districtSelect.disabled = false;
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+
+    // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+    districtSelect.disabled = true;
+
+    // โหลดอำเภอเมื่อเลือกจังหวัด
+    provinceSelect.addEventListener("change", loadDistricts);
+});

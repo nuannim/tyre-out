@@ -30,7 +30,7 @@
                 <h1>Welcome, <%= email ? email : 'Guest' %>!</h1>
             </div>
             <div id="mid">
-                <a href="/">หน้าหลัก</a>
+                <a href="#main">หน้าหลัก</a>
                 <p>|</p>
                 <a href="#promotion">โปรโมชัน</a>
                 <p>|</p>
@@ -122,16 +122,31 @@
         <div id="select-branch">
             <select name="branchvince" class="drop" id="branchvince">
                 <option value="" selected>เลือกจังหวัด</option>
+                <% let uniqueProvinces = new Set();
+                        servicebranches.forEach((element) => {
+                            uniqueProvinces.add(element.province);
+                        });
+                        uniqueProvinces.forEach((province) => { 
+                    %>  
+                        <option value="<%= province %>"><%= province %></option>
+                    <% }); %>
             </select>
             <select name="branch-district" class="drop" id="branch-district">
                 <option value="" selected>เลือกอำเภอ/เขต</option>
+                <% let uniqueDistricts = new Set();
+                servicebranches.forEach((element) => {
+                    uniqueDistricts.add(element.district);
+                        });
+                uniqueDistricts.forEach((district) => { 
+                    %>  
+                <option value="<%= district %>"><%= district %></option>
+                <% }); %>
             </select>
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
 
         <% servicebranches.forEach((element)=> { %>
             <div id="branch-area">
-                <!-- นี่คือ แสดงสาขา -->
                 <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
                 <div id="fortext">
                     <h3>
