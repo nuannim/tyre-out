@@ -3,25 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="em_history.css">
+    <link rel="stylesheet" href="/public/index.css">
+    <link rel="stylesheet" href="/public/admin_appointment.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>History</title>
+    <title>Appointments</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="nav">
+    <!-- <div id="nav">
         <div id="nav-menu">
             <div id="fis">
                 <p>Tyre-Out</p>
             </div>
             <div id="las">
                 <a href="#" onclick="showpop()"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </div> -->
+
+    <div id="nav">
+        <div id="nav-menu">
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="admin_assign.html">รับการนัดหมายลูกค้า</a>
+                <p>|</p>
+                <a href="admin_appointment.html">ดูการนัดหมาย</a>
+            </div>
+            <div id="las">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
             </div>
         </div>
     </div>
@@ -86,102 +102,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- main content -->
-        <!-- <div class="mytabs"> -->
-            <!-- tab1 -->
-            <!-- <input type="radio" id="tab1" name="mytabs" checked="checked">
-            <label for="tab1">การนัดหมายที่ยังมาไม่ถึง</label>
-            <div class="tab">
-                    <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
-                    <input type="text" id="search">
-                    <br></br>
-                    <table class="table-apmt">
-                        <tr id="column-row">
-                            <th class="c" id="c1">วัน-เวลา</th>
-                            <th class="c" id="c2">เบอร์โทร</th>
-                            <th class="c" id="c3">ชื่อ</th>
-                            <th class="c" id="c4">นามสกุล</th>
-                            <th class="c" id="c5">บริการ</th>
-                            <th class="c" id="c6">ศูนย์บริการ</th>
-                            <th class="c" id="c7"></th>
-                        </tr>
-                        <tr class="info">
-                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
-                            <td id="info-phone">123 456 7899</td>
-                            <td id="info-firstname">ลีอาห์</td>
-                            <td id="info-lastname">แซ่ตั้ง</td>
-                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
-                            <td id="info-branch">ลาดกระบัง</td>
-                            <td>
-                                <button class="edit-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
-                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
-                    </table>
-            </div> -->
-
-            <!-- tab2 -->
-            <!-- <input type="radio" id="tab2" name="mytabs">
-            <label for="tab2">การนัดหมายที่ผ่านมาแล้ว</label>
-            <div class="tab">
-                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
-                <input type="text" id="search">
-                <br></br>
-                <table class="table-apmt">
-                    <tr id="column-row">
-                        <th class="c" id="c1">วัน-เวลา</th>
-                        <th class="c" id="c2">เบอร์โทร</th>
-                        <th class="c" id="c3">ชื่อ</th>
-                        <th class="c" id="c4">นามสกุล</th>
-                        <th class="c" id="c5">บริการ</th>
-                        <th class="c" id="c6">ศูนย์บริการ</th>
-                        <th class="c" id="c7"></th>
-                    </tr>
-                </table>
-            </div> -->
-            
-            <!-- tab3 -->
-            <!-- <input type="radio" id="tab3" name="mytabs">
-            <label for="tab3">การนัดหมายที่ยังมาไม่ถึงของศูนย์</label>
-            <div class="tab">
-                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
-                <input type="text" id="search">
-                <br></br>
-                <table class="table-apmt">
-                    <tr id="column-row">
-                        <th class="c" id="c1">วัน-เวลา</th>
-                        <th class="c" id="c2">เบอร์โทร</th>
-                        <th class="c" id="c3">ชื่อ</th>
-                        <th class="c" id="c4">นามสกุล</th>
-                        <th class="c" id="c5">บริการ</th>
-                        <th class="c" id="c6">ศูนย์บริการ</th>
-                        <th class="c" id="c7"></th>
-                    </tr>
-                </table>
-            </div> -->
-
-            <!-- tab4 -->
-            <!-- <input type="radio" id="tab4" name="mytabs">
-            <label for="tab4">การนัดหมายที่ผ่านมาแล้วของศูนย์</label>
-            <div class="tab">
-                <label style="background: none; color: #104B82;" for="search">ค้นหา:</label>
-                <input type="text" id="search">
-                <br></br>
-                <table class="table-apmt">
-                    <tr id="column-row">
-                        <th class="c" id="c1">วัน-เวลา</th>
-                        <th class="c" id="c2">เบอร์โทร</th>
-                        <th class="c" id="c3">ชื่อ</th>
-                        <th class="c" id="c4">นามสกุล</th>
-                        <th class="c" id="c5">บริการ</th>
-                        <th class="c" id="c6">ศูนย์บริการ</th>
-                        <th class="c" id="c7"></th>
-                    </tr>
-                </table>
-            </div> -->
-        <!-- *** -->
-    <!-- </div> -->
 
     <!-- popup -->
     <div id="popup-bg">
@@ -318,7 +238,7 @@
 
     <div id="popup-ov"></div>
 
-    <script src="em_history.js"></script>
+    <script src="/public/admin_appointment.js"></script>
 </body>
 </html>
 
