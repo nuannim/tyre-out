@@ -67,7 +67,8 @@
             <p>บริการเช็กระยะตามกำหนด</p>
             <div id="forsel">
                 <% if (email && email !== 'Guest') { %>
-                    <form action="/saveCar" method="POST">
+                    <form action="/saveCar" id="carform" method="POST" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <div class="top">
                         <select name="sel1" class="drop" id="sel1">
                             <option value="" selected>เลือกรุ่นรถยนต์</option>
                                 <% let uniquecarmodel = new Set();
@@ -109,7 +110,10 @@
                             <option value="twentythousand">20,000 กม.</option>
                         </select>
                         <input type="hidden" name="email" value="<%= email %>">
-                        
+                    </div>
+                    <div class="bottom" style="display: flex; justify-content: center;">
+                        <button type="submit" class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                    </div>
                     </form>
                         
 
@@ -158,6 +162,8 @@
                     <% } %>
             </div>
             <% if (email && email !== 'Guest') { %>
+            <p>รถยนต์ของคุณ</p>
+            <form action="" style="display: flex; flex-direction: column; gap: 10px;">
                 <select name="carchoose" width="100%"  id="carchoose">
                     
                     <option value="" selected>รถของคุณ</option>
@@ -166,9 +172,10 @@
                         <% }) %>
                 </select>
                 <% } %>
-            <div style="display: flex; justify-content: center;">
-                <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+            <div style="display: flex; justify-content: center; ">
+                <button type="submit" class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
             </div>
+        </form>
             
         </div>
     </section>

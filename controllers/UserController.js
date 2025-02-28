@@ -164,6 +164,7 @@ const UserController = {
                 }
                 console.log(`✅ บันทึกสำเร็จ ID: ${this.lastID}`);
             });
+            res.redirect('/');
             }
             
 

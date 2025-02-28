@@ -53,3 +53,5 @@ function gotoapp(){
     const letsend = `appointment.html?option1=${encodeURIComponent(sel1.value)}&option2=${encodeURIComponent(sel2.value)}&option3=${encodeURIComponent(sel3.value)}&option4=${encodeURIComponent(sel4.value)}`;
     window.location.href = letsend;
 }
+
+
