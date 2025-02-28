@@ -66,48 +66,110 @@
         <div id="check">
             <p>บริการเช็กระยะตามกำหนด</p>
             <div id="forsel">
-                <select name="sel1" class="drop" id="sel1">
-                    <option value="" selected>เลือกรุ่นรถยนต์</option>
-                        <% let uniquecarmodel = new Set();
-                            cars.forEach((element) => {
-                                uniquecarmodel.add(element.carModel);
-                            });
-                        uniquecarmodel.forEach((car) => { 
-                    %>
-                        <option value="<%= car %>"><%= car %></option>
-                    <% }); %>
-                    <option value="atemodel">รุ่นเสว</option>
-                </select>
-                <select name="sel2" class="drop" id="sel2">
-                    <option value="" selected>เลือกรุ่นปี</option>
-                    <% let uniquecaryear = new Set();
-                            cars.forEach((element) => {
-                                uniquecaryear.add(element.carYear);
-                            });
-                        uniquecaryear.forEach((car) => { 
-                    %>
-                        <option value="<%= car %>"><%= car %></option>
-                    <% }); %>
-                    <option value="2525">2525</option>
-                </select>
-                <select name="sel3" class="drop" id="sel3">
-                    <option value="" selected>เลือกเกรด</option>
-                    <% let uniquecargrade = new Set();
-                            cars.forEach((element) => {
-                                uniquecargrade.add(element.carGrade);
-                            });
-                        uniquecargrade.forEach((car) => { 
-                    %>
-                        <option value="<%= car %>"><%= car %></option>
-                    <% }); %>
-                    <option value="4">4.00</option>
-                </select>
-                <select name="sel4" class="drop" id="sel4">
-                    <option value="" selected>เลือกระยะทาง</option>
-                    <option value="twentythousand">20,000 กม.</option>
-                </select>
-                <button class="btn" id="btn-service" onclick="checkshowpop()">ค้นหา</button>
+                <% if (email && email !== 'Guest') { %>
+                    <form action="/saveCar" method="POST">
+                        <select name="sel1" class="drop" id="sel1">
+                            <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                <% let uniquecarmodel = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecarmodel.add(element.carModel);
+                                    });
+                                uniquecarmodel.forEach((car) => { 
+                            %>
+                                <option value="<%= car %>"><%= car %></option>
+                            <% }); %>
+                            <option value="atemodel">รุ่นเสว</option>
+                        </select>
+                        <select name="sel2" class="drop" id="sel2">
+                            <option value="" selected>เลือกรุ่นปี</option>
+                            <% let uniquecaryear = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecaryear.add(element.carYear);
+                                    });
+                                uniquecaryear.forEach((car) => { 
+                            %>
+                                <option value="<%= car %>"><%= car %></option>
+                            <% }); %>
+                            <option value="2525">2525</option>
+                        </select>
+                        <select name="sel3" class="drop" id="sel3">
+                            <option value="" selected>เลือกเกรด</option>
+                            <% let uniquecargrade = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecargrade.add(element.carGrade);
+                                    });
+                                uniquecargrade.forEach((car) => { 
+                            %>
+                                <option value="<%= car %>"><%= car %></option>
+                            <% }); %>
+                            <option value="4">4.00</option>
+                        </select>
+                        <select name="sel4" class="drop" id="sel4">
+                            <option value="" selected>เลือกระยะทาง</option>
+                            <option value="twentythousand">20,000 กม.</option>
+                        </select>
+                        <input type="hidden" name="email" value="<%= email %>">
+                        
+                    </form>
+                        
+
+                <% } else { %>
+                    <select name="sel1" class="drop" id="sel1">
+                        <option value="" selected>เลือกรุ่นรถยนต์</option>
+                            <% let uniquecarmodel = new Set();
+                                cars.forEach((element) => {
+                                    uniquecarmodel.add(element.carModel);
+                                });
+                            uniquecarmodel.forEach((car) => { 
+                        %>
+                            <option value="<%= car %>"><%= car %></option>
+                        <% }); %>
+                        <option value="atemodel">รุ่นเสว</option>
+                    </select>
+                    <select name="sel2" class="drop" id="sel2">
+                        <option value="" selected>เลือกรุ่นปี</option>
+                        <% let uniquecaryear = new Set();
+                                cars.forEach((element) => {
+                                    uniquecaryear.add(element.carYear);
+                                });
+                            uniquecaryear.forEach((car) => { 
+                        %>
+                            <option value="<%= car %>"><%= car %></option>
+                        <% }); %>
+                        <option value="2525">2525</option>
+                    </select>
+                    <select name="sel3" class="drop" id="sel3">
+                        <option value="" selected>เลือกเกรด</option>
+                        <% let uniquecargrade = new Set();
+                                cars.forEach((element) => {
+                                    uniquecargrade.add(element.carGrade);
+                                });
+                            uniquecargrade.forEach((car) => { 
+                        %>
+                            <option value="<%= car %>"><%= car %></option>
+                        <% }); %>
+                        <option value="4">4.00</option>
+                    </select>
+                    <select name="sel4" class="drop" id="sel4">
+                        <option value="" selected>เลือกระยะทาง</option>
+                        <option value="twentythousand">20,000 กม.</option>
+                    </select>
+                    
+                    <% } %>
             </div>
+            <% if (email && email !== 'Guest') { %>
+                <select name="carchoose" width="100%"  id="carchoose">
+                    
+                    <option value="" selected>รถของคุณ</option>
+                    <% cuscars.forEach(car => { %>
+                        <option value="<%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %>"><%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %></option>
+                        <% }) %>
+                </select>
+                <% } %>
+            <div style="display: flex; justify-content: center;">
+                <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+            </div>
+            
         </div>
     </section>
     <section id="promotion">

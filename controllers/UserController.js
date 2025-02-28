@@ -1,7 +1,7 @@
 const UserModel = require('../models/UserModel');
 
 // const conn = require('../models/dbconn.js');
-// const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
+const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
 
 const UserController = {
     getIndexPage: async (req, res) => {
@@ -11,14 +11,21 @@ const UserController = {
         const sb = await UserModel.allServiceBranch();
         const car = await UserModel.allCars();
 
+        
+            
+        const cuscar = await UserModel.CustomerCars(email);
+
+
         console.log(p);
         console.log(sb);
+        
 
         res.render('index', {
                         email: email,
                         promotions: p,
                         servicebranches: sb,
-                    cars: car});
+                    cars: car,
+                cuscars: cuscar});
 
         // * ของเก่า (ย้ายไปที่ UserModel.js)
         // db.all(`select * from Promotion `, (err, p) => {
@@ -52,8 +59,11 @@ const UserController = {
     },
 
     getAppointmentPage: async (req, res) => {
+        const car = await UserModel.allCars();
         try {
-            res.render('appointment');
+            res.render('appointment',{
+                cars: car
+            });
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
@@ -135,7 +145,27 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     }
-    
+    ,
+    CarsaveCustomer: async (req, res) => {
+        const { sel1, sel2, sel3, email } = req.body;
+
+         console.log("🚀 Debug req.body:", req.body);
+
+            if (!sel1 || !sel2 || !sel3 || !email) {
+                return res.status(400).send('กรุณากรอกข้อมูลให้ครบถ้วน');
+            }
+
+            const sql = `INSERT INTO CustomerCars (CarModel, CarYear, CarGrade, CusEmail) VALUES (?, ?, ?, ?)`;
+
+            db.run(sql, [sel1, sel2, sel3, email], function (err) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                }
+                console.log(`✅ บันทึกสำเร็จ ID: ${this.lastID}`);
+            });
+            }
+            
 
 };
 

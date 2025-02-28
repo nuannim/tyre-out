@@ -30,6 +30,7 @@ module.exports = function(app) {
     app.get('/history', UserController.getHistoryPage);
     app.post('/process_signin', UserController.processSignin);
     app.get('/logout', UserController.logout);
-    app.get('/login', UserController.getLoginPage)
+    app.get('/login', UserController.getLoginPage);
+    app.post('/saveCar', UserController.CarsaveCustomer);
     // app.post('/booking', BookingController.createBooking);
 };

@@ -81,14 +81,38 @@
                         <div id="forsel">
                             <select name="sel1" class="drop" id="sel1">
                                 <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                <% let uniquecarmodel = new Set();
+                                cars.forEach((element) => {
+                                    uniquecarmodel.add(element.carModel);
+                                });
+                            uniquecarmodel.forEach((car) => { 
+                        %>
+                            <option value="<%= car %>"><%= car %></option>
+                        <% }); %>
                                 <option value="atemodel">รุ่นเสว</option>
                             </select>
                             <select name="sel2" class="drop" id="sel2">
                                 <option value="" selected>เลือกรุ่นปี</option>
+                                <% let uniquecaryear = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecaryear.add(element.carYear);
+                                    });
+                                uniquecaryear.forEach((car) => { 
+                            %>
+                                <option value="<%= car %>"><%= car %></option>
+                            <% }); %>
                                 <option value="2525">2525</option>
                             </select>
                             <select name="sel3" class="drop" id="sel3">
                                 <option value="" selected>เลือกเกรด</option>
+                                <% let uniquecargrade = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecargrade.add(element.carGrade);
+                                    });
+                                uniquecargrade.forEach((car) => { 
+                            %>
+                                <option value="<%= car %>"><%= car %></option>
+                            <% }); %>
                                 <option value="4">4.00</option>
                             </select>
                             <select name="sel4" class="drop" id="sel4">

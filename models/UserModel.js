@@ -41,6 +41,14 @@ const UserModel = {
               else resolve(c);
             });
         });
+    },
+    CustomerCars: async (email) => {
+        return new Promise((resolve, reject) => {
+            db.all("SELECT * from CustomerCars WHERE CusEmail = ?", [email], (err, cc) => {
+              if (err) reject(err);
+              else resolve(cc);
+            });
+        });
     }
 
 
