@@ -162,6 +162,13 @@
                     <% } %>
             </div>
             <% if (email && email !== 'Guest') { %>
+                <style>
+                    @media (max-width: 610px) {
+                        #main{
+                            height: 120vh;
+                        }
+                    }
+                </style>
             <p>รถยนต์ของคุณ</p>
             <form action="" style="display: flex; flex-direction: column; gap: 10px;">
                 <select name="carchoose" width="100%"  id="carchoose">
