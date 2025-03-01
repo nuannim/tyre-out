@@ -167,17 +167,48 @@ const UserController = {
                 return res.status(400).send('กรุณากรอกข้อมูลให้ครบถ้วน');
             }
 
-            const sql = `INSERT INTO CustomerCars (CarModel, CarYear, CarGrade, CusEmail) VALUES (?, ?, ?, ?)`;
+    const findCarSQL = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
 
-            db.run(sql, [sel1, sel2, sel3, email], function (err) {
+    db.get(findCarSQL, [sel1, sel2, sel3], (err, carRow) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('เกิดข้อผิดพลาดในการค้นหารถ');
+        }
+
+        if (!carRow) {
+            return res.status(404).send('ไม่พบข้อมูลรถในระบบ');
+        }
+
+        const carId = carRow.carId;
+
+        const findCustomerSQL = `SELECT customerId FROM Customers WHERE email = ?`;
+
+        db.get(findCustomerSQL, [email], (err, customerRow) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('เกิดข้อผิดพลาดในการค้นหาลูกค้า');
+            }
+
+            if (!customerRow) {
+                return res.status(404).send('ไม่พบข้อมูลลูกค้าในระบบ');
+            }
+
+            const customerId = customerRow.customerId;
+
+            // เพิ่มข้อมูลลงใน Registrationnumber
+            const insertRegSQL = `INSERT INTO Registrationnumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+
+            db.run(insertRegSQL, [carId, customerId, mileage], function (err) {
                 if (err) {
                     console.error(err);
                     return res.status(500).send('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
                 }
-                console.log(`ID: ${this.lastID}`);
+                console.log(`เพิ่ม Registrationnumber สำเร็จ ID: ${this.lastID}`);
+                res.redirect('/');
             });
-            res.redirect('/');
-            }
+        });
+    });
+    }
             
 
 };
