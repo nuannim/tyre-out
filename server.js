@@ -26,6 +26,32 @@ app.use(bodyParser.json());
 require('./routes/UserRoutes.js')(app);
 require('./routes/EmployeeRoutes.js')(app);
 
+// ! ชั่วคราว ใช้เพิ่ม database
+app.get('/create', (req, res) => {
+    for (let i = 0; i < 16; i++) {
+        // ตะกั่ว
+        db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+            values (?, ?)`, [i, 18], (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.send('Error creating database');
+            }
+        });
+
+        // if (i % 2 === 0) {
+            
+        // }
+        // db.run(`insert into`, (err, result) => {
+        //     if (err) {
+        //         console.error(err);
+        //         return res.send('Error creating database');
+        //     }
+        //     res.send('Database created');
+        // });
+    }
+    
+});
+
 // from lab class
 app.listen(port, () => {
     console.log('✅ Server is running on port 3000');

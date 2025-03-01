@@ -155,7 +155,7 @@ const UserController = {
     CarsaveCustomer: async (req, res) => {
         const { sel1, sel2, sel3, email } = req.body;
 
-         console.log("🚀 Debug req.body:", req.body);
+         console.log(req.body);
 
             if (!sel1 || !sel2 || !sel3 || !email) {
                 return res.status(400).send('กรุณากรอกข้อมูลให้ครบถ้วน');
@@ -168,7 +168,7 @@ const UserController = {
                     console.error(err);
                     return res.status(500).send('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
                 }
-                console.log(`✅ บันทึกสำเร็จ ID: ${this.lastID}`);
+                console.log(`ID: ${this.lastID}`);
             });
             res.redirect('/');
             }
