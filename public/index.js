@@ -93,12 +93,24 @@ function showpromotion(promotion) {
 //     // showpop();
 // }
 
-const sel1 = document.getElementById("sel1");
-const sel2 = document.getElementById("sel2");
-const sel3 = document.getElementById("sel3");
-const sel4 = document.getElementById("sel4");
+let sel1 = document.getElementById("sel1");
+let sel2 = document.getElementById("sel2");
+let sel3 = document.getElementById("sel3");
+let sel4 = document.getElementById("sel4");
+let sel5 = document.getElementById("carchoose");
     // ฟังก์ชันโชว์ pop up ใบเสนอราคา
 function checkshowpop(){
+    const selectedCar = sel5.value;
+    if (selectedCar) {
+        const carParts = selectedCar.split(" - ");
+
+        if (carParts.length === 3) {
+            sel1.value = carParts[0];
+            sel2.value = carParts[1];
+            sel3.value = carParts[2];
+        }
+    }
+    sel4.value = "twentythousand";
     const div = document.createElement("div");
     div.id = "check-result";
     const table = document.createElement("table");
@@ -125,9 +137,12 @@ function checkshowpop(){
 
     document.getElementById("content").innerHTML = "";
     document.getElementById("content").appendChild(div);
-    if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
-        showpop()
-    }
+    // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+    //     showpop()
+    // }
+    
+    showpop();
+    
 }
 
 function gotoapp(){

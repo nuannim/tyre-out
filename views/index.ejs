@@ -105,19 +105,21 @@
                             <% }); %>
                             <option value="4">4.00</option>
                         </select>
-                        <select name="sel4" class="drop" id="sel4">
+                        <select name="sel4" class="drop" id="sel4" style="display: none;">
                             <option value="" selected>เลือกระยะทาง</option>
                             <option value="twentythousand">20,000 กม.</option>
                         </select>
                         <input type="hidden" name="email" value="<%= email %>">
                     </div>
                     <div class="bottom" style="display: flex; justify-content: center;">
-                        <button type="submit" class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                        <button class="btn" type="submit" id="btn-service"  width="100%">เพิ่มรถ</button>
                     </div>
                     </form>
                         
 
                 <% } else { %>
+                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                    <div class="guest" style="display: flex; gap: 10px; justify-content: space-evenly;">
                     <select name="sel1" class="drop" id="sel1">
                         <option value="" selected>เลือกรุ่นรถยนต์</option>
                             <% let uniquecarmodel = new Set();
@@ -158,7 +160,11 @@
                         <option value="" selected>เลือกระยะทาง</option>
                         <option value="twentythousand">20,000 กม.</option>
                     </select>
-                    
+                </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button type="submit" class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                    </div>
+                </div>
                     <% } %>
             </div>
             <% if (email && email !== 'Guest') { %>
@@ -170,7 +176,6 @@
                     }
                 </style>
             <p>รถยนต์ของคุณ</p>
-            <form action="" style="display: flex; flex-direction: column; gap: 10px;">
                 <select name="carchoose" width="100%"  id="carchoose">
                     
                     <option value="" selected>รถของคุณ</option>
@@ -178,11 +183,11 @@
                         <option value="<%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %>"><%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %></option>
                         <% }) %>
                 </select>
-                <% } %>
+                
             <div style="display: flex; justify-content: center; ">
-                <button type="submit" class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
             </div>
-        </form>
+        <% } %>
             
         </div>
     </section>
