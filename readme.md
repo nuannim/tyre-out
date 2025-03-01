@@ -9,7 +9,7 @@ Year 2/2024
 เปิด terminal แล้ว copy อันนี้ไปวาง
 ```bash
 npm init -y
-npm install express ejs sqlite3
+npm install express ejs sqlite3 express-session
 ```
 ### รัน js แบบไม่ต้องกดปิดเปิดใหม่ ให้ลง `nodemon`
 
