@@ -215,28 +215,30 @@ p {
 
 #branch-box {
     display: flex;
-    width: 95.5%;
+    width: 90%;
     height: auto;
     background-color: white;
     border-radius: 2vh;
-    padding: 2vh;
-    gap: 2vh;
+    /* padding: 2vh; */
+    /* gap: 2vh; */
 }
 
 #image {
-    width: 20vh;
+    width: 40%;
     height: 20vh;
-    background-image: url(img/branch_1_img.png);
+    border-radius: 2vh;
+    background-image: url(img/download.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 2vh;
 }
 
 #inform-box {
     display: flex;
     gap: 2vh;
     justify-content: center;
-    width: 100%;
+    width: 90%;
 }
 
 #left,
@@ -251,29 +253,26 @@ p {
     display: none;
 }
 
+#branch-text{
+    margin: 2vh;
+}
+
+@media (max-width: 1000px){
+    .ins {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 700px) {
 
     #nav-menu,
-    #check,
-    .drop,
-    .btn,
-    .btn-p,
-    #fortext p {
+    label, .app h4, p{
         font-size: 2vh;
     }
-
-    #nav-menu {
-        height: 3vh;
+    .ins {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    #promotion,
-    #branch {
-        padding-top: 8vh;
-    }
-
-    #branch-area {
-        width: 70%;
-    }
 }
 
 @media (max-width: 630px) {
@@ -316,7 +315,7 @@ p {
         color: #104b82;
     }
 
-    #popup-ov {
+    #popup-ov2 {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -334,5 +333,39 @@ p {
 
     #fis {
         width: 50%;
+    }
+
+    #branch-box {
+        flex-direction: column;
+        width: 78%;
+        padding: 2vh;
+        gap: 2vh;
+    }
+
+    #inform-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #left, #right{
+        width: 85%;
+    }
+    #image{
+        width: 100%;
+        height: 15vh;
+        margin: 0;
+    }
+    #branch-text{
+        margin: 0;
+    }
+    #popup-bg{
+        height: 70%;
+        overflow:auto;
+    }
+}
+
+@media (max-width:500px){
+    .ins {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
