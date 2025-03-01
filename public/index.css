@@ -101,6 +101,9 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+#sel1, #sel2, #sel3, #sel4{
+  width: 30%;
+}
 
 #forsel {
   display: flex;
@@ -510,6 +513,9 @@ body {
     height: 100px;
     padding: 15px;
     gap: 2vh;
+  }
+  #sel1, #sel2, #sel3, #sel4{
+    width: 100%;
   }
 }
 @media (max-width: 450px){
