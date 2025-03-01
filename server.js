@@ -52,6 +52,52 @@ app.get('/create', (req, res) => {
     
 });
 
+
+app.get("/getMaintenanceGoods", (req, res) => {
+    // const { carId, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
+    const { carModel, carYear, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
+
+    // console.log("Received carId:", carId);
+    console.log("Received carId:", carModel);
+    console.log("Received mileage:", mileage);
+
+    // const sql = `
+    //     SELECT g.goodsBrand, g.goodsName, g.goodsPrice 
+    //     FROM MaintenanceGoods mg
+    //     JOIN Maintenance m ON mg.maintenanceId = m.maintenanceId
+    //     JOIN Goods g ON mg.goodsId = g.goodsId
+    //     WHERE m.carId = ? AND m.mileage = ?;
+    // `;
+
+    // const sql = `
+    //     SELECT g.goodsBrand, g.goodsName, g.goodsPrice
+    //     FROM Goods g
+    //     JOIN MaintenanceGoods mg ON g.goodsId = mg.goodsId
+    //     JOIN Maintenance m ON mg.maintenanceId = m.maintenanceId
+    //     WHERE m.carId = ? AND m.mileage = ?;
+    // `;
+
+    const sql = `SELECT g.goodsBrand, g.goodsName, g.goodsPrice
+                FROM MaintenanceGoods mg
+                JOIN Goods g ON mg.goodsId = g.goodsId
+                WHERE mg.maintenanceId IN (
+                    SELECT m.maintenanceId
+                    FROM Maintenance m
+                    JOIN Cars c ON m.carId = c.carId
+                    WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?
+                );`
+            ;
+    // db.all(sql, [carId, mileage], (err, rows) => {
+    db.all(sql, [carModel, carYear, mileage], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
+
 // from lab class
 app.listen(port, () => {
     console.log('✅ Server is running on port 3000');

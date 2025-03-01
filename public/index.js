@@ -145,40 +145,197 @@ function checkshowpop(){
     
 }
 
-function checkshowpopguest(){
-    const div = document.createElement("div");
-    div.id = "check-result";
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
-    const tr = document.createElement("tr");
-    const th1 = document.createElement("th");
-    const th2 = document.createElement("th");
-    const th3 = document.createElement("th");
-    th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
-    th2.textContent = "จำนวน";
-    th3.textContent = "ราคา";
-    tr.appendChild(th1);
-    tr.appendChild(th2);
-    tr.appendChild(th3);
-    thead.appendChild(tr);
-    table.appendChild(thead);
-    div.appendChild(table);
+// * ที่ใครสักคนเขียนไว้ก่อนหน้า
+// function checkshowpopguest(){
+//     const div = document.createElement("div");
+//     div.id = "check-result";
+//     const table = document.createElement("table");
+//     const thead = document.createElement("thead");
+//     const tr = document.createElement("tr");
+//     const th1 = document.createElement("th");
+//     const th2 = document.createElement("th");
+//     const th3 = document.createElement("th");
+//     th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+//     th2.textContent = "จำนวน";
+//     th3.textContent = "ราคา";
+//     tr.appendChild(th1);
+//     tr.appendChild(th2);
+//     tr.appendChild(th3);
+//     thead.appendChild(tr);
+//     table.appendChild(thead);
+//     div.appendChild(table);
 
-    const divbtn = document.createElement("div");
-    divbtn.id = "check-btn";
-    // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
-    divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
-    div.appendChild(divbtn);
+//     const divbtn = document.createElement("div");
+//     divbtn.id = "check-btn";
+//     // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//     divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//     div.appendChild(divbtn);
 
-    document.getElementById("content").innerHTML = "";
-    document.getElementById("content").appendChild(div);
-    // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
-    //     showpop()
-    // }
+//     document.getElementById("content").innerHTML = "";
+//     document.getElementById("content").appendChild(div);
+//     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+//     //     showpop()
+//     // }
     
-    showpop();
+//     showpop();
     
+// }
+
+
+// * เนยสดเขียน แต่ขอโละก่อน
+// async function checkshowpopguest() {
+//     // ดึงค่าที่เลือกจาก dropdown
+//     const carId = document.getElementById("sel1").value;
+//     const mileage = document.getElementById("sel4").value;
+
+
+//     console.log("🚗 carId:", carId);
+//     console.log("📏 mileage:", mileage); // เช็คค่าที่ส่งไป
+
+
+//     if (!carId || !mileage) {
+//         alert("กรุณาเลือกรุ่นรถยนต์ และ ระยะทาง");
+//         return;
+//     }
+
+//     // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
+//     try {
+//         const response = await fetch(`/getMaintenanceGoods?carId=${carId}&mileage=${mileage}`);
+//         const data = await response.json();
+
+//         console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response)
+//         console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data)
+
+//         if (data.length === 0) {
+//             alert("ไม่พบรายการสินค้า");
+//             return;
+//         }
+
+//         // สร้างโครงสร้าง popup
+//         const div = document.createElement("div");
+//         div.id = "check-result";
+//         const table = document.createElement("table");
+//         const thead = document.createElement("thead");
+//         const tr = document.createElement("tr");
+//         const th1 = document.createElement("th");
+//         const th2 = document.createElement("th");
+//         const th3 = document.createElement("th");
+//         th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+//         th2.textContent = "จำนวน";
+//         th3.textContent = "ราคา";
+//         tr.appendChild(th1);
+//         tr.appendChild(th2);
+//         tr.appendChild(th3);
+//         thead.appendChild(tr);
+//         table.appendChild(thead);
+
+//         // สร้าง tbody และเพิ่มข้อมูลลงไป
+//         const tbody = document.createElement("tbody");
+//         data.forEach(item => {
+//             const row = document.createElement("tr");
+//             row.innerHTML = `
+//                 <td>${item.goodsBrand} ${item.goodsName}</td>
+//                 <td>1</td>
+//                 <td>${item.goodsPrice} บาท</td>
+//             `;
+//             tbody.appendChild(row);
+//         });
+
+//         table.appendChild(tbody);
+//         div.appendChild(table);
+
+//         const divbtn = document.createElement("div");
+//         divbtn.id = "check-btn";
+//         divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//         div.appendChild(divbtn);
+
+//         document.getElementById("content").innerHTML = "";
+//         document.getElementById("content").appendChild(div);
+
+//         // แสดง popup
+//         showpop();
+//     } catch (error) {
+//         console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+//     }
+// }
+
+async function checkshowpopguest() {
+    // ดึงค่าที่เลือกจาก dropdown
+    const carModel = document.getElementById("sel1").value; // ใช้ carModel
+    const carYear = document.getElementById("sel2").value; // ใช้ carYear
+    const mileage = document.getElementById("sel4").value;
+
+    console.log("🚗 carModel:", carModel);
+    console.log("📅 carYear:", carYear);
+    console.log("📏 mileage:", mileage); // เช็คค่าที่ส่งไป
+
+    if (!carModel || !carYear || !mileage) {
+        alert("กรุณาเลือกรุ่นรถยนต์, ปีรถยนต์ และ ระยะทาง");
+        return;
+    }
+
+    // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
+    try {
+        const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&mileage=${mileage}`);
+        const data = await response.json();
+
+        console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
+        console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data);
+
+        if (data.length === 0) {
+            alert("ไม่พบรายการสินค้า");
+            return;
+        }
+
+        // สร้างโครงสร้าง popup
+        const div = document.createElement("div");
+        div.id = "check-result";
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tr = document.createElement("tr");
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        const th3 = document.createElement("th");
+        th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+        th2.textContent = "จำนวน";
+        th3.textContent = "ราคา";
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        // สร้าง tbody และเพิ่มข้อมูลลงไป
+        const tbody = document.createElement("tbody");
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.goodsBrand} ${item.goodsName}</td>
+                <td>1</td>
+                <td>${item.goodsPrice} บาท</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        div.appendChild(table);
+
+        const divbtn = document.createElement("div");
+        divbtn.id = "check-btn";
+        divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+        div.appendChild(divbtn);
+
+        document.getElementById("content").innerHTML = "";
+        document.getElementById("content").appendChild(div);
+
+        // แสดง popup
+        showpop();
+    } catch (error) {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+    }
 }
+
+
 
 function gotoapp(){
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
