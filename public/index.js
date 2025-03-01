@@ -5,7 +5,7 @@ function bac() {
     document.getElementById("popup-ov").style.opacity = 0;
 }
 
-function bac2(){
+function bac2() {
     document.getElementById("hid-drop-content").style.display = "none";
     document.getElementById("popup-ov2").style.visibility = "hidden";
 }
@@ -18,15 +18,19 @@ function showpop() {
     document.getElementById("popup-ov").style.opacity = 1;
 }
 function showpromotion(promotion) {
-    
+
     console.log("popuppppppppppp");
     console.log(promotion.promotionId);
+
+    // const content = `<h3>${promotion.promotionName}</h3>
+    //                 <p>${promotion.promotionDescription}</p>
+    //                 <img class="pic" src="/img/db/michelin-ltx-trail.webp" alt="${promotion.promotionName}">
+    //                 `;
 
     const content = `<h3>${promotion.promotionName}</h3>
                     <p>${promotion.promotionDescription}</p>
                     <img class="pic" src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
                     `;
-
     // แทรกเนื้อหาและแสดง Popup
     document.getElementById("content").innerHTML = content;
     showpop();
@@ -98,8 +102,8 @@ let sel2 = document.getElementById("sel2");
 let sel3 = document.getElementById("sel3");
 let sel4 = document.getElementById("sel4");
 let sel5 = document.getElementById("carchoose");
-    // ฟังก์ชันโชว์ pop up ใบเสนอราคา
-function checkshowpop(){
+// ฟังก์ชันโชว์ pop up ใบเสนอราคา
+function checkshowpop() {
     const selectedCar = sel5.value;
     if (selectedCar) {
         const carParts = selectedCar.split(" - ");
@@ -140,12 +144,12 @@ function checkshowpop(){
     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
     //     showpop()
     // }
-    
+
     showpop();
-    
+
 }
 
-function gotoapp(){
+function gotoapp() {
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
     // const sel1 = document.getElementById("sel1").value;
     // const sel2 = document.getElementById("sel2").value;
@@ -157,7 +161,7 @@ function gotoapp(){
 
 }
 
-function shownav(){
+function shownav() {
     document.getElementById("hid-drop-content").style.display = "block";
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
