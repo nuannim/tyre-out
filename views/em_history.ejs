@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- iconใบเสนอราคา -->   
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 </head>
 <body>
     <!-- <div id="nav">
@@ -85,7 +89,8 @@
                             <td id="info-service">เปลี่ยนล้อรถยนต์</td>
                             <td id="info-branch">ลาดกระบัง</td>
                             <td>
-                                <button class="edit-button" onclick="edit_info()"><i class="fa fa-pencil-square-o"></i></button>
+                                <button class="quotation-button"><i class='far fa-clipboard'></i></button>
+                                <button class="view-button"><i class="fa fa-pencil-square-o"></i></button>
                                 <button class="delete-button"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
@@ -181,42 +186,43 @@
                 <div id="left">
                     <div class="inform-text">
                         <p class="header">บริการ</p>
-                        <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์">
+                        <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์"  disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">วันเวลา</p>
-                        <input type="datetime-local" id="edit-date-time" name="edit-date-time" value="2024-01-29T09:00" />
+                        <input type="datetime-local" id="edit-date-time" name="edit-date-time" value="2024-01-29T09:00" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">รุ่นรถยนต์</p>
-                        <input type="text" id="car" class="popup-input" value="-">
+                        <input type="text" id="car" class="popup-input" value="-" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">ระยะทาง</p>
-                        <input type="text" id="lenght" class="popup-input" value="-">
+                        <input type="text" id="lenght" class="popup-input" value="-" disabled>
                     </div>
                 </div>
                 <div id="right">
                     <div class="inform-text">
                         <p class="header">ทะเบียนรถ</p>
-                        <input type="text" id="edit-car-license"  class="popup-input" value="-">
+                        <input type="text" id="edit-car-license"  class="popup-input" value="-" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">ชื่อ - สกุล</p>
-                        <input type="text" id="edit-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง">
+                        <input type="text" id="edit-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">เบอร์โทร</p>
-                        <input type="text" id="edit-phone" class="popup-input" value="-">
+                        <input type="text" id="edit-phone" class="popup-input" value="-" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">E-mail</p>
-                        <input type="text" id="edit-email" class="popup-input" value="-">
+                        <input type="text" id="edit-email" class="popup-input" value="-" disabled>
                     </div>
                 </div>
             </div>
         </div>
         <div id="bottom">
+            <button class="edit-button" onclick="edit_info()">แก้ไขข้อมูล</button>
             <button class="save-button" onclick="save_info()">บันทึกข้อมูล</button>
         </div>
     </div>
@@ -237,9 +243,141 @@
         </div>
     </div>
 
+    <!-- popup ใบเสนอราคา -->
+    <div  id="popup-quotation">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac4()"></i>
+        </div>
+        <div id="content">
+
+            <div id="persona-container">
+                <div id="persona">
+                    <div id="forinput">
+                        <div class="eachinput">
+                            <label for="name">ชื่อ</label>
+                            <p class="inp" id="name"></p>
+                        </div>
+                        <div class="eachinput">
+                            <label for="name">นามสกุล</label>
+                            <p class="inp" id="last"></p>
+                        </div>
+                        <div class="eachinput">
+                            <label for="name">เบอร์โทรศัพท์</label>
+                            <p class="inp" id="tel"></p>
+                        </div>
+                        <div class="eachinput">
+                            <label for="name">E-mail</label>
+                            <p class="inp" id="email"></p>
+                        </div>
+                        <div class="eachinput">
+                            <label for="name">ทะเบียนรถ</label>
+                            <p class="inp" id="carregis"></p>
+                        </div>
+                    </div>
+                    <div id="forinfor">
+                        <h4>รายละเอียดการนัดหมาย</h4>
+                        <div class="forwhatyouvedone">
+                            <p class="header">รุ่นรถยนต์</p>
+                            <p class="show" id="show-model">-</p>
+                            <p class="header">ระยะทาง</p>
+                            <p class="show" id="show-kilo">-</p>
+                            <p class="header">ศูนย์บริการ</p>
+                            <p class="show" id="show-branch">-</p>
+                            <p class="header">วันเวลา</p>
+                            <div id="showdatetime">
+                                <p class="show" id="show-date">-
+                                </p>
+                                <p class="show" id="show-time"></p>
+                            </div>
+                        </div>
+                        <div class="forwhatyouvedone">
+                            <p class="header">รวมราคาอะไหล่และเคมีภัณฑ์</p>
+                            <p class="show" id="show-price-chemi">-</p>
+                            <p class="header">รวมค่าแรง</p>
+                            <p class="show" id="show-price-labor">-</p>
+                        </div>
+                        <div id="total">
+                            <p class="header-total">รวมค่าใช้จ่ายทั้งสิ้น</p>
+                            <p class="show" id="show-price-total">-</p>
+                        </div>
+                        <div id="more">
+                            <p>พนักงานจะทำการติดต่อกลับ</p>
+                            <p>หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- <div id="persona-container">
+        <div id="persona">
+            <div id="forinput">
+                <div class="eachinput">
+                    <label for="name">ชื่อ</label>
+                    <input type="text" class="inp" id="name">
+                </div>
+                <div class="eachinput">
+                    <label for="name">นามสกุล</label>
+                    <input type="text" class="inp" id="last">
+                </div>
+                <div class="eachinput">
+                    <label for="name">เบอร์โทรศัพท์</label>
+                    <input type="text" class="inp" id="tel">
+                </div>
+                <div class="eachinput">
+                    <label for="name">E-mail</label>
+                    <input type="text" class="inp" id="email">
+                </div>
+                <div class="eachinput">
+                    <label for="name">ทะเบียนรถ</label>
+                    <input type="text" class="inp" id="carregis">
+                </div>
+            </div>
+            <div id="forinfor">
+                <h4>รายละเอียดการนัดหมาย</h4>
+                <div class="forwhatyouvedone">
+                    <p class="header">รุ่นรถยนต์</p>
+                    <p class="show" id="show-model">-</p>
+                    <p class="header">ระยะทาง</p>
+                    <p class="show" id="show-kilo">-</p>
+                    <p class="header">ศูนย์บริการ</p>
+                    <p class="show" id="show-branch">-</p>
+                    <p class="header">วันเวลา</p>
+                    <div id="showdatetime">
+                        <p class="show" id="show-date">-
+                        </p>
+                        <p class="show" id="show-time"></p>
+                    </div>
+                </div>
+                <div class="forwhatyouvedone">
+                    <p class="header">รวมราคาอะไหล่และเคมีภัณฑ์</p>
+                    <p class="show" id="show-price-chemi">-</p>
+                    <p class="header">รวมค่าแรง</p>
+                    <p class="show" id="show-price-labor">-</p>
+                </div>
+                <div id="total">
+                    <p class="header-total">รวมค่าใช้จ่ายทั้งสิ้น</p>
+                    <p class="show" id="show-price-total">-</p>
+                </div>
+                <div id="more">
+                    <p>พนักงานจะทำการติดต่อกลับ</p>
+                    <p>หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999</p>
+                </div>
+            </div>
+        </div>
+        <div class="but-pn2">
+            <button class="btn btn-prev" type="button">ย้อนกลับ</button>
+            <button type="submit" value="Submit" class="btn">นัดหมาย</button>
+        </div>
+    </div> -->
+
     <div id="popup-ov"></div>
 
-    <script src="/public/admin_appointment.js"></script>
+    <script src="admin_appointment.js"></script>
 </body>
 </html>
 

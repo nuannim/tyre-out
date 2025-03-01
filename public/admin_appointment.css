@@ -127,10 +127,10 @@ body{
     cursor: default;
 }
 #c7{
-    width: 20vh;
+    width: 15%;
 }
 #c1 {
-    width: 35vh;
+    width: 20%;
 }
 
 #info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
@@ -138,7 +138,7 @@ body{
     font-size: 2vh;
     font-weight: 400;
     text-align: center;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 tr:nth-child(odd) {
     background-color: #f7f7f7;
@@ -146,10 +146,10 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #ffffff;
 }
-tr:hover {
+/* tr:hover {
     background-color: #f7f7f7;
     color: #000000;
-}
+} */
 
 /* search bar */
 #search{
@@ -161,22 +161,27 @@ tr:hover {
     padding: 0.5vh 1vh;
 }
 
-.edit-button, .delete-button{
+.view-button, .delete-button, .quotation-button{
     background: none;
     color: inherit;
     border: none;
-    padding: 0px 1.5vh;
+    padding: 0px 1vh;
     font: inherit;
     cursor: pointer;
     outline: inherit;
     font-size: 2vh;
 }
-.edit-button:hover {
+.view-button:hover {
     color: rgb(0, 162, 255);
 }
 .delete-button:hover {
     color: red;
 }
+.quotation-button:hover{
+    color: rgb(0, 162, 255);
+}
+
+
 
 /* popup */
 #popup-bg, #popup-edit{
@@ -290,7 +295,7 @@ tr:hover {
     border: 1px solid rgb(189, 189, 189);
     border-radius: 1vh;
 }
-.save-button {
+.save-button, .edit-button {
     background-color: #000000;
 	color: white;
 	border: none;
@@ -302,7 +307,10 @@ tr:hover {
     transition: 0.5s;
     width: 16vh;
 }
-.save-button:hover {
+.save-button{
+    display: none;
+}
+.save-button:hover, .edit-button:hover {
     opacity: 1;
 }
 
@@ -346,6 +354,115 @@ tr:hover {
     opacity: 1;
 }
 
+/* quotation-popup */
+#popup-quotation{
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+#persona-container {
+    display: flex;
+    flex-direction: column;
+    padding: 4vh;
+    gap: 4vh;
+    width: 92vh;
+}
+
+#persona {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5vh;
+}
+
+#persona p,
+h4 {
+    margin: 0;
+}
+
+.eachinput {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#forinput {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+
+#forinfor {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+
+#more p {
+    font-size: 2vh;
+    color: #B6B6B6;
+}
+
+.inp {
+    width: 80%;
+    height: 6vh;
+    border-radius: 2vh;
+    border: 0;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    background-color: white;
+}
+
+.forwhatyouvedone {
+    width: 90%;
+    height: auto;
+    background-color: white;
+    border-radius: 2vh;
+    padding: 2vh;
+}
+
+.show {
+    color: #041728;
+}
+
+.header {
+    color: #B6B6B6;
+}
+
+.header-total, #show-price-total {
+    color: #F5F6F8;
+}
+
+#show-price-total {
+    text-decoration: underline;
+}
+
+#total {
+    width: 90%;
+    height: auto;
+    background-color: #104B82;
+    border-radius: 1.5vh;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#showdatetime {
+    display: flex;
+    gap: 1vh;
+}
+
 /* verticaltab */
 .tab-box{
     display:flex;
@@ -354,7 +471,7 @@ tr:hover {
     left: 50%;
     transform:translate(-50%, -20%);
     height: 400px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px;
+    /* box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px; */
     width: 80%;
 }
 

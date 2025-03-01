@@ -16,24 +16,44 @@
 //     tab_ctn[indx].style.display="block";
 // }
 
-showPan(0,'#1abc9c');
+// showPan(0,'#1abc9c');
 
-//กดปิด Popup view
-function bac(){
-    document.getElementById("popup-bg").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-bg").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-}
+// //กดปิด Popup view
+// function bac(){
+//     document.getElementById("popup-bg").style.visibility = "hidden";
+//     document.getElementById("popup-ov").style.visibility = "hidden";
+//     document.getElementById("popup-bg").style.opacity = 0;
+//     document.getElementById("popup-ov").style.opacity = 0;
+// }
 
-//กดดู แล้วแสดง Popup view
-document.querySelectorAll('.info').forEach(a => {
+//กดไอคอนคลิปบอร์ด แล้วแสดง Popup ใบเสนอราคา
+document.querySelectorAll('.quotation-button').forEach(a => {
     a.addEventListener('click', function() {
-        //ให้แยกกับปุ่ม
-        if (event.target.closest('button')) return;
-    document.getElementById("popup-bg").style.visibility = "visible";
+    document.getElementById("popup-quotation").style.visibility = "visible";
     document.getElementById("popup-ov").style.visibility = "visible";
-    document.getElementById("popup-bg").style.opacity = 1;
+    document.getElementById("popup-quotation").style.opacity = 1;
     document.getElementById("popup-ov").style.opacity = 1;
 });
 });
+function bac4(){
+    document.getElementById("popup-quotation").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-quotation").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
+}
+
+//กดปุ่มไอคอนดู แล้วแสดง Popup view
+document.querySelectorAll('.view-button').forEach(a => {
+    a.addEventListener('click', function() {
+    document.getElementById("popup-view").style.visibility = "visible";
+    document.getElementById("popup-ov").style.visibility = "visible";
+    document.getElementById("popup-view").style.opacity = 1;
+    document.getElementById("popup-ov").style.opacity = 1;
+});
+});
+function bac(){
+    document.getElementById("popup-view").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-view").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
+}

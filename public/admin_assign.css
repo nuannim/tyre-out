@@ -46,7 +46,7 @@ body{
 }
 
 /* select branch */
-.main-container{
+/* .main-container{
     margin: 0;
     align-items: center;
     text-align: center;
@@ -63,7 +63,7 @@ body{
     padding-left: 15px;
     margin-left: 15px;
     border-radius: 1vh;
-}
+} */
 
 /* ตาราง */
 .table-apmt{
@@ -88,7 +88,7 @@ body{
     cursor: default;
 }
 #c7{
-    width: 10%;
+    width: 15%;
 }
 #c1 {
     width: 20%;
@@ -99,7 +99,7 @@ body{
     font-size: 2vh;
     font-weight: 400;
     text-align: center;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 tr:nth-child(odd) {
     background-color: #f7f7f7;
@@ -107,37 +107,37 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #ffffff;
 }
-tr:hover {
-    background-color: #f7f7f7;
-    color: #000000;
-}
 
-/* search bar */
-#search{
-    height: 3.5vh;
-    font-size: 2.5vh;
-    margin-top: 2vh;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 0.5vh 1vh;
-}
-
-/* .edit-button, .delete-button{
+/* icon-buttons */
+.quotation-button{
     background: none;
     color: inherit;
     border: none;
-    padding: 0px 1.5vh;
+    padding: 0px 1vh;
     font: inherit;
     cursor: pointer;
     outline: inherit;
     font-size: 2vh;
 }
-.edit-button:hover {
+.quotation-button:hover{
     color: rgb(0, 162, 255);
 }
-.delete-button:hover {
-    color: red;
-} */
+.view-button{
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0px 1vh;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 2vh;
+}
+.view-button:hover {
+    color: rgb(0, 162, 255);
+}
+.view-button:hover {
+    color: rgb(0, 162, 255);
+}
 .assign-button {
     border: none;
     font-size: 2vh;
@@ -151,7 +151,7 @@ tr:hover {
 }
 
 /* popup */
-#popup-bg, #popup-edit{
+#popup-view{
     background-color: #f5f6f8;
     position: fixed;
     top: 50%;
@@ -278,46 +278,6 @@ tr:hover {
     opacity: 1;
 }
 
-/* popup-delete */
-#popup-delete{
-    background-color: #f5f6f8;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: auto;
-    border-radius: 2vh;
-    z-index: 1000;
-    padding: 2vh;
-    visibility: hidden;
-    opacity: 0;
-    transition: ease-in-out 0.2s;
-}
-.cancel-del-button, .confirm-del-button {
-	color: white;
-	border: none;
-    border-radius: 1vh;
-	padding: 1vh 1vh;
-	cursor: pointer;
-    font-size: 2.5vh;
-    opacity: 0.6;
-    transition: 0.5s;
-    width: 14vh;
-    margin-right: 3vh;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-}
-.cancel-del-button {
-    background-color: rgb(0, 0, 0);
-}
-.confirm-del-button {
-    background-color: rgb(255, 52, 52);
-}
-.cancel-del-button:hover, .confirm-del-button:hover {
-    opacity: 1;
-}
-
 /* verticaltab */
 .tab-box{
     display:flex;
@@ -329,14 +289,12 @@ tr:hover {
     box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px;
     width: 80%;
 }
-
 .tab-buttons {
     display: block;
     width:30%;
     height:100%;
     transition: 0.5s;
 }
-
 .tab-buttons .tab-btn {
     width:100%;
     height: 70px;
@@ -352,7 +310,6 @@ tr:hover {
 .tab-btn {
     font-size: 2vh;
 }
-
 .tab-container-box{
     border-left:1px solid rgba(0, 0, 0, 0.19);
     width:100%;
@@ -363,7 +320,6 @@ tr:hover {
 
     border-radius: 2vh 2vh 2vh 2vh;
 }
-
 .tab-container-box .tab-content{
     width:100%;
     height: 100%;
@@ -379,3 +335,113 @@ tr:hover {
 #tab4 {
     border-radius: 0 0 0 1vh;
 } */
+
+/* quotation-popup */
+#popup-quotation{
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+#persona-container {
+    display: flex;
+    flex-direction: column;
+    padding: 4vh;
+    gap: 4vh;
+    width: 92vh;
+}
+
+#persona {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5vh;
+    text-align: left;
+}
+
+#persona p,
+h4 {
+    margin: 0;
+}
+
+.eachinput {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#forinput {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+
+#forinfor {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 2vh;
+}
+
+#more p {
+    font-size: 2vh;
+    color: #B6B6B6;
+}
+
+.inp {
+    width: 80%;
+    height: 6vh;
+    border-radius: 2vh;
+    border: 0;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    background-color: white;
+}
+
+.forwhatyouvedone {
+    width: 90%;
+    height: auto;
+    background-color: white;
+    border-radius: 2vh;
+    padding: 2vh;
+}
+
+.show {
+    color: #041728;
+}
+
+.header {
+    color: #B6B6B6;
+}
+
+.header-total, #show-price-total {
+    color: #F5F6F8;
+}
+
+#show-price-total {
+    text-decoration: underline;
+}
+
+#total {
+    width: 90%;
+    height: auto;
+    background-color: #104B82;
+    border-radius: 1.5vh;
+    padding: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#showdatetime {
+    display: flex;
+    gap: 1vh;
+}
