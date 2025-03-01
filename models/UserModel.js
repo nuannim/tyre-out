@@ -41,10 +41,31 @@ const UserModel = {
               else resolve(c);
             });
         });
-    },
+    }
+    // ,
+    // CustomerCars: async (email) => {
+    //     return new Promise((resolve, reject) => {
+    //         db.all("SELECT * from CustomerCars WHERE CusEmail = ?", [email], (err, cc) => {
+    //           if (err) reject(err);
+    //           else resolve(cc);
+    //         });
+    //     });
+    // }
+
+    ,
     CustomerCars: async (email) => {
         return new Promise((resolve, reject) => {
-            db.all("SELECT * from CustomerCars WHERE CusEmail = ?", [email], (err, cc) => {
+            db.all(`
+                SELECT 
+                    c.email, 
+                    r.mileage,
+                    car.carModel, 
+                    car.carYear, 
+                    car.carGrade
+                FROM RegistrationNumber r
+                JOIN Cars car ON r.carId = car.carId
+                JOIN Customers c ON r.customerId = c.customerId
+                WHERE c.email = ?;`, [email], (err, cc) => {
               if (err) reject(err);
               else resolve(cc);
             });

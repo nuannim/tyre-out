@@ -27,6 +27,12 @@ const UserController = {
                     cars: car,
                 cuscars: cuscar});
 
+        // res.render('index', {
+        //     email: email,
+        //     promotions: p,
+        //     servicebranches: sb,
+        // cars: car});
+
         // * ของเก่า (ย้ายไปที่ UserModel.js)
         // db.all(`select * from Promotion `, (err, p) => {
         //     if (err) {

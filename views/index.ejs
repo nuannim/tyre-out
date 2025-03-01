@@ -94,7 +94,7 @@
                             <option value="2525">2525</option>
                         </select>
                         <select name="sel3" class="drop" id="sel3">
-                            <option value="" selected>เลือกเกรด</option>
+                            <!-- <option value="" selected>เลือกเกรด</option>
                             <% let uniquecargrade = new Set();
                                     cars.forEach((element) => {
                                         uniquecargrade.add(element.carGrade);
@@ -102,7 +102,7 @@
                                 uniquecargrade.forEach((car) => { 
                             %>
                                 <option value="<%= car %>"><%= car %></option>
-                            <% }); %>
+                            <% }); %> -->
                             <option value="4">4.00</option>
                         </select>
                         <select name="sel4" class="drop" id="sel4" style="display: none;">
@@ -130,7 +130,7 @@
                         %>
                             <option value="<%= car %>"><%= car %></option>
                         <% }); %>
-                        <option value="atemodel">รุ่นเสว</option>
+                        <!-- <option value="atemodel">รุ่นเสว</option> -->
                     </select>
                     <select name="sel2" class="drop" id="sel2">
                         <option value="" selected>เลือกรุ่นปี</option>
@@ -142,7 +142,7 @@
                         %>
                             <option value="<%= car %>"><%= car %></option>
                         <% }); %>
-                        <option value="2525">2525</option>
+                        <!-- <option value="2525">2525</option> -->
                     </select>
                     <select name="sel3" class="drop" id="sel3">
                         <option value="" selected>เลือกเกรด</option>
@@ -154,11 +154,11 @@
                         %>
                             <option value="<%= car %>"><%= car %></option>
                         <% }); %>
-                        <option value="4">4.00</option>
+                        <!-- <option value="4">4.00</option> -->
                     </select>
                     <select name="sel4" class="drop" id="sel4">
                         <option value="" selected>เลือกระยะทาง</option>
-                        <option value="twentythousand">20,000 กม.</option>
+                        <!-- <option value="twentythousand">20,000 กม.</option> -->
                     </select>
                 </div>
                     <div style="display: flex; justify-content: center;">
@@ -180,7 +180,7 @@
                     
                     <option value="" selected>รถของคุณ</option>
                     <% cuscars.forEach(car => { %>
-                        <option value="<%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %>"><%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %></option>
+                        <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
                         <% }) %>
                 </select>
                 
