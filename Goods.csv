@@ -1,0 +1,20 @@
+goodsId,goodsBrand,goodsName,goodsDescription,goodsPrice,inStock,isActive,goodsPhotoURL
+1,michelin,LTX Trail,255/70R16,5150,96,1,/img/db/michelin-ltx-trail.webp
+2,michelin,LTX Trail,265/65R17,5850,68,1,/img/db/michelin-ltx-trail.webp
+3,michelin,Primacy SUV+,265/60R18,7990,52,1,/img/db/michelin-primacy-suv+.webp
+4,michelin,Primacy SUV+,275/55R20,7990,59,1,/img/db/michelin-primacy-suv+.webp
+5,Ford,ไส้กรองน้ำมันเชื้อเพลิง,,2000,23,1,/img/db/oil-filter.jpg
+6,Ford,ไส้กรองอากาศ,,750,45,1,/img/db/air-filter.jpeg
+7,Ford,น้ำมันเบรก,WSS-M6C65-A2,110,55,1,/img/db/break-oil.png
+8,Ford,ไส้กรองแอร์ห้องโดยสาร,,450,55,1,/img/db/air-filter-passenger-side.jpg
+9,COOLANT YELLOW PM,น้ำยาหล่อเย็น,10 ลิตร,1410,46,1,/img/db/coolant-yellow-pm.jpg
+10,COOLANT YELLOW PM,น้ำมันเกียร์อัตโนมัติ,ULV WSS-M2C949-A,270,32,1,/img/db/ULV WSS-M2C949-A.jpg
+11,Mercon,น้ำมันเกียร์ขับเคลื่อน 4 ล้อ,LV WSS-M2C938-A,280,12,1,/img/db/WSS-M2C938-A.jpg
+12,Ford,น้ำมันเฟืองท้ายหน้า,WSP-M2C197-A,300,72,1,/img/db/WSP-M2C197-A.jpg
+13,Ford,ปลั๊กถ่ายน้ำมันเฟืองท้ายหน้า,,75,7,1,/img/db/oil-drain-gear-plug.jpg
+14,Ford,ปลั๊กเติมน้ำมันเฟืองท้ายหน้า,,41,69,1,
+15,Ford,น้ำมันเฟืองท้ายหลัง,WSS-M2C942-A,1100,78,1,
+16,Ford,ปลั๊กถ่ายน้ำมันเฟืองท้ายหลัง,,195,89,1,
+17,Ford,ปลั๊กเติมน้ำมันเฟืองท้ายหลัง,,195,34,1,
+18,Ford,ตะกั่วถ่วงล้อ,,15,55,1,
+19,Ford,ชุดสายพานราวลิ้น,,9258,25,1,
