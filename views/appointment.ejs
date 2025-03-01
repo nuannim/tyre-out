@@ -119,6 +119,16 @@
                                 <option value="" selected>เลือกระยะทาง</option>
                                 <option value="twentythousand">20,000 กม.</option>
                             </select>
+                            <% if (email && email !== 'Guest') { %>
+                            <h2>รถยนต์ของคุณ</h2>
+                                <select name="carchoose" class="drop" width="100%"  id="carchoose">
+                                    
+                                    <option value="" selected>รถของคุณ</option>
+                                    <% cuscars.forEach(car => { %>
+                                        <option value="<%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %>"><%= car.CarModel %> - <%= car.CarYear %> - <%= car.CarGrade %></option>
+                                        <% }) %>
+                                </select>
+                        <% } %>
                         </div>
                         <div id="but">
                             <button class="btn btn-next" type="button">ถัดไป</button>

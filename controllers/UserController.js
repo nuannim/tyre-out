@@ -59,10 +59,16 @@ const UserController = {
     },
 
     getAppointmentPage: async (req, res) => {
+        const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
+        const cuscar = await UserModel.CustomerCars(email);
+
+
         try {
             res.render('appointment',{
-                cars: car
+                email: email,
+                cars: car,
+                cuscars: cuscar
             });
         } catch (error) {
             res.status(500).send('Error fetching users');
