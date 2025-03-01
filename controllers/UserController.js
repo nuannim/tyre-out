@@ -159,51 +159,50 @@ const UserController = {
     }
     ,
     CarsaveCustomer: async (req, res) => {
-        const { sel1, sel2, sel3, email } = req.body;
+        const { sel1, sel2, sel3, sel4, email } = req.body;
 
          console.log(req.body);
 
-            if (!sel1 || !sel2 || !sel3 || !email) {
-                return res.status(400).send('กรุณากรอกข้อมูลให้ครบถ้วน');
+            if (!sel1 || !sel2 || !sel3 || !sel4 || !email) {
+                return res.status(400).send('ทะลึ่ง');
             }
 
-    const findCarSQL = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
+    const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
 
-    db.get(findCarSQL, [sel1, sel2, sel3], (err, carRow) => {
+    db.get(findcar, [sel1, sel2, sel3], (err, carRow) => {
         if (err) {
             console.error(err);
-            return res.status(500).send('เกิดข้อผิดพลาดในการค้นหารถ');
+            return res.status(500).send('Car find error');
         }
 
         if (!carRow) {
-            return res.status(404).send('ไม่พบข้อมูลรถในระบบ');
+            return res.status(404).send('Car not found');
         }
 
         const carId = carRow.carId;
 
-        const findCustomerSQL = `SELECT customerId FROM Customers WHERE email = ?`;
+        const findcus = `SELECT customerId FROM Customers WHERE email = ?`;
 
-        db.get(findCustomerSQL, [email], (err, customerRow) => {
+        db.get(findcus, [email], (err, customerRow) => {
             if (err) {
                 console.error(err);
-                return res.status(500).send('เกิดข้อผิดพลาดในการค้นหาลูกค้า');
+                return res.status(500).send('Cant find customer');
             }
 
             if (!customerRow) {
-                return res.status(404).send('ไม่พบข้อมูลลูกค้าในระบบ');
+                return res.status(404).send('NOt found');
             }
 
             const customerId = customerRow.customerId;
 
-            // เพิ่มข้อมูลลงใน Registrationnumber
-            const insertRegSQL = `INSERT INTO Registrationnumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+            const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
 
-            db.run(insertRegSQL, [carId, customerId, mileage], function (err) {
+            db.run(forinsert, [carId, customerId, sel4], function (err) {
                 if (err) {
                     console.error(err);
-                    return res.status(500).send('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                    return res.status(500).send('save error');
                 }
-                console.log(`เพิ่ม Registrationnumber สำเร็จ ID: ${this.lastID}`);
+                console.log(`ID: ${this.lastID}`);
                 res.redirect('/');
             });
         });

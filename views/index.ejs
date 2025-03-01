@@ -94,20 +94,36 @@
                             <option value="2525">2525</option>
                         </select>
                         <select name="sel3" class="drop" id="sel3">
-                            <!-- <option value="" selected>เลือกเกรด</option>
+                            <option value="" selected>เลือกเกรด</option>
                             <% let uniquecargrade = new Set();
-                                    cars.forEach((element) => {
-                                        uniquecargrade.add(element.carGrade);
-                                    });
-                                uniquecargrade.forEach((car) => { 
-                            %>
-                                <option value="<%= car %>"><%= car %></option>
-                            <% }); %> -->
+                                cars.forEach((element) => {
+                                    uniquecargrade.add(element.carGrade);
+                                });
+                            uniquecargrade.forEach((car) => { 
+                        %>
+                            <option value="<%= car %>"><%= car %></option>
+                        <% }); %>
                             <option value="4">4.00</option>
                         </select>
-                        <select name="sel4" class="drop" id="sel4" style="display: none;">
+                        <select name="sel4" class="drop" id="sel4">
                             <option value="" selected>เลือกระยะทาง</option>
-                            <option value="twentythousand">20,000 กม.</option>
+                            <option value="15000">15,000 กม.</option>
+                            <option value="30000">30,000 กม.</option>
+                            <option value="45000">45,000 กม.</option>
+                            <option value="60000">60,000 กม.</option>
+                            <option value="75000">75,000 กม.</option>
+                            <option value="90000">90,000 กม.</option>
+                            <option value="105000">105,000 กม.</option>
+                            <option value="120000">120,000 กม.</option>
+                            <option value="135000">135,000 กม.</option>
+                            <option value="150000">150,000 กม.</option>
+                            <option value="135000">135,000 กม.</option>
+                            <option value="165000">165,000 กม.</option>
+                            <option value="180000">180,000 กม.</option>
+                            <option value="195000">195,000 กม.</option>
+                            <option value="210000">210,000 กม.</option>
+                            <option value="225000">225,000 กม.</option>
+                            <option value="240000">240,000 กม.</option>
                         </select>
                         <input type="hidden" name="email" value="<%= email %>">
                     </div>
