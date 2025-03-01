@@ -526,6 +526,9 @@ h4 {
         width: 12vh;
         height: 5vh;
     }
+    #bran{
+        margin: 0;
+    }
 }
 
 @media (max-width: 630px) {
