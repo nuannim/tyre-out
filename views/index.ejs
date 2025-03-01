@@ -68,7 +68,7 @@
             <div id="forsel">
                 <% if (email && email !== 'Guest') { %>
                     <form action="/saveCar" id="carform" method="POST" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                    <div class="top">
+                    <div class="top" style="display: flex; gap: 10px; width: 100%;">
                         <select name="sel1" class="drop" id="sel1">
                             <option value="" selected>เลือกรุ่นรถยนต์</option>
                                 <% let uniquecarmodel = new Set();
