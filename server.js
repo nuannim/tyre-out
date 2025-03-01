@@ -28,55 +28,108 @@ require('./routes/EmployeeRoutes.js')(app);
 
 // ! ชั่วคราว ใช้เพิ่ม database
 app.get('/create', (req, res) => {
-    for (let i = 1; i <= 16; i++) {
-        // * ตะกั่ว
-        // db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-        //     values (?, ?)`, [i, 18], (err, result) => {
-        //     if (err) {
-        //         console.error(err);
-        //         return res.send('Error creating database');
-        //     }
-        // });
+// * ford everest 2024 wildtrak ==> carId: 3
+    // for (let i = 1; i <= 16; i++) {
+    //     // * ตะกั่ว
+    //     db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+    //         values (?, ?)`, [i, 18], (err, result) => {
+    //         if (err) {
+    //             console.error(err);
+    //             return res.send('Error creating database');
+    //         }
+    //     });
 
-        if (i % 2 === 0) {
-            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-                values (?, ?)`, [i, 8], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.send('Error creating database');
-                }
-            });
-        }
-        if (i % 3 === 0) {
-            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-                values (?, ?), (?, ?)`, [i, 6, i, 7], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.send('Error creating database');
-                }
-            });
-        }
-        if (i % 5 === 0) {
-            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-                values (?, ?)`, [i, 5], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.send('Error creating database');
-                }
-            });
-        }
-        if (i % 10 === 0) {
-            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-                values (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)
-                , (?, ?), (?, ?)`, 
-                [i, 9, i, 10, i, 11, i, 12, i, 13, i, 14, i, 15, i, 16, i, 17], (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return res.send('Error creating database');
-                }
-            });
-        }
-    }
+    //     if (i % 2 === 0) {
+    //         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+    //             values (?, ?)`, [i, 8], (err, result) => {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return res.send('Error creating database');
+    //             }
+    //         });
+    //     }
+    //     if (i % 3 === 0) {
+    //         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+    //             values (?, ?), (?, ?)`, [i, 6, i, 7], (err, result) => {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return res.send('Error creating database');
+    //             }
+    //         });
+    //     }
+    //     if (i % 5 === 0) {
+    //         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+    //             values (?, ?)`, [i, 5], (err, result) => {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return res.send('Error creating database');
+    //             }
+    //         });
+    //     }
+    //     if (i % 10 === 0) {
+    //         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+    //             values (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)
+    //             , (?, ?), (?, ?)`, 
+    //             [i, 9, i, 10, i, 11, i, 12, i, 13, i, 14, i, 15, i, 16, i, 17], (err, result) => {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return res.send('Error creating database');
+    //             }
+    //         });
+    //     }
+    // }
+
+
+// * ford everest 2024 wildtrak ==> carId: 4
+//     for (let i = 17; i <= 32; i++) {
+//         // * ตะกั่ว
+//         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+//             values (?, ?)`, [i, 18], (err, result) => {
+//             if (err) {
+//                 console.error(err);
+//                 return res.send('Error creating database');
+//             }
+//         });
+
+//         if (i % 2 === 0) {
+//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+//                 values (?, ?)`, [i, 8], (err, result) => {
+//                 if (err) {
+//                     console.error(err);
+//                     return res.send('Error creating database');
+//                 }
+//             });
+//         }
+//         if (i % 3 === 0) {
+//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+//                 values (?, ?), (?, ?)`, [i, 6, i, 7], (err, result) => {
+//                 if (err) {
+//                     console.error(err);
+//                     return res.send('Error creating database');
+//                 }
+//             });
+//         }
+//         if (i % 5 === 0) {
+//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+//                 values (?, ?)`, [i, 5], (err, result) => {
+//                 if (err) {
+//                     console.error(err);
+//                     return res.send('Error creating database');
+//                 }
+//             });
+//         }
+//         if (i % 10 === 0) {
+//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+//                 values (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)
+//                 , (?, ?), (?, ?)`, 
+//                 [i, 9, i, 10, i, 11, i, 12, i, 13, i, 14, i, 15, i, 16, i, 17], (err, result) => {
+//                 if (err) {
+//                     console.error(err);
+//                     return res.send('Error creating database');
+//                 }
+//             });
+//         }
+//     }
 });
 
 
@@ -104,16 +157,37 @@ app.get("/getMaintenanceGoods", (req, res) => {
     //     WHERE m.carId = ? AND m.mileage = ?;
     // `;
 
-    const sql = `SELECT g.goodsBrand, g.goodsName, g.goodsPrice
-                FROM MaintenanceGoods mg
-                JOIN Goods g ON mg.goodsId = g.goodsId
-                WHERE mg.maintenanceId IN (
-                    SELECT m.maintenanceId
-                    FROM Maintenance m
-                    JOIN Cars c ON m.carId = c.carId
-                    WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?
-                );`
-            ;
+    // const sql = `SELECT g.goodsBrand, g.goodsName, g.goodsPrice
+    //             FROM MaintenanceGoods mg
+    //             JOIN Goods g ON mg.goodsId = g.goodsId
+    //             WHERE mg.maintenanceId IN (
+    //                 SELECT m.maintenanceId
+    //                 FROM Maintenance m
+    //                 JOIN Cars c ON m.carId = c.carId
+    //                 WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?
+    //             );`
+    //         ;
+
+    // const sql = `
+    //     SELECT DISTINCT g.goodsBrand, g.goodsName, g.goodsPrice
+    //     FROM MaintenanceGoods mg
+    //     JOIN Goods g ON mg.goodsId = g.goodsId
+    //     WHERE mg.maintenanceId IN (
+    //         SELECT m.maintenanceId
+    //         FROM Maintenance m
+    //         JOIN Cars c ON m.carId = c.carId
+    //         WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?
+    //     );`;
+
+    const sql = `
+    SELECT g.goodsBrand, g.goodsName, g.goodsPrice
+    FROM MaintenanceGoods mg
+    JOIN Goods g ON mg.goodsId = g.goodsId
+    JOIN Maintenance m ON mg.maintenanceId = m.maintenanceId
+    JOIN Cars c ON m.carId = c.carId
+    WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?;
+`;
+
     // db.all(sql, [carId, mileage], (err, rows) => {
     db.all(sql, [carModel, carYear, mileage], (err, rows) => {
         if (err) {
