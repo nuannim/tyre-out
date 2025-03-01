@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Assign</title>
+    <link rel="stylesheet" href="admin_assign.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+    <style>
+        body {
+            margin: 0 auto;
+            align-items: center;
+            text-align: center;
+        }
+        .show-branch-name{
+            color: white;
+            font-size: 2vh;
+        }
+    </style>
+<body>
+    <div id="nav">
+        <div id="nav-menu">
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="/admin_assign">รับการนัดหมายลูกค้า</a>
+                <p>|</p>
+                <a href="/admin">ดูการนัดหมาย</a>
+
+            </div>
+            <div id="las">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ดัน -->
+    <div style="height: 130px;"></div> 
+
+    <p class="show-branch-name">สาขา บ้านหนองใหญ่</p>
+
+    <p class="show-branch-name">การนัดหมายที่ยังไม่มีพนักงานดูแล</p>
+
+    <div class="tab-box">
+        <div class="tab-container-box">
+            <div class="tab-content">
+                <table class="table-apmt">
+                    <tr id="column-row">
+                        <th class="c" id="c1">วัน-เวลา</th>
+                        <th class="c" id="c2">เบอร์โทร</th>
+                        <th class="c" id="c3">ชื่อ</th>
+                        <th class="c" id="c4">นามสกุล</th>
+                        <th class="c" id="c5">บริการ</th>
+                        <th class="c" id="c6">ศูนย์บริการ</th>
+                        <th class="c" id="c7"></th>
+                    </tr>
+                    <tr class="info">
+                        <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                        <td id="info-phone">123 456 7899</td>
+                        <td id="info-firstname">ลีอาห์</td>
+                        <td id="info-lastname">แซ่ตั้ง</td>
+                        <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                        <td id="info-branch">ลาดกระบัง</td>
+                        <td>
+                            <button class="assign-button">รับเคส</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- popup -->
+<div id="popup-bg">
+    <div id="fori">
+        <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
+    </div>
+    <div id="content">
+        <h4>รายละเอียดการนัดหมาย</h4>
+        <div id="branch-box">
+            <div id="image"></div>
+            <div id="branch-text">
+                <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
+                <p class="header">ที่อยู่</p>
+                <p class="header">เบอร์โทร</p>
+                <p class="header">เวลาเปิดปิด</p>
+            </div>
+        </div>
+        <div id="inform-box">
+            <div id="left">
+                <div class="inform-text">
+                    <p class="header">บริการ</p>
+                    <p class="show">เปลี่ยนล้อรถยนต์</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">วันเวลา</p>
+                    <p class="show">29 ม.ค. 2568 9.00-11.00</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">รุ่นรถยนต์</p>
+                    <p class="show">-</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">ระยะทาง</p>
+                    <p class="show">-</p>
+                </div>
+            </div>
+            <div id="right">
+                <div class="inform-text">
+                    <p class="header">ทะเบียนรถ</p>
+                    <p class="show">-</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">ชื่อ - สกุล</p>
+                    <p class="show">-</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">เบอร์โทร</p>
+                    <p class="show">-</p>
+                </div>
+                <div class="inform-text">
+                    <p class="header">E-mail</p>
+                    <p class="show">-</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="popup-ov"></div>
+
+</body>
+</html>
