@@ -27,11 +27,16 @@ const UserModel = {
             });
         });
     },
-    findByEmail: (email, callback) => {
-        let sql = `SELECT email, phoneNumber FROM Customers WHERE email = ?`;
-        db.get(sql, [email], (err, result) => {
-            if (err) return callback(err, null);
-            callback(null, result);
+    
+    findByEmail: (email) => {
+        return new Promise((resolve, reject) => {
+            let sql = `SELECT email, phoneNumber FROM Customers WHERE email = ?`;
+            db.get(sql, [email], (err, result) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(result);
+            });
         });
     },
     allCars: () => {

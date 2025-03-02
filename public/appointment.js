@@ -125,4 +125,13 @@ function bac() {
 
 function selectBranch(branchName) {
     showbranch.innerHTML = branchName;
+    const branches = document.querySelectorAll('#branchh');
+
+    branches.forEach(branch => {
+        if (branch.innerText.includes(branchName)) {
+            branch.classList.add('selected');
+        } else {
+            branch.classList.remove('selected');
+        }
+    });
 }
