@@ -191,7 +191,7 @@
                                         </p>
                                         <p>โทรศัพท์ <%=element.telephone%></p>
                                         <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
-                                        <button class="bran-btn" id="bran-btn-nongjam" type="button">เลือก</button>
+                                        <button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerName %>')" type="button">เลือก</button>
                                     </div>
                                 </div>
                             <% }); %>

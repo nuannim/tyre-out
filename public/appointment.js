@@ -122,3 +122,7 @@ function bac() {
     document.getElementById("hid-drop-content").style.display = "none";
     document.getElementById("popup-ov").style.visibility = "hidden";
 }
+
+function selectBranch(branchName) {
+    showbranch.innerHTML = branchName;
+}

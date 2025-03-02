@@ -110,6 +110,9 @@ timeinput.forEach(radio => {
     });
 });
 
+function selectBranch(branchName) {
+    showbranch.innerHTML = branchName;
+}
 // getRadio(timeinput);
 // showmodel.textContent = model.options[model.selectedIndex].text;
 // showkilo.textContent = kilo.options[model.selectedIndex].text;
