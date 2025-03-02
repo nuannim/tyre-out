@@ -1,4 +1,7 @@
 const UserModel = require('../models/UserModel');
+const EmployeeModel = require('../models/EmployeeModel');
+const crypto = require('crypto');
+
 
 // const conn = require('../models/dbconn.js');
 const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
@@ -102,53 +105,60 @@ const UserController = {
             return res.json({ success: false, message: "กรุณากรอกข้อมูลให้ครบ" });
         }
         
-        if (formdata.username2 === 'admin' && formdata.password2 === '1234') {
-            req.session.user = { email: 'admin', role: 'admin' };
+        
+        
+        try {
 
-            res.cookie('userSession', 'admin', { 
-                httpOnly: true, 
-                secure: false, 
-                sameSite: 'strict', 
-                maxAge: 1000 * 60 * 15
-            });
+            const [employee, customer] = await Promise.all([
+                EmployeeModel.findByEmployeeAccountId(formdata.username2),
+                UserModel.findByEmail(formdata.username2)
+            ]);
+    
 
-            return res.redirect('/admin');
+            if (employee) {
+                const hashedInputPassword = crypto.createHash('sha256').update(formdata.password2).digest('hex');
+                if (employee.password !== hashedInputPassword) {
+                    return res.json({ success: false, message: "รหัสผ่านผิด" });
+                }
+    
+                req.session.user = { employeeAccountId: employee.employeeAccountId, role: 'admin' };
+    
+                res.cookie('userSession', employee.employeeAccountId, { 
+                    httpOnly: true, 
+                    secure: false, 
+                    sameSite: 'strict', 
+                    maxAge: 1000 * 60 * 15
+                });
+    
+                return res.json({ success: true, redirect: '/admin' });
+            }
+    
+
+            if (customer) {
+                if (customer.phoneNumber !== formdata.password2) {
+                    console.log(customer.phoneNumber);
+                    return res.json({ success: false, message: "รหัสผ่านผิด" });
+                }
+
+
+                req.session.user = { email: customer.email, role: 'customer' };
+    
+                res.cookie('userSession', customer.email, { 
+                    httpOnly: true, 
+                    secure: false, 
+                    sameSite: 'strict', 
+                    maxAge: 1000 * 60 * 15
+                });
+    
+                return res.json({ success: true, redirect: '/' });
+            }
+
+            return res.json({ success: false, message: "ไม่พบบัญชี" });
+    
+        } catch (err) {
+            console.error(err);
+            return res.json({ success: false, message: "Server Error" });
         }
-
-        UserModel.findByEmail(formdata.username2, async (err, result) => {
-
-            console.log(result);
-
-            
-
-            if (err) {
-                console.error(err);
-                return res.json({ success: false, message: "Server Error" });
-            }
-
-            
-            
-            const user = result;
-    
-            if (!user) {
-                return res.json({ success: false, message: "ไม่พบบัญชี" });
-            }
-    
-            if (user.email === formdata.username2 && user.phoneNumber !== formdata.password2) {
-                return res.json({ success: false, message: "รหัสผ่านผิด" });
-            } 
-            
-            req.session.user = { email: user.email, role: user.role };
-    
-            res.cookie('userSession', user.email, { 
-                httpOnly: true, 
-                secure: false, 
-                sameSite: 'strict', 
-                maxAge: 1000 * 60 * 15
-            });
-            
-            return res.json({ success: true, redirect: '/' });
-        });
         
     },
     logout: async (req, res) => {

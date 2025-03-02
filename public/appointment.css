@@ -235,6 +235,7 @@ button:hover {
     gap: 4vh;
     padding: 4vh;
     margin-bottom: 4vh;
+    overflow-x: hidden;
     overflow-y: scroll;
     /* justify-content: space-between; */
 }
@@ -249,9 +250,16 @@ button:hover {
 #branchh{
     display: flex;
     flex-direction: row;
+    padding: 2vh;
+    border-radius: 20px;
     width: 100%;
     justify-content: space-between;
     gap: 4vh;
+    transition: background-color 0.3s ease;
+}
+.selected {
+    background-color: #003366;
+    color: white;
 }
 
 .bran-btn {
