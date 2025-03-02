@@ -93,8 +93,14 @@ const UserController = {
     processSignin: async (req, res) => {
         let formdata = {
             username2: req.body.username,
-            password2: req.body.password,
+            password2: req.body.password
         };
+
+        console.log(formdata);
+
+        if (!formdata.username2 || !formdata.password2) {
+            return res.json({ success: false, message: "กรุณากรอกข้อมูลให้ครบ" });
+        }
         
         if (formdata.username2 === 'admin' && formdata.password2 === '1234') {
             req.session.user = { email: 'admin', role: 'admin' };
@@ -110,34 +116,38 @@ const UserController = {
         }
 
         UserModel.findByEmail(formdata.username2, async (err, result) => {
+
+            console.log(result);
+
+            
+
             if (err) {
                 console.error(err);
-                return res.send("<h1>Server Error</h1><a href='/login'>Try again</a>");
+                return res.json({ success: false, message: "Server Error" });
             }
+
+            
             
             const user = result;
-
+    
             if (!user) {
-                return res.send("<h1>Invalid</h1><a href='/login'>Try again</a>");
+                return res.json({ success: false, message: "ไม่พบบัญชี" });
             }
     
             if (user.email === formdata.username2 && user.phoneNumber !== formdata.password2) {
-                return res.send("<h1>Wrong password</h1><a href='/login'>Try again</a>");
+                return res.json({ success: false, message: "รหัสผ่านผิด" });
             } 
             
-            
-            
-
             req.session.user = { email: user.email, role: user.role };
-
+    
             res.cookie('userSession', user.email, { 
                 httpOnly: true, 
                 secure: false, 
                 sameSite: 'strict', 
                 maxAge: 1000 * 60 * 15
             });
-
-            return res.redirect('/');
+            
+            return res.json({ success: true, redirect: '/' });
         });
         
     },

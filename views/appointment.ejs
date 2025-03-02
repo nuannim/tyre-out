@@ -24,8 +24,10 @@
                 <a href="/#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
-                <p>|</p>
-                <a href="/history">ประวัติการนัดหมาย</a>
+                <% if (email && email !== 'Guest') { %>
+                    <p>|</p>
+                    <a href="/history">ประวัติการนัดหมาย</a>
+                <% } %>
             </div>
             <div id="las">
                 <div id="hid-drop">
@@ -37,10 +39,17 @@
                         <a href="/#promotion">โปรโมชัน</a>
                         <a href="/#branch">ศูนย์บริการ</a>
                         <a href="/appointment">การนัดหมาย</a>
-                        <a href="/history">ประวัติการนัดหมาย</a>
+                        <% if (email && email !== 'Guest') { %>
+                            <a href="/history">ประวัติการนัดหมาย</a>
+                        <% } %>
                     </div>
                 </div>
-                <a href="/login"><i class="fa-regular fa-user"></i></a>
+                <% if (email && email !== 'Guest') { %>
+                    <a href="/login" class="disabled"><i class="fa-regular fa-user"></i></a>
+                    <a href="/logout">Logout</a>
+                <% } else { %>
+                    <a href="/login"><i class="fa-regular fa-user"></i></a>
+                <% } %>
             </div>
         </div>
     </div>
