@@ -10,6 +10,16 @@
 body{
     height: 100vh;
     background-color: #041728;
+    /* align-items: center; */
+}
+
+.top{
+    height: 10vh;
+}
+.show-emp{
+    font-size: 4vh;
+    color: white;
+    font-weight: 500;
 }
 
 /* nav */
@@ -45,44 +55,6 @@ body{
     text-align: end;
 }
 
-/* tab */
-/* .mytabs{
-    width: 80%; ปรับความยาวกล่องตรงนี้ 
-    display: flex;
-    flex-wrap: wrap;
-    margin: 50px auto;
-} */
-/* .mytabs input[type="radio"]{
-    display: none;
-}
-.mytabs label{
-    color: white;
-    background-color: #104B82;
-    height: 3vh;
-    padding: 2vh;
-    border-radius: 2vh 2vh 0 0;
-    align-items: center;
-    order: 0;
-    font-size: 2.5vh;
-    cursor: pointer;
-} */
-/* .mytabs .tab{
-    width: 100%;
-    height: auto; ปรับความสูง
-    padding: 3vh 6vh;
-    background: #F5F6F8;
-    order: 1;
-    display: none;
-    border-radius: 0 2vh 2vh 2vh;
-    text-align: left;
-}
-.mytabs input[type='radio']:checked + label +.tab {
-    display: block;
-}
-.mytabs input[type='radio']:checked + label {
-    background: #F5F6F8;
-    color: #000000;
-} */
 
 /* select branch */
 .main-container{
@@ -138,7 +110,6 @@ body{
     font-size: 2vh;
     font-weight: 400;
     text-align: center;
-    /* cursor: pointer; */
 }
 tr:nth-child(odd) {
     background-color: #f7f7f7;
@@ -146,10 +117,6 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #ffffff;
 }
-/* tr:hover {
-    background-color: #f7f7f7;
-    color: #000000;
-} */
 
 /* search bar */
 #search{
@@ -183,8 +150,8 @@ tr:nth-child(even) {
 
 
 
-/* popup */
-#popup-bg, #popup-edit{
+/* popup-view */
+#popup-view{
     background-color: #f5f6f8;
     position: fixed;
     top: 50%;
@@ -277,8 +244,6 @@ tr:nth-child(even) {
     text-align: left;
     line-height: 5vh;
 }
-
-/* popup-edit */
 #bottom {
     width: 100%;
     margin-top: 1vh;
@@ -466,11 +431,11 @@ h4 {
     gap: 1vh;
 }
 
-/* verticaltab */
+/* tabs */
 .tab-box{
     display:flex;
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform:translate(-50%, -20%);
     height: 400px;
@@ -508,7 +473,6 @@ h4 {
     color: black;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 0 3px;
-
     border-radius: 0 2vh 2vh 2vh;
 }
 

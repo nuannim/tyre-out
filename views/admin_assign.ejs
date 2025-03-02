@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- icon trash & calendar-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <!-- sign-in icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    <!-- แว่นขยาย -->
+    <!-- icon clipboard -->   
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <!-- iconใบเสนอราคา -->   
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 </head>
     <style>
         body {
@@ -25,10 +29,7 @@
             align-items: center;
             text-align: center;
         }
-        .show-branch-name{
-            color: white;
-            font-size: 2vh;
-        }
+
     </style>
 <body>
     <div id="nav">
@@ -52,13 +53,12 @@
     <!-- ดัน -->
     <div style="height: 130px;"></div> 
 
-    <p class="show-branch-name">สาขา บ้านหนองใหญ่</p>
-
-    <p class="show-branch-name">การนัดหมายที่ยังไม่มีพนักงานดูแล</p>
-
-    <div class="tab-box">
-        <div class="tab-container-box">
-            <div class="tab-content">
+    <div class="top">
+        <h1 class="show-branch" id="branch-name-bannongyai">สาขา บ้านหนองใหญ่</h1>
+    </div>
+    
+    <div class="box">
+            <div class="table-content">
                 <table class="table-apmt">
                     <tr id="column-row">
                         <th class="c" id="c1">วัน-เวลา</th>
@@ -78,13 +78,12 @@
                         <td id="info-branch">ลาดกระบัง</td>
                         <td>
                             <button class="quotation-button"><i class='far fa-clipboard'></i></button>
-                            <button class="view-button"><i class='fas fa-search'></i></button>
-                            <button class="assign-button">รับเคส</button>
+                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                            <button class="assign-button" id="assign-button">รับเคส</button>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
     </div>
 
 
@@ -152,7 +151,6 @@
             <i class="fa-solid fa-xmark" id="bac" onclick="bac4()"></i>
         </div>
         <div id="content">
-
             <div id="persona-container">
                 <div id="persona">
                     <div id="forinput">
@@ -213,6 +211,20 @@
 
         </div>
     </div>
+
+        <!-- popup-assign-->
+        <div  id="popup-assign">
+            <div id="fori">
+                <i class="fa-solid fa-xmark" id="bac" onclick="bac3()"></i>
+            </div>
+            <div id="content">
+                <h4>ยืนยันที่จะรับเคสนี้หรือไม่</h4>
+                <div class="inform-text">
+                    <button class="cancel-button" onclick="cancel()">ยกเลิก</button>
+                    <button class="confirm-button" onclick="confirm()">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
 
 
 

@@ -1,9 +1,7 @@
-//swab tabs
+//swap tabs
 const tab_btn = document.querySelectorAll('.tab-btn');
 const tab_ctn = document.querySelectorAll('.tab-content');
-
-
-const showPan = (indx, clrCde) =>{
+const showPan = (indx) =>{
     tab_btn.forEach(element => {
         element.style.backgroundColor = "";
         element.style.color = "";
@@ -16,11 +14,7 @@ const showPan = (indx, clrCde) =>{
     });
     tab_ctn[indx].style.display="block";
 }
-
-showPan(0,'#1abc9c');
-
-
-
+showPan(0);
 
 
 
@@ -39,7 +33,7 @@ document.querySelectorAll('.quotation-button').forEach(a => {
     document.getElementById("popup-ov").style.opacity = 1;
 });
 });
-function bac4(){
+function bac1(){
     document.getElementById("popup-quotation").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";
     document.getElementById("popup-quotation").style.opacity = 0;
@@ -69,9 +63,9 @@ let isEditing = false; //เก็บบสถานะการกำลัง�
 
 document.querySelectorAll('.view-button').forEach(a => {
     a.addEventListener('click', function() {
-    document.getElementById("popup-edit").style.visibility = "visible";
+    document.getElementById("popup-view").style.visibility = "visible";
     document.getElementById("popup-ov").style.visibility = "visible";
-    document.getElementById("popup-edit").style.opacity = 1;
+    document.getElementById("popup-view").style.opacity = 1;
     document.getElementById("popup-ov").style.opacity = 1;
 
     let inputs = document.querySelectorAll(".popup-input");
@@ -80,17 +74,24 @@ document.querySelectorAll('.view-button').forEach(a => {
     });
 });
 });
-function bac2(){
-    document.getElementById("popup-edit").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-edit").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
 
-    let inputs = document.querySelectorAll(".popup-input");
-    inputs.forEach(input => {
-        input.value = originalInfo[input.id]; // ถ้ากดปิด ดึงเอาค่าที่เก็บไว้กลับมา
-        input.setAttribute("disabled", true);
-    });
+function bac2(){
+    if (isEditing) {
+        alert("กรุณาบันทึกหรือยกเลิกการแก้ไขข้อมูล");
+    } else {
+        document.getElementById("popup-view").style.visibility = "hidden";
+        document.getElementById("popup-ov").style.visibility = "hidden";
+        document.getElementById("popup-view").style.opacity = 0;
+        document.getElementById("popup-ov").style.opacity = 0;
+    
+        let inputs = document.querySelectorAll(".popup-input");
+        inputs.forEach(input => {
+            input.value = originalInfo[input.id]; // ดึงค่าที่เก็บไว้
+            input.setAttribute("disabled", true);
+        });
+    
+        isEditing = false;
+    }
 }
 
 //ปุ่มแก้ไขข้อมูล
@@ -99,6 +100,7 @@ function edit_info(){
     inputs.forEach(input => input.removeAttribute("disabled"));
 
     document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "none");
+    document.querySelectorAll(".cancel-edit-button").forEach(btn => btn.style.display = "inline-block");
     document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "inline-block");
 
     isEditing = true;
@@ -107,41 +109,35 @@ function edit_info(){
 //ปุ่มบันทึกข้อมูล
 function save_info(){
     let inputs = document.querySelectorAll(".popup-input");
-    inputs.forEach(input => input.setAttribute("disabled", true)); //กลับไป disabled
+    inputs.forEach(input => input.setAttribute("disabled", true));
 
     inputs.forEach(input => { 
-        originalInfo[input.id] = input.value; //บันทึกค่าใหม่ลง
+        originalInfo[input.id] = input.value; //บันทึกค่าใหม่
     });
 
     document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "inline-block");
     document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "none");
+    document.querySelectorAll(".cancel-edit-button").forEach(btn => btn.style.display = "none");
 
     isEditing = false;
     alert("บันทึกข้อมูลสำเร็จ")
 }
-//ล็อคไม่ให้ปิด
-document.getElementById("bac").addEventListener("click", function(event){{
-    if (isEditing) {
-        alert("กรุณากดบันทึกการแก้ไขข้อมูลหรือยกเลิกการแก้ไขข้อมูล");
-        event.preventDefault();
-    }else {
-        bac();
-    }
-}});
 
-//กดปิด Popup view
-function bac2(){
-    document.getElementById("popup-edit").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-edit").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-
+function cancel_edit(){
     let inputs = document.querySelectorAll(".popup-input");
     inputs.forEach(input => {
-        input.value = originalInfo[input.id]; // เอาค่าเดิม
-        input.setAttribute("disabled", true);
+        input.value = originalInfo[input.id]; 
+        input.setAttribute("disabled", true); // ดึงค่าที่เก็บไว้
     });
+
+    document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "inline-block");
+    document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "none");
+    document.querySelectorAll(".cancel-edit-button").forEach(btn => btn.style.display = "none");
+
+    isEditing = false;
 }
+
+
 
 
 
