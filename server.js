@@ -81,65 +81,69 @@ app.get('/create', (req, res) => {
 
 
 // * ford everest 2024 wildtrak ==> carId: 4
-//     for (let i = 17; i <= 32; i++) {
-//         // * ตะกั่ว
-//         db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-//             values (?, ?)`, [i, 18], (err, result) => {
-//             if (err) {
-//                 console.error(err);
-//                 return res.send('Error creating database');
-//             }
-//         });
+// ! ใช้ไม่ได้ ต้องใช้วิธี count เอา โอ้ย เดี๋ยวมาแก้ตอนเช้า
+    let count = 1;
 
-//         if (i % 2 === 0) {
-//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-//                 values (?, ?)`, [i, 8], (err, result) => {
-//                 if (err) {
-//                     console.error(err);
-//                     return res.send('Error creating database');
-//                 }
-//             });
-//         }
-//         if (i % 3 === 0) {
-//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-//                 values (?, ?), (?, ?)`, [i, 6, i, 7], (err, result) => {
-//                 if (err) {
-//                     console.error(err);
-//                     return res.send('Error creating database');
-//                 }
-//             });
-//         }
-//         if (i % 5 === 0) {
-//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-//                 values (?, ?)`, [i, 5], (err, result) => {
-//                 if (err) {
-//                     console.error(err);
-//                     return res.send('Error creating database');
-//                 }
-//             });
-//         }
-//         if (i % 10 === 0) {
-//             db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
-//                 values (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)
-//                 , (?, ?), (?, ?)`, 
-//                 [i, 9, i, 10, i, 11, i, 12, i, 13, i, 14, i, 15, i, 16, i, 17], (err, result) => {
-//                 if (err) {
-//                     console.error(err);
-//                     return res.send('Error creating database');
-//                 }
-//             });
-//         }
-//     }
+    for (let i = 17; i <= 32; i++) {
+        // * ตะกั่ว
+        db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+            values (?, ?)`, [i, 18], (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.send('Error creating database');
+            }
+        });
+
+        if (count % 2 === 0) {
+            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+                values (?, ?)`, [i, 8], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.send('Error creating database');
+                }
+            });
+        }
+        if (count % 3 === 0) {
+            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+                values (?, ?), (?, ?)`, [i, 6, i, 7], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.send('Error creating database');
+                }
+            });
+        }
+        if (count % 5 === 0) {
+            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+                values (?, ?)`, [i, 5], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.send('Error creating database');
+                }
+            });
+        }
+        if (count % 10 === 0) {
+            db.run(`insert into MaintenanceGoods (maintenanceId, goodsId)
+                values (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)
+                , (?, ?), (?, ?)`, 
+                [i, 9, i, 10, i, 11, i, 12, i, 13, i, 14, i, 15, i, 16, i, 17], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.send('Error creating database');
+                }
+            });
+        }
+        count++;
+    }
 });
 
 
 app.get("/getMaintenanceGoods", (req, res) => {
     // const { carId, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
-    const { carModel, carYear, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
+    const { carModel, carYear, carGrade, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
 
     // console.log("Received carId:", carId);
-    console.log("Received carId:", carModel);
-    console.log("Received mileage:", mileage);
+    // console.log("Received carId:", carModel);
+    // console.log("Received mileage:", mileage);
 
     // const sql = `
     //     SELECT g.goodsBrand, g.goodsName, g.goodsPrice 
@@ -180,22 +184,55 @@ app.get("/getMaintenanceGoods", (req, res) => {
     //     );`;
 
     const sql = `
-    SELECT g.goodsBrand, g.goodsName, g.goodsPrice
-    FROM MaintenanceGoods mg
-    JOIN Goods g ON mg.goodsId = g.goodsId
-    JOIN Maintenance m ON mg.maintenanceId = m.maintenanceId
-    JOIN Cars c ON m.carId = c.carId
-    WHERE c.carModel = ? AND c.carYear = ? AND m.mileage = ?;
+SELECT 
+    mg.maintenanceGoodsId,
+    mg.maintenanceId,
+    mg.goodsId,
+    m.carId,
+    m.mileage,
+    c.carModel,
+    c.carYear,
+    c.carGrade,
+    g.goodsBrand,
+    g.goodsName,
+    g.goodsDescription,
+    g.goodsPrice,
+    g.inStock,
+    g.isActive,
+    g.goodsPhotoURL
+FROM 
+    MaintenanceGoods mg
+JOIN 
+    Maintenance m ON mg.maintenanceId = m.maintenanceId
+JOIN 
+    Cars c ON m.carId = c.carId
+JOIN 
+    Goods g ON mg.goodsId = g.goodsId
+WHERE
+    c.carModel = ? AND
+    c.carYear = ? AND
+    c.carGrade = ? AND
+    m.mileage = ?;
 `;
-
-    // db.all(sql, [carId, mileage], (err, rows) => {
-    db.all(sql, [carModel, carYear, mileage], (err, rows) => {
+    db.all(sql, [carModel, carYear, carGrade, mileage], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {
             res.json(rows);
+            console.log('rows: ', JSON.stringify(rows, null, 2));
         }
     });
+
+    // console.log("Constructed SQL query:", sql);
+
+    // db.all(sql, [carModel, carYear, mileage], (err, rows) => {
+    //     if (err) {
+    //         res.status(500).json({ error: err.message });
+    //     } else {
+    //         res.json(rows);
+    //         console.log('rows: ', JSON.stringify(rows, null, 2));
+    //     }
+    // });
 });
 
 

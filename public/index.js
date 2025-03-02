@@ -263,7 +263,8 @@ async function checkshowpopguest() {
     // ดึงค่าที่เลือกจาก dropdown
     const carModel = document.getElementById("sel1").value; // ใช้ carModel
     const carYear = document.getElementById("sel2").value; // ใช้ carYear
-    const mileage = document.getElementById("sel4").value;
+    const carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    const mileage = document.getElementById("sel4").value; // mileage
 
     console.log("🚗 carModel:", carModel);
     console.log("📅 carYear:", carYear);
@@ -276,7 +277,7 @@ async function checkshowpopguest() {
 
     // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
     try {
-        const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&mileage=${mileage}`);
+        const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}`);
         const data = await response.json();
 
         console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
