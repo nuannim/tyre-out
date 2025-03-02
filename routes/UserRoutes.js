@@ -33,4 +33,6 @@ module.exports = function(app) {
     app.get('/login', UserController.getLoginPage);
     app.post('/saveCar', UserController.CarsaveCustomer);
     // app.post('/booking', BookingController.createBooking);
+
+    app.get('/getMaintenanceGoods', UserController.getMaintenanceGoods);
 };
