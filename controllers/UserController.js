@@ -68,13 +68,15 @@ const UserController = {
         const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
         const cuscar = await UserModel.CustomerCars(email);
+        const sb = await UserModel.allServiceBranch();
 
 
         try {
             res.render('appointment',{
                 email: email,
                 cars: car,
-                cuscars: cuscar
+                cuscars: cuscar,
+                servicebranches: sb
             });
         } catch (error) {
             res.status(500).send('Error fetching users');

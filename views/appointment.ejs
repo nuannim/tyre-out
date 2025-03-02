@@ -163,14 +163,30 @@
                             <button class="btn" id="btn-branch" type="button">ค้นหา</button>
                         </div>
                         <div id="branch-area">
-                            <div id="forimg"></div>
-                            <div id="fortext">
-                                <h4>สาขาทุ่งหนองแจ๋ม</h4>
-                                <p>ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่ ที่อยู่</p>
-                                <p>โทรศัพท์ 090-909-0909</p>
-                                <p>เปิดให้บริการเวลา 09:00 - 21:00</p>
-                            </div>
-                            <button class="bran-btn" id="bran-btn-nongjam" type="button">เลือก</button>
+                            <% servicebranches.forEach((element)=> { %>
+                                <div id="branchh">
+                                    <!-- <div id="forimg" style="background-image: url('/img/db/branch/ford-rama4.jpg');"></div> -->
+                                <div class="serimg">
+                                    <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>'); height: 20vh;"></div>
+                                </div>
+                                    <div id="fortext">
+                                        <h3>
+                                            <%=element.centerName%>
+                                        </h3>
+                                        <p>
+                                            <%=element.address%>
+                                            <%=element.subdistrict%>
+                                            <%=element.district%>
+                                            <%=element.province%>
+                                            <%=element.postcode%>
+                                        </p>
+                                        <p>โทรศัพท์ <%=element.telephone%></p>
+                                        <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+                                        <button class="bran-btn" id="bran-btn-nongjam" type="button">เลือก</button>
+                                    </div>
+                                </div>
+                            <% }); %>
+                            
                         </div>
                         <div class="but-pn">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
