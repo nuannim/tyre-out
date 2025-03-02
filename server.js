@@ -30,6 +30,8 @@ require('./routes/EmployeeRoutes.js')(app);
 
 // ! โค้ดเพิ่ม db ย้ายไปที่ ฝาก server.js
 
+
+// ! เดี๋ยวจะย้ายไปใส่ routes & controller
 app.get("/getMaintenanceGoods", (req, res) => {
     // const { carId, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
     const { carModel, carYear, carGrade, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
