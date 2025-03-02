@@ -140,7 +140,7 @@ body {
 
 #box {
     margin-top: 3vh;
-    width: 100vh;
+    width: 70%;
     height: auto;
     background-color: #F5F6F8;
     border-radius: 2vh;
@@ -191,7 +191,7 @@ button:hover {
     flex-wrap: wrap;
     padding: 4vh;
     gap: 4vh;
-    width: 92vh;
+    width: 100%;
 }
 
 /*#service div{
@@ -212,7 +212,7 @@ button:hover {
     align-items: center;
     margin-bottom: 4vh;
     margin-top: 4vh;
-    width: 100vh;
+    width: 100%;
 }
 
 #select-branch {
@@ -227,14 +227,31 @@ button:hover {
 #branch-area {
     background-color: white;
     width: 80%;
-    height: auto;
+    height: 30vh;
     border-radius: 2vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 4vh;
     padding: 4vh;
     margin-bottom: 4vh;
+    overflow-y: scroll;
     /* justify-content: space-between; */
+}
+.serimg{
+    display: flex; 
+    justify-content: center;
+     align-items: center; 
+     width: 50%;
+    height: 100%;
+}
+
+#branchh{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 4vh;
 }
 
 .bran-btn {
@@ -258,7 +275,7 @@ button:hover {
     background-image: url(img/download.jpg);
     background-size: cover;
     background-position: center;
-    width: 25%;
+    width: 100%;
     height: 17vh;
     border-radius: 2vh;
 }
@@ -398,7 +415,9 @@ h4 {
     border-radius: 2vh;
     padding: 2vh;
 }
-
+form{
+    width: 100%;
+}
 .form-step {
     display: none;
     transform-origin: top;
@@ -406,7 +425,8 @@ h4 {
 }
 
 .form-step-active {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .show {
@@ -445,7 +465,7 @@ h4 {
     display: none;
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
 
     #nav-menu,
     #check,
@@ -529,9 +549,9 @@ h4 {
     #bran{
         margin: 0;
     }
-}
+}*/
 
-@media (max-width: 630px) {
+@media (max-width: 850px) {
     #mid {
         display: none;
     }
@@ -591,9 +611,16 @@ h4 {
     #fis {
         width: 50%;
     }
-}
+    #day-container{
+        justify-content: space-evenly;
+    }
+    #dateinput{
+        width: 18vh;
+        
+    }
+} 
 
-@media (max-width: 550px) {
+@media (max-width: 660px) {
 
     #nav-menu,
     #check,
@@ -677,13 +704,20 @@ h4 {
 
     #branch-area{
         flex-direction: column;
-        height: auto;
+        height: 30vh;
         width: 80%;
         gap: 0;
     }
+    #branchh{
+        flex-direction: column;
+        gap: 1vh;
+    }
     #forimg{
         height: 15vh;
-        width: 90%;
+        width: 100%;
+    }
+    .serimg{
+        width: 100%;
     }
     #fortext{
         height: auto;
