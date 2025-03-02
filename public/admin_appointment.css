@@ -295,22 +295,25 @@ tr:nth-child(even) {
     border: 1px solid rgb(189, 189, 189);
     border-radius: 1vh;
 }
-.save-button, .edit-button {
+.save-button, .edit-button, .cancel-edit-button {
     background-color: #000000;
 	color: white;
 	border: none;
     border-radius: 1vh;
-	padding: 1vh 1vh;
+	padding: 1vh 2vh;
 	cursor: pointer;
     font-size: 2.5vh;
     opacity: 0.6;
     transition: 0.5s;
-    width: 16vh;
+    width: auto;
 }
 .save-button{
     display: none;
 }
-.save-button:hover, .edit-button:hover {
+.cancel-edit-button{
+    display: none;
+}
+.save-button:hover, .edit-button:hover, .cancel-edit-button:hover {
     opacity: 1;
 }
 

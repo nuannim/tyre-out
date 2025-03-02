@@ -46,8 +46,27 @@ function bac4(){
     document.getElementById("popup-ov").style.opacity = 0;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //กดปุ่มไอคอนดู แล้วแสดง Popup view
 let originalInfo = {}; //เก็บค่า
+let isEditing = false; //เก็บบสถานะการกำลังทำการแก้ไข
+
 document.querySelectorAll('.view-button').forEach(a => {
     a.addEventListener('click', function() {
     document.getElementById("popup-edit").style.visibility = "visible";
@@ -71,11 +90,9 @@ function bac2(){
     inputs.forEach(input => {
         input.value = originalInfo[input.id]; // ถ้ากดปิด ดึงเอาค่าที่เก็บไว้กลับมา
         input.setAttribute("disabled", true);
-
-        // document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "none");
-        // document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "inline-block");
     });
 }
+
 //ปุ่มแก้ไขข้อมูล
 function edit_info(){
     let inputs = document.querySelectorAll(".popup-input");
@@ -83,7 +100,10 @@ function edit_info(){
 
     document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "none");
     document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "inline-block");
+
+    isEditing = true;
 }
+
 //ปุ่มบันทึกข้อมูล
 function save_info(){
     let inputs = document.querySelectorAll(".popup-input");
@@ -93,22 +113,44 @@ function save_info(){
         originalInfo[input.id] = input.value; //บันทึกค่าใหม่ลง
     });
 
-    document.querySelector(".edit-button").style.display = "inline-block";
-    document.querySelector(".save-button").style.display = "none";
+    document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "inline-block");
+    document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "none");
 
+    isEditing = false;
     alert("บันทึกข้อมูลสำเร็จ")
 }
+//ล็อคไม่ให้ปิด
+document.getElementById("bac").addEventListener("click", function(event){{
+    if (isEditing) {
+        alert("กรุณากดบันทึกการแก้ไขข้อมูลหรือยกเลิกการแก้ไขข้อมูล");
+        event.preventDefault();
+    }else {
+        bac();
+    }
+}});
 
-//ปุ่มยกเลิกการลบข้อมูล
-function cancel_del(){
-    bac3()
+//กดปิด Popup view
+function bac2(){
+    document.getElementById("popup-edit").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-edit").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
+
+    let inputs = document.querySelectorAll(".popup-input");
+    inputs.forEach(input => {
+        input.value = originalInfo[input.id]; // เอาค่าเดิม
+        input.setAttribute("disabled", true);
+    });
 }
 
-//ปุ่มยืนยันการลบข้อมูล
-function confirm_del(){
-    alert("ทำการยกเลิกการนัดหมายสำเร็จ")
-    bac3()
-}
+
+
+
+
+
+
+
+
 
 
 
@@ -124,19 +166,15 @@ document.querySelectorAll('.delete-button').forEach(a => {
     document.getElementById("popup-ov").style.opacity = 1;
 });
 });
+//ปุ่มยกเลิกการลบข้อมูล
+function cancel_del(){
+    bac3()
+}
 
-//กดปิด Popup edit
-function bac2(){
-    document.getElementById("popup-edit").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-edit").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-
-    let inputs = document.querySelectorAll(".popup-input");
-    inputs.forEach(input => {
-        input.value = originalInfo[input.id]; // เอาค่าเดิม
-        input.setAttribute("disabled", true);
-    });
+//ปุ่มยืนยันการลบข้อมูล
+function confirm_del(){
+    alert("ทำการยกเลิกการนัดหมายสำเร็จ")
+    bac3()
 }
 //กดปิด Popup delete
 function bac3(){
