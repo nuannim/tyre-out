@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="admin_appointment.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Appointments</title>
+
+    <!-- icon trash & calendar-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <!-- sign-in icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- icon clipboard -->   
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+<body>
+    <div id="nav">
+        <div id="nav-menu">
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="/admin_assign">รับการนัดหมายลูกค้า</a>
+                <p>|</p>
+                <a href="/admin">ดูการนัดหมาย</a>
+            </div>
+            <div id="las">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ดัน -->
+    <div style="height: 130px;"></div> 
+
+    <!-- <div class="main-container"> -->
+        <!-- choose branch -->
+        <!-- <label id="branch-lb" for="selectBranch">เลือกศูนย์บริการ</label>
+        <select name="selectBranch" id="selectBranch">
+            <option value="b0">ทุกศูนย์</option>
+            <option value="b1">ทุ่งลุยลาย</option>
+            <option value="b2">ลาดกระบัง</option>
+            <option value="b3">ทุ่งมะขามป้อม</option>
+        </select> -->
+    <!-- </div> -->
+
+    <div class="top">
+        <h1 class="show-emp" id="emp-name-1">พนักงาน 660xxxx</h1>
+    </div>
+    
+
+        <div class="tab-box">
+            <div class="tab-buttons">
+                <button class="tab-btn" id="tab1" onclick="showPan(0)">การนัดหมายที่ยังมาไม่ถึง</button>
+                <button class="tab-btn" onclick="showPan(1)">การนัดหมายที่ผ่านมาแล้ว</button>
+                <button class="tab-btn" onclick="showPan(2)">การนัดหมายที่ยังมาไม่ถึงของศูนย์</button>
+                <button class="tab-btn" id="tab4" onclick="showPan(3)">การนัดหมายที่ผ่านมาแล้วของศูนย์</button>
+            </div>
+
+            <div class="tab-container-box">
+                <!-- tab1 -->
+                <div class="tab-content">
+                     <table class="table-apmt">
+                        <tr id="column-row">
+                            <th class="c" id="c1">วัน-เวลา</th>
+                            <th class="c" id="c2">เบอร์โทร</th>
+                            <th class="c" id="c3">ชื่อ</th>
+                            <th class="c" id="c4">นามสกุล</th>
+                            <th class="c" id="c5">บริการ</th>
+                            <th class="c" id="c6">ศูนย์บริการ</th>
+                            <th class="c" id="c7"></th>
+                        </tr>
+                        <tr class="info">
+                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                            <td id="info-phone">123 456 7899</td>
+                            <td id="info-firstname">ลีอาห์</td>
+                            <td id="info-lastname">แซ่ตั้ง</td>
+                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                            <td id="info-branch">ลาดกระบัง</td>
+                            <td>
+                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- tab2 -->
+                <div class="tab-content">
+                    <table class="table-apmt">
+                        <tr id="column-row">
+                            <th class="c" id="c1">วัน-เวลา</th>
+                            <th class="c" id="c2">เบอร์โทร</th>
+                            <th class="c" id="c3">ชื่อ</th>
+                            <th class="c" id="c4">นามสกุล</th>
+                            <th class="c" id="c5">บริการ</th>
+                            <th class="c" id="c6">ศูนย์บริการ</th>
+                            <th class="c" id="c7"></th>
+                        </tr>
+                        <tr class="info">
+                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                            <td id="info-phone">123 456 7899</td>
+                            <td id="info-firstname">ลีอาห์</td>
+                            <td id="info-lastname">แซ่ตั้ง</td>
+                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                            <td id="info-branch">ลาดกระบัง</td>
+                            <td>
+                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- tab3 -->
+                <div class="tab-content">
+                    <table class="table-apmt">
+                        <tr id="column-row">
+                            <th class="c" id="c1">วัน-เวลา</th>
+                            <th class="c" id="c2">เบอร์โทร</th>
+                            <th class="c" id="c3">ชื่อ</th>
+                            <th class="c" id="c4">นามสกุล</th>
+                            <th class="c" id="c5">บริการ</th>
+                            <th class="c" id="c6">ศูนย์บริการ</th>
+                            <th class="c" id="c7"></th>
+                        </tr>
+                        <tr class="info">
+                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                            <td id="info-phone">123 456 7899</td>
+                            <td id="info-firstname">ลีอาห์</td>
+                            <td id="info-lastname">แซ่ตั้ง</td>
+                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                            <td id="info-branch">ลาดกระบัง</td>
+                            <td>
+                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- tab4 -->
+                <div class="tab-content">
+                    <table class="table-apmt">
+                        <tr id="column-row">
+                            <th class="c" id="c1">วัน-เวลา</th>
+                            <th class="c" id="c2">เบอร์โทร</th>
+                            <th class="c" id="c3">ชื่อ</th>
+                            <th class="c" id="c4">นามสกุล</th>
+                            <th class="c" id="c5">บริการ</th>
+                            <th class="c" id="c6">ศูนย์บริการ</th>
+                            <th class="c" id="c7"></th>
+                        </tr>
+                        <tr class="info">
+                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
+                            <td id="info-phone">123 456 7899</td>
+                            <td id="info-firstname">ลีอาห์</td>
+                            <td id="info-lastname">แซ่ตั้ง</td>
+                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
+                            <td id="info-branch">ลาดกระบัง</td>
+                            <td>
+                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- popup ใบเสนอราคา -->
+        <div  id="popup-quotation">
+            <div id="fori">
+                <i class="fa-solid fa-xmark" id="bac" onclick="bac1()"></i>
+            </div>
+            <div id="content">
+    
+                <div id="persona-container">
+                    <div id="persona">
+                        <div id="forinput">
+                            <div class="eachinput">
+                                <label for="name">ชื่อ</label>
+                                <input class="inp" id="name" disabled>
+                            </div>
+                            <div class="eachinput">
+                                <label for="last">นามสกุล</label>
+                                <input class="inp" id="last" disabled>
+                            </div>
+                            <div class="eachinput">
+                                <label for="tel">เบอร์โทรศัพท์</label>
+                                <input class="inp" id="tel" disabled>
+                            </div>
+                            <div class="eachinput">
+                                <label for="email">E-mail</label>
+                                <input class="inp" id="email" disabled>
+                            </div>
+                            <div class="eachinput">
+                                <label for="carregis">ทะเบียนรถ</label>
+                                <input class="inp" id="carregis" disabled>
+                            </div> 
+                        </div>
+                        <div id="forinfor">
+                            <h4>รายละเอียดการนัดหมาย</h4>
+                            <div class="forwhatyouvedone">
+                                <p class="header">รุ่นรถยนต์</p>
+                                <p class="show" id="show-model">-</p>
+                                <p class="header">ระยะทาง</p>
+                                <p class="show" id="show-kilo">-</p>
+                                <p class="header">ศูนย์บริการ</p>
+                                <p class="show" id="show-branch">-</p>
+                                <p class="header">วันเวลา</p>
+                                <div id="showdatetime">
+                                    <p class="show" id="show-date">-
+                                    </p>
+                                    <p class="show" id="show-time"></p>
+                                </div>
+                            </div>
+                            <div class="forwhatyouvedone">
+                                <p class="header">รวมราคาอะไหล่และเคมีภัณฑ์</p>
+                                <p class="show" id="show-price-chemi">-</p>
+                                <p class="header">รวมค่าแรง</p>
+                                <p class="show" id="show-price-labor">-</p>
+                            </div>
+                            <div id="total">
+                                <p class="header-total">รวมค่าใช้จ่ายทั้งสิ้น</p>
+                                <p class="show" id="show-price-total">-</p>
+                            </div>
+                            <div id="more">
+                                <p>พนักงานจะทำการติดต่อกลับ</p>
+                                <p>หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- popup view -->
+    <div id="popup-view">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
+        </div>
+        <div id="content">
+            <h4>รายละเอียดการนัดหมาย</h4>
+            <div id="branch-box">
+                <div id="image"></div>
+                <div id="branch-text">
+                    <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
+                    <p class="header">ที่อยู่</p>
+                    <p class="header">เบอร์โทร</p>
+                    <p class="header">เวลาเปิดปิด</p>
+                </div>
+            </div>
+            <div id="inform-box">
+                <div id="left">
+                    <div class="inform-text">
+                        <p class="header">บริการ</p>
+                        <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์"  disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">วันเวลา</p>
+                        <input type="datetime-local" id="edit-date-time" class="popup-input" value="2024-01-29T09:00" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">รุ่นรถยนต์</p>
+                        <input type="text" id="car" class="popup-input" value="-" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ระยะทาง</p>
+                        <input type="text" id="lenght" class="popup-input" value="-" disabled>
+                    </div>
+                </div>
+                <div id="right">
+                    <div class="inform-text">
+                        <p class="header">ทะเบียนรถ</p>
+                        <input type="text" id="edit-car-license"  class="popup-input" value="-" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">ชื่อ - สกุล</p>
+                        <input type="text" id="edit-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">เบอร์โทร</p>
+                        <input type="text" id="edit-phone" class="popup-input" value="-" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">E-mail</p>
+                        <input type="text" id="edit-email" class="popup-input" value="-" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <button class="cancel-edit-button" onclick="cancel_edit()">ยกเลิก</button>
+            <button class="edit-button" onclick="edit_info()">แก้ไขข้อมูล</button>
+            <button class="save-button" onclick="save_info()">บันทึกข้อมูล</button>
+        </div>
+    </div>
+
+    
+
+    <!-- popup-delete -->
+    <div  id="popup-delete">
+        <div id="fori">
+            <i class="fa-solid fa-xmark" id="bac" onclick="bac3()"></i>
+        </div>
+        <div id="content">
+            <h4>ยืนยันที่จะลบการนัดหมายนี้หรือไม่</h4>
+            <div class="inform-text">
+                <button class="cancel-del-button" onclick="cancel_del()">ยกเลิก</button>
+                <button class="confirm-del-button" onclick="confirm_del()">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="popup-ov"></div>
+
+    <script src="admin_appointment.js"></script>
+</body>
+</html>
+
