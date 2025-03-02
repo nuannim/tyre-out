@@ -122,6 +122,7 @@ function shownav(){
 function bac() {
     document.getElementById("hid-drop-content").style.display = "none";
     document.getElementById("popup-ov").style.visibility = "hidden";
+
 }
 
 function selectBranch(branchName) {
@@ -136,64 +137,15 @@ function selectBranch(branchName) {
         }
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
-    const btnGuest = document.querySelector(".checklogin:nth-child(2)");
-    const btnLogin = document.querySelector(".checklogin:nth-child(1)");
+
+
+    const btnGuest = document.getElementById("checklogin");
     const forinput = document.getElementById("forinput");
     const forlogin = document.querySelector(".forlogin");
 
-    // ตรวจสอบสถานะจาก Session Storage
-    if (sessionStorage.getItem("continueAsGuest")) {
-        forinput.classList.remove("forinput-hidden");
+    btnGuest.addEventListener("click", function (e) {
+        e.preventDefault();
         forlogin.style.display = "none";
-    }
-
-    // กดปุ่มดำเนินการโดยไม่เข้าสู่ระบบ
-    btnGuest.addEventListener("click", function () {
         forinput.classList.remove("forinput-hidden");
-        forlogin.style.display = "none";
-        sessionStorage.setItem("continueAsGuest", "true");
     });
 
-    // กดปุ่มเข้าสู่ระบบ
-    btnLogin.addEventListener("click", function () {
-        saveFormData();  // บันทึกข้อมูลไว้ก่อน
-        sessionStorage.removeItem("continueAsGuest");
-        window.location.href = "/login";
-    });
-
-    // ถ้ากลับมาจากการล็อกอิน ให้กู้คืนข้อมูลที่เลือกไว้
-    restoreFormData();
-});
-
-// ฟังก์ชันบันทึกค่าที่เลือกไว้ก่อน Redirect ไป Login
-function saveFormData() {
-    const formData = {
-        sel1: document.getElementById("sel1").value,
-        sel2: document.getElementById("sel2").value,
-        sel3: document.getElementById("sel3").value,
-        sel4: document.getElementById("sel4").value,
-        branchvince: document.getElementById("branchvince").value,
-        branchDistrict: document.getElementById("branch-district").value,
-        reserveDay: document.getElementById("dateinput").value,
-        reserveTime: document.querySelector('input[name="timeinput"]:checked')?.value || "",
-    };
-    sessionStorage.setItem("formData", JSON.stringify(formData));
-}
-
-// ฟังก์ชันกู้คืนค่าที่เลือกไว้หลังจากกลับมาหน้าเดิม
-function restoreFormData() {
-    const formData = JSON.parse(sessionStorage.getItem("formData"));
-    if (formData) {
-        document.getElementById("sel1").value = formData.sel1;
-        document.getElementById("sel2").value = formData.sel2;
-        document.getElementById("sel3").value = formData.sel3;
-        document.getElementById("sel4").value = formData.sel4;
-        document.getElementById("branchvince").value = formData.branchvince;
-        document.getElementById("branch-district").value = formData.branchDistrict;
-        document.getElementById("dateinput").value = formData.reserveDay;
-        if (formData.reserveTime) {
-            document.querySelector(`input[name="timeinput"][value="${formData.reserveTime}"]`).checked = true;
-        }
-    }
-}

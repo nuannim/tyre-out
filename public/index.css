@@ -79,12 +79,30 @@ body {
   background-size: cover;
   background-position: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: center;
 }
 
 #check p {
   margin: 0;
+}
+
+.maintop{
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.mainbot{
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  height: auto;
 }
 
 #check {
@@ -357,6 +375,20 @@ body {
   width: 80%;
   justify-content: center;
 }
+#typewriter {
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  min-height: 150px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  #typewriter {
+      font-size: 2rem;
+  }
+}
 
 @media (max-width: 800px) {
   #nav-menu,
@@ -475,8 +507,9 @@ body {
   }
   #check {
     margin-bottom: 10%;
-    width: 70%;
-    height: 36%;
+    width: 100%;
+    height: 80%;
+    
   }
   .btn{
     width: 10vh;

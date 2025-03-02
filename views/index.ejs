@@ -28,7 +28,7 @@
         <div id="nav-menu">
             <div id="fis">
                 <p>Tyre-Out</p>
-                <h1>Welcome, <%= email ? email : 'Guest' %>!</h1>
+                <h1 style="display: none;">Welcome, <%= email ? email : 'Guest' %>!</h1>
             </div>
             <div id="mid">
                 <a href="#main">หน้าหลัก</a>
@@ -63,11 +63,16 @@
                     <a href="/logout">Logout</a>
                 <% } else { %>
                     <a href="/login"><i class="fa-regular fa-user"></i></a>
+                    <span style="padding: 0; margin: 0; color: white;"><%= email ? email : 'Guest' %></span>
                 <% } %>
             </div>
         </div>
     </div>
     <section id="main">
+        <div class="maintop" style="width: 100%; display: flex; justify-content: center; height: 60%;">
+            <h1 id="typewriter"></h1>
+        </div>
+        <div class="mainbot">
         <div id="check" data-aos="fade-up" data-aos-duration="1500">
             <p>บริการเช็กระยะตามกำหนด</p>
             <div id="forsel">
@@ -214,7 +219,7 @@
                         #check {
                             margin-bottom: 10%;
                             width: 70%;
-                            height: 40%;
+                            height: auto;
                         }
                     }
                 </style>
@@ -231,8 +236,9 @@
                 <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
             </div>
         <% } %>
-            
+        
         </div>
+    </div>
     </section>
     <section id="promotion">
         <h1>โปรโมชันที่น่าสนใจ</h1>
@@ -319,9 +325,22 @@
     <div id="popup-ov2" onclick="bac2()"></div>
     <script src="index.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
     <script>
         AOS.init();
+
+            document.addEventListener("DOMContentLoaded", function () {
+            var typed = new Typed("#typewriter", {
+          strings: ["Tyre-Out", "ยินดีต้อนรับสู่บริการของเรา", "เช็กรถง่าย ๆ ได้ที่นี่"],
+          typeSpeed: 100,
+          backSpeed: 50,
+          backDelay: 1000,
+          startDelay: 500,
+          loop: true,
+          showCursor: false
+            });
+        });
     </script>
 
 

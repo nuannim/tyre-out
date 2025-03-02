@@ -234,7 +234,7 @@
                         <div id="persona">
                             
                             <% if (email && email !== 'Guest') { %>
-                                <div class="forinput forinput-hidden">
+                                <div class="forinput">
                                     <div class="eachinput">
                                         <label for="name">ชื่อ</label>
                                         <input type="text" class="inp" id="name">
@@ -258,9 +258,9 @@
                                 </div>
                             <% } else { %>
                                 <div class="forlogin">
-                                    <button class="checklogin">เข้าสู่ระบบ</button>
+                                    <a href="/login" class="checklogin">เข้าสู่ระบบ</a>
                                     <p>หรือ</p>
-                                    <button class="checklogin">ดำเนินการโดยไม่เข้าสู่ระบบ</button>
+                                    <button class="checklogin" id="checklogin">ดำเนินการโดยไม่เข้าสู่ระบบ</button>
                                 </div>
                                 <div class="forinput forinput-hidden" id="forinput">
                                     <div class="eachinput">
