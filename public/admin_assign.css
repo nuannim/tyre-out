@@ -12,6 +12,13 @@ body{
     background-color: #041728;
 }
 
+.show-branch{
+    color: white;
+    font-weight: 500;
+    font-size: 4vh;
+}
+
+
 /* nav */
 #nav {
     width: 100%;
@@ -43,111 +50,6 @@ body{
 #las {
     width: 10%;
     text-align: end;
-}
-
-/* select branch */
-/* .main-container{
-    margin: 0;
-    align-items: center;
-    text-align: center;
-}
-#branch-lb{
-    margin-left: 50px;
-    color: white;
-    font-size: 2.5vh;
-}
-#selectBranch{
-    font-size: 2.5vh;
-    width: 25vh;
-    height: 5vh;
-    padding-left: 15px;
-    margin-left: 15px;
-    border-radius: 1vh;
-} */
-
-/* ตาราง */
-.table-apmt{
-    margin: 0 auto;
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
-    color: rgb(61, 61, 61);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    overflow: hidden;
-}
-.c{
-    width: 20vh;
-    height: 60px;
-    background-color: #ffffff;
-    background-color: none;
-    font-size: 2vh;
-    font-weight: 500;
-    color: #104B82;
-    text-align: center;
-    border-bottom: 1px solid rgb(224, 224, 224);
-    cursor: default;
-}
-#c7{
-    width: 15%;
-}
-#c1 {
-    width: 20%;
-}
-
-#info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
-    height: 6vh;
-    font-size: 2vh;
-    font-weight: 400;
-    text-align: center;
-    /* cursor: pointer; */
-}
-tr:nth-child(odd) {
-    background-color: #f7f7f7;
-}
-tr:nth-child(even) {
-    background-color: #ffffff;
-}
-
-/* icon-buttons */
-.quotation-button{
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0px 1vh;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    font-size: 2vh;
-}
-.quotation-button:hover{
-    color: rgb(0, 162, 255);
-}
-.view-button{
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0px 1vh;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    font-size: 2vh;
-}
-.view-button:hover {
-    color: rgb(0, 162, 255);
-}
-.view-button:hover {
-    color: rgb(0, 162, 255);
-}
-.assign-button {
-    border: none;
-    font-size: 2vh;
-    padding: 0.5vh 0.5vh;
-    background-color: rgb(43, 255, 0);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-}
-.assign-button:hover {
-    background-color: #085e00;
 }
 
 /* popup */
@@ -245,12 +147,6 @@ tr:nth-child(even) {
     line-height: 5vh;
 }
 
-/* popup-edit */
-#bottom {
-    width: 100%;
-    margin-top: 1vh;
-    text-align: right;
-}
 .popup-input, #edit-date-time {
     color: #041728;
     margin: 0;
@@ -262,79 +158,122 @@ tr:nth-child(even) {
     border: 1px solid rgb(189, 189, 189);
     border-radius: 1vh;
 }
-.save-button {
-    background-color: #000000;
-	color: white;
-	border: none;
-    border-radius: 1vh;
-	padding: 1vh 1vh;
-	cursor: pointer;
-    font-size: 2.5vh;
-    opacity: 0.6;
-    transition: 0.5s;
-    width: 16vh;
-}
-.save-button:hover {
-    opacity: 1;
-}
 
-/* verticaltab */
-.tab-box{
+/* show user list */
+.box{
     display:flex;
     position: absolute;
     top: 30%;
     left: 50%;
     transform:translate(-50%, -20%);
     height: 400px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px;
     width: 80%;
+
+    background-color: white;
+    border-radius: 2vh 2vh 2vh 2vh;
 }
-.tab-buttons {
-    display: block;
-    width:30%;
-    height:100%;
-    transition: 0.5s;
-}
-.tab-buttons .tab-btn {
-    width:100%;
-    height: 70px;
-    border:none;
-    outline: none;
-    background: #fff;
-    /* cursor: pointer; */
-    border-bottom: 1px solid rgb(221, 221, 221);
-}
-/* .tab-buttons .tab-btn:hover{
-    background:#ebebeb;
-} */
-.tab-btn {
+.box-info{
     font-size: 2vh;
 }
-.tab-container-box{
+/* .table-container-box{
     border-left:1px solid rgba(0, 0, 0, 0.19);
     width:100%;
     height:100%;
     color: black;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 0 3px;
-
     border-radius: 2vh 2vh 2vh 2vh;
+    border: 1px solid red;
 }
-.tab-container-box .tab-content{
+.table-container-box .table-content{
+    width:100%;
+    height: 100%;
+    padding: 10px;
+} */
+.table-content{
     width:100%;
     height: 100%;
     padding: 10px;
 }
-
-/* .tab-content{
-    border-radius: 2vh 2vh 2vh 2vh;
-} */
-/* #tab1 {
-    border-radius: 2vh 0 0 2vh;
+/* ตาราง */
+.table-apmt{
+    margin: 0 auto;
+    margin-top: 2vh;
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    color: rgb(61, 61, 61);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
 }
-#tab4 {
-    border-radius: 0 0 0 1vh;
-} */
+.c{
+    width: 20vh;
+    height: 60px;
+    background-color: #ffffff;
+    background-color: none;
+    font-size: 2vh;
+    font-weight: 500;
+    color: #104B82;
+    text-align: center;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    cursor: default;
+}
+#c7{
+    width: 15%;
+}
+#c1 {
+    width: 20%;
+}
+
+#info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
+    height: 6vh;
+    font-size: 2vh;
+    font-weight: 400;
+    text-align: center;
+    /* cursor: pointer; */
+}
+tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* icon-buttons */
+.quotation-button, .view-button{
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 1vh;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-size: 2vh;
+}
+.quotation-button:hover{
+    color: rgb(0, 162, 255);
+}
+.view-button:hover {
+    color: rgb(0, 162, 255);
+}
+.assign-button {
+    background-color: #000000;
+	color: white;
+	border: none;
+    border-radius: 0.5vh;
+	padding: 0.5vh 1vh;
+	cursor: pointer;
+    font-size: 2vh;
+    opacity: 0.6;
+    transition: 0.5s;
+    width: auto;
+    margin-left: 1vh;
+}
+.assign-button:hover {
+    background-color: #085e00;
+}
+
+
 
 /* quotation-popup */
 #popup-quotation{
@@ -444,4 +383,45 @@ h4 {
 #showdatetime {
     display: flex;
     gap: 1vh;
+}
+
+
+/* popup-assign */
+#popup-assign{
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 1000;
+    padding: 2vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+}
+.cancel-button, .confirm-button {
+	color: white;
+	border: none;
+    border-radius: 1vh;
+	padding: 1vh 1vh;
+	cursor: pointer;
+    font-size: 2.5vh;
+    opacity: 0.6;
+    transition: 0.5s;
+    width: 14vh;
+    margin-right: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.cancel-button {
+    background-color: rgb(0, 0, 0);
+}
+.confirm-button {
+    background-color: rgb(0, 0, 0);
+}
+.cancel-button:hover, .confirm-button:hover {
+    opacity: 1;
 }

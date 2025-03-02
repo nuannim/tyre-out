@@ -7,7 +7,7 @@ const EmployeeController = {
         if (!req.session.user || req.session.user.role !== 'admin') {
             return res.redirect('/login');
         }
-        res.render('em_history', { user: req.session.user });
+        res.render('admin_appointment', { user: req.session.user });
     },
 
     getadminassignPage: async (req, res) => {
