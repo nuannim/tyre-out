@@ -5,6 +5,7 @@ const crypto = require('crypto');
 
 // const conn = require('../models/dbconn.js');
 const db = require('../models/dbconn.js'); // ! เดี๋ยวย้ายไป UserModel.js
+const { get } = require('http');
 
 const UserController = {
     getIndexPage: async (req, res) => {
@@ -230,8 +231,66 @@ const UserController = {
         });
     });
     }
-            
+    ,
+    getMaintenanceGoods: async (req, res) => {
+        try {
+            const { carModel, carYear, carGrade, mileage } = req.query;
 
+            const mg = await UserModel.maintenanceGoods(carModel, carYear, carGrade, mileage);
+
+            console.log('rows: ', JSON.stringify(mg, null, 2));
+            res.json(mg);
+    
+        } catch (err) {
+            res.status(500).json({ 
+                error: err.message 
+            });
+        }
+
+        // * ของเก่า (ย้ายไปที่ UserModel.js)
+        // const { carModel, carYear, carGrade, mileage } = req.query; // รับค่า carId และ mileage จาก query parameter
+
+        // const sql = `
+        //             SELECT 
+        //                 mg.maintenanceGoodsId,
+        //                 mg.maintenanceId,
+        //                 mg.goodsId,
+        //                 m.carId,
+        //                 m.mileage,
+        //                 c.carModel,
+        //                 c.carYear,
+        //                 c.carGrade,
+        //                 g.goodsBrand,
+        //                 g.goodsName,
+        //                 g.goodsDescription,
+        //                 g.goodsPrice,
+        //                 g.inStock,
+        //                 g.isActive,
+        //                 g.goodsPhotoURL
+        //             FROM 
+        //                 MaintenanceGoods mg
+        //             JOIN 
+        //                 Maintenance m ON mg.maintenanceId = m.maintenanceId
+        //             JOIN 
+        //                 Cars c ON m.carId = c.carId
+        //             JOIN 
+        //                 Goods g ON mg.goodsId = g.goodsId
+        //             WHERE
+        //                 c.carModel = ? AND
+        //                 c.carYear = ? AND
+        //                 c.carGrade = ? AND
+        //                 m.mileage = ?;
+        //             `;
+
+        // db.all(sql, [carModel, carYear, carGrade, mileage], (err, rows) => {
+        //     if (err) {
+        //         res.status(500).json({ error: err.message });
+        //     } else {
+        //         res.json(rows);
+        //         console.log('rows: ', JSON.stringify(rows, null, 2));
+        //     }
+        // });
+    }
 };
 
 module.exports = UserController;

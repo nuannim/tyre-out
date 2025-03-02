@@ -26,6 +26,17 @@ const UserModel = {
               else resolve(sb);
             });
         });
+        
+        // * ใช้ไม่ได้ แต่อย่าเพิ่งลบ
+        // return db.all(`select * from ServiceBranch `, (err2, sb) => {
+        //     if (err2) {
+        //         console.log("err query2 ServiceBranch :", err2.message);
+        //     }
+        //     // console.log("no err query Promotion: " + p);
+        //     return sb;
+        // })
+
+    
     },
     
     findByEmail: (email) => {
@@ -75,17 +86,46 @@ const UserModel = {
               else resolve(cc);
             });
         });
+    },
+    maintenanceGoods: async (carModel, carYear, carGrade, mileage) => {
+        return new Promise((resolve, reject) => {
+            db.all(`
+                SELECT 
+                    mg.maintenanceGoodsId,
+                    mg.maintenanceId,
+                    mg.goodsId,
+                    m.carId,
+                    m.mileage,
+                    c.carModel,
+                    c.carYear,
+                    c.carGrade,
+                    g.goodsBrand,
+                    g.goodsName,
+                    g.goodsDescription,
+                    g.goodsPrice,
+                    g.inStock,
+                    g.isActive,
+                    g.goodsPhotoURL
+                FROM 
+                    MaintenanceGoods mg
+                JOIN 
+                    Maintenance m ON mg.maintenanceId = m.maintenanceId
+                JOIN 
+                    Cars c ON m.carId = c.carId
+                JOIN 
+                    Goods g ON mg.goodsId = g.goodsId
+                WHERE
+                    c.carModel = ? AND
+                    c.carYear = ? AND
+                    c.carGrade = ? AND
+                    m.mileage = ?;
+                `, [carModel, carYear, carGrade, mileage], (err, mg) => {
+              if (err) reject(err);
+              else resolve(mg);
+            });
+        });
     }
 
-
-        // * ใช้ไม่ได้ แต่อย่าเพิ่งลบ
-        // return db.all(`select * from ServiceBranch `, (err2, sb) => {
-        //     if (err2) {
-        //         console.log("err query2 ServiceBranch :", err2.message);
-        //     }
-        //     // console.log("no err query Promotion: " + p);
-        //     return sb;
-        // })
 
 };
 
