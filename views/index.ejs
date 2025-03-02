@@ -37,8 +37,10 @@
                 <a href="#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
+                <% if (email && email !== 'Guest') { %>
                 <p>|</p>
                 <a href="/history">ประวัติการนัดหมาย</a>
+                <% } %>
             </div>
             <div id="las">
                 <div id="hid-drop">
@@ -50,7 +52,9 @@
                         <a href="#promotion">โปรโมชัน</a>
                         <a href="#branch">ศูนย์บริการ</a>
                         <a href="/appointment">การนัดหมาย</a>
+                    <% if (email && email !== 'Guest') { %>
                         <a href="/history">ประวัติการนัดหมาย</a>
+                    <% } %>
                     </div>
                 </div>
                 <% if (email && email !== 'Guest') { %>
