@@ -399,9 +399,9 @@ h4 {
     gap: 2vh;
 }
 
-/* .forinput-hidden{
+.forinput-hidden{
     display: none;
-} */
+}
 
 #forinfor {
     display: flex;
@@ -795,6 +795,7 @@ form{
     }
     
 }
+
 
 /* @media (max-width: 370px) {
     .inp{
