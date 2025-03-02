@@ -78,7 +78,7 @@ body {
 }
 
 #bar {
-    width: 550px;
+    width: 70vh;
     height: 20%;
     display: flex;
     justify-content: space-between;
@@ -216,12 +216,14 @@ button:hover {
 }
 
 #select-branch {
-    width: 100%;
+    width: 92%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4vh;
     margin-bottom: 4vh;
+    margin-left: 4vh;
+    margin-right: 4vh;
 }
 
 #branch-area {
@@ -280,9 +282,10 @@ button:hover {
     border-radius: 2vh;
 }
 
-#branch-area h4 {
+#branch-area h3 {
     color: #041728;
     margin: 0;
+    font-size: 2.5vh;
 }
 
 #branch-area p {
@@ -380,11 +383,15 @@ h4 {
     gap: 2vh;
 }
 
-#forinput {
+.forinput {
     display: flex;
     flex-direction: column;
     width: 50%;
     gap: 2vh;
+}
+
+.forinput-hidden{
+    display: none;
 }
 
 #forinfor {
@@ -392,6 +399,24 @@ h4 {
     flex-direction: column;
     width: 50%;
     gap: 2vh;
+}
+
+.checklogin{
+    width: 100%;
+}
+
+.forlogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vh;
+    width: 50%;
+    padding-right: 2vh;
+}
+
+.forlogin p{
+    color: #041728;
 }
 
 #more p {
@@ -618,6 +643,13 @@ form{
         width: 18vh;
         
     }
+    /* #bar{
+        width: 60vh;
+    } */
+    /* .cir {
+        width: 8vh;
+        height: 8vh;
+    } */
 } 
 
 @media (max-width: 660px) {
@@ -636,7 +668,7 @@ form{
     #persona p,
     #persona h4,
     .eachinput,
-    .inp {
+    .inp, .checklogin {
         font-size: 1.5vh;
     }
 
@@ -656,11 +688,11 @@ form{
         margin: 1vh;
         text-align: center;
     }
-
     .cir {
         width: 7vh;
         height: 7vh;
     }
+
     form{
         width: 100%;
     }
@@ -732,7 +764,7 @@ form{
         padding-left: 1vh;
         padding-right: 1vh;
     }
-    #forinput,  #forinfor{
+    .forinput,  #forinfor, .forlogin{
         width: 100%;
     }
     .inp{
