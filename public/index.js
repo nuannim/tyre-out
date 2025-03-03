@@ -20,6 +20,10 @@ function showpop() {
 
 function showpromotion(promotion) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -262,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 
@@ -360,6 +365,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //     showpop();
 // }
 =======
+=======
+>>>>>>> Stashed changes
 const findBranch = document.getElementById("btn-branch");
 findBranch.addEventListener("click", function() {
     const provinceSelect = document.getElementById("branchvince");
@@ -388,5 +395,9 @@ findBranch.addEventListener("click", function() {
             })
             .catch(error => console.error("Error loading districts:", error));
     }
+<<<<<<< Updated upstream
+});
+>>>>>>> Stashed changes
+=======
 });
 >>>>>>> Stashed changes

@@ -292,11 +292,14 @@ const UserController = {
         // });
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     // ,
     // createAppointment: async (req, res) => {
 
     // }
 =======
+=======
+>>>>>>> Stashed changes
     , // แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
     getDistricts: async (req, res) => {
         const { province } = req.query;
@@ -320,6 +323,9 @@ const UserController = {
 
         res.send(JSON.stringify(result));
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 };
