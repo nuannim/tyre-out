@@ -346,7 +346,7 @@ let time;
 let slot;
 let caseCategory;
 
-let goodsDataForNoeysod;
+let goodsDataForNoeysod; // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
 
 let priceChemi;
 let priceLabor = 500;
@@ -356,7 +356,7 @@ let guestFirstName;
 let guestLastName;
 let guestTel;
 let guestEmail;
-let guestCarRegisNo; // ! ยังไม่ได้สร้างใน db
+let guestCarRegisNo;
 
 
 function selectDate() { // * ปุ่มวันที่ ไฮไลท์สีชมพู
@@ -399,14 +399,14 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
                 'time', time, 
                 'slot:', slot, 
                 'caseCategory:', caseCategory, 
-                'goodsDataForNoeysod:', goodsDataForNoeysod);
+                'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
 
 
     priceChemi = goodsDataForNoeysod.reduce((acc, item) => {
         return acc + item.goodsPrice;
     }, 0);
 
-    priceTotal = priceChemi + priceLabor;
+    priceTotal = priceChemi + priceLabor; 
 
 
     console.log('priceChemi: ', priceChemi);
@@ -427,5 +427,74 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
 // }
 
 function booking() {
+    guestFirstName = document.getElementById("name").value;
+    guestLastName = document.getElementById("last").value;
+    guestTel = document.getElementById("tel").value;
+    guestEmail = document.getElementById("email").value;
+    guestCarRegisNo = document.getElementById("carregis").value;
 
+    console.log('guestFirstName: ', guestFirstName);
+    console.log('guestLastName: ', guestLastName);
+    console.log('guestTel: ', guestTel);
+    console.log('guestEmail: ', guestEmail);
+    console.log('guestCarRegisNo: ', guestCarRegisNo);
+
+    // console.log('🗣️🗣️🗣️🗣️🗣️', 
+    //             'carModel:', carModel, 
+    //             'carYear:', carYear, 
+    //             'carGrade:', carGrade, 
+    //             'mileage:', mileage, 
+    //             'centerId2:', centerId2, 
+    //             'date:', date, 
+    //             'time', time, 
+    //             'slot:', slot, 
+    //             'caseCategory:', caseCategory, 
+    //             'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
+
+    // console.log('priceChemi: ', priceChemi);
+    // console.log('priceLabor: ', priceLabor);
+    // console.log('priceTotal: ', priceTotal);
+
+    // // * ส่งข้อมูลไปหน้า appointment.ejs
+    // window.location.href = `/appointment?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}&centerId2=${centerId2}&date=${date}&time=${time}&slot=${slot}&caseCategory=${caseCategory}&priceChemi=${priceChemi}&priceLabor=${priceLabor}&priceTotal=${priceTotal}&guestFirstName=${guestFirstName}&guestLastName=${guestLastName}&guestTel=${guestTel}&guestEmail=${guestEmail}&guestCarRegisNo=${guestCarRegisNo}`;
+
+    // try {
+    //     fetch('/appointment', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             carModel: carModel,
+    //             carYear: carYear,
+    //             carGrade: carGrade,
+    //             mileage: mileage,
+    //             centerId: centerId2,
+    //             date: date,
+    //             time: time,
+    //             slot: slot,
+    //             caseCategory: caseCategory,
+    //             priceChemi: priceChemi,
+    //             priceLabor: priceLabor,
+    //             priceTotal: priceTotal,
+    //             guestFirstName: guestFirstName,
+    //             guestLastName: guestLastName,
+    //             guestTel: guestTel,
+    //             guestEmail: guestEmail,
+    //             guestCarRegisNo: guestCarRegisNo,
+    //         }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //         alert('Success:', data);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //         alert('Error:', error);
+    //     });
+    // } catch {
+    //     console.error('Error:', error);
+    //     alert('Error:', error);
+    // }
 }
