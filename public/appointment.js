@@ -27,6 +27,15 @@ prevbtn.forEach((btn) => {
         }
     });
 });
+
+function nextpage(){
+    if (formstepnum < formstep.length-1) {
+        formstepnum++;
+        updateform();
+    }
+}
+
+
 function updateform(){
     formstep.forEach((f) => {
         f.classList.contains("form-step-active") &&
@@ -70,6 +79,7 @@ const showkilo = document.getElementById("show-kilo");
 const showbranch = document.getElementById("show-branch");
 const showdate = document.getElementById("show-date");
 const showtime = document.getElementById("show-time");
+// const showBranchId = 
 
 if (getQueryParam("option1") && getQueryParam("option4")){
     showmodel.textContent = model.options[model.selectedIndex].text;
@@ -122,11 +132,25 @@ function shownav(){
 function bac() {
     document.getElementById("hid-drop-content").style.display = "none";
     document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-bg").style.visibility = "hidden";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-bg").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
 
 }
 
-function selectBranch(branchName) {
+
+// let centerId2 = null; // * ของเนยสด ห้ามแตะ
+
+function selectBranch(branchId, branchName) {
+    let centerId = document.createElement("p");
+    centerId.textContent = branchId;
+    centerId.style.display = "none";
     showbranch.innerHTML = branchName;
+    showbranch.appendChild(centerId);
+
+    centerId2 = branchId; // * ของเนยสด ห้ามแตะ
+
     const branches = document.querySelectorAll('#branchh');
 
     branches.forEach(branch => {
@@ -136,9 +160,9 @@ function selectBranch(branchName) {
             branch.classList.remove('selected');
         }
     });
+
+    console.log('centerId2: ' + centerId2);
 }
-
-
     const btnGuest = document.getElementById("checklogin");
     const forinput = document.getElementById("forinput");
     const forlogin = document.querySelector(".forlogin");
@@ -149,3 +173,224 @@ function selectBranch(branchName) {
         forinput.classList.remove("forinput-hidden");
     });
 
+
+
+
+
+
+
+
+
+
+
+// * copy from index.js
+    function showpop() {
+        document.getElementById("popup-bg").style.visibility = "visible";
+        document.getElementById("popup-ov").style.visibility = "visible";
+        document.getElementById("popup-bg").style.opacity = 1;
+        document.getElementById("popup-ov").style.opacity = 1;
+    }
+
+    let sel1 = document.getElementById("sel1");
+    let sel2 = document.getElementById("sel2");
+    let sel3 = document.getElementById("sel3");
+    let sel4 = document.getElementById("sel4");
+    let sel5 = document.getElementById("carchoose");
+        // ฟังก์ชันโชว์ pop up ใบเสนอราคา
+    function checkshowpop(){
+        // const selectedCar = sel5.value;
+        // if (selectedCar) {
+        //     const carParts = selectedCar.split(" - ");
+    
+        //     if (carParts.length === 3) {
+        //         sel1.value = carParts[0];
+        //         sel2.value = carParts[1];
+        //         sel3.value = carParts[2];
+        //     }
+        // }
+        // sel4.value = "twentythousand";
+        const div = document.createElement("div");
+        div.id = "check-result";
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tr = document.createElement("tr");
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        const th3 = document.createElement("th");
+        th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+        th2.textContent = "จำนวน";
+        th3.textContent = "ราคา";
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        thead.appendChild(tr);
+        table.appendChild(thead);
+        div.appendChild(table);
+    
+        const divbtn = document.createElement("div");
+        divbtn.id = "check-btn";
+        // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+        divbtn.innerHTML = '<button class="btn btn-next" id="btn-pop">นัดหมาย</button>';
+        div.appendChild(divbtn);
+    
+        document.getElementById("content").innerHTML = "";
+        document.getElementById("content").appendChild(div);
+        // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+        //     showpop()
+        // }
+        
+        showpop();
+    }
+
+    
+async function checkshowpopguest() {
+    // ดึงค่าที่เลือกจาก dropdown
+    carModel = document.getElementById("sel1").value; // ใช้ carModel
+    carYear = document.getElementById("sel2").value; // ใช้ carYear
+    carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    mileage = document.getElementById("sel4").value; // mileage
+
+    // const carModel = document.getElementById("sel1").value; // ใช้ carModel
+    // const carYear = document.getElementById("sel2").value; // ใช้ carYear
+    // const carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    // const mileage = document.getElementById("sel4").value; // mileage
+
+    console.log("🚗 carModel:", carModel);
+    console.log("📅 carYear:", carYear);
+    console.log("📏 mileage:", mileage); // เช็คค่าที่ส่งไป
+
+    if (!carModel || !carYear || !mileage) {
+        alert("กรุณาเลือกรุ่นรถยนต์, ปีรถยนต์ และ ระยะทาง");
+        return;
+    }
+
+    // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
+    try {
+        const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}`);
+        const data = await response.json();
+
+        goodsDataForNoeysod = data; // * ของเนยสด ห้ามแตะ
+
+        console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
+        console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data);
+
+        if (data.length === 0) {
+            alert("ไม่พบรายการสินค้า");
+            return;
+        }
+
+        // สร้างโครงสร้าง popup
+        const div = document.createElement("div");
+        div.id = "check-result";
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tr = document.createElement("tr");
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        const th3 = document.createElement("th");
+        th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+        th2.textContent = "จำนวน";
+        th3.textContent = "ราคา";
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        // สร้าง tbody และเพิ่มข้อมูลลงไป
+        const tbody = document.createElement("tbody");
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.goodsBrand} ${item.goodsName}</td>
+                <td>1</td>
+                <td>${item.goodsPrice} บาท</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        div.appendChild(table);
+
+        const divbtn = document.createElement("div");
+        divbtn.id = "check-btn";
+        divbtn.innerHTML = '<div id="but"><button class="btn btn-next" onclick="nextpage()" type="button">นัดหมาย</button></div>';
+        div.appendChild(divbtn);
+
+        document.getElementById("content").innerHTML = "";
+        document.getElementById("content").appendChild(div);
+
+        // แสดง popup
+        showpop();
+    } catch (error) {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+    }
+}
+
+
+
+// * ==================================================================================================== //
+// * ของเนยสด ห้ามแตะ
+// let carModel = document.getElementById("sel1").value;
+// let carYear = document.getElementById("sel2").value;
+// let carGrade = document.getElementById("sel3").value;
+// let mileage = document.getElementById("sel4").value;
+
+let carModel;
+let carYear;
+let carGrade;
+let mileage;
+// ละก็มี centerId2 ตรง selectBranch
+let centerId2;
+let date;
+let time;
+let slot;
+let caseCategory;
+
+let goodsDataForNoeysod;
+
+function selectDate() {
+    date = document.getElementById("dateinput").value;
+    let timeElements = document.getElementsByName("timeinput");
+
+    console.log('date & timeElements: ', date, timeElements);
+
+    time = [];
+    for (let i = 0; i < timeElements.length; i++) {
+        if (timeElements[i].checked) {
+            time.push(timeElements[i].value);
+        }
+    }
+
+    // ทดสอบ slot ชั่วคราว
+    if (time.includes("ช่วงเช้า")) {
+        slot = 1;
+    } else if (time.includes("ช่วงบ่าย")) {
+        slot = 2;
+    } else if (time.includes("ช่วงเย็น")) {
+        slot = 3;
+    } else {
+        slot = null;
+    }
+
+    console.log('date: ', date);
+    console.log('time: ', time);
+    console.log('slot: ', slot);
+    
+    // console.log('🗣️🗣️🗣️🗣️🗣️goodsDataForNoeysod: ', goodsDataForNoeysod);
+
+    console.log('🗣️🗣️🗣️🗣️🗣️', 
+                'carModel: ', carModel, 
+                'carYear: ', carYear, 
+                'carGrade', carGrade, 
+                mileage, centerId2, date, time, slot, caseCategory, goodsDataForNoeysod);
+}
+
+
+let carData = {
+    carModel: carModel,
+}
+
+function lastButtonBeforelastPage() {
+
+}
