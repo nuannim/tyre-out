@@ -21,16 +21,6 @@ function showpop() {
 function showpromotion(promotion) {
 
 
-
-
-
-
-
-
-
-
-
-
     console.log("popuppppppppppp");
     console.log(promotion.promotionId);
 
@@ -275,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 // * ของเก่า
 // function bac(){
 //     document.getElementById("popup-bg").style.visibility = "hidden";
@@ -374,6 +365,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
 const findBranch = document.getElementById("btn-branch");
 findBranch.addEventListener("click", function() {
     const provinceSelect = document.getElementById("branchvince");
@@ -404,11 +397,9 @@ findBranch.addEventListener("click", function() {
     }
 
 
-});
-
 
 });
 
 
-});
+
 
