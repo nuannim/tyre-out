@@ -291,10 +291,49 @@ const UserController = {
         //     }
         // });
     }
+
     // ,
     // createAppointment: async (req, res) => {
 
     // }
+
+
+
+
+
+
+
+    , // แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
+    getDistricts: async (req, res) => {
+        const { province } = req.query;
+
+        const district = await UserModel.selectDistricts(province);
+
+        res.send(JSON.stringify(district));
+    },
+
+    getSelectedProvinceAndDistrict: async (req, res) => {
+        const { province, district } = req.query;
+
+        const result = await UserModel.showSelectedSalted(province, district);
+        res.send(JSON.stringify(result));
+    },
+
+    getSelectFromProvince: async (req, res) => {
+        const { province } = req.query;
+
+        const result = await UserModel.selectFromProvince(province);
+
+        res.send(JSON.stringify(result));
+    }
+
+
+
+
+
+
+
+
 
 };
 

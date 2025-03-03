@@ -33,6 +33,9 @@ module.exports = function(app) {
     app.get('/login', UserController.getLoginPage);
     app.post('/saveCar', UserController.CarsaveCustomer);
     // app.post('/booking', BookingController.createBooking);
+    app.get('/district', UserController.getDistricts);
+    app.get('/SelectedProvinceAndDistrict', UserController.getSelectedProvinceAndDistrict);
+    app.get('/province', UserController.getSelectFromProvince);
 
     app.get('/getMaintenanceGoods', UserController.getMaintenanceGoods);
     // app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
