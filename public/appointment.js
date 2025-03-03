@@ -344,7 +344,7 @@ let centerId2;
 let date;
 let time;
 let slot;
-let caseCategory;
+let caseCategory = 'เช็คระยะ';
 
 let goodsDataForNoeysod; // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
 
@@ -426,7 +426,7 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
 //     carModel: carModel,
 // }
 
-function booking() {
+async function booking() {
     guestFirstName = document.getElementById("name").value;
     guestLastName = document.getElementById("last").value;
     guestTel = document.getElementById("tel").value;
@@ -458,43 +458,43 @@ function booking() {
     // // * ส่งข้อมูลไปหน้า appointment.ejs
     // window.location.href = `/appointment?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}&centerId2=${centerId2}&date=${date}&time=${time}&slot=${slot}&caseCategory=${caseCategory}&priceChemi=${priceChemi}&priceLabor=${priceLabor}&priceTotal=${priceTotal}&guestFirstName=${guestFirstName}&guestLastName=${guestLastName}&guestTel=${guestTel}&guestEmail=${guestEmail}&guestCarRegisNo=${guestCarRegisNo}`;
 
-    // try {
-    //     fetch('/appointment', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             carModel: carModel,
-    //             carYear: carYear,
-    //             carGrade: carGrade,
-    //             mileage: mileage,
-    //             centerId: centerId2,
-    //             date: date,
-    //             time: time,
-    //             slot: slot,
-    //             caseCategory: caseCategory,
-    //             priceChemi: priceChemi,
-    //             priceLabor: priceLabor,
-    //             priceTotal: priceTotal,
-    //             guestFirstName: guestFirstName,
-    //             guestLastName: guestLastName,
-    //             guestTel: guestTel,
-    //             guestEmail: guestEmail,
-    //             guestCarRegisNo: guestCarRegisNo,
-    //         }),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Success:', data);
-    //         alert('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //         alert('Error:', error);
-    //     });
-    // } catch {
-    //     console.error('Error:', error);
-    //     alert('Error:', error);
-    // }
+    let goodsData = goodsDataForNoeysod.map(item => item.goodsId);
+    console.log('💯💯💯💯💯💯goodsData: ', goodsData);
+
+    try {
+        const response = await fetch('/appointment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                carModel: carModel,
+                carYear: carYear,
+                carGrade: carGrade,
+                mileage: mileage,
+                centerId: centerId2,
+                caseStartDatetime: date,
+                slot: slot,
+                caseCategory: caseCategory,
+                guestFirstName: guestFirstName,
+                guestLastName: guestLastName,
+                guestTel: guestTel,
+                guestEmail: guestEmail,
+                guestCarRegisNo: guestCarRegisNo,
+                goodsIdList: goodsData
+            }),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+        alert('Success:', data);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error:', error.message || error);
+    }
 }
