@@ -10,7 +10,6 @@
 body{
     height: 100vh;
     background-color: #041728;
-    /* align-items: center; */
 }
 
 .top{
@@ -30,7 +29,9 @@ body{
     position: fixed;
     z-index: 10;
 }
-  #nav-menu {
+
+  
+#nav-menu {
     background-color: #041728dc;
     backdrop-filter: blur(10px);
     display: flex;
@@ -42,75 +43,91 @@ body{
     padding-right: 5vh;
     font-size: 2.5vh;
 }
+  
+#nav-menu a {
+    color: #ffffff;
+    font-weight: 300;
+    transition: ease-in-out 0.2s;
+}
+  
+#nav-menu a:hover {
+    text-shadow: 0px 0px 2px white;
+}
+  
+#nav-menu p {
+    color: #ffffff;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 200;
+}
+  
 #fis {
     width: 10%;
     text-align: start;
 }
+  
 #fis p {
     font-weight: 400;
     margin: 0;
 }
+  
 #las {
     width: 10%;
     text-align: end;
 }
+  
+#mid {
+    display: flex;
+}
 
+#hid-drop {
+    display: none;
+}
 
-/* select branch */
-.main-container{
-    margin: 0;
-    align-items: center;
-    text-align: center;
-}
-#branch-lb{
-    margin-left: 50px;
-    color: white;
-    font-size: 2.5vh;
-}
-#selectBranch{
-    font-size: 2.5vh;
-    width: 25vh;
-    height: 5vh;
-    padding-left: 15px;
-    margin-left: 15px;
-    border-radius: 1vh;
-}
 
 /* ตาราง */
 .table-apmt{
-    margin: 0 auto;
     width: 100%;
     border: none;
     border-collapse: collapse;
     color: rgb(61, 61, 61);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     overflow: hidden;
 }
+table tbody {
+    display: block;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+table thead, table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
 .c{
-    width: 20vh;
-    height: 60px;
+    height: 7vh;
     background-color: #ffffff;
-    background-color: none;
     font-size: 2vh;
     font-weight: 500;
     color: #104B82;
     text-align: center;
     border-bottom: 1px solid rgb(224, 224, 224);
-    cursor: default;
 }
-#c7{
-    width: 15%;
-}
-#c1 {
-    width: 20%;
-}
-
-#info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
-    height: 6vh;
-    font-size: 2vh;
-    font-weight: 400;
+th, td{
     text-align: center;
 }
+.button-con{
+    display: flex;
+    width: auto;
+    justify-content: center;
+    margin-left: 2vh;
+}
+
+.info-row{
+    height: 7vh;
+    font-size: 2vh;
+}
+
 tr:nth-child(odd) {
     background-color: #f7f7f7;
 }
@@ -118,25 +135,16 @@ tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-/* search bar */
-#search{
-    height: 3.5vh;
-    font-size: 2.5vh;
-    margin-top: 2vh;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 0.5vh 1vh;
-}
-
 .view-button, .delete-button, .quotation-button{
     background: none;
     color: inherit;
     border: none;
-    padding: 0px 1vh;
+    padding: 0px 0vh;
     font: inherit;
     cursor: pointer;
     outline: inherit;
     font-size: 2vh;
+    width: 3vh;
 }
 .view-button:hover {
     color: rgb(0, 162, 255);
@@ -166,7 +174,6 @@ tr:nth-child(even) {
     opacity: 0;
     transition: ease-in-out 0.2s;
 }
-
 #popup-ov {
     width: 100%;
     height: 100%;
@@ -253,13 +260,15 @@ tr:nth-child(even) {
     color: #041728;
     margin: 0;
     text-align: left;
-    font-size: 2.5vh;
-    width: 40vh;
+    font-size: 2vh;
+    width: 100%;
+    max-width: 100%;
     align-self: left;
     padding: 0.5vh 1vh;
     border: 1px solid rgb(189, 189, 189);
     border-radius: 1vh;
 }
+
 .save-button, .edit-button, .cancel-edit-button {
     background-color: #000000;
 	color: white;
@@ -297,6 +306,7 @@ tr:nth-child(even) {
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
+    text-align: center;
 }
 .cancel-del-button, .confirm-del-button {
 	color: white;
@@ -308,9 +318,7 @@ tr:nth-child(even) {
     opacity: 0.6;
     transition: 0.5s;
     width: 14vh;
-    margin-right: 3vh;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin: 1vh 1vh;
 }
 .cancel-del-button {
     background-color: rgb(0, 0, 0);
@@ -329,34 +337,35 @@ tr:nth-child(even) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    height: auto;
+    width: 50%;
+    height: 80%;
+    max-height: 80%;
+
     border-radius: 2vh;
     z-index: 1000;
     padding: 2vh;
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
+
+    overflow-y: auto;
 }
+
 #persona-container {
     display: flex;
     flex-direction: column;
     padding: 4vh;
     gap: 4vh;
-    width: 92vh;
+    width: 100%;
 }
-
 #persona {
     display: flex;
     justify-content: center;
     font-size: 2.5vh;
 }
-
-#persona p,
-h4 {
+#persona p, h4 {
     margin: 0;
 }
-
 .eachinput {
     display: flex;
     flex-direction: column;
@@ -383,13 +392,16 @@ h4 {
 }
 
 .inp {
-    width: 80%;
     height: 6vh;
     border-radius: 2vh;
     border: 0;
     padding-left: 2vh;
     padding-right: 2vh;
     background-color: white;
+
+    width: 80%;
+    /* max-width: 80%; */
+    
 }
 
 .forwhatyouvedone {
@@ -434,38 +446,33 @@ h4 {
 /* tabs */
 .tab-box{
     display:flex;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform:translate(-50%, -20%);
-    height: 400px;
-    /* box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 8px; */
+    height: 50%;
     width: 80%;
+    margin: auto;
 }
 
 .tab-buttons {
     display: block;
     width:30%;
     height:100%;
-    transition: 0.5s;
 }
 
 .tab-buttons .tab-btn {
     width:100%;
-    height: 70px;
+    height: 8vh;
     border:none;
     outline: none;
     background: #fff;
     cursor: pointer;
-    border-bottom: 1px solid rgb(221, 221, 221);
 }
 .tab-buttons .tab-btn:hover{
-    background:#ebebeb;
+    background:#104B82;
+    color: white;
+    transition: 0.7s;
 }
 .tab-btn {
     font-size: 2vh;
 }
-
 .tab-container-box{
     border-left:1px solid rgba(0, 0, 0, 0.19);
     width:100%;
@@ -475,20 +482,236 @@ h4 {
     box-shadow: rgba(0, 0, 0, 0.19) 0px 0 3px;
     border-radius: 0 2vh 2vh 2vh;
 }
-
 .tab-container-box .tab-content{
     width:100%;
     height: 100%;
     padding: 10px;
     display:none;
 }
-
 .tab-content{
     border-radius: 0 2vh 2vh 2vh;
 }
+
 #tab1 {
     border-radius: 2vh 0 0 0;
 }
 #tab4 {
     border-radius: 0 0 0 2vh;
+}
+
+
+
+
+
+@media (max-width: 1200px){
+    /* quotation-popup */
+    #popup-quotation{
+        width: 80%;
+        height: 80%;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 1000px){
+    /* quotation-popup */
+    #popup-quotation{
+        width: 70%;
+    }
+    #popup-view{
+        width: 80%;
+        height: 70%;
+        overflow-y: auto;
+    }
+    #persona{
+        flex-direction: column;
+    }
+    #forinput{
+        width: 100%;
+    }
+    #forinfor{
+        width: 100%;
+    }
+    .inp{
+        width: 100%;
+    }
+    #persona h4{
+        margin-top: 3vh;
+    }
+
+    /* buttons */
+    .button-con{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    #nav-menu,label, p{
+        font-size: 2vh;
+    }
+
+    /* popup-delete */
+    #popup-delete{
+        width: 50%;
+    }
+
+
+    /* tabs*/
+    .tab-box{
+        flex-direction: column;
+    }
+    .tab-buttons{
+        flex-direction: column;
+        display: flex;
+        width: 100%;
+        height: 50%;
+    }
+    .tab-container-box{
+        border-radius: 0 0 1vh 1vh;
+        padding-top: 2vh;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 0px 3px;
+    }
+    #tab1 {
+        border-radius: 1vh 1vh 0 0;
+    }
+    #tab4 {
+        border-radius: 0 0 0 0;
+    }
+
+    /* table */
+    table {
+        border: 0;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        display: block;
+        margin-bottom: 3vh;
+        border: 1px solid rgb(224, 224, 224);
+    }
+    table td {
+        border-bottom: 1px solid #e6e6e6;
+        display: block;
+        font-size: 2vh;
+        text-align: right;
+        padding: 0.5vh 0;
+        padding-right: 2vh;
+    }
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        color: #104B82;
+        font-weight: 500;
+
+        padding-left: 2vh;
+    }
+      
+    table td:last-child {
+        border-bottom: none;
+    }
+    tr:nth-child(odd) {
+        background-color: #f7f7f7;
+    }
+    tr:nth-child(even) {
+        background-color: #f7f7f7;
+    }
+
+    /* buttons */
+    .button-con{
+        flex-direction: row;
+    }
+    #action {
+        float: right;
+    }
+
+    /* popup */
+    .header{
+        font-size: 2vh;
+    }
+    #content h4{
+        font-size: 2vh;
+    }
+
+}
+
+@media (max-width: 630px) {
+    /* nav */
+    #mid {
+        display: none;
+    }
+    #hid-drop {
+        display: block;
+        float: left;
+        overflow: hidden;
+    }
+    #hid-drop-i {
+        color: white;
+    }
+    #hid-drop-content {
+        display: none;
+        position: absolute;
+        right: 8%;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 2vh;
+        z-index: 10;
+    }
+    #hid-drop-content a {
+        float: none;
+        color: #041728;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        font-weight: 400;
+    }
+    #hid-drop-content a:hover {
+        color: #104b82;
+    }
+    #popup-ov2 {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        visibility: hidden;
+        z-index: 9;
+    }
+    #las {
+        width: 50%;
+        display: flex;
+        gap: 10px;
+        justify-content: end;
+    }
+    #fis {
+        width: 50%;
+    }
+    #branch-box {
+        flex-direction: column;
+        width: 78%;
+        padding: 2vh;
+        gap: 2vh;
+    }
+    #inform-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    #left, #right{
+        width: 85%;
+    }
+    #image{
+        width: 100%;
+        height: 15vh;
+        margin: 0;
+    }
+    #branch-text{
+        margin: 0;
+    }
 }
