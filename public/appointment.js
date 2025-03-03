@@ -504,6 +504,7 @@ async function selectDateLoggedIn(email) {
     document.getElementById("last").value = data.lastName;
     document.getElementById("tel").value = data.phoneNumber;
     document.getElementById("email").value = data.email;
+    document.getElementById("carregis").value = data.carRegisNo;
 
     console.log('selectionDateLoggedIn: ', data);
     console.log('selectionDateLoggedIn firstName: ', data.firstName);

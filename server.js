@@ -31,104 +31,138 @@ require('./routes/EmployeeRoutes.js')(app);
 
 // ! เดี๋ยวมาย้าย
 app.post('/appointment', (req, res) => {
-        // const bookingData = req.body;
-        const {
-                carModel, carYear, carGrade, mileage, 
-                centerId, caseStartDatetime,
-                slot, caseCategory, 
-                guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
-                goodsIdList
-            } = req.body;
+    // const bookingData = req.body;
+    const {
+        carModel, carYear, carGrade, mileage, 
+        centerId, caseStartDatetime,
+        slot, caseCategory, 
+        guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+        goodsIdList
+    } = req.body;
 
-        let customerId;
+    let customerId;
 
-        // const values = [
-        //     carModel, carYear, carGrade, mileage, 
-        //     centerId, caseStartDatetime,
-        //     slot, caseCategory, 
-        //     guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
-        //     goodsIdList
-        // ];
+    // const values = [
+    //     carModel, carYear, carGrade, mileage, 
+    //     centerId, caseStartDatetime,
+    //     slot, caseCategory, 
+    //     guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+    //     goodsIdList
+    // ];
 
-        // const query = `INSERT INTO bookings 
-        // (carModel, carYear, carGrade, mileage, 
-        // centerId, caseStartDatetime,
-        // slot, caseCategory, 
-        // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
-        // goodsIdList) 
-        // VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    // const query = `INSERT INTO bookings 
+    // (carModel, carYear, carGrade, mileage, 
+    // centerId, caseStartDatetime,
+    // slot, caseCategory, 
+    // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+    // goodsIdList) 
+    // VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-        const queryForCustomers = `insert into Customers 
-                        (firstName, lastName, phoneNumber, email)
-                        values (?, ?, ?, ?)`;
-        
-        db.run(queryForCustomers, [guestFirstName, guestLastName, guestTel, guestEmail], function(err) {
+    const queryForCustomers = `insert into Customers 
+                    (firstName, lastName, phoneNumber, email)
+                    values (?, ?, ?, ?)`;
+
+    db.run(queryForCustomers, [guestFirstName, guestLastName, guestTel, guestEmail], function (err) {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Error creating customer' });
+            return;
+        }
+        customerId = this.lastID;
+
+        const queryForRegistrationNumber = `INSERT INTO RegistrationNumber (carId, customerId, mileage, carRegisNo) 
+                                            VALUES (?, ?, ?, ?)`;
+
+        const carId = 1;  // คุณจะต้องกำหนด carId ที่จะใช้ หรือดึงจากข้อมูลที่มีอยู่
+
+        db.run(queryForRegistrationNumber, [carId, customerId, mileage, guestCarRegisNo], function (err) {
             if (err) {
                 console.error(err);
-                res.status(500).json({ error: 'Error creating customer' });
+                res.status(500).json({ error: 'Error inserting into RegistrationNumber' });
                 return;
             }
-            customerId = this.lastID;
 
-            // * test
+            // * หลังจากที่เพิ่มข้อมูลลงใน RegistrationNumber แล้ว เพิ่มข้อมูลลงใน ServiceHistory
             const values = [
                 customerId, caseCategory, slot, caseStartDatetime, centerId
-            ]
+            ];
 
             const query = `insert into ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
                 values (?, ?, ?, ?, ?)`;
 
-
             db.run(query, values, function (err) {
                 if (err) {
                     console.error(err);
-                    // แก้ไขให้การตอบกลับเป็น JSON เมื่อเกิดข้อผิดพลาด
-                    res.status(500).json({ error: 'Error creating database' });
+                    res.status(500).json({ error: 'Error creating service history' });
                     return;
                 }
-        
+
                 const serviceHistoryId = this.lastID;
                 const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
                 const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
-        
+
                 serviceHistoryDetailsValues.forEach(values => {
                     db.run(serviceHistoryDetailsQuery, values, function (err) {
                         if (err) {
                             console.error(err);
-                            // แก้ไขให้การตอบกลับเป็น JSON เมื่อเกิดข้อผิดพลาด
                             res.status(500).json({ error: 'Error creating service history details' });
                             return;
                         }
                     });
                 });
-        
+
                 // แก้ไขให้การตอบกลับเมื่อสร้าง booking สำเร็จเป็น JSON
                 res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
             });
         });
     });
+});
+
+
+// app.get('/getLoggedInUser', (req, res) => {
+//     // db.all(`SELECT * FROM Customers WHERE email = ?`, [req.session.user.email], (err, rows) => {
+//     //     if (err) {
+//     //         res.status(500).json({ error: err.message });
+//     //         return;
+//     //     }
+//     //     res.json(rows[0]);
+//     // });
+//     // res.json({ user: req.session.user });
+    
+//     const email = req.query.email;
+    
+//     db.all(`SELECT * FROM Customers WHERE email = ?`, [email], (err, rows) => {
+//         if (err) {
+//             res.status(500).json({ error: err.message });
+//             return;
+//         }
+//         res.json(rows[0]);
+//     });
+// });
 
 app.get('/getLoggedInUser', (req, res) => {
-    // db.all(`SELECT * FROM Customers WHERE email = ?`, [req.session.user.email], (err, rows) => {
-    //     if (err) {
-    //         res.status(500).json({ error: err.message });
-    //         return;
-    //     }
-    //     res.json(rows[0]);
-    // });
-    // res.json({ user: req.session.user });
-    
     const email = req.query.email;
     
-    db.all(`SELECT * FROM Customers WHERE email = ?`, [email], (err, rows) => {
+    db.all(`
+        SELECT Customers.*, RegistrationNumber.carRegisNo 
+        FROM Customers 
+        LEFT JOIN RegistrationNumber ON Customers.customerId = RegistrationNumber.customerId
+        WHERE Customers.email = ?`, [email], (err, rows) => {
+        
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
+        
+        if (rows.length === 0) {
+            res.status(404).json({ error: 'User not found' });
+            return;
+        }
+
+        // ส่งข้อมูลที่ได้จากการ join ทั้งสองตาราง
         res.json(rows[0]);
     });
 });
-
 
 
 
