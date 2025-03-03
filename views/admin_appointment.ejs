@@ -13,7 +13,6 @@
     <!-- icon trash & calendar-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-
     <!-- sign-in icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -22,7 +21,7 @@
 
 </head>
 <body>
-    <div id="nav">
+    <!-- <div id="nav">
         <div id="nav-menu">
             <div id="fis">
                 <p>Tyre-Out</p>
@@ -37,27 +36,42 @@
                 <a href="/logout">Logout</a>
             </div>
         </div>
+    </div> -->
+
+    <!-- รอซ่อม -->
+    <div id="nav">
+        <div id="nav-menu">
+            <div id="fis">
+                <p>Tyre-Out</p>
+            </div>
+            <div id="mid">
+                <a href="/admin_assign">รับการนัดหมายลูกค้า</a>
+                <p>|</p>
+                <a href="/admin">ดูการนัดหมาย</a>
+            </div>
+            <div id="las">
+                <div id="hid-drop">
+                    <div id="hid-drop-i" onclick="shownav()">
+                        <i class="fa-solid fa-grip-lines"></i>
+                    </div>
+                    <div id="hid-drop-content">
+                        <a href="/admin_assign">รับการนัดหมายลูกค้า</a>
+                        <a href="/admin">ดูการนัดหมาย</a>
+                    </div>
+                </div>
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="/logout">Logout</i></a>
+            </div>
+        </div>
     </div>
 
     <!-- ดัน -->
     <div style="height: 130px;"></div> 
 
-    <!-- <div class="main-container"> -->
-        <!-- choose branch -->
-        <!-- <label id="branch-lb" for="selectBranch">เลือกศูนย์บริการ</label>
-        <select name="selectBranch" id="selectBranch">
-            <option value="b0">ทุกศูนย์</option>
-            <option value="b1">ทุ่งลุยลาย</option>
-            <option value="b2">ลาดกระบัง</option>
-            <option value="b3">ทุ่งมะขามป้อม</option>
-        </select> -->
-    <!-- </div> -->
-
     <div class="top">
-        <h1 class="show-emp" id="emp-name-1">พนักงาน 660xxxx</h1>
+        <h1 class="show-emp" id="emp-name-1"><%= user.firstName %></h1>
     </div>
     
-
         <div class="tab-box">
             <div class="tab-buttons">
                 <button class="tab-btn" id="tab1" onclick="showPan(0)">การนัดหมายที่ยังมาไม่ถึง</button>
@@ -70,112 +84,246 @@
                 <!-- tab1 -->
                 <div class="tab-content">
                      <table class="table-apmt">
-                        <tr id="column-row">
-                            <th class="c" id="c1">วัน-เวลา</th>
-                            <th class="c" id="c2">เบอร์โทร</th>
-                            <th class="c" id="c3">ชื่อ</th>
-                            <th class="c" id="c4">นามสกุล</th>
-                            <th class="c" id="c5">บริการ</th>
-                            <th class="c" id="c6">ศูนย์บริการ</th>
-                            <th class="c" id="c7"></th>
-                        </tr>
-                        <tr class="info">
-                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
-                            <td id="info-phone">123 456 7899</td>
-                            <td id="info-firstname">ลีอาห์</td>
-                            <td id="info-lastname">แซ่ตั้ง</td>
-                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
-                            <td id="info-branch">ลาดกระบัง</td>
-                            <td>
-                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr id="column-row">
+                                <th class="c" id="c1"  scope="col">วัน-เวลา</th>
+                                <th class="c" id="c2"  scope="col">เบอร์โทร</th>
+                                <th class="c" id="c3"  scope="col">ชื่อ</th>
+                                <th class="c" id="c4"  scope="col">นามสกุล</th>
+                                <th class="c" id="c5"  scope="col">บริการ</th>
+                                <th class="c" id="c6"  scope="col">ศูนย์บริการ</th>
+                                <th class="c" id="c7"  scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
                     </table>
                 </div>
 
                 <!-- tab2 -->
                 <div class="tab-content">
                     <table class="table-apmt">
-                        <tr id="column-row">
-                            <th class="c" id="c1">วัน-เวลา</th>
-                            <th class="c" id="c2">เบอร์โทร</th>
-                            <th class="c" id="c3">ชื่อ</th>
-                            <th class="c" id="c4">นามสกุล</th>
-                            <th class="c" id="c5">บริการ</th>
-                            <th class="c" id="c6">ศูนย์บริการ</th>
-                            <th class="c" id="c7"></th>
-                        </tr>
-                        <tr class="info">
-                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
-                            <td id="info-phone">123 456 7899</td>
-                            <td id="info-firstname">ลีอาห์</td>
-                            <td id="info-lastname">แซ่ตั้ง</td>
-                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
-                            <td id="info-branch">ลาดกระบัง</td>
-                            <td>
-                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr id="column-row">
+                                <th class="c" id="c1"  scope="col">วัน-เวลา</th>
+                                <th class="c" id="c2"  scope="col">เบอร์โทร</th>
+                                <th class="c" id="c3"  scope="col">ชื่อ</th>
+                                <th class="c" id="c4"  scope="col">นามสกุล</th>
+                                <th class="c" id="c5"  scope="col">บริการ</th>
+                                <th class="c" id="c6"  scope="col">ศูนย์บริการ</th>
+                                <th class="c" id="c7"  scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
                     </table>
                 </div>
 
                 <!-- tab3 -->
                 <div class="tab-content">
                     <table class="table-apmt">
-                        <tr id="column-row">
-                            <th class="c" id="c1">วัน-เวลา</th>
-                            <th class="c" id="c2">เบอร์โทร</th>
-                            <th class="c" id="c3">ชื่อ</th>
-                            <th class="c" id="c4">นามสกุล</th>
-                            <th class="c" id="c5">บริการ</th>
-                            <th class="c" id="c6">ศูนย์บริการ</th>
-                            <th class="c" id="c7"></th>
-                        </tr>
-                        <tr class="info">
-                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
-                            <td id="info-phone">123 456 7899</td>
-                            <td id="info-firstname">ลีอาห์</td>
-                            <td id="info-lastname">แซ่ตั้ง</td>
-                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
-                            <td id="info-branch">ลาดกระบัง</td>
-                            <td>
-                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr id="column-row">
+                                <th class="c" id="c1"  scope="col">วัน-เวลา</th>
+                                <th class="c" id="c2"  scope="col">เบอร์โทร</th>
+                                <th class="c" id="c3"  scope="col">ชื่อ</th>
+                                <th class="c" id="c4"  scope="col">นามสกุล</th>
+                                <th class="c" id="c5"  scope="col">บริการ</th>
+                                <th class="c" id="c6"  scope="col">ศูนย์บริการ</th>
+                                <th class="c" id="c7"  scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
                     </table>
                 </div>
 
                 <!-- tab4 -->
                 <div class="tab-content">
                     <table class="table-apmt">
-                        <tr id="column-row">
-                            <th class="c" id="c1">วัน-เวลา</th>
-                            <th class="c" id="c2">เบอร์โทร</th>
-                            <th class="c" id="c3">ชื่อ</th>
-                            <th class="c" id="c4">นามสกุล</th>
-                            <th class="c" id="c5">บริการ</th>
-                            <th class="c" id="c6">ศูนย์บริการ</th>
-                            <th class="c" id="c7"></th>
-                        </tr>
-                        <tr class="info">
-                            <td id="info-date-time">29 ม.ค. 2568 9.00-11.00</td>
-                            <td id="info-phone">123 456 7899</td>
-                            <td id="info-firstname">ลีอาห์</td>
-                            <td id="info-lastname">แซ่ตั้ง</td>
-                            <td id="info-service">เปลี่ยนล้อรถยนต์</td>
-                            <td id="info-branch">ลาดกระบัง</td>
-                            <td>
-                                <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr id="column-row">
+                                <th class="c" id="c1"  scope="col">วัน-เวลา</th>
+                                <th class="c" id="c2"  scope="col">เบอร์โทร</th>
+                                <th class="c" id="c3"  scope="col">ชื่อ</th>
+                                <th class="c" id="c4"  scope="col">นามสกุล</th>
+                                <th class="c" id="c5"  scope="col">บริการ</th>
+                                <th class="c" id="c6"  scope="col">ศูนย์บริการ</th>
+                                <th class="c" id="c7"  scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info-row">
+                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
+                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
+                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
+                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
+                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
+                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
+                                <td id="action">
+                                    <div class="button-con">
+                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
                     </table>
                 </div>
 

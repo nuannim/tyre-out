@@ -6,8 +6,8 @@ const showPan = (indx) =>{
         element.style.backgroundColor = "";
         element.style.color = "";
     });
-    tab_btn[indx].style.color="#00000";
-    tab_btn[indx].style.backgroundColor ="#eee";
+    tab_btn[indx].style.color="white";
+    tab_btn[indx].style.backgroundColor ="#104B82";
 
     tab_ctn.forEach(element => {
         element.style.display="none";
@@ -16,6 +16,11 @@ const showPan = (indx) =>{
 }
 showPan(0);
 
+
+function shownav(){
+    document.getElementById("hid-drop-content").style.display = "block";
+    document.getElementById("popup-ov2").style.visibility = "visible";
+}
 
 
 
@@ -39,6 +44,7 @@ function bac1(){
     document.getElementById("popup-quotation").style.opacity = 0;
     document.getElementById("popup-ov").style.opacity = 0;
 }
+
 
 
 

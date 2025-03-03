@@ -12,11 +12,15 @@ body{
     background-color: #041728;
 }
 
+.top{
+    height: 10vh;
+}
 .show-branch{
+    font-size: 4vh;
     color: white;
     font-weight: 500;
-    font-size: 4vh;
 }
+
 
 
 /* nav */
@@ -52,6 +56,16 @@ body{
     text-align: end;
 }
 
+
+
+
+
+
+
+
+
+
+
 /* popup */
 #popup-view{
     background-color: #f5f6f8;
@@ -68,7 +82,6 @@ body{
     opacity: 0;
     transition: ease-in-out 0.2s;
 }
-
 #popup-ov {
     width: 100%;
     height: 100%;
@@ -146,91 +159,97 @@ body{
     text-align: left;
     line-height: 5vh;
 }
-
+#bottom {
+    width: 100%;
+    margin-top: 1vh;
+    text-align: right;
+}
 .popup-input, #edit-date-time {
     color: #041728;
     margin: 0;
     text-align: left;
-    font-size: 2.5vh;
-    width: 40vh;
+    font-size: 2vh;
+    width: 100%;
+    max-width: 100%;
     align-self: left;
     padding: 0.5vh 1vh;
     border: 1px solid rgb(189, 189, 189);
     border-radius: 1vh;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* show user list */
 .box{
     display:flex;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform:translate(-50%, -20%);
-    height: 400px;
+    height: 60%;
     width: 80%;
-
+    margin: auto;
     background-color: white;
     border-radius: 2vh 2vh 2vh 2vh;
 }
-.box-info{
-    font-size: 2vh;
-}
-/* .table-container-box{
-    border-left:1px solid rgba(0, 0, 0, 0.19);
-    width:100%;
-    height:100%;
-    color: black;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 0 3px;
-    border-radius: 2vh 2vh 2vh 2vh;
-    border: 1px solid red;
-}
-.table-container-box .table-content{
-    width:100%;
-    height: 100%;
-    padding: 10px;
-} */
 .table-content{
-    width:100%;
-    height: 100%;
     padding: 10px;
+    width: 100%;
+    height: 100%;
 }
+
 /* ตาราง */
 .table-apmt{
-    margin: 0 auto;
-    margin-top: 2vh;
     width: 100%;
     border: none;
     border-collapse: collapse;
     color: rgb(61, 61, 61);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     overflow: hidden;
 }
+table tbody {
+    display: block;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+table thead, table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
 .c{
-    width: 20vh;
-    height: 60px;
+    height: 7vh;
     background-color: #ffffff;
-    background-color: none;
     font-size: 2vh;
     font-weight: 500;
     color: #104B82;
     text-align: center;
     border-bottom: 1px solid rgb(224, 224, 224);
-    cursor: default;
 }
-#c7{
-    width: 15%;
-}
-#c1 {
-    width: 20%;
-}
-
-#info-date-time, #info-phone, #info-firstname, #info-lastname, #info-service, #info-branch {
-    height: 6vh;
-    font-size: 2vh;
-    font-weight: 400;
+th, td{
     text-align: center;
-    /* cursor: pointer; */
+}
+.button-con{
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2vh;
+}
+.info-row{
+    height: 7vh;
+    font-size: 2vh;
 }
 tr:nth-child(odd) {
     background-color: #f7f7f7;
@@ -238,9 +257,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: #ffffff;
 }
-
-/* icon-buttons */
-.quotation-button, .view-button{
+.view-button, .quotation-button{
     background: none;
     color: inherit;
     border: none;
@@ -261,13 +278,13 @@ tr:nth-child(even) {
 	color: white;
 	border: none;
     border-radius: 0.5vh;
-	padding: 0.5vh 1vh;
-	cursor: pointer;
+	padding: 0.5vh 0vh;
     font-size: 2vh;
     opacity: 0.6;
     transition: 0.5s;
-    width: auto;
-    margin-left: 1vh;
+    width: 8vh;
+    margin: 0 1vh;
+    cursor: pointer;
 }
 .assign-button:hover {
     background-color: #085e00;
@@ -282,35 +299,36 @@ tr:nth-child(even) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    height: auto;
+    width: 50%;
+    height: 80%;
+    max-height: 80%;
+
     border-radius: 2vh;
     z-index: 1000;
     padding: 2vh;
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out 0.2s;
+
+    overflow-y: auto;
+    text-align: left;
 }
+
 #persona-container {
     display: flex;
     flex-direction: column;
     padding: 4vh;
     gap: 4vh;
-    width: 92vh;
+    width: 100%;
 }
-
 #persona {
     display: flex;
     justify-content: center;
     font-size: 2.5vh;
-    text-align: left;
 }
-
-#persona p,
-h4 {
+#persona p, h4 {
     margin: 0;
 }
-
 .eachinput {
     display: flex;
     flex-direction: column;
@@ -337,13 +355,16 @@ h4 {
 }
 
 .inp {
-    width: 80%;
     height: 6vh;
     border-radius: 2vh;
     border: 0;
     padding-left: 2vh;
     padding-right: 2vh;
     background-color: white;
+
+    width: 80%;
+    /* max-width: 80%; */
+    
 }
 
 .forwhatyouvedone {
@@ -412,9 +433,7 @@ h4 {
     opacity: 0.6;
     transition: 0.5s;
     width: 14vh;
-    margin-right: 3vh;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin: 1vh 1vh;
 }
 .cancel-button {
     background-color: rgb(0, 0, 0);
@@ -425,3 +444,211 @@ h4 {
 .cancel-button:hover, .confirm-button:hover {
     opacity: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1200px){
+    /* quotation-popup */
+    #popup-quotation{
+        width: 80%;
+        height: 80%;
+        overflow-y: auto;
+    }
+    /* buttons */
+    .button-con{
+        flex-direction: column;
+        margin: 1vh 0;
+    }
+}
+
+@media (max-width: 1000px){
+    /* quotation-popup */
+    #popup-quotation{
+        width: 70%;
+    }
+    #popup-view{
+        width: 80%;
+        height: 70%;
+        overflow-y: auto;
+    }
+    #persona{
+        flex-direction: column;
+    }
+    #forinput{
+        width: 100%;
+    }
+    #forinfor{
+        width: 100%;
+    }
+    .inp{
+        width: 100%;
+    }
+    #persona h4{
+        margin-top: 3vh;
+    }
+
+    
+}
+
+@media (max-width: 700px) {
+    #nav-menu,label, p{
+        font-size: 2vh;
+    }
+    #popup-assign{
+        width: 50%;
+    }
+
+    .box{
+        height: 70%;
+    }
+    table tbody{
+        max-height: 67vh;
+    }
+
+    /* table */
+    table {
+        border: 0;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        display: block;
+        margin-bottom: 3vh;
+        border: 1px solid rgb(224, 224, 224);
+    }
+    table td {
+        border-bottom: 1px solid #e6e6e6;
+        display: block;
+        font-size: 2vh;
+        text-align: right;
+        padding: 0.5vh 0;
+        padding-right: 2vh;
+    }
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        color: #104B82;
+        font-weight: 500;
+
+        padding-left: 2vh;
+    }
+    table td:last-child {
+        border-bottom: none;
+    }
+    tr:nth-child(odd) {
+        background-color: #f7f7f7;
+    }
+    tr:nth-child(even) {
+        background-color: #f7f7f7;
+    }
+
+    /* buttons */
+    .button-con{
+        flex-direction: row;
+    }
+    #action {
+        float: right;
+    }
+
+    /* popup */
+    .header{
+        font-size: 2vh;
+    }
+    #content h4{
+        font-size: 2vh;
+    }
+
+}
+
+@media (max-width: 630px) {
+    /* nav */
+    #mid {
+        display: none;
+    }
+    #hid-drop {
+        display: block;
+        float: left;
+        overflow: hidden;
+    }
+    #hid-drop-i {
+        color: white;
+    }
+    #hid-drop-content {
+        display: none;
+        position: absolute;
+        right: 8%;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 2vh;
+        z-index: 10;
+    }
+    #hid-drop-content a {
+        float: none;
+        color: #041728;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        font-weight: 400;
+    }
+    #hid-drop-content a:hover {
+        color: #104b82;
+    }
+    #popup-ov2 {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        visibility: hidden;
+        z-index: 9;
+    }
+    #las {
+        width: 50%;
+        display: flex;
+        gap: 10px;
+        justify-content: end;
+    }
+    #fis {
+        width: 50%;
+    }
+    #branch-box {
+        flex-direction: column;
+        width: 78%;
+        padding: 2vh;
+        gap: 2vh;
+    }
+    #inform-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    #left, #right{
+        width: 85%;
+    }
+    #image{
+        width: 100%;
+        height: 15vh;
+        margin: 0;
+    }
+    #branch-text{
+        margin: 0;
+    }
+}
+
+
