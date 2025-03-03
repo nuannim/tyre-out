@@ -17,6 +17,7 @@ body {
   z-index: 10;
 }
 #carchoose{
+  width: 100%;
   border: 0;
   border-radius: 2vh;
   padding: 1vh;
@@ -123,9 +124,9 @@ body {
   width: 30%;
 }
 
-#forsel {
+.forsel {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border-top: 1px solid rgba(255, 255, 255, 0.091);
   padding-top: 15px;
   padding-bottom: 5px;
@@ -382,11 +383,14 @@ body {
   color: white;
   min-height: 150px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
   #typewriter {
-      font-size: 2rem;
+    font-size: 2rem;
+    min-height: 150px;
   }
 }
 
@@ -436,6 +440,10 @@ body {
 }
 
 @media (max-width: 610px) {
+  #typewriter {
+    min-height: 100px;
+    margin-top: 60px;
+  }
   #nav-menu,
   #check,
   .drop,
@@ -506,23 +514,26 @@ body {
     width: 50%;
   }
   #check {
-    margin-bottom: 10%;
-    width: 70%;
-    height: 80%;
-    
+    /* margin-bottom: 5%; */
+    width: 50%;
+    height: 90%;
   }
   .btn{
-    width: 10vh;
+    width: 100%;
+  }
+  .bottom{
+    width: 100%;
   }
   .top {
     flex-direction: column;
     align-items: center;
     padding-bottom: 0;
   }
-  #forsel {
+  .forsel {
     flex-direction: column;
     align-items: center;
     padding-bottom: 0;
+    gap: 10px;
   }
   .guest{
     flex-direction: column;
@@ -547,7 +558,7 @@ body {
     padding: 15px;
     gap: 2vh;
   }
-  #sel1, #sel2, #sel3, #sel4{
+  #sel1, #sel2, #sel3, #sel4, #carchoose{
     width: 100%;
   }
 }
@@ -567,5 +578,11 @@ body {
   #fortext{
     height: 35%;
     width: 100%;
+  }
+  #typewriter {
+    font-size: 1rem;
+  }
+  #check{
+    width: 70%;
   }
 }

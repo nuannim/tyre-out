@@ -288,8 +288,9 @@ document.addEventListener("DOMContentLoaded", function () {
             districtSelect.disabled = true;
             return;
         }
+        // else{
+        // }
 
-        // โหลดอำเภอที่เกี่ยวข้อง
         fetch(`/api/districts?province=${selectedProvince}`)
             .then(response => response.json())
             .then(districts => {
@@ -303,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 districtSelect.disabled = false;
             })
             .catch(error => console.error("Error loading districts:", error));
+        // โหลดอำเภอที่เกี่ยวข้อง
     }
 
     // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
