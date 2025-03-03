@@ -154,16 +154,7 @@
                             </select>
 
 <!-- ^ ถ้าไม่ใช่ guest -->
-                            <% if (email && email !== 'Guest') { %>
-                            <h2>รถยนต์ของคุณ</h2>
-    <!-- & dropdown รถของคุณ -->
-                            <select name="carchoose" class="drop" width="100%"  id="carchoose">
-                                    <option value="" selected>รถของคุณ</option>
-                                    <% cuscars.forEach(car => { %>
-                                        <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
-                                        <% }) %>
-                                </select>
-                            <% } %>
+                            
                         </div>
 <!-- ^ ปิด ถ้าไม่ใช่ guest -->
                         <div id="but" >
