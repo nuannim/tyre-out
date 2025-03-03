@@ -245,8 +245,14 @@
                         </div>
                         <div class="but-pn2">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
-                            <button class="btn btn-next" type="button" onclick="selectDate()">ถัดไป</button> 
-                            <!-- ! ตรงนี้จะมี selectDate -->
+                            <% if (email && email !== 'Guest') { %>
+                                <button class="btn btn-next" type="button" onclick="selectDateLoggedIn('<%= email %>')">ถัดไป</button> 
+                            
+                            <% } else { %>
+                                <button class="btn btn-next" type="button" onclick="selectDate()">ถัดไป</button> 
+                                <!-- ! ตรงนี้จะมี selectDate -->
+                            <% } %>
+
                         </div>
                     </div>
                 </div>
@@ -261,23 +267,23 @@
                                 <div class="forinput">
                                     <div class="eachinput">
                                         <label for="name">ชื่อ</label>
-                                        <input type="text" class="inp" id="name">
+                                        <input type="text" class="inp" id="name" readonly>
                                     </div>
                                     <div class="eachinput">
                                         <label for="name">นามสกุล</label>
-                                        <input type="text" class="inp" id="last">
+                                        <input type="text" class="inp" id="last" readonly>
                                     </div>
                                     <div class="eachinput">
                                         <label for="name">เบอร์โทรศัพท์</label>
-                                        <input type="text" class="inp" id="tel">
+                                        <input type="text" class="inp" id="tel" readonly>
                                     </div>
                                     <div class="eachinput">
                                         <label for="name">E-mail</label>
-                                        <input type="text" class="inp" id="email">
+                                        <input type="text" class="inp" id="email" readonly>
                                     </div>
                                     <div class="eachinput">
                                         <label for="name">ทะเบียนรถ</label>
-                                        <input type="text" class="inp" id="carregis">
+                                        <input type="text" class="inp" id="carregis" readonly>
                                     </div>
                                 </div>
                             <% } else { %>
@@ -347,7 +353,10 @@
                         <div class="but-pn2">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
                             <!-- <button type="submit" value="Submit" class="btn">นัดหมาย</button> -->
+                            <% if (email && email !== 'Guest') { %>
                             <button type="button" class="abc" onclick="booking()">นัดหมาย</button>
+                            <% } %>
+                            <button type="button" class="abc" onclick="booking()" style="display: none;">นัดหมาย</button>
                         </div>
                     </div>
                 </div>

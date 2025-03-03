@@ -108,6 +108,27 @@ app.post('/appointment', (req, res) => {
         });
     });
 
+app.get('/getLoggedInUser', (req, res) => {
+    // db.all(`SELECT * FROM Customers WHERE email = ?`, [req.session.user.email], (err, rows) => {
+    //     if (err) {
+    //         res.status(500).json({ error: err.message });
+    //         return;
+    //     }
+    //     res.json(rows[0]);
+    // });
+    // res.json({ user: req.session.user });
+    
+    const email = req.query.email;
+    
+    db.all(`SELECT * FROM Customers WHERE email = ?`, [email], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows[0]);
+    });
+});
+
 
 
 
