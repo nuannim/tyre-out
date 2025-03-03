@@ -340,7 +340,6 @@ let carModel;
 let carYear;
 let carGrade;
 let mileage;
-// ละก็มี centerId2 ตรง selectBranch
 let centerId2;
 let date;
 let time;
@@ -349,7 +348,12 @@ let caseCategory;
 
 let goodsDataForNoeysod;
 
-function selectDate() {
+let priceChemi;
+let priceLabor = 500;
+let priceTotal;
+
+
+function selectDate() { // * ปุ่มวันที่ ไฮไลท์สีชมพู
     date = document.getElementById("dateinput").value;
     let timeElements = document.getElementsByName("timeinput");
 
@@ -362,7 +366,7 @@ function selectDate() {
         }
     }
 
-    // ทดสอบ slot ชั่วคราว
+    // * ทดสอบ slot ชั่วคราว
     if (time.includes("ช่วงเช้า")) {
         slot = 1;
     } else if (time.includes("ช่วงบ่าย")) {
@@ -380,17 +384,42 @@ function selectDate() {
     // console.log('🗣️🗣️🗣️🗣️🗣️goodsDataForNoeysod: ', goodsDataForNoeysod);
 
     console.log('🗣️🗣️🗣️🗣️🗣️', 
-                'carModel: ', carModel, 
-                'carYear: ', carYear, 
-                'carGrade', carGrade, 
-                mileage, centerId2, date, time, slot, caseCategory, goodsDataForNoeysod);
+                'carModel:', carModel, 
+                'carYear:', carYear, 
+                'carGrade:', carGrade, 
+                'mileage:', mileage, 
+                'centerId2:', centerId2, 
+                'date:', date, 
+                'time', time, 
+                'slot:', slot, 
+                'caseCategory:', caseCategory, 
+                'goodsDataForNoeysod:', goodsDataForNoeysod);
+
+
+    priceChemi = goodsDataForNoeysod.reduce((acc, item) => {
+        return acc + item.goodsPrice;
+    }, 0);
+
+    priceTotal = priceChemi + priceLabor;
+
+
+    console.log('priceChemi: ', priceChemi);
+    console.log('priceLabor: ', priceLabor);
+    console.log('priceTotal: ', priceTotal);
+
+
+    
+// * ไปแสดงใน appointment.ejs 
+    document.getElementById("show-price-chemi").textContent = priceChemi;
+    document.getElementById("show-price-labor").textContent = priceLabor;
+    document.getElementById("show-price-total").textContent = priceTotal;
 }
 
 
-let carData = {
-    carModel: carModel,
-}
+// let carData = {
+//     carModel: carModel,
+// }
 
-function lastButtonBeforelastPage() {
+function booking() {
 
 }
