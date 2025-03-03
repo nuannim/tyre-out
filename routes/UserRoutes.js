@@ -35,5 +35,5 @@ module.exports = function(app) {
     // app.post('/booking', BookingController.createBooking);
 
     app.get('/getMaintenanceGoods', UserController.getMaintenanceGoods);
-    app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
+    // app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
 };
