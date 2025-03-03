@@ -7,15 +7,38 @@ const EmployeeController = {
         if (!req.session.user || req.session.user.role !== 'admin') {
             return res.redirect('/login');
         }
-        res.render('admin_appointment', { user: req.session.user });
+
+        try {
+            const employeeid = req.session.user.employeeAccountId;
+            const employee = await EmployeeModel.findByEmployeefirstName(employeeid);
+
+            const user = employee && employee.firstName ? employee : { firstName: "Unknown" };
+    
+            res.render("admin_appointment", { user });
+        } catch (error) {
+            console.error("error:", error);
+            res.status(500).send("Server Error");
+        }
     },
 
     getadminassignPage: async (req, res) => {
         if (!req.session.user || req.session.user.role !== 'admin') {
             return res.redirect('/login');
         }
-        res.render('admin_assign', { user: req.session.user });
-    }
+
+        try {
+            const employeeid = req.session.user.employeeAccountId;
+            const employee = await EmployeeModel.findByEmployeefirstName(employeeid);
+
+            const user = employee && employee.firstName ? employee : { firstName: "Unknown" };
+    
+            res.render("admin_assign", { user });
+        } catch (error) {
+            console.error("error:", error);
+            res.status(500).send("Server Error");
+        }
+    },
+    
 
 };
 

@@ -5,7 +5,7 @@ function bac() {
     document.getElementById("popup-ov").style.opacity = 0;
 }
 
-function bac2(){
+function bac2() {
     document.getElementById("hid-drop-content").style.display = "none";
     document.getElementById("popup-ov2").style.visibility = "hidden";
 }
@@ -17,8 +17,10 @@ function showpop() {
     document.getElementById("popup-bg").style.opacity = 1;
     document.getElementById("popup-ov").style.opacity = 1;
 }
+
 function showpromotion(promotion) {
-    
+
+
     console.log("popuppppppppppp");
     console.log(promotion.promotionId);
 
@@ -34,72 +36,13 @@ function showpromotion(promotion) {
 
 
 
-// * ของเก่า
-// function bac(){
-//     document.getElementById("popup-bg").style.visibility = "hidden";
-//     document.getElementById("popup-ov").style.visibility = "hidden";
-//     document.getElementById("popup-bg").style.opacity = 0;
-//     document.getElementById("popup-ov").style.opacity = 0;
-// }
-// function showpop(){
-//     document.getElementById("popup-bg").style.visibility = "visible";
-//     document.getElementById("popup-ov").style.visibility = "visible";
-//     document.getElementById("popup-bg").style.opacity = 1;
-//     document.getElementById("popup-ov").style.opacity = 1;
-// }
-// function showpromotion(){
-//     document.getElementById("content").innerHTML = "";
-//     showpop();
-// }
-
-// function checkshowpop(){
-//     const sel1 = document.getElementById("sel1");
-//     const sel2 = document.getElementById("sel2");
-//     const sel3 = document.getElementById("sel3");
-//     const sel4 = document.getElementById("sel4");
-//     const div = document.createElement("div");
-//     div.id = "check-result";
-//     const table = document.createElement("table");
-//     const thead = document.createElement("thead");
-//     const tr = document.createElement("tr");
-//     const th1 = document.createElement("th");
-//     const th2 = document.createElement("th");
-//     const th3 = document.createElement("th");
-//     th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
-//     th2.textContent = "จำนวน";
-//     th3.textContent = "ราคา";
-//     tr.appendChild(th1);
-//     tr.appendChild(th2);
-//     tr.appendChild(th3);
-//     thead.appendChild(tr);
-//     table.appendChild(thead);
-//     div.appendChild(table);
-
-//     // const button = document.createElement("button");
-//     // button.type = "button";
-//     // button.textContent = "นัดหมาย";
-//     // button.className = "btn-pop";
-
-//     const divbtn = document.createElement("div");
-//     divbtn.id = "check-btn";
-//     divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
-//     div.appendChild(divbtn);
-
-//     document.getElementById("content").innerHTML = "";
-//     document.getElementById("content").appendChild(div);
-//     if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
-//         showpop()
-//     }
-//     // showpop();
-// }
-
 let sel1 = document.getElementById("sel1");
 let sel2 = document.getElementById("sel2");
 let sel3 = document.getElementById("sel3");
 let sel4 = document.getElementById("sel4");
 let sel5 = document.getElementById("carchoose");
-    // ฟังก์ชันโชว์ pop up ใบเสนอราคา
-function checkshowpop(){
+// ฟังก์ชันโชว์ pop up ใบเสนอราคา
+function checkshowpop() {
     const selectedCar = sel5.value;
     if (selectedCar) {
         const carParts = selectedCar.split(" - ");
@@ -140,10 +83,12 @@ function checkshowpop(){
     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
     //     showpop()
     // }
-    
+
     showpop();
-    
+
 }
+
+
 
 // * ที่ใครสักคนเขียนไว้ก่อนหน้า
 // function checkshowpopguest(){
@@ -176,9 +121,10 @@ function checkshowpop(){
 //     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
 //     //     showpop()
 //     // }
-    
+
 //     showpop();
 // }
+
 
 async function checkshowpopguest() {
     // ดึงค่าที่เลือกจาก dropdown
@@ -259,7 +205,7 @@ async function checkshowpopguest() {
 
 
 
-function gotoapp(){
+function gotoapp() {
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
     // const sel1 = document.getElementById("sel1").value;
     // const sel2 = document.getElementById("sel2").value;
@@ -271,7 +217,7 @@ function gotoapp(){
 
 }
 
-function shownav(){
+function shownav() {
     document.getElementById("hid-drop-content").style.display = "block";
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
@@ -288,9 +234,9 @@ document.addEventListener("DOMContentLoaded", function () {
             districtSelect.disabled = true;
             return;
         }
+        districtSelect.disabled = false;
 
-        // โหลดอำเภอที่เกี่ยวข้อง
-        fetch(`/api/districts?province=${selectedProvince}`)
+        fetch(`/district?province=${selectedProvince}`)
             .then(response => response.json())
             .then(districts => {
                 districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
@@ -300,9 +246,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.textContent = district.district;
                     districtSelect.appendChild(option);
                 });
-                districtSelect.disabled = false;
             })
             .catch(error => console.error("Error loading districts:", error));
+
+        // โหลดอำเภอที่เกี่ยวข้อง
     }
 
     // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
@@ -311,3 +258,148 @@ document.addEventListener("DOMContentLoaded", function () {
     // โหลดอำเภอเมื่อเลือกจังหวัด
     provinceSelect.addEventListener("change", loadDistricts);
 });
+
+
+
+
+
+
+
+
+// * ของเก่า
+// function bac(){
+//     document.getElementById("popup-bg").style.visibility = "hidden";
+//     document.getElementById("popup-ov").style.visibility = "hidden";
+//     document.getElementById("popup-bg").style.opacity = 0;
+//     document.getElementById("popup-ov").style.opacity = 0;
+// }
+// function showpop(){
+//     document.getElementById("popup-bg").style.visibility = "visible";
+//     document.getElementById("popup-ov").style.visibility = "visible";
+//     document.getElementById("popup-bg").style.opacity = 1;
+//     document.getElementById("popup-ov").style.opacity = 1;
+// }
+// function showpromotion(){
+//     document.getElementById("content").innerHTML = "";
+//     showpop();
+// }
+
+// function checkshowpop(){
+//     const sel1 = document.getElementById("sel1");
+//     const sel2 = document.getElementById("sel2");
+//     const sel3 = document.getElementById("sel3");
+//     const sel4 = document.getElementById("sel4");
+//     const div = document.createElement("div");
+//     div.id = "check-result";
+//     const table = document.createElement("table");
+//     const thead = document.createElement("thead");
+//     const tr = document.createElement("tr");
+//     const th1 = document.createElement("th");
+//     const th2 = document.createElement("th");
+//     const th3 = document.createElement("th");
+//     th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+//     th2.textContent = "จำนวน";
+//     th3.textContent = "ราคา";
+//     tr.appendChild(th1);
+//     tr.appendChild(th2);
+//     tr.appendChild(th3);
+//     thead.appendChild(tr);
+//     table.appendChild(thead);
+//     div.appendChild(table);
+
+//     // const button = document.createElement("button");
+//     // button.type = "button";
+//     // button.textContent = "นัดหมาย";
+//     // button.className = "btn-pop";
+
+//     const divbtn = document.createElement("div");
+//     divbtn.id = "check-btn";
+//     divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//     div.appendChild(divbtn);
+
+//     document.getElementById("content").innerHTML = "";
+//     document.getElementById("content").appendChild(div);
+//     if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+//         showpop()
+//     }
+//     // showpop();
+// }
+
+
+// * ที่ใครสักคนเขียนไว้ก่อนหน้า
+// function checkshowpopguest(){
+//     const div = document.createElement("div");
+//     div.id = "check-result";
+//     const table = document.createElement("table");
+//     const thead = document.createElement("thead");
+//     const tr = document.createElement("tr");
+//     const th1 = document.createElement("th");
+//     const th2 = document.createElement("th");
+//     const th3 = document.createElement("th");
+//     th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+//     th2.textContent = "จำนวน";
+//     th3.textContent = "ราคา";
+//     tr.appendChild(th1);
+//     tr.appendChild(th2);
+//     tr.appendChild(th3);
+//     thead.appendChild(tr);
+//     table.appendChild(thead);
+//     div.appendChild(table);
+
+//     const divbtn = document.createElement("div");
+//     divbtn.id = "check-btn";
+//     // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//     divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+//     div.appendChild(divbtn);
+
+//     document.getElementById("content").innerHTML = "";
+//     document.getElementById("content").appendChild(div);
+//     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+//     //     showpop()
+//     // }
+    
+//     showpop();
+// }
+
+
+
+
+
+
+
+const findBranch = document.getElementById("btn-branch");
+findBranch.addEventListener("click", function() {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+    const selectedProvince = provinceSelect.value;
+    const selectedDistrict = districtSelect.value;
+
+    if (selectedProvince && selectedDistrict){
+        fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+        .then(response => response.json())
+        .then(districts => {
+            districts.forEach(district => {
+                    document.getElementById("area").innerHTML = '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+    else if (selectedProvince && !selectedDistrict){
+        fetch(`/province?province=${selectedProvince}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("area").innerHTML += '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+
+
+
+});
+
+
+
+

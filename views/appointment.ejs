@@ -88,6 +88,8 @@
                 <div class="form-step form-step-active">
                     <div id="service">
                         <div id="forsel">
+                            
+<!-- & dropdown รถยนต์ -->
                             <select name="sel1" class="drop" id="sel1">
                                 <option value="" selected>เลือกรุ่นรถยนต์</option>
                                 <% let uniquecarmodel = new Set();
@@ -98,8 +100,10 @@
                         %>
                             <option value="<%= car %>"><%= car %></option>
                         <% }); %>
-                                <option value="atemodel">รุ่นเสว</option>
+                                <!-- <option value="atemodel">รุ่นเสว</option> -->
                             </select>
+
+<!-- & dropdown รุ่นปี -->
                             <select name="sel2" class="drop" id="sel2">
                                 <option value="" selected>เลือกรุ่นปี</option>
                                 <% let uniquecaryear = new Set();
@@ -110,8 +114,10 @@
                             %>
                                 <option value="<%= car %>"><%= car %></option>
                             <% }); %>
-                                <option value="2525">2525</option>
+                                <!-- <option value="2525">2525</option> -->
                             </select>
+
+<!-- & dropdown เกรดรถ -->
                             <select name="sel3" class="drop" id="sel3">
                                 <option value="" selected>เลือกเกรด</option>
                                 <% let uniquecargrade = new Set();
@@ -122,8 +128,10 @@
                             %>
                                 <option value="<%= car %>"><%= car %></option>
                             <% }); %>
-                                <option value="4">4.00</option>
+                                <!-- <option value="4">4.00</option> -->
                             </select>
+
+<!-- & dropdowm mileage-->
                             <select name="sel4" class="drop" id="sel4">
                                 <option value="" selected>เลือกระยะทาง</option>
                                 <option value="15000">15,000 กม.</option>
@@ -144,25 +152,31 @@
                                 <option value="225000">225,000 กม.</option>
                                 <option value="240000">240,000 กม.</option>
                             </select>
-                            <% if (email && email !== 'Guest') { %>
-                            <h2>รถยนต์ของคุณ</h2>
-                                <select name="carchoose" class="drop" width="100%"  id="carchoose">
-                                    
-                                    <option value="" selected>รถของคุณ</option>
-                                    <% cuscars.forEach(car => { %>
-                                        <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
-                                        <% }) %>
-                                </select>
-                        <% } %>
+
+<!-- ^ ถ้าไม่ใช่ guest -->
+                            
                         </div>
-                        <div id="but">
-                            <button class="btn btn-next" type="button">ถัดไป</button>
+<!-- ^ ปิด ถ้าไม่ใช่ guest -->
+                        <div id="but" >
+                            <!-- <button class="btn" type="button" onclick="checkshowpop()">ถัดไป</button> -->
+                            <button class="btn" type="button" onclick="checkshowpopguest()">ถัดไป</button>
                         </div>
                     </div>
+                    <div id="popup-bg">
+                    <div id="fori">
+                        <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
+                    </div>
+                    <div id="content"></div>
                 </div>
+                <div id="popup-ov" onclick="bac()"></div>
+                </div>
+
+<!-- TODO หน้าเลือกสาขา -->
                 <div class="form-step">
+    <!-- & โซนกล่อง ServiceBranch -->
                     <div id="bran">
                         <div id="select-branch">
+        <!-- & dropdown select branch จังหวัดและอำเภอ -->
                             <select name="branchvince" class="drop" id="branchvince">
                                 <option value="" selected>เลือกจังหวัด</option>
                             </select>
@@ -171,6 +185,7 @@
                             </select>
                             <button class="btn" id="btn-branch" type="button">ค้นหา</button>
                         </div>
+                    <!-- & dropdown select branch จังหวัดและอำเภอ -->
                         <div id="branch-area">
                             <% servicebranches.forEach((element)=> { %>
                                 <div id="branchh">
@@ -191,18 +206,20 @@
                                         </p>
                                         <p>โทรศัพท์ <%=element.telephone%></p>
                                         <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
-                                        <button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerName %>')" type="button">เลือก</button>
+                                        <button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button>
                                     </div>
                                 </div>
                             <% }); %>
-                            
                         </div>
+
                         <div class="but-pn">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
                             <button class="btn btn-next" type="button">ถัดไป</button>
                         </div>
                     </div>
+        <!-- & ปิด โซนกล่อง ServiceBranch -->
                 </div>
+        <!-- & เปิด โซนกล่อง วันที่ -->
                 <div class="form-step">
                     <div id="day">
                         <div id="day-container">
@@ -214,21 +231,28 @@
                                 <label for="reserve-day">เลือกเวลา</label>
                                 <div class="fortime-container">
                                     <input type="radio" name="timeinput" id="timeinput-mor" value="ช่วงเช้า">ช่วงเช้า
+                                    <!-- <input type="radio" name="timeinput" id="timeinput-mor" value="morning">ช่วงเช้า -->
                                 </div>
                                 <div class="fortime-container">
                                     <input type="radio" name="timeinput" id="timeinput-noon" value="ช่วงบ่าย">ช่วงบ่าย
+                                    <!-- <input type="radio" name="timeinput" id="timeinput-noon" value="afternoon">ช่วงบ่าย -->
                                 </div>
                                 <div class="fortime-container">
                                     <input type="radio" name="timeinput" id="timeinput-even" value="ช่วงเย็น">ช่วงเย็น
+                                    <!-- <input type="radio" name="timeinput" id="timeinput-even" value="evening">ช่วงเย็น -->
                                 </div>
                             </div>
                         </div>
                         <div class="but-pn2">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
-                            <button class="btn btn-next" type="button">ถัดไป</button>
+                            <button class="btn btn-next" type="button" onclick="selectDate()">ถัดไป</button> 
+                            <!-- ! ตรงนี้จะมี selectDate -->
                         </div>
                     </div>
                 </div>
+        <!-- & ปิด โซนกล่อง วันที่ -->
+
+        <!-- & เปิด โซนกล่อง ใบเสนอราคา -->
                 <div class="form-step">
                     <div id="persona-container">
                         <div id="persona">
@@ -302,6 +326,8 @@
                                         <p class="show" id="show-time"></p>
                                     </div>
                                 </div>
+
+                            <!-- & กล่องค่าอะไหล่ -->
                                 <div class="forwhatyouvedone">
                                     <p class="header">รวมราคาอะไหล่และเคมีภัณฑ์</p>
                                     <p class="show" id="show-price-chemi">-</p>
@@ -320,10 +346,12 @@
                         </div>
                         <div class="but-pn2">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
-                            <button type="submit" value="Submit" class="btn">นัดหมาย</button>
+                            <!-- <button type="submit" value="Submit" class="btn">นัดหมาย</button> -->
+                            <button type="button" class="abc" onclick="booking()">นัดหมาย</button>
                         </div>
                     </div>
                 </div>
+        <!-- & ปิด โซนกล่อง ใบเสนอราคา -->
             </form>
         </div>
         <div id="popup-ov" onclick="bac()"></div>

@@ -8,7 +8,47 @@ body {
     margin: 0;
     background-color: #041728;
 }
-
+#popup-ov {
+    width: 100%;
+    height: 100%;
+    background-color: #04172871;
+    backdrop-filter: blur(5px);
+    z-index: 11;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+  }
+  
+  #popup-bg {
+    background-color: #f5f6f8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: auto;
+    border-radius: 2vh;
+    z-index: 12;
+    padding: 2vh;
+    padding-bottom: 4vh;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in-out 0.2s;
+  }
+  
+  #fori {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #bac {
+    color: #041728;
+    cursor: pointer;
+  }
 #nav {
     width: 100%;
     height: 14vh;
@@ -226,6 +266,7 @@ button:hover {
     margin-bottom: 4vh;
     margin-top: 4vh;
     width: 100%;
+    height: 100%;
 }
 
 #select-branch {
@@ -242,7 +283,7 @@ button:hover {
 #branch-area {
     background-color: white;
     width: 80%;
-    height: 30vh;
+    /* height: 30vh; */
     border-radius: 2vh;
     display: flex;
     flex-direction: column;
@@ -250,8 +291,8 @@ button:hover {
     gap: 4vh;
     padding: 4vh;
     margin-bottom: 4vh;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
     /* justify-content: space-between; */
 }
 .serimg{
@@ -270,11 +311,10 @@ button:hover {
     width: 100%;
     justify-content: space-between;
     gap: 4vh;
-    transition: background-color 0.3s ease;
+    transition: ease-in-out 0.3s;
 }
 .selected {
-    background-color: #003366;
-    color: white;
+    box-shadow: 0px 0px 12px #b6b6b686;
 }
 
 .bran-btn {
@@ -658,9 +698,9 @@ form{
     #fis {
         width: 50%;
     }
-    #day-container{
+    /* #day-container{
         justify-content: space-evenly;
-    }
+    } */
     #dateinput{
         width: 18vh;
         
@@ -758,7 +798,7 @@ form{
 
     #branch-area{
         flex-direction: column;
-        height: 30vh;
+        /* height: 30vh; */
         width: 80%;
         gap: 0;
     }

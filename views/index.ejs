@@ -69,13 +69,13 @@
         </div>
     </div>
     <section id="main">
-        <div class="maintop" style="width: 100%; display: flex; justify-content: center; height: 60%;">
+        <div class="maintop" style="width: 100%; display: flex; justify-content: center; height: 80%;">
             <h1 id="typewriter"></h1>
         </div>
         <div class="mainbot">
         <div id="check" data-aos="fade-up" data-aos-duration="1500">
             <p>บริการเช็กระยะตามกำหนด</p>
-            <div id="forsel">
+            <div class="forsel">
                 <% if (email && email !== 'Guest') { %>
                     <form action="/saveCar" id="carform" method="POST" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                     <div class="top" style="display: flex; gap: 10px; width: 100%;">
@@ -136,9 +136,9 @@
                             <option value="240000">240,000 กม.</option>
                         </select>
                         <input type="hidden" name="email" value="<%= email %>">
-                    </div>
-                    <div class="bottom" style="display: flex; justify-content: center;">
-                        <button class="btn" type="submit" id="btn-service"  width="100%">เพิ่มรถ</button>
+                        <div class="bottom" style="display: flex; justify-content: center;">
+                            <button class="btn" type="submit" id="btn-service"  width="100%">เพิ่มรถ</button>
+                        </div>
                     </div>
                     </form>
                         
@@ -203,15 +203,15 @@
                         <option value="225000">225,000 กม.</option>
                         <option value="240000">240,000 กม.</option>
                     </select>
-                </div>
-                    <div style="display: flex; justify-content: center;">
+                    <div class="bottom" style="display: flex; justify-content: center;">
                         <button class="btn" id="btn-service" onclick="checkshowpopguest()" width="100%">ค้นหา</button>
                     </div>
+                </div>
                 </div>
                     <% } %>
             </div>
             <% if (email && email !== 'Guest') { %>
-                <style>
+                <!-- <style>
                     @media (max-width: 610px) {
                         #main{
                             height: 120vh;
@@ -222,21 +222,22 @@
                             height: auto;
                         }
                     }
-                </style>
-            <p>รถยนต์ของคุณ</p>
-                <select name="carchoose" width="100%"  id="carchoose">
-                    
-                    <option value="" selected>รถของคุณ</option>
-                    <% cuscars.forEach(car => { %>
-                        <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
-                        <% }) %>
-                </select>
+                </style> -->
+                <p>รถยนต์ของคุณ</p>
+            <div class="forsel">
+                    <select name="carchoose" width="100%"  class="drop" id="carchoose">
+                        
+                        <option value="" selected>รถของคุณ</option>
+                        <% cuscars.forEach(car => { %>
+                            <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
+                            <% }) %>
+                    </select>
                 
-            <div style="display: flex; justify-content: center; ">
-                <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                <div class="bottom" style="display: flex; justify-content: center; ">
+                    <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                </div>
+            <% } %>
             </div>
-        <% } %>
-        
         </div>
     </div>
     </section>
@@ -246,7 +247,7 @@
 
 
             <% promotions.forEach((element)=> { %>
-                <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');" data-aos="fade-up" data-aos-offset="300"
+                <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');" data-aos="fade-up" data-aos-offset="150"
                     data-aos-easing="ease-in-sine">
                     <div class="overlay">
                         <!-- <h3>
@@ -299,27 +300,27 @@
             </select>
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
-
-        <% servicebranches.forEach((element)=> { %>
-            <div id="branch-area" data-aos="fade-up" data-aos-offset="300">
-                <!-- <div id="forimg" style="background-image: url('/img/db/branch/ford-rama4.jpg');"></div> -->
-                <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
-                <div id="fortext">
-                    <h3>
-                        <%=element.centerName%>
-                    </h3>
-                    <p>
-                        <%=element.address%>
-                        <%=element.subdistrict%>
-                        <%=element.district%>
-                        <%=element.province%>
-                        <%=element.postcode%>
-                    </p>
-                    <p>โทรศัพท์ <%=element.telephone%></p>
-                    <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+        <div id="area">
+            <% servicebranches.forEach((element)=> { %>
+                <div id="branch-area" data-aos="fade-up" data-aos-offset="150">
+                    <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>');"></div>
+                    <div id="fortext">
+                        <h3>
+                            <%=element.centerName%>
+                        </h3>
+                        <p>
+                            <%=element.address%>
+                            <%=element.subdistrict%>
+                            <%=element.district%>
+                            <%=element.province%>
+                            <%=element.postcode%>
+                        </p>
+                        <p>โทรศัพท์ <%=element.telephone%></p>
+                        <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+                    </div>
                 </div>
-            </div>
-        <% }); %>
+            <% }); %>
+        </div>
 
     </section>
     <div id="popup-ov2" onclick="bac2()"></div>

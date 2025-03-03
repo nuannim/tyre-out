@@ -1,6 +1,34 @@
 const db = require('./dbconn.js');
 
 const UserModel = {
+
+    selectFromProvince: (province) => {
+        return new Promise((resolve, reject) => {
+            db.all(`SELECT * FROM ServiceBranch WHERE province = "${province}";`, (err, d) => {
+                if (err) reject(err);
+                else resolve(d);
+            });
+        });
+    },
+
+    selectDistricts: (province) => {
+        return new Promise((resolve, reject) => {
+            db.all(`SELECT district FROM ServiceBranch WHERE province = "${province}";`, (err, d) => {
+                if (err) reject(err);
+                else resolve(d);
+            });
+        });
+    },
+
+    showSelectedSalted: (province, district) => {
+        return new Promise((resolve, reject) => {
+            db.all(`SELECT * FROM ServiceBranch WHERE province = "${province}" AND district = "${district}";`, (err, d) => {
+                if (err) reject(err);
+                else resolve(d);
+            });
+        });
+    },
+
     allPromotion: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from Promotion", (err, p) => {
