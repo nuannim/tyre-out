@@ -352,6 +352,12 @@ let priceChemi;
 let priceLabor = 500;
 let priceTotal;
 
+let guestFirstName;
+let guestLastName;
+let guestTel;
+let guestEmail;
+let guestCarRegisNo; // ! ยังไม่ได้สร้างใน db
+
 
 function selectDate() { // * ปุ่มวันที่ ไฮไลท์สีชมพู
     date = document.getElementById("dateinput").value;

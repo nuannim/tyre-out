@@ -232,7 +232,7 @@ const UserController = {
     });
     }
     ,
-    getMaintenanceGoods: async (req, res) => {
+    getMaintenanceGoods: async (req, res) => { // * ของเนยสด
         try {
             const { carModel, carYear, carGrade, mileage } = req.query;
 
@@ -291,6 +291,11 @@ const UserController = {
         //     }
         // });
     }
+    // ,
+    // createAppointment: async (req, res) => {
+
+    // }
+
 };
 
 module.exports = UserController;
