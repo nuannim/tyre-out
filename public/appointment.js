@@ -11,6 +11,32 @@ const indi = document.getElementById("indi");
 
 let formstepnum = 0;
 
+
+// * ของเนยสด ห้ามแตะ ================================================
+let carModel;
+let carYear;
+let carGrade;
+let mileage;
+let centerId2;
+let date;
+let time;
+let slot;
+let caseCategory = 'เช็คระยะ';
+
+let goodsDataForNoeysod; // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
+
+let priceChemi;
+let priceLabor = 500;
+let priceTotal;
+
+let guestFirstName;
+let guestLastName;
+let guestTel;
+let guestEmail;
+let guestCarRegisNo;
+// * ================================================================
+
+
 nextbtn.forEach((btn) => {
     btn.addEventListener("click", () => {
         if (formstepnum < formstep.length-1) {
@@ -123,6 +149,14 @@ timeinput.forEach(radio => {
     });
 });
 
+// * ของเนยสด ห้ามแตะ
+// const checklogin = document.getElementById("checklogin");
+const button = document.querySelector(".abc");
+
+// checklogin.addEventListener("click", function() {
+//     button.style.display = "block";
+// });
+
 
 function shownav(){
     document.getElementById("hid-drop-content").style.display = "block";
@@ -171,6 +205,7 @@ function selectBranch(branchId, branchName) {
         e.preventDefault();
         forlogin.style.display = "none";
         forinput.classList.remove("forinput-hidden");
+        button.style.display = "block";
     });
 
 
@@ -245,6 +280,7 @@ function selectBranch(branchId, branchName) {
     
 async function checkshowpopguest() {
     // ดึงค่าที่เลือกจาก dropdown
+    console.log("hello");
     carModel = document.getElementById("sel1").value; // ใช้ carModel
     carYear = document.getElementById("sel2").value; // ใช้ carYear
     carGrade = document.getElementById("sel3").value; // ใช้ carGrade
@@ -336,28 +372,7 @@ async function checkshowpopguest() {
 // let carGrade = document.getElementById("sel3").value;
 // let mileage = document.getElementById("sel4").value;
 
-let carModel;
-let carYear;
-let carGrade;
-let mileage;
-let centerId2;
-let date;
-let time;
-let slot;
-let caseCategory;
-
-let goodsDataForNoeysod; // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
-
-let priceChemi;
-let priceLabor = 500;
-let priceTotal;
-
-let guestFirstName;
-let guestLastName;
-let guestTel;
-let guestEmail;
-let guestCarRegisNo;
-
+// ! ย้ายตัวแปรไปไว้ข้างบนแทน
 
 function selectDate() { // * ปุ่มวันที่ ไฮไลท์สีชมพู
     date = document.getElementById("dateinput").value;
@@ -421,12 +436,7 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
     document.getElementById("show-price-total").textContent = priceTotal;
 }
 
-
-// let carData = {
-//     carModel: carModel,
-// }
-
-function booking() {
+async function booking() {
     guestFirstName = document.getElementById("name").value;
     guestLastName = document.getElementById("last").value;
     guestTel = document.getElementById("tel").value;
@@ -439,62 +449,63 @@ function booking() {
     console.log('guestEmail: ', guestEmail);
     console.log('guestCarRegisNo: ', guestCarRegisNo);
 
-    // console.log('🗣️🗣️🗣️🗣️🗣️', 
-    //             'carModel:', carModel, 
-    //             'carYear:', carYear, 
-    //             'carGrade:', carGrade, 
-    //             'mileage:', mileage, 
-    //             'centerId2:', centerId2, 
-    //             'date:', date, 
-    //             'time', time, 
-    //             'slot:', slot, 
-    //             'caseCategory:', caseCategory, 
-    //             'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
+    let goodsData = goodsDataForNoeysod.map(item => item.goodsId);
+    console.log('💯💯💯💯💯💯goodsData: ', goodsData);
 
-    // console.log('priceChemi: ', priceChemi);
-    // console.log('priceLabor: ', priceLabor);
-    // console.log('priceTotal: ', priceTotal);
+    try {
+        const response = await fetch('/appointment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                carModel: carModel,
+                carYear: carYear,
+                carGrade: carGrade,
+                mileage: mileage,
+                centerId: centerId2,
+                caseStartDatetime: date,
+                slot: slot,
+                caseCategory: caseCategory,
+                guestFirstName: guestFirstName,
+                guestLastName: guestLastName,
+                guestTel: guestTel,
+                guestEmail: guestEmail,
+                guestCarRegisNo: guestCarRegisNo,
+                goodsIdList: goodsData
+            }),
+        });
 
-    // // * ส่งข้อมูลไปหน้า appointment.ejs
-    // window.location.href = `/appointment?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}&centerId2=${centerId2}&date=${date}&time=${time}&slot=${slot}&caseCategory=${caseCategory}&priceChemi=${priceChemi}&priceLabor=${priceLabor}&priceTotal=${priceTotal}&guestFirstName=${guestFirstName}&guestLastName=${guestLastName}&guestTel=${guestTel}&guestEmail=${guestEmail}&guestCarRegisNo=${guestCarRegisNo}`;
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text);
+        }
 
-    // try {
-    //     fetch('/appointment', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             carModel: carModel,
-    //             carYear: carYear,
-    //             carGrade: carGrade,
-    //             mileage: mileage,
-    //             centerId: centerId2,
-    //             date: date,
-    //             time: time,
-    //             slot: slot,
-    //             caseCategory: caseCategory,
-    //             priceChemi: priceChemi,
-    //             priceLabor: priceLabor,
-    //             priceTotal: priceTotal,
-    //             guestFirstName: guestFirstName,
-    //             guestLastName: guestLastName,
-    //             guestTel: guestTel,
-    //             guestEmail: guestEmail,
-    //             guestCarRegisNo: guestCarRegisNo,
-    //         }),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Success:', data);
-    //         alert('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //         alert('Error:', error);
-    //     });
-    // } catch {
-    //     console.error('Error:', error);
-    //     alert('Error:', error);
-    // }
+        const data = await response.json();
+        console.log('Success:', data);
+        alert('Success:', data);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error:', error.message || error);
+    }
+}
+
+// let 
+async function selectDateLoggedIn(email) {
+    const response = await fetch(`/getLoggedInUser?email=${email}`);
+    const data = await response.json();
+
+    // let loggedInFirstName = document.getElementById("name");
+    // let loggedInLastName = document.getElementById("last");
+    // let loggedInTel = document.getElementById("tel");
+    // let loggedInEmail = document.getElementById("email");
+
+    document.getElementById("name").value = data.firstName;
+    document.getElementById("last").value = data.lastName;
+    document.getElementById("tel").value = data.phoneNumber;
+    document.getElementById("email").value = data.email;
+
+    console.log('selectionDateLoggedIn: ', data);
+    console.log('selectionDateLoggedIn firstName: ', data.firstName);
+
 }
