@@ -34,6 +34,8 @@ let guestLastName;
 let guestTel;
 let guestEmail;
 let guestCarRegisNo;
+
+let dataForBookingLoggedIn;
 // * ================================================================
 
 
@@ -492,10 +494,16 @@ async function booking() {
     }
 }
 
+
+
 // let 
 async function selectDateLoggedIn(email) {
+    console.log('========== START function selectDateLoggedIn() ==========')
+
     const response = await fetch(`/getLoggedInUser?email=${email}`);
     const data = await response.json();
+
+    dataForBookingLoggedIn = data;
 
     // let loggedInFirstName = document.getElementById("name");
     // let loggedInLastName = document.getElementById("last");
@@ -509,13 +517,13 @@ async function selectDateLoggedIn(email) {
     document.getElementById("carregis").value = data.carRegisNo;
 
     console.log('selectionDateLoggedIn: ', data);
-    console.log('selectionDateLoggedIn firstName: ', data.firstName);
+    console.log('selectionDateLoggedIn customerId: ', data.customerId);
 
     console.log('selectionDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
     
     // ! ก้อปมาจาก from selectDate()
 
-    console.log('========== function selectDateLoggedIn() (copy of selectDate()) ==========')
+    console.log('=== function selectDateLoggedIn() (copy of selectDate()) ===')
     date = document.getElementById("dateinput").value;
     let timeElements = document.getElementsByName("timeinput");
 
@@ -575,4 +583,71 @@ async function selectDateLoggedIn(email) {
     document.getElementById("show-price-chemi").textContent = priceChemi;
     document.getElementById("show-price-labor").textContent = priceLabor;
     document.getElementById("show-price-total").textContent = priceTotal;
+
+    console.log('========== END function selectDateLoggedIn() ==========')
+}
+
+async function bookingLoggedIn() {
+    console.log('========== START function bookingLoggedIn() ==========')
+
+    console.log('dataForBookingLoggedIn: ', dataForBookingLoggedIn);
+
+    // guestFirstName = document.getElementById("first").value;
+    // guestLastName = document.getElementById("last").value;
+    // guestTel = document.getElementById("tel").value;
+    // guestEmail = document.getElementById("email").value;
+    // guestCarRegisNo = document.getElementById("carregis").value;
+
+    // console.log('guestFirstName: ', guestFirstName);
+    // console.log('guestLastName: ', guestLastName);
+    // console.log('guestTel: ', guestTel);
+    // console.log('guestEmail: ', guestEmail);
+    // console.log('guestCarRegisNo: ', guestCarRegisNo);
+
+    // ! ที่ต้องแก้คือ ใช้ customerId เชื่อมกับ Customers เดิม
+    // ! เอา customerId เก่า ใส่ที่ ServiceHistory ไม่ต้องสร้าง Customers ใหม่
+    // ! goodsId ไว้เหมือนเดิม
+    let goodsData = goodsDataForNoeysod.map(item => item.goodsId);
+    console.log('💯💯💯💯💯💯goodsData: ', goodsData);
+
+    console.log('dataForBookingLoggedIn customerId: ', dataForBookingLoggedIn.customerId);
+    // let customerId = dataForBookingLoggedIn.customerId;
+
+    try {
+        const response = await fetch('/appointmentLoggedIn', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // carModel: carModel,
+                // carYear: carYear,
+                // carGrade: carGrade,
+                mileage: mileage,
+                centerId: centerId2,
+                caseStartDatetime: date,
+                slot: slot,
+                caseCategory: caseCategory,
+                // guestFirstName: guestFirstName,
+                // guestLastName: guestLastName,
+                // guestTel: guestTel,
+                // guestEmail: guestEmail,
+                // guestCarRegisNo: guestCarRegisNo,
+                goodsIdList: goodsData,
+                customerId: dataForBookingLoggedIn.customerId
+            }),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+        alert('Success:', data);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error:', error.message || error);
+    }
 }

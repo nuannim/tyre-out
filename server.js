@@ -118,28 +118,6 @@ app.post('/appointment', (req, res) => {
     });
 });
 
-
-// app.get('/getLoggedInUser', (req, res) => {
-//     // db.all(`SELECT * FROM Customers WHERE email = ?`, [req.session.user.email], (err, rows) => {
-//     //     if (err) {
-//     //         res.status(500).json({ error: err.message });
-//     //         return;
-//     //     }
-//     //     res.json(rows[0]);
-//     // });
-//     // res.json({ user: req.session.user });
-    
-//     const email = req.query.email;
-    
-//     db.all(`SELECT * FROM Customers WHERE email = ?`, [email], (err, rows) => {
-//         if (err) {
-//             res.status(500).json({ error: err.message });
-//             return;
-//         }
-//         res.json(rows[0]);
-//     });
-// });
-
 app.get('/getLoggedInUser', (req, res) => {
     const email = req.query.email;
     
@@ -164,6 +142,52 @@ app.get('/getLoggedInUser', (req, res) => {
     });
 });
 
+
+
+
+app.post('/appointmentLoggedIn', (req, res) => {
+    const {
+        // carModel, carYear, carGrade, 
+        mileage, 
+        centerId, caseStartDatetime,
+        slot, caseCategory, 
+        // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+        goodsIdList, customerId
+    } = req.body;
+
+    const values = [
+        customerId, caseCategory, slot, caseStartDatetime, centerId
+    ];
+
+    const query = `INSERT INTO ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
+        VALUES (?, ?, ?, ?, ?)`;
+
+    db.run(query, values, function (err) {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Error creating service history' });
+            return;
+        }
+
+        const serviceHistoryId = this.lastID;
+        const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
+        const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+
+        serviceHistoryDetailsValues.forEach(values => {
+            db.run(serviceHistoryDetailsQuery, values, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error creating service history details' });
+                    return;
+                }
+            });
+        });
+
+        res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
+    });
+
+
+});
 
 
 

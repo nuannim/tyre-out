@@ -354,9 +354,11 @@
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
                             <!-- <button type="submit" value="Submit" class="btn">นัดหมาย</button> -->
                             <% if (email && email !== 'Guest') { %>
-                            <button type="button" class="abc" onclick="booking()">นัดหมาย</button>
+                            <button type="button" class="xxx" onclick="bookingLoggedIn()">นัดหมาย</button>
+                            <!-- * นัดหมายของ LoggedInUser -->
                             <% } %>
                             <button type="button" class="abc" onclick="booking()" style="display: none;">นัดหมาย</button>
+                            <!-- * นัดหมายของ guest -->
                         </div>
                     </div>
                 </div>
