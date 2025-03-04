@@ -16,7 +16,7 @@ body {
   position: fixed;
   z-index: 10;
 }
-#carchoose{
+#carchoose {
   width: 100%;
   border: 0;
   border-radius: 2vh;
@@ -89,8 +89,8 @@ body {
   margin: 0;
 }
 
-.maintop{
-  width: 100%; 
+.maintop {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -99,8 +99,8 @@ body {
   height: auto;
 }
 
-.mainbot{
-  width: 100%; 
+.mainbot {
+  width: 100%;
   display: flex;
   justify-content: center;
   height: auto;
@@ -129,7 +129,10 @@ body {
   flex-direction: column;
   gap: 10px;
 }
-#sel1, #sel2, #sel3, #sel4{
+#sel1,
+#sel2,
+#sel3,
+#sel4 {
   width: 30%;
 }
 
@@ -148,7 +151,7 @@ body {
   width: 35vh;
   padding: 1vh;
 }
-.top{
+.top {
   display: flex;
   justify-content: space-evenly;
 }
@@ -396,6 +399,41 @@ body {
   align-items: center;
 }
 
+#item {
+  width: 100%;
+  height: 100vh;
+  background-color: #104b82;
+  text-align: center;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+#item-container {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: auto;
+}
+.item-pic{
+  background-image: url(img/download.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 60vh;
+  height: 50vh;
+  border-radius: 2vh;
+  box-shadow: 2px 2px 7px #0417284e;
+}
+
+#item h1{
+  color: #f5f6f8;
+}
+
+.item-pic:hover .overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   #typewriter {
     font-size: 2rem;
@@ -434,7 +472,7 @@ body {
     font-size: 2.8vh;
   }
 
-  .pic {
+  .pic, .item-pic {
     width: 40vh;
     height: 30vh;
   }
@@ -442,7 +480,7 @@ body {
   .drop {
     width: auto;
   }
-  
+
   #popup-bg {
     width: 60%;
   }
@@ -527,10 +565,10 @@ body {
     width: 50%;
     height: 90%;
   }
-  .btn{
+  .btn {
     width: 100%;
   }
-  .bottom{
+  .bottom {
     width: 100%;
   }
   .top {
@@ -544,7 +582,7 @@ body {
     padding-bottom: 0;
     gap: 10px;
   }
-  .guest{
+  .guest {
     flex-direction: column;
     align-items: center;
     padding-bottom: 0;
@@ -552,7 +590,7 @@ body {
   .drop {
     width: 100%;
   }
-  #select-branch{
+  #select-branch {
     flex-direction: column;
     align-items: center;
   }
@@ -567,12 +605,16 @@ body {
     padding: 15px;
     gap: 2vh;
   }
-  #sel1, #sel2, #sel3, #sel4, #carchoose{
+  #sel1,
+  #sel2,
+  #sel3,
+  #sel4,
+  #carchoose {
     width: 100%;
   }
 }
-@media (max-width: 450px){
-  #branch-area{
+@media (max-width: 450px) {
+  #branch-area {
     flex-direction: column;
     height: 300px;
     width: 70%;
@@ -580,18 +622,18 @@ body {
   #branch {
     height: 200vh;
   }
-  #forimg{
+  #forimg {
     height: 65%;
     width: 100%;
   }
-  #fortext{
+  #fortext {
     height: 35%;
     width: 100%;
   }
   #typewriter {
     font-size: 1rem;
   }
-  #check{
+  #check {
     width: 70%;
   }
 }

@@ -176,13 +176,80 @@ function bac() {
 
 // let centerId2 = null; // * ของเนยสด ห้ามแตะ
 
+document.addEventListener("DOMContentLoaded", function () {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+
+    // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+    function loadDistricts() {
+        const selectedProvince = provinceSelect.value;
+        if (!selectedProvince) {
+            districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+            districtSelect.disabled = true;
+            return;
+        }
+        districtSelect.disabled = false;
+
+        fetch(`/district?province=${selectedProvince}`)
+            .then(response => response.json())
+            .then(districts => {
+                districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district.district;
+                    option.textContent = district.district;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+
+        // โหลดอำเภอที่เกี่ยวข้อง
+    }
+
+    // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+    districtSelect.disabled = true;
+
+    // โหลดอำเภอเมื่อเลือกจังหวัด
+    provinceSelect.addEventListener("change", loadDistricts);
+});
+
+const findBranch = document.getElementById("btn-branch");
+findBranch.addEventListener("click", function() {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+    const selectedProvince = provinceSelect.value;
+    const selectedDistrict = districtSelect.value;
+
+    if (selectedProvince && selectedDistrict){
+        fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("branch-area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+    else if (selectedProvince && !selectedDistrict){
+        fetch(`/province?province=${selectedProvince}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("branch-area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3 id>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('` + district.centerId + `', '${district.centerName}')" type="button">เลือก</button></div></div>`;
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+});
+
 function selectBranch(branchId, branchName) {
     let centerId = document.createElement("p");
     centerId.textContent = branchId;
     centerId.style.display = "none";
     showbranch.innerHTML = branchName;
     showbranch.appendChild(centerId);
-
     centerId2 = branchId; // * ของเนยสด ห้ามแตะ
 
     const branches = document.querySelectorAll('#branchh');
@@ -196,25 +263,19 @@ function selectBranch(branchId, branchName) {
     });
 
     console.log('centerId2: ' + centerId2);
+    
 }
-    const btnGuest = document.getElementById("checklogin");
-    const forinput = document.getElementById("forinput");
-    const forlogin = document.querySelector(".forlogin");
+const btnGuest = document.getElementById("checklogin");
+const forinput = document.getElementById("forinput");
+const forlogin = document.querySelector(".forlogin");
 
-    btnGuest.addEventListener("click", function (e) {
-        e.preventDefault();
-        forlogin.style.display = "none";
-        forinput.classList.remove("forinput-hidden");
-        button.style.display = "block";
-    });
-
-
-
-
-
-
-
-
+btnGuest.addEventListener("click", function (e) {
+    e.preventDefault();
+    forlogin.style.display = "none";
+    forinput.classList.remove("forinput-hidden");
+    button.style.display = "block";
+});
+    
 
 
 
@@ -576,3 +637,71 @@ async function selectDateLoggedIn(email) {
     document.getElementById("show-price-labor").textContent = priceLabor;
     document.getElementById("show-price-total").textContent = priceTotal;
 }
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const provinceSelect = document.getElementById("branchvince");
+//     const districtSelect = document.getElementById("branch-district");
+
+//     // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+//     function loadDistricts() {
+//         const selectedProvince = provinceSelect.value;
+//         if (!selectedProvince) {
+//             districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+//             districtSelect.disabled = true;
+//             return;
+//         }
+//         districtSelect.disabled = false;
+
+//         fetch(`/district?province=${selectedProvince}`)
+//             .then(response => response.json())
+//             .then(districts => {
+//                 districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+//                 districts.forEach(district => {
+//                     const option = document.createElement("option");
+//                     option.value = district.district;
+//                     option.textContent = district.district;
+//                     districtSelect.appendChild(option);
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+
+//         // โหลดอำเภอที่เกี่ยวข้อง
+//     }
+
+//     // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+//     districtSelect.disabled = true;
+
+//     // โหลดอำเภอเมื่อเลือกจังหวัด
+//     provinceSelect.addEventListener("change", loadDistricts);
+// });
+
+// const findBranch = document.getElementById("btn-branch");
+// findBranch.addEventListener("click", function() {
+//     const provinceSelect = document.getElementById("branchvince");
+//     const districtSelect = document.getElementById("branch-district");
+//     const selectedProvince = provinceSelect.value;
+//     const selectedDistrict = districtSelect.value;
+
+//     if (selectedProvince && selectedDistrict){
+//         fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+//         .then(response => response.json())
+//         .then(districts => {
+//             document.getElementById("branch-area").innerHTML = '';
+//             districts.forEach(district => {
+//                     document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+//     }
+//     else if (selectedProvince && !selectedDistrict){
+//         fetch(`/province?province=${selectedProvince}`)
+//         .then(response => response.json())
+//         .then(districts => {
+//             document.getElementById("branch-area").innerHTML = '';
+//             districts.forEach(district => {
+//                     document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+//     }
+// });
