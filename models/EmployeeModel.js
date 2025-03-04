@@ -29,6 +29,21 @@ const EmployeeModel = {
             });
         });
     }
+    // updateHandledByEmployeeId: (serviceHistoryId, employeeId) => {
+    //     return new Promise((resolve, reject) => {
+    //         const query = `
+    //             UPDATE ServiceHistory
+    //             SET handledByEmployeeId = ?
+    //             WHERE serviceHistoryId = ?
+    //         `;
+    //         db.run(query, [employeeId, serviceHistoryId], function(err) {
+    //             if (err) {
+    //                 return reject(err);
+    //             }
+    //             resolve(this.changes); // Return the number of rows updated
+    //         });
+    //     });
+    // }
 };
 
 module.exports = EmployeeModel;

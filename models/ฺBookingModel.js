@@ -1,6 +1,32 @@
 const db = require('./dbconn.js');
 
 const BookingModel = {
+    getServiceHistory: async (centerId, status) => {
+        try {
+            const query = `
+                SELECT * FROM ServiceHistory
+                WHERE centerId = ? AND status = ?
+            `;
+            const [results] = await db.execute(query, [centerId, status]);
+            return results;
+        } catch (error) {
+            throw new Error('Error retrieving service history');
+        }
+    },
+    getServiceHistory: async (centerId, status) => {
+        try {
+            const query = `
+                SELECT * FROM ServiceHistory
+                WHERE centerId = ? AND status = ?
+            `;
+            const [results] = await db.execute(query, [centerId, status]);
+            return results;
+        } catch (error) {
+            throw new Error('Error retrieving service history');
+        }
+    },
+
+    
     findAll: async () => {
         try {
             const [rows] = await db.query('SELECT * FROM Bookings');
