@@ -302,10 +302,11 @@ async function checkshowpopguest() {
 
     // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
     try {
+        // * ของเนยสด ห้ามแตะ ================================================
         const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}`);
         const data = await response.json();
 
-        goodsDataForNoeysod = data; // * ของเนยสด ห้ามแตะ
+        goodsDataForNoeysod = data;
 
         console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
         console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data);
@@ -314,6 +315,7 @@ async function checkshowpopguest() {
             alert("ไม่พบรายการสินค้า");
             return;
         }
+        // * ================================================================
 
         // สร้างโครงสร้าง popup
         const div = document.createElement("div");
@@ -509,4 +511,68 @@ async function selectDateLoggedIn(email) {
     console.log('selectionDateLoggedIn: ', data);
     console.log('selectionDateLoggedIn firstName: ', data.firstName);
 
+    console.log('selectionDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
+    
+    // ! ก้อปมาจาก from selectDate()
+
+    console.log('========== function selectDateLoggedIn() (copy of selectDate()) ==========')
+    date = document.getElementById("dateinput").value;
+    let timeElements = document.getElementsByName("timeinput");
+
+    console.log('date & timeElements: ', date, timeElements);
+
+    time = [];
+    for (let i = 0; i < timeElements.length; i++) {
+        if (timeElements[i].checked) {
+            time.push(timeElements[i].value);
+        }
+    }
+
+    // * ทดสอบ slot ชั่วคราว
+    if (time.includes("ช่วงเช้า")) {
+        slot = 1;
+    } else if (time.includes("ช่วงบ่าย")) {
+        slot = 2;
+    } else if (time.includes("ช่วงเย็น")) {
+        slot = 3;
+    } else {
+        slot = null;
+    }
+
+    console.log('date: ', date);
+    console.log('time: ', time);
+    console.log('slot: ', slot);
+    
+    // console.log('🗣️🗣️🗣️🗣️🗣️goodsDataForNoeysod: ', goodsDataForNoeysod);
+
+    console.log('🗣️🗣️🗣️🗣️🗣️', 
+                'carModel:', carModel, 
+                'carYear:', carYear, 
+                'carGrade:', carGrade, 
+                'mileage:', mileage, 
+                'centerId2:', centerId2, 
+                'date:', date, 
+                'time', time, 
+                'slot:', slot, 
+                'caseCategory:', caseCategory, 
+                'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
+
+
+    priceChemi = goodsDataForNoeysod.reduce((acc, item) => {
+        return acc + item.goodsPrice;
+    }, 0);
+
+    priceTotal = priceChemi + priceLabor; 
+
+
+    console.log('priceChemi: ', priceChemi);
+    console.log('priceLabor: ', priceLabor);
+    console.log('priceTotal: ', priceTotal);
+
+
+    
+// * ไปแสดงใน appointment.ejs 
+    document.getElementById("show-price-chemi").textContent = priceChemi;
+    document.getElementById("show-price-labor").textContent = priceLabor;
+    document.getElementById("show-price-total").textContent = priceTotal;
 }
