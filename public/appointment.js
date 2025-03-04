@@ -34,6 +34,8 @@ let guestLastName;
 let guestTel;
 let guestEmail;
 let guestCarRegisNo;
+
+let dataForBookingLoggedIn;
 // * ================================================================
 
 
@@ -176,13 +178,80 @@ function bac() {
 
 // let centerId2 = null; // * ของเนยสด ห้ามแตะ
 
+document.addEventListener("DOMContentLoaded", function () {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+
+    // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+    function loadDistricts() {
+        const selectedProvince = provinceSelect.value;
+        if (!selectedProvince) {
+            districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+            districtSelect.disabled = true;
+            return;
+        }
+        districtSelect.disabled = false;
+
+        fetch(`/district?province=${selectedProvince}`)
+            .then(response => response.json())
+            .then(districts => {
+                districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district.district;
+                    option.textContent = district.district;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+
+        // โหลดอำเภอที่เกี่ยวข้อง
+    }
+
+    // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+    districtSelect.disabled = true;
+
+    // โหลดอำเภอเมื่อเลือกจังหวัด
+    provinceSelect.addEventListener("change", loadDistricts);
+});
+
+const findBranch = document.getElementById("btn-branch");
+findBranch.addEventListener("click", function() {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+    const selectedProvince = provinceSelect.value;
+    const selectedDistrict = districtSelect.value;
+
+    if (selectedProvince && selectedDistrict){
+        fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("branch-area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+    else if (selectedProvince && !selectedDistrict){
+        fetch(`/province?province=${selectedProvince}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("branch-area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3 id>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('` + district.centerId + `', '${district.centerName}')" type="button">เลือก</button></div></div>`;
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+});
+
 function selectBranch(branchId, branchName) {
     let centerId = document.createElement("p");
     centerId.textContent = branchId;
     centerId.style.display = "none";
     showbranch.innerHTML = branchName;
     showbranch.appendChild(centerId);
-
     centerId2 = branchId; // * ของเนยสด ห้ามแตะ
 
     const branches = document.querySelectorAll('#branchh');
@@ -196,25 +265,19 @@ function selectBranch(branchId, branchName) {
     });
 
     console.log('centerId2: ' + centerId2);
+    
 }
-    const btnGuest = document.getElementById("checklogin");
-    const forinput = document.getElementById("forinput");
-    const forlogin = document.querySelector(".forlogin");
+const btnGuest = document.getElementById("checklogin");
+const forinput = document.getElementById("forinput");
+const forlogin = document.querySelector(".forlogin");
 
-    btnGuest.addEventListener("click", function (e) {
-        e.preventDefault();
-        forlogin.style.display = "none";
-        forinput.classList.remove("forinput-hidden");
-        button.style.display = "block";
-    });
-
-
-
-
-
-
-
-
+btnGuest.addEventListener("click", function (e) {
+    e.preventDefault();
+    forlogin.style.display = "none";
+    forinput.classList.remove("forinput-hidden");
+    button.style.display = "block";
+});
+    
 
 
 
@@ -302,10 +365,11 @@ async function checkshowpopguest() {
 
     // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
     try {
+        // * ของเนยสด ห้ามแตะ ================================================
         const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}`);
         const data = await response.json();
 
-        goodsDataForNoeysod = data; // * ของเนยสด ห้ามแตะ
+        goodsDataForNoeysod = data;
 
         console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
         console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data);
@@ -314,6 +378,7 @@ async function checkshowpopguest() {
             alert("ไม่พบรายการสินค้า");
             return;
         }
+        // * ================================================================
 
         // สร้างโครงสร้าง popup
         const div = document.createElement("div");
@@ -490,10 +555,16 @@ async function booking() {
     }
 }
 
+
+
 // let 
 async function selectDateLoggedIn(email) {
+    console.log('========== START function selectDateLoggedIn() ==========')
+
     const response = await fetch(`/getLoggedInUser?email=${email}`);
     const data = await response.json();
+
+    dataForBookingLoggedIn = data;
 
     // let loggedInFirstName = document.getElementById("name");
     // let loggedInLastName = document.getElementById("last");
@@ -507,6 +578,204 @@ async function selectDateLoggedIn(email) {
     document.getElementById("carregis").value = data.carRegisNo;
 
     console.log('selectionDateLoggedIn: ', data);
-    console.log('selectionDateLoggedIn firstName: ', data.firstName);
+    console.log('selectionDateLoggedIn customerId: ', data.customerId);
 
+    console.log('selectionDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
+    
+    // ! ก้อปมาจาก from selectDate()
+
+    console.log('=== function selectDateLoggedIn() (copy of selectDate()) ===')
+    date = document.getElementById("dateinput").value;
+    let timeElements = document.getElementsByName("timeinput");
+
+    console.log('date & timeElements: ', date, timeElements);
+
+    time = [];
+    for (let i = 0; i < timeElements.length; i++) {
+        if (timeElements[i].checked) {
+            time.push(timeElements[i].value);
+        }
+    }
+
+    // * ทดสอบ slot ชั่วคราว
+    if (time.includes("ช่วงเช้า")) {
+        slot = 1;
+    } else if (time.includes("ช่วงบ่าย")) {
+        slot = 2;
+    } else if (time.includes("ช่วงเย็น")) {
+        slot = 3;
+    } else {
+        slot = null;
+    }
+
+    console.log('date: ', date);
+    console.log('time: ', time);
+    console.log('slot: ', slot);
+    
+    // console.log('🗣️🗣️🗣️🗣️🗣️goodsDataForNoeysod: ', goodsDataForNoeysod);
+
+    console.log('🗣️🗣️🗣️🗣️🗣️', 
+                'carModel:', carModel, 
+                'carYear:', carYear, 
+                'carGrade:', carGrade, 
+                'mileage:', mileage, 
+                'centerId2:', centerId2, 
+                'date:', date, 
+                'time', time, 
+                'slot:', slot, 
+                'caseCategory:', caseCategory, 
+                'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
+
+
+    priceChemi = goodsDataForNoeysod.reduce((acc, item) => {
+        return acc + item.goodsPrice;
+    }, 0);
+
+    priceTotal = priceChemi + priceLabor; 
+
+
+    console.log('priceChemi: ', priceChemi);
+    console.log('priceLabor: ', priceLabor);
+    console.log('priceTotal: ', priceTotal);
+
+
+    
+// * ไปแสดงใน appointment.ejs 
+    document.getElementById("show-price-chemi").textContent = priceChemi;
+    document.getElementById("show-price-labor").textContent = priceLabor;
+    document.getElementById("show-price-total").textContent = priceTotal;
+
+    console.log('========== END function selectDateLoggedIn() ==========')
+}
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const provinceSelect = document.getElementById("branchvince");
+//     const districtSelect = document.getElementById("branch-district");
+
+//     // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+//     function loadDistricts() {
+//         const selectedProvince = provinceSelect.value;
+//         if (!selectedProvince) {
+//             districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+//             districtSelect.disabled = true;
+//             return;
+//         }
+//         districtSelect.disabled = false;
+
+//         fetch(`/district?province=${selectedProvince}`)
+//             .then(response => response.json())
+//             .then(districts => {
+//                 districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+//                 districts.forEach(district => {
+//                     const option = document.createElement("option");
+//                     option.value = district.district;
+//                     option.textContent = district.district;
+//                     districtSelect.appendChild(option);
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+
+//         // โหลดอำเภอที่เกี่ยวข้อง
+//     }
+
+//     // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+//     districtSelect.disabled = true;
+
+//     // โหลดอำเภอเมื่อเลือกจังหวัด
+//     provinceSelect.addEventListener("change", loadDistricts);
+// });
+
+// const findBranch = document.getElementById("btn-branch");
+// findBranch.addEventListener("click", function() {
+//     const provinceSelect = document.getElementById("branchvince");
+//     const districtSelect = document.getElementById("branch-district");
+//     const selectedProvince = provinceSelect.value;
+//     const selectedDistrict = districtSelect.value;
+
+//     if (selectedProvince && selectedDistrict){
+//         fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+//         .then(response => response.json())
+//         .then(districts => {
+//             document.getElementById("branch-area").innerHTML = '';
+//             districts.forEach(district => {
+//                     document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+//     }
+//     else if (selectedProvince && !selectedDistrict){
+//         fetch(`/province?province=${selectedProvince}`)
+//         .then(response => response.json())
+//         .then(districts => {
+//             document.getElementById("branch-area").innerHTML = '';
+//             districts.forEach(district => {
+//                     document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+//                 });
+//             })
+//             .catch(error => console.error("Error loading districts:", error));
+//     }
+// });
+async function bookingLoggedIn() {
+    console.log('========== START function bookingLoggedIn() ==========')
+
+    console.log('dataForBookingLoggedIn: ', dataForBookingLoggedIn);
+
+    // guestFirstName = document.getElementById("first").value;
+    // guestLastName = document.getElementById("last").value;
+    // guestTel = document.getElementById("tel").value;
+    // guestEmail = document.getElementById("email").value;
+    // guestCarRegisNo = document.getElementById("carregis").value;
+
+    // console.log('guestFirstName: ', guestFirstName);
+    // console.log('guestLastName: ', guestLastName);
+    // console.log('guestTel: ', guestTel);
+    // console.log('guestEmail: ', guestEmail);
+    // console.log('guestCarRegisNo: ', guestCarRegisNo);
+
+    // ! ที่ต้องแก้คือ ใช้ customerId เชื่อมกับ Customers เดิม
+    // ! เอา customerId เก่า ใส่ที่ ServiceHistory ไม่ต้องสร้าง Customers ใหม่
+    // ! goodsId ไว้เหมือนเดิม
+    let goodsData = goodsDataForNoeysod.map(item => item.goodsId);
+    console.log('💯💯💯💯💯💯goodsData: ', goodsData);
+
+    console.log('dataForBookingLoggedIn customerId: ', dataForBookingLoggedIn.customerId);
+    // let customerId = dataForBookingLoggedIn.customerId;
+
+    try {
+        const response = await fetch('/appointmentLoggedIn', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // carModel: carModel,
+                // carYear: carYear,
+                // carGrade: carGrade,
+                mileage: mileage,
+                centerId: centerId2,
+                caseStartDatetime: date,
+                slot: slot,
+                caseCategory: caseCategory,
+                // guestFirstName: guestFirstName,
+                // guestLastName: guestLastName,
+                // guestTel: guestTel,
+                // guestEmail: guestEmail,
+                // guestCarRegisNo: guestCarRegisNo,
+                goodsIdList: goodsData,
+                customerId: dataForBookingLoggedIn.customerId
+            }),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(text);
+        }
+
+        const data = await response.json();
+        console.log('Success:', data);
+        alert('Success:', data);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error:', error.message || error);
+    }
 }

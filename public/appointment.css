@@ -314,7 +314,12 @@ button:hover {
     transition: ease-in-out 0.3s;
 }
 .selected {
-    box-shadow: 0px 0px 12px #b6b6b686;
+    box-shadow: 0px 0px 12px #b6b6b6aa;
+}
+
+.selected .bran-btn {
+    background-color: #104B82;
+    color: white;
 }
 
 .bran-btn {
@@ -327,6 +332,7 @@ button:hover {
     transition: ease-in-out 0.2s;
     cursor: pointer;
     font-size: 2.5vh;
+    margin-top: 10px;
 }
 
 .bran-btn:hover {
@@ -465,6 +471,9 @@ h4 {
 
 .checklogin{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .forlogin{
@@ -550,6 +559,21 @@ form{
 
 #hid-drop {
     display: none;
+}
+
+#check-result{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#check-result table{
+    width: 100%;
+}
+
+#check-result th{
+    color: #104B82;
 }
 
 /* @media (max-width: 700px) {
@@ -733,7 +757,9 @@ form{
     .inp, .checklogin {
         font-size: 1.5vh;
     }
-
+    .bran-btn{
+        width: 100%;
+     }
     #box {
         width: 80%;
     }

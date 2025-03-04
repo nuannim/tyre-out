@@ -179,6 +179,14 @@
         <!-- & dropdown select branch จังหวัดและอำเภอ -->
                             <select name="branchvince" class="drop" id="branchvince">
                                 <option value="" selected>เลือกจังหวัด</option>
+                                <% let uniqueProvinces = new Set();
+                        servicebranches.forEach((element) => {
+                            uniqueProvinces.add(element.province);
+                        });
+                        uniqueProvinces.forEach((province) => { 
+                    %>  
+                        <option value="<%= province %>"><%= province %></option>
+                    <% }); %>
                             </select>
                             <select name="branch-district" class="drop" id="branch-district">
                                 <option value="" selected>เลือกอำเภอ/เขต</option>
@@ -190,9 +198,9 @@
                             <% servicebranches.forEach((element)=> { %>
                                 <div id="branchh">
                                     <!-- <div id="forimg" style="background-image: url('/img/db/branch/ford-rama4.jpg');"></div> -->
-                                <div class="serimg">
-                                    <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>'); height: 20vh;"></div>
-                                </div>
+                                    <div class="serimg">
+                                        <div id="forimg" style="background-image: url('<%=element.branchPhotoURL%>'); height: 20vh;"></div>
+                                    </div>
                                     <div id="fortext">
                                         <h3>
                                             <%=element.centerName%>
@@ -354,9 +362,11 @@
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
                             <!-- <button type="submit" value="Submit" class="btn">นัดหมาย</button> -->
                             <% if (email && email !== 'Guest') { %>
-                            <button type="button" class="abc" onclick="booking()">นัดหมาย</button>
+                            <button type="button" class="xxx" onclick="bookingLoggedIn()">นัดหมาย</button>
+                            <!-- * นัดหมายของ LoggedInUser -->
                             <% } %>
                             <button type="button" class="abc" onclick="booking()" style="display: none;">นัดหมาย</button>
+                            <!-- * นัดหมายของ guest -->
                         </div>
                     </div>
                 </div>

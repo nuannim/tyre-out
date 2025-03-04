@@ -35,6 +35,8 @@
                 <p>|</p>
                 <a href="#promotion">โปรโมชัน</a>
                 <p>|</p>
+                <a href="#item">สินค้า</a>
+                <p>|</p>
                 <a href="#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
@@ -244,8 +246,6 @@
     <section id="promotion">
         <h1>โปรโมชันที่น่าสนใจ</h1>
         <div id="container">
-
-
             <% promotions.forEach((element)=> { %>
                 <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');" data-aos="fade-up" data-aos-offset="150"
                     data-aos-easing="ease-in-sine">
@@ -272,6 +272,18 @@
         </div>
     </section>
 
+    <section id="item">
+        <h1>สินค้า</h1>
+        <div id="item-container">
+            <div class="item-pic" data-aos="fade-up" data-aos-offset="150"
+            data-aos-easing="ease-in-sine">
+                <div class="overlay">
+                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
     <section id="branch">
         <h1>ศูนย์บริการ</h1>

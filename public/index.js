@@ -378,6 +378,7 @@ findBranch.addEventListener("click", function() {
         fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
         .then(response => response.json())
         .then(districts => {
+            document.getElementById("area").innerHTML = '';
             districts.forEach(district => {
                     document.getElementById("area").innerHTML = '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
                 });
