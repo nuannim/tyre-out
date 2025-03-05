@@ -31,13 +31,7 @@ function shownav(){
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
 
-// async function showDetail(serviceHistoryId) {
-//     console.log('showDetail', serviceHistoryId);
-
-//     const response = await fetch(`/getShowDetail/${serviceHistoryId}`);
-//     const showDetail = await response.json();
-
-// }
+// * ของเนยสด ห้ามแตะ ============================================================================================
 
 function showDetail(detailObject) {
     console.log('showDetail', detailObject);
@@ -61,5 +55,6 @@ function showDetail(detailObject) {
     document.getElementById('phoneNumber').innerHTML = detailObject.phoneNumber;
     document.getElementById('email').innerHTML = detailObject.email;
 
-    console.log(detailObject.caseStartDatetime + ' ช่วงเช้า');
+    // console.log(detailObject.caseStartDatetime + ' ช่วงเช้า');
+
 }

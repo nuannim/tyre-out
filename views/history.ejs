@@ -55,6 +55,10 @@
                         <% data.forEach(element => { 
                             const currentDate = new Date();
                             const appointmentDate = new Date(element.caseStartDatetime);
+
+                            currentDate.setHours(0, 0, 0, 0);
+                            appointmentDate.setHours(0, 0, 0, 0);
+
                             if (appointmentDate >= currentDate) { %>
                                 <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
                                     <!-- <h4>บริการเช็คระยะ</h4>
@@ -77,6 +81,10 @@
                         <% data.forEach(element => { 
                             const currentDate = new Date();
                             const appointmentDate = new Date(element.caseStartDatetime);
+
+                            currentDate.setHours(0, 0, 0, 0);
+                            appointmentDate.setHours(0, 0, 0, 0);
+
                             if (appointmentDate < currentDate) { %>
                                 <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
                                     <h4><%= element.caseCategory %></h4>
