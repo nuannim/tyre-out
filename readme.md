@@ -13,7 +13,7 @@ npm install express ejs sqlite3 express-session
 ```
 ### รัน js แบบไม่ต้องกดปิดเปิดใหม่ ให้ลง `nodemon`
 
-ถ้าอยากรู้ว่าเคยลงฝนเครื่องยัง ใช้วิธีเช็ค version
+ถ้าอยากรู้ว่าเคยลงในเครื่องยัง ใช้วิธีเช็ค version
 
 ```bash
 nodemon -v
