@@ -31,16 +31,14 @@ function shownav(){
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
 
-// async function showDetail(serviceHistoryId) {
-//     console.log('showDetail', serviceHistoryId);
-
-//     const response = await fetch(`/getShowDetail/${serviceHistoryId}`);
-//     const showDetail = await response.json();
-
-// }
+// * ของเนยสด ห้ามแตะ ============================================================================================
 
 function showDetail(detailObject) {
     console.log('showDetail', detailObject);
+
+    if (detailObject.slot === 1 || detailObject.slot === '1') {
+        document.getElementById('caseStartDatetime').innerHTML = detailObject.caseStartDatetime + ' ช่วงเช้า';
+    }
 
     document.getElementById('centerName').innerHTML = detailObject.centerName;
     document.getElementById('address').innerHTML = detailObject.address;
@@ -48,7 +46,15 @@ function showDetail(detailObject) {
     document.getElementById('time').innerHTML = detailObject.openTime + ' - ' + detailObject.closedTime;
 
     document.getElementById('caseCategory').innerHTML = detailObject.caseCategory;
-    document.getElementById('caseStartDatetime').innerHTML = detailObject.caseStartDatetime;
+    // document.getElementById('caseStartDatetime').innerHTML = detailObject.caseStartDatetime;
     document.getElementById('carModel').innerHTML = detailObject.carModel;
     document.getElementById('mileage').innerHTML = detailObject.mileage;
+
+    document.getElementById('carRegisNo').innerHTML = detailObject.carRegisNo;
+    document.getElementById('firstLastName').innerHTML = detailObject.firstName + ' ' + detailObject.lastName;
+    document.getElementById('phoneNumber').innerHTML = detailObject.phoneNumber;
+    document.getElementById('email').innerHTML = detailObject.email;
+
+    // console.log(detailObject.caseStartDatetime + ' ช่วงเช้า');
+
 }

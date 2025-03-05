@@ -8,6 +8,7 @@ const db = require('../models/dbconn.js'); // ! เดี๋ยวย้าย�
 const { get } = require('http');
 
 const UserController = {
+    // * ของเนยสด ==================================================================================
     getIndexPage: async (req, res) => { // * ของเนยสด
 
         const email = req.session.user ? req.session.user.email : 'Guest';
@@ -95,8 +96,6 @@ const UserController = {
             return res.redirect("/login"); // ถ้าไม่ได้ล็อกอิน ให้ redirect ไปหน้า login
         }
 
-
-
         try {
             // const query = `SELECT * FROM ServiceHistory sh
             //     INNER JOIN Customers c
@@ -132,6 +131,8 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     },
+
+    // * ของแม้ก ==================================================================================
     processSignin: async (req, res) => {
         let formdata = {
             username2: req.body.username,
