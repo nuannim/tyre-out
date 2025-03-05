@@ -263,7 +263,7 @@ p {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     #nav-menu,
     label, .app h4, p{
@@ -275,7 +275,7 @@ p {
 
 }
 
-@media (max-width: 630px) {
+@media (max-width: 680px) {
     #mid {
         display: none;
     }
@@ -300,6 +300,11 @@ p {
         border-radius: 2vh;
         z-index: 10;
     }
+
+    #hid-drop-content i {
+        margin-right: 10px;
+        margin-top: 10px;
+      }
 
     #hid-drop-content a {
         float: none;
@@ -367,5 +372,9 @@ p {
 @media (max-width:500px){
     .ins {
         grid-template-columns: repeat(1, 1fr);
+    }
+    #nav-menu,
+    label, .app h4, p{
+        font-size: 1.5vh;
     }
 }

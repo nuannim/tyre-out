@@ -15,8 +15,8 @@ const UserController = {
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
         const car = await UserModel.allCars();
-
         
+        const g = await UserModel.allGoods();
             
         const cuscar = await UserModel.CustomerCars(email);
 
@@ -29,8 +29,10 @@ const UserController = {
                         email: email,
                         promotions: p,
                         servicebranches: sb,
-                    cars: car,
-                cuscars: cuscar});
+                        cars: car,
+                        cuscars: cuscar,
+                        goods: g
+        });
 
         // res.render('index', {
         //     email: email,
@@ -361,6 +363,15 @@ const UserController = {
         const result = await UserModel.selectFromProvince(province);
 
         res.send(JSON.stringify(result));
+    },
+
+    getGoods: async (req, res) => {
+        const g = await UserModel.allGoods();
+        const email = req.session.user ? req.session.user.email : 'Guest';
+        res.render('goods', {
+            goods: g,
+            email: email
+        });
     }
 
 

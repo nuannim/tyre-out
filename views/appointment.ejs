@@ -21,6 +21,8 @@
                 <p>|</p>
                 <a href="/#promotion">โปรโมชัน</a>
                 <p>|</p>
+                <a href="/goods">สินค้า</a>
+                <p>|</p>
                 <a href="/#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
@@ -35,8 +37,10 @@
                         <i class="fa-solid fa-grip-lines"></i>
                     </div>
                     <div id="hid-drop-content">
+                        <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
                         <a href="/">หน้าหลัก</a>
                         <a href="/#promotion">โปรโมชัน</a>
+                        <a href="/goods">สินค้า</a>
                         <a href="/#branch">ศูนย์บริการ</a>
                         <a href="/appointment">การนัดหมาย</a>
                         <% if (email && email !== 'Guest') { %>
@@ -168,7 +172,7 @@
                     </div>
                     <div id="content"></div>
                 </div>
-                <div id="popup-ov" onclick="bac()"></div>
+                <!-- <div id="popup-ov" onclick="bac()"></div> -->
                 </div>
 
 <!-- TODO หน้าเลือกสาขา -->
@@ -373,8 +377,9 @@
         <!-- & ปิด โซนกล่อง ใบเสนอราคา -->
             </form>
         </div>
-        <div id="popup-ov" onclick="bac()"></div>
     </section>
+    <div id="popup-ov2" onclick="bac2()"></div>
+
     <script src="appointment.js"></script>
 </body>
 </html>

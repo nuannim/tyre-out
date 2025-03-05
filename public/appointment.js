@@ -162,18 +162,23 @@ const button = document.querySelector(".abc");
 
 function shownav(){
     document.getElementById("hid-drop-content").style.display = "block";
-    document.getElementById("popup-ov").style.visibility = "visible";
+    document.getElementById("popup-ov2").style.visibility = "visible";
 }
 
-function bac() {
+function bac2() {
     document.getElementById("hid-drop-content").style.display = "none";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-bg").style.visibility = "hidden";
-    document.getElementById("popup-ov").style.visibility = "hidden";
-    document.getElementById("popup-bg").style.opacity = 0;
-    document.getElementById("popup-ov").style.opacity = 0;
-
+    document.getElementById("popup-ov2").style.visibility = "hidden";
 }
+
+// function bac() {
+//     document.getElementById("hid-drop-content").style.display = "none";
+//     document.getElementById("popup-ov").style.visibility = "hidden";
+//     document.getElementById("popup-bg").style.visibility = "hidden";
+//     document.getElementById("popup-ov").style.visibility = "hidden";
+//     document.getElementById("popup-bg").style.opacity = 0;
+//     document.getElementById("popup-ov").style.opacity = 0;
+
+// }
 
 
 // let centerId2 = null; // * ของเนยสด ห้ามแตะ
