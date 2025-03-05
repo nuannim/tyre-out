@@ -221,52 +221,52 @@ const UserController = {
     CarsaveCustomer: async (req, res) => {
         const { sel1, sel2, sel3, sel4, email } = req.body;
 
-         console.log(req.body);
+        console.log(req.body);
 
             if (!sel1 || !sel2 || !sel3 || !sel4 || !email) {
                 return res.status(400).send('ทะลึ่ง');
             }
 
-    const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
+        const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
 
-    db.get(findcar, [sel1, sel2, sel3], (err, carRow) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Car find error');
-        }
-
-        if (!carRow) {
-            return res.status(404).send('Car not found');
-        }
-
-        const carId = carRow.carId;
-
-        const findcus = `SELECT customerId FROM Customers WHERE email = ?`;
-
-        db.get(findcus, [email], (err, customerRow) => {
+        db.get(findcar, [sel1, sel2, sel3], (err, carRow) => {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Cant find customer');
+                return res.status(500).send('Car find error');
             }
 
-            if (!customerRow) {
-                return res.status(404).send('NOt found');
+            if (!carRow) {
+                return res.status(404).send('Car not found');
             }
 
-            const customerId = customerRow.customerId;
+            const carId = carRow.carId;
 
-            const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+            const findcus = `SELECT customerId FROM Customers WHERE email = ?`;
 
-            db.run(forinsert, [carId, customerId, sel4], function (err) {
+            db.get(findcus, [email], (err, customerRow) => {
                 if (err) {
                     console.error(err);
-                    return res.status(500).send('save error');
+                    return res.status(500).send('Cant find customer');
                 }
-                console.log(`ID: ${this.lastID}`);
-                res.redirect('/');
+
+                if (!customerRow) {
+                    return res.status(404).send('NOt found');
+                }
+
+                const customerId = customerRow.customerId;
+
+                const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+
+                db.run(forinsert, [carId, customerId, sel4], function (err) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('save error');
+                    }
+                    console.log(`ID: ${this.lastID}`);
+                    res.redirect('/');
+                });
             });
         });
-    });
     }
     ,
     getMaintenanceGoods: async (req, res) => { // * ของเนยสด
