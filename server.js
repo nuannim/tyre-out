@@ -185,9 +185,24 @@ app.post('/appointmentLoggedIn', (req, res) => {
 
         res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
     });
-
-
 });
+
+
+// app.get('/getShowDetail/:serviceHistoryId', (req, res) => {
+//     const serviceHistoryId = req.params.serviceHistoryId;
+
+//     const query = ``;
+
+//     db.all(query, [serviceHistoryId], (err, rows) => {
+        
+//         if (err) {
+//             res.status(500).json({ error: err.message });
+//             return;
+//         }
+
+//         res.json(rows);
+//     });
+// });
 
 
 

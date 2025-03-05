@@ -8,7 +8,7 @@ const db = require('../models/dbconn.js'); // ! เดี๋ยวย้าย�
 const { get } = require('http');
 
 const UserController = {
-    getIndexPage: async (req, res) => {
+    getIndexPage: async (req, res) => { // * ของเนยสด
 
         const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
@@ -68,7 +68,7 @@ const UserController = {
         //   });
     },
 
-    getAppointmentPage: async (req, res) => {
+    getAppointmentPage: async (req, res) => { // * ของใครไม่รู้
         const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
         const cuscar = await UserModel.CustomerCars(email);
@@ -87,9 +87,45 @@ const UserController = {
         }
     },
 
-    getHistoryPage: async (req, res) => {
+    getHistoryPage: async (req, res) => { // * ของใครไม่รู้ แต่เนยสดแก้ข้างในนะ
+
+        if (!req.session.user) {
+            return res.redirect("/login"); // ถ้าไม่ได้ล็อกอิน ให้ redirect ไปหน้า login
+        }
+
+
+
         try {
-            res.render('history');
+            // const query = `SELECT * FROM ServiceHistory sh
+            //     INNER JOIN Customers c
+            //     ON sh.customerId = c.customerId
+            //     where c.email = ?`;
+
+            const query = `SELECT * FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb
+                ON sh.centerId = sb.centerId
+                INNER JOIN Customers c
+                ON sh.customerId = c.customerId
+                INNER JOIN RegistrationNumber rn
+                ON c.customerId = rn.customerId
+                INNER JOIN Cars car
+                ON rn.carId = car.carId
+                WHERE c.email = ?;`;
+
+            const values = [req.session.user.email]; 
+            // const values = ['max@gmail.com']; 
+
+            console.log("Before DB Query");
+            
+            db.all(query, values, (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Error fetching users');
+                }
+                console.log('rows from getHistoryPage: ', rows);
+                res.render('history', {data: rows});
+            });
+
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
@@ -301,9 +337,8 @@ const UserController = {
 
 
 
-
-
-    , // แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
+    , // * แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
+    // เก่งมากน้องงงง
     getDistricts: async (req, res) => {
         const { province } = req.query;
 
