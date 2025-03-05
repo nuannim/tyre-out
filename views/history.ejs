@@ -52,17 +52,19 @@
             <div class="inside" id="coming">
                 <div class="ins">
                     <!-- * กล่อง ใส่ ejs ตรงนี้ -->
-                        <% data.forEach(element => { %>
-                            <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
-                                <!-- <h4>บริการเช็คระยะ</h4>
-                                <p>สาขาทุ่งมะขามป้อม</p>
-                                <p>32 มกราคม 2525 ช่วงเย็น</p> -->
-                                <h4><%= element.caseCategory %></h4>
-                                <p><%= element.centerName %></p>
-                                <p><%= element.caseStartDatetime %></p>
-                            </div>
-                        <% }); %>
-
+                        <% data.forEach(element => { 
+                            const currentDate = new Date();
+                            const appointmentDate = new Date(element.caseStartDatetime);
+                            if (appointmentDate >= currentDate) { %>
+                                <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
+                                    <!-- <h4>บริการเช็คระยะ</h4>
+                                    <p>สาขาทุ่งมะขามป้อม</p>
+                                    <p>32 มกราคม 2525 ช่วงเย็น</p> -->
+                                    <h4><%= element.caseCategory %></h4>
+                                    <p><%= element.centerName %></p>
+                                    <p><%= element.caseStartDatetime %></p>
+                                </div>
+                        <% } }); %>
                 </div>
             </div>
 
@@ -72,14 +74,25 @@
             <div class="inside" id="finish">
                 <div class="ins">
                     <!-- * กล่อง ใส่ ejs ตรงนี้ -->
-                    <div class="app">
+                        <% data.forEach(element => { 
+                            const currentDate = new Date();
+                            const appointmentDate = new Date(element.caseStartDatetime);
+                            if (appointmentDate < currentDate) { %>
+                                <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
+                                    <h4><%= element.caseCategory %></h4>
+                                    <p><%= element.centerName %></p>
+                                    <p><%= element.caseStartDatetime %></p>
+                                </div>
+                    <!-- <div class="app">
                         <h4>บริการเช็คระยะ</h4>
                         <p>สาขาทุ่งมะขามป้อม</p>
                         <p>32 มกราคม 2525 ช่วงเย็น</p>
-                    </div>
+                    </div> -->
+                        <% } }); %>
                 </div>
             </div>
         </div>
+
         <div id="popup-bg">
             <div id="fori">
                 <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
@@ -121,19 +134,19 @@
                     <div id="right">
                         <div class="inform-text">
                             <p class="header">ทะเบียนรถ</p>
-                            <p class="show">-</p>
+                            <p class="show" id="carRegisNo">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">ชื่อ - สกุล</p>
-                            <p class="show">-</p>
+                            <p class="show" id="firstLastName">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">เบอร์โทร</p>
-                            <p class="show">-</p>
+                            <p class="show" id="phoneNumber">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">E-mail</p>
-                            <p class="show">-</p>
+                            <p class="show" id="email">-</p>
                         </div>
                     </div>
                 </div>
