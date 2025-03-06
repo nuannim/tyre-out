@@ -111,11 +111,11 @@
                                 <td id="action">
                                     <div class="button-con">
                                     <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                    <form action="/update-case-status" method="POST">
-                                        <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
-                                        <button type="submit" class="update-status-button">Update Status</button>
-                                    </form>
                                     <button class="view-button" onclick="openPopup(this)"><i class="far fa-calendar-alt"></i></button>
+                                    <form action="/update-case-status" method="POST" id="update-status-form">
+                                        <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
+                                        <button type="submit" class="update-status-button"><i class="fa-solid fa-square-check"></i></button>
+                                    </form>
                                     <button class="delete-button" onclick="deleteServiceHistory(<%= element.serviceHistoryId %>)"><i class="fa fa-trash-o"></i></button>
                                     </div>
                                 </td>
