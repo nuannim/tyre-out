@@ -142,15 +142,13 @@
                             <option value="225000">225,000 กม.</option>
                             <option value="240000">240,000 กม.</option>
                         </select>
+                        <input type="text" class="drop" id="car-regis" placeholder="ทะเบียนรถ">
                         <input type="hidden" name="email" value="<%= email %>">
                         <div class="bottom" style="display: flex; justify-content: center;">
                             <button class="btn" type="submit" id="btn-service"  width="100%">เพิ่มรถ</button>
                         </div>
                     </div>
                     </form>
-                        
-
-
                         <% } else { %>
                             <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                                 <div class="guest" style="display: flex; gap: 10px; justify-content: space-evenly;">
@@ -292,7 +290,8 @@
         <div id="more"><a href="/goods">ดูเพิ่มเติม</a></div>
         <div id="item-container">
             <% goods.slice(3, 9).forEach((element)=> { %>
-                <div class="item-pic" style="background-image: url('<%=element.goodsPhotoURL%>');"></div>
+                <div class="item-pic" data-aos="fade-up"
+                data-aos-offset="150" data-aos-easing="ease-in-sine" style="background-image: url('<%=element.goodsPhotoURL%>');"></div>
             <% }); %>
         </div>
     </section>

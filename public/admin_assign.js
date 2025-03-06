@@ -88,7 +88,7 @@ function openPopup3(button){
                 d.appendChild(p2);
                 
                 d.style.display = "flex"
-                d.style.justifyContent = "space-around"
+                d.style.justifyContent = "space-between"
 
                 
                 document.getElementById("show-price-chemi").appendChild(d);

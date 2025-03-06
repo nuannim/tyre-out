@@ -318,7 +318,41 @@ findBranch.addEventListener("click", function() {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const sel1 = document.getElementById("sel1");
+    const sel3 = document.getElementById("sel3");
+    
 
+    // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+    function loadGrade() {
+        const selectedsel1 = sel1.value;
+        if (!selectedsel1) {
+            sel3.innerHTML = '<option value="" selected>เลือกเกรด</option>';
+            sel3.disabled = true;
+            return;
+        }
+        sel3.disabled = false;
+
+        fetch(`/getModel?c=${selectedsel1}`)
+            .then(response => response.json())
+            .then(grade => {
+                sel3.innerHTML = '<option value="" selected>เลือกเกรด</option>';
+                grade.forEach(g => {
+                    const option2 = document.createElement("option");
+                    option2.value = g.carGrade;
+                    option2.textContent = g.carGrade;
+                    sel3.appendChild(option2);
+                });
+            })
+            .catch(error => console.error("Error loading cars:", error));
+    }
+
+    // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+    sel3.disabled = true;
+
+    // โหลดอำเภอเมื่อเลือกจังหวัด
+    sel1.addEventListener("change", loadGrade);
+});
 
 
 

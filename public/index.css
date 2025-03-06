@@ -133,7 +133,8 @@ body {
 #sel1,
 #sel2,
 #sel3,
-#sel4 {
+#sel4,
+#car-regis {
   width: 30%;
 }
 
@@ -264,7 +265,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
+  width: 70%;
   height: auto;
   border-radius: 2vh;
   z-index: 12;
@@ -342,11 +343,13 @@ body {
   width: 100%;
   font-size: 2.5vh;
   border-bottom: 1px solid #104b82;
+  text-align: start;
 }
 
 #check-result th {
   color: #104b82;
   font-weight: 400;
+  text-align: start;
 }
 
 #check-result {
@@ -637,6 +640,16 @@ body {
   #carchoose {
     width: 100%;
   }
+  #car-regis{
+    width: 95%;
+    border-radius: 1.8vh;
+  }
+  #check-result table{
+    font-size: 2vh;
+  }
+  .btn-pop{
+    font-size: 2vh;
+  }
 }
 @media (max-width: 450px) {
   #branch-area {
@@ -660,5 +673,13 @@ body {
   }
   #check {
     width: 70%;
+  }
+  #check-result table{
+    font-size: 1.5vh;
+  }
+  .btn-pop{
+    font-size: 1.5vh;
+    width: 10vh;
+    height: 4vh;
   }
 }

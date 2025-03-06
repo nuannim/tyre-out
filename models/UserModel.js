@@ -45,7 +45,16 @@ const UserModel = {
         //     return p;
         // })
 
-    }, 
+    },
+
+    CarGrades: (model) => {
+        return new Promise((resolve, reject) => {
+            db.all(`SELECT DISTINCT carGrade from Cars WHERE carModel = "${model}";`, (err, p) => {
+              if (err) reject(err);
+              else resolve(p);
+            });
+        });
+    },
 
     allGoods: () => {
         return new Promise((resolve, reject) => {

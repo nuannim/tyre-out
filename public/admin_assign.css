@@ -8,12 +8,14 @@
     box-sizing: border-box;
 }
 body{
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #041728;
 }
 
 .top{
     height: 10vh;
+    display: flex;
+    justify-content: center;
 }
 .show-branch{
     font-size: 4vh;
@@ -23,7 +25,6 @@ body{
 
 
 
-/* nav */
 #nav {
     width: 100%;
     height: 14vh;
@@ -31,7 +32,9 @@ body{
     position: fixed;
     z-index: 10;
 }
-  #nav-menu {
+
+  
+#nav-menu {
     background-color: #041728dc;
     backdrop-filter: blur(10px);
     display: flex;
@@ -43,28 +46,48 @@ body{
     padding-right: 5vh;
     font-size: 2.5vh;
 }
+  
+#nav-menu a {
+    color: #ffffff;
+    font-weight: 300;
+    transition: ease-in-out 0.2s;
+}
+  
+#nav-menu a:hover {
+    text-shadow: 0px 0px 2px white;
+}
+  
+#nav-menu p {
+    color: #ffffff;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 200;
+}
+  
 #fis {
     width: 10%;
     text-align: start;
 }
+  
 #fis p {
     font-weight: 400;
     margin: 0;
 }
+  
 #las {
     width: 10%;
     text-align: end;
 }
-
-
-
-
-
-
-
-
-
-
+  
+#mid {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+#branch-text p{
+    font-size: 2.5vh;
+}
 
 /* popup */
 #popup-view{
@@ -109,7 +132,7 @@ body{
     color: #041728;
     margin: 0;
     text-align: left;
-    font-size: 2vh;
+    font-size: 2.5vh;
 }
 .header{
     color: #B6B6B6;
@@ -138,12 +161,13 @@ body{
     gap: 2vh;
 }
 #image{
-    width: 20vh;
+    width: 35vh;
     height: 20vh;
     background-image: url(img/branch_1_img.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 2vh;
 }
 #inform-box{
     display: flex;
@@ -177,37 +201,20 @@ body{
     border-radius: 1vh;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* show user list */
 .box{
     display:flex;
-    height: 60%;
+    /* height: 60%; */
     width: 80%;
     margin: auto;
     background-color: white;
     border-radius: 2vh 2vh 2vh 2vh;
+    margin-bottom: 10vh;
 }
 .table-content{
     padding: 10px;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
 /* ตาราง */
@@ -220,8 +227,8 @@ body{
 }
 table tbody {
     display: block;
-    max-height: 50vh;
-    overflow-y: auto;
+    /* max-height: 50vh; */
+    /* overflow-y: auto; */
 }
 table thead, table tbody tr {
     display: table;
@@ -234,11 +241,16 @@ table thead, table tbody tr {
     font-size: 2vh;
     font-weight: 500;
     color: #104B82;
-    text-align: center;
+    text-align: start;
     border-bottom: 1px solid rgb(224, 224, 224);
 }
 th, td{
-    text-align: center;
+    text-align: start;
+    width: 100%;
+}
+td{
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .button-con{
     display: flex;
@@ -266,6 +278,7 @@ tr:nth-child(even) {
     cursor: pointer;
     outline: inherit;
     font-size: 2vh;
+    transition: ease-in-out 0.2s;
 }
 .quotation-button:hover{
     color: rgb(0, 162, 255);
@@ -578,9 +591,6 @@ tr:nth-child(even) {
 
 @media (max-width: 630px) {
     /* nav */
-    #mid {
-        display: none;
-    }
     #hid-drop {
         display: block;
         float: left;
@@ -620,13 +630,16 @@ tr:nth-child(even) {
         z-index: 9;
     }
     #las {
-        width: 50%;
+        width: 20%;
         display: flex;
         gap: 10px;
         justify-content: end;
     }
     #fis {
-        width: 50%;
+        width: 20%;
+    }
+    #mid{
+        width: 60%;
     }
     #branch-box {
         flex-direction: column;

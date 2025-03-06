@@ -66,7 +66,7 @@
     </div>
 
     <!-- ดัน -->
-    <div style="height: 130px;"></div> 
+    <div style="height: 13vh;"></div> 
 
     <div class="top">
         <h1 class="show-emp" id="emp-name-1"><%= user.firstName %> <%= user.lastName %></h1>
@@ -113,7 +113,6 @@
                                     <button class="quotation-button" onclick="openPopup3(this)""><i class='far'>&#xf328;</i></button>
                                     <form action="/update-case-status" method="POST">
                                         <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
-                                        <button type="submit" class="update-status-button">Update Status</button>
                                     </form>
                                     <button class="view-button" onclick="openPopup(this)"><i class="far fa-calendar-alt"></i></button>
                                     <form action="/update-case-status" method="POST" id="update-status-form">
