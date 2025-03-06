@@ -63,16 +63,17 @@ const EmployeeModel = {
     getServiceHistoryWithCustomer: (serviceHistoryId) => {
         return new Promise((resolve, reject) => {
             const query = `
-               SELECT * FROM ServiceHistory sh
-                INNER JOIN ServiceBranch sb
-                ON sh.centerId = sb.centerId
-                INNER JOIN Customers c
-                ON sh.customerId = c.customerId
-                INNER JOIN RegistrationNumber rn
-                ON c.customerId = rn.customerId
-                INNER JOIN Cars car
-                ON rn.carId = car.carId
-                WHERE sh.serviceHistoryId = ?;
+              SELECT * 
+FROM ServiceHistory sh
+INNER JOIN ServiceBranch sb 
+    ON sh.centerId = sb.centerId
+INNER JOIN RegistrationNumber rn
+    ON sh.regId = rn.regId        
+INNER JOIN Customers c            
+    ON rn.customerId = c.customerId 
+INNER JOIN Cars car 
+    ON rn.carId = car.carId
+WHERE sh.serviceHistoryId = ?;
             `;
             db.get(query, [serviceHistoryId], (err, row) => {
                 if (err) {
@@ -86,14 +87,23 @@ const EmployeeModel = {
         console.log("check"+serviceHistoryId);
         return new Promise((resolve, reject) => {
             const query = `
-              SELECT *
-                FROM Customers C
-                INNER JOIN ServiceHistory SH ON C.customerId = SH.customerId
-                INNER JOIN ServiceHistoryDetails SHD ON SH.serviceHistoryId = SHD.serviceHistoryId
-                INNER JOIN Goods G ON SHD.goodsId = G.goodsId
-                WHERE SH.serviceHistoryId = ?;
+              SELECT g.goodsPrice, g.goodsName
+FROM ServiceHistory sh
+INNER JOIN ServiceBranch sb 
+    ON sh.centerId = sb.centerId
+INNER JOIN ServiceHistoryDetails shd 
+    ON sh.serviceHistoryId = shd.serviceHistoryId  
+INNER JOIN Goods g 
+    ON shd.goodsId = g.goodsId                
+INNER JOIN RegistrationNumber rn
+    ON sh.regId = rn.regId
+INNER JOIN Customers c
+    ON rn.customerId = c.customerId
+INNER JOIN Cars car 
+    ON rn.carId = car.carId
+WHERE sh.serviceHistoryId = ${serviceHistoryId};
             `;
-            db.all(query, [serviceHistoryId], (err, row) => {
+            db.all(query, (err, row) => {
                 if (err) {
                     return reject(err);
                 }
