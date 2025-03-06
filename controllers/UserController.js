@@ -229,11 +229,11 @@ const UserController = {
     }
     ,
     CarsaveCustomer: async (req, res) => {
-        const { sel1, sel2, sel3, sel4, email } = req.body;
+        const { sel1, sel2, sel3, sel4, carRegis, email } = req.body;
 
         console.log(req.body);
 
-            if (!sel1 || !sel2 || !sel3 || !sel4 || !email) {
+            if (!sel1 || !sel2 || !sel3 || !sel4 || !email || !carRegis) {
                 return res.status(400).send('ทะลึ่ง');
             }
 
@@ -265,9 +265,10 @@ const UserController = {
 
                 const customerId = customerRow.customerId;
 
-                const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+                const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage, carRegisNo) 
+                VALUES (?, ?, ?, ?)`;
 
-                db.run(forinsert, [carId, customerId, sel4], function (err) {
+                db.run(forinsert, [carId, customerId, sel4, carRegis], function (err) {
                     if (err) {
                         console.error(err);
                         return res.status(500).send('save error');
