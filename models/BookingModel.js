@@ -7,10 +7,17 @@ const BookingModel = {
                 FROM Employees
                 WHERE employeeId = ${employeeId}`, (err, d) => {
                 if (err) reject(err);
-                else db.all(`SELECT sh.*, c.firstName, c.lastName, c.phoneNumber
-                    FROM ServiceHistory sh
-                    JOIN Customers c ON sh.customerId = c.customerId
-                    WHERE sh.centerId = ${d.centerId} AND sh.handledByEmployeeId IS NULL`, (err, d) => {
+                else db.all(`SELECT * 
+FROM ServiceHistory sh
+INNER JOIN ServiceBranch sb 
+    ON sh.centerId = sb.centerId
+INNER JOIN RegistrationNumber rn 
+    ON sh.regId = rn.regId
+INNER JOIN Customers c
+    ON rn.customerId = c.customerId 
+INNER JOIN Cars car 
+    ON rn.carId = car.carId
+WHERE sh.centerId = ${d.centerId} and sh.handledByEmployeeId is NULL;`, (err, d) => {
                     if (err) reject(err);
                     else resolve(d);
                 });
@@ -50,10 +57,17 @@ const BookingModel = {
                 FROM Employees
                 WHERE employeeId = ${employeeId}`, (err, d) => {
                 if (err) reject(err);
-                else db.all(`SELECT *
-                    FROM ServiceHistory sh
-                    JOIN Customers c ON sh.customerId = c.customerId
-                    WHERE sh.centerId = ${d.centerId} AND sh.handledByEmployeeId = ${employeeId} AND sh.status = 0`, (err, d) => {
+                else db.all(`SELECT * 
+FROM ServiceHistory sh
+INNER JOIN ServiceBranch sb 
+    ON sh.centerId = sb.centerId
+INNER JOIN RegistrationNumber rn  
+    ON sh.regId = rn.regId
+INNER JOIN Customers c
+    ON rn.customerId = c.customerId 
+INNER JOIN Cars car 
+    ON rn.carId = car.carId
+WHERE sh.centerId = ${d.centerId} and sh.handledByEmployeeId = ${employeeId} AND sh.status = 0;`, (err, d) => {
                     if (err) reject(err);
                     else resolve(d);
                 });
