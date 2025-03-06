@@ -233,7 +233,7 @@ findBranch.addEventListener("click", function() {
         .then(districts => {
             document.getElementById("branch-area").innerHTML = '';
             districts.forEach(district => {
-                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('<%= element.centerId %>', '<%= element.centerName %>')" type="button">เลือก</button></div></div>`;
+                    document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('` + district.centerId + `', '${district.centerName}')" type="button">เลือก</button></div></div>`;
                 });
             })
             .catch(error => console.error("Error loading districts:", error));
@@ -252,6 +252,8 @@ findBranch.addEventListener("click", function() {
 });
 
 function selectBranch(branchId, branchName) {
+    console.log('centerId:'+ branchId);
+    console.log('centerName:'+ branchName);
     let centerId = document.createElement("p");
     centerId.textContent = branchId;
     centerId.style.display = "none";
