@@ -82,13 +82,15 @@ app.post('/appointment', (req, res) => {
                 return;
             }
 
+            const regId = this.lastID;
+
             // * หลังจากที่เพิ่มข้อมูลลงใน RegistrationNumber แล้ว เพิ่มข้อมูลลงใน ServiceHistory
             const values = [
-                customerId, caseCategory, slot, caseStartDatetime, centerId
+                customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0
             ];
 
-            const query = `insert into ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
-                values (?, ?, ?, ?, ?)`;
+            const query = `insert into ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status)
+                values (?, ?, ?, ?, ?, ?, ?)`;
 
             db.run(query, values, function (err) {
                 if (err) {
@@ -120,12 +122,20 @@ app.post('/appointment', (req, res) => {
 
 app.get('/getLoggedInUser', (req, res) => {
     const email = req.query.email;
-    
-    db.all(`
-        SELECT Customers.*, RegistrationNumber.carRegisNo 
+
+    // const query = `
+    //     SELECT Customers.*, RegistrationNumber.carRegisNo 
+    //     FROM Customers 
+    //     LEFT JOIN RegistrationNumber ON Customers.customerId = RegistrationNumber.customerId
+    //     WHERE Customers.email = ?`;
+
+    const query = `
+        SELECT *
         FROM Customers 
         LEFT JOIN RegistrationNumber ON Customers.customerId = RegistrationNumber.customerId
-        WHERE Customers.email = ?`, [email], (err, rows) => {
+        WHERE Customers.email = ?`;
+    
+    db.all(query, [email], (err, rows) => {
         
         if (err) {
             res.status(500).json({ error: err.message });
@@ -138,6 +148,7 @@ app.get('/getLoggedInUser', (req, res) => {
         }
 
         // ส่งข้อมูลที่ได้จากการ join ทั้งสองตาราง
+        // res.json(rows);
         res.json(rows[0]);
     });
 });

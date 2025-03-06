@@ -35,6 +35,8 @@ let guestTel;
 let guestEmail;
 let guestCarRegisNo;
 
+let LoggedIncarRegisNo;
+
 let dataForBookingLoggedIn;
 // * ================================================================
 
@@ -97,10 +99,13 @@ const grade = document.getElementById("sel3");
 const kilo = document.getElementById("sel4");
 const timeinput = document.getElementsByName("timeinput");
 
+// ^ อธิบาย: getQueryParam() เป็น function ไว้ดึงค่าจาก URL
 model.value = getQueryParam("option1") || "";
 year.value = getQueryParam("option2") || "";
 grade.value = getQueryParam("option3") || "";
 kilo.value = getQueryParam("option4") || "";
+
+
 
 const showmodel = document.getElementById("show-model");
 const showkilo = document.getElementById("show-kilo");
@@ -308,18 +313,97 @@ btnGuest.addEventListener("click", function (e) {
     let sel4 = document.getElementById("sel4");
     let sel5 = document.getElementById("carchoose");
         // ฟังก์ชันโชว์ pop up ใบเสนอราคา
-    function checkshowpop(){
-        // const selectedCar = sel5.value;
-        // if (selectedCar) {
-        //     const carParts = selectedCar.split(" - ");
     
-        //     if (carParts.length === 3) {
-        //         sel1.value = carParts[0];
-        //         sel2.value = carParts[1];
-        //         sel3.value = carParts[2];
-        //     }
-        // }
-        // sel4.value = "twentythousand";
+    // // ! ไม่ได้ใช้แล้ว
+    // function checkshowpop(){
+    //     // const selectedCar = sel5.value;
+    //     // if (selectedCar) {
+    //     //     const carParts = selectedCar.split(" - ");
+    
+    //     //     if (carParts.length === 3) {
+    //     //         sel1.value = carParts[0];
+    //     //         sel2.value = carParts[1];
+    //     //         sel3.value = carParts[2];
+    //     //     }
+    //     // }
+    //     // sel4.value = "twentythousand";
+    //     const div = document.createElement("div");
+    //     div.id = "check-result";
+    //     const table = document.createElement("table");
+    //     const thead = document.createElement("thead");
+    //     const tr = document.createElement("tr");
+    //     const th1 = document.createElement("th");
+    //     const th2 = document.createElement("th");
+    //     const th3 = document.createElement("th");
+    //     th1.textContent = "รายการเคมีภัณฑ์และอะไหล่";
+    //     th2.textContent = "จำนวน";
+    //     th3.textContent = "ราคา";
+    //     tr.appendChild(th1);
+    //     tr.appendChild(th2);
+    //     tr.appendChild(th3);
+    //     thead.appendChild(tr);
+    //     table.appendChild(thead);
+    //     div.appendChild(table);
+    
+    //     const divbtn = document.createElement("div");
+    //     divbtn.id = "check-btn";
+    //     // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
+    //     divbtn.innerHTML = '<button class="btn btn-next" id="btn-pop">นัดหมาย</button>';
+    //     div.appendChild(divbtn);
+    
+    //     document.getElementById("content").innerHTML = "";
+    //     document.getElementById("content").appendChild(div);
+    //     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
+    //     //     showpop()
+    //     // }
+        
+    //     showpop();
+    // }
+
+async function checkshowpopLoggedIn(regno) {
+    console.log("=== START checkshowpopupguest() ===");
+
+    //^ อธิบาย: ดึงค่าที่เลือกจาก dropdown
+    carModel = document.getElementById("sel1").value; // ใช้ carModel
+    carYear = document.getElementById("sel2").value; // ใช้ carYear
+    carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    mileage = document.getElementById("sel4").value; // mileage
+
+    carRegisNo = regno;
+
+    // const carModel = document.getElementById("sel1").value; // ใช้ carModel
+    // const carYear = document.getElementById("sel2").value; // ใช้ carYear
+    // const carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    // const mileage = document.getElementById("sel4").value; // mileage
+
+    console.log("🚗 carModel:", carModel);
+    console.log("📅 carYear:", carYear);
+    console.log("📏 mileage:", mileage);
+    console.log("🚗 carRegis:", carRegisNo);
+
+    if (!carModel || !carYear || !mileage) {
+        alert("กรุณาเลือกรุ่นรถยนต์, ปีรถยนต์ และ ระยะทาง");
+        return;
+    }
+
+    // เรียก API ไปดึงข้อมูลจากเซิร์ฟเวอร์
+    try {
+        // * ของเนยสด ห้ามแตะ ================================================
+        const response = await fetch(`/getMaintenanceGoods?carModel=${carModel}&carYear=${carYear}&carGrade=${carGrade}&mileage=${mileage}`);
+        const data = await response.json();
+
+        goodsDataForNoeysod = data;
+
+        console.log("🦌🦌🦌🦌🦌🦌🦌 response:", response);
+        console.log("🦌🦌🦌🦌🦌🦌🦌 data:", data);
+
+        if (data.length === 0) {
+            alert("ไม่พบรายการสินค้า");
+            return;
+        }
+        // * ================================================================
+
+        // สร้างโครงสร้าง popup
         const div = document.createElement("div");
         div.id = "check-result";
         const table = document.createElement("table");
@@ -336,27 +420,43 @@ btnGuest.addEventListener("click", function (e) {
         tr.appendChild(th3);
         thead.appendChild(tr);
         table.appendChild(thead);
+
+        // สร้าง tbody และเพิ่มข้อมูลลงไป
+        const tbody = document.createElement("tbody");
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.goodsBrand} ${item.goodsName}</td>
+                <td>1</td>
+                <td>${item.goodsPrice} บาท</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
         div.appendChild(table);
-    
+
         const divbtn = document.createElement("div");
         divbtn.id = "check-btn";
-        // divbtn.innerHTML = '<button class="btn-pop" id="btn-pop" onclick="gotoapp()">นัดหมาย</button>';
-        divbtn.innerHTML = '<button class="btn btn-next" id="btn-pop">นัดหมาย</button>';
+        divbtn.innerHTML = '<div id="but"><button class="btn btn-next" onclick="nextpage()" type="button">นัดหมาย</button></div>';
         div.appendChild(divbtn);
-    
+
         document.getElementById("content").innerHTML = "";
         document.getElementById("content").appendChild(div);
-        // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
-        //     showpop()
-        // }
-        
-        showpop();
-    }
 
+        console.log("=== END checkshowpopupguest() ===");
+
+        // แสดง popup
+        showpop();
+    } catch (error) {
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+    }
+}
     
 async function checkshowpopguest() {
-    // ดึงค่าที่เลือกจาก dropdown
-    console.log("hello");
+    console.log("=== START checkshowpopupguest() ===");
+
+    //^ อธิบาย: ดึงค่าที่เลือกจาก dropdown
     carModel = document.getElementById("sel1").value; // ใช้ carModel
     carYear = document.getElementById("sel2").value; // ใช้ carYear
     carGrade = document.getElementById("sel3").value; // ใช้ carGrade
@@ -433,6 +533,8 @@ async function checkshowpopguest() {
 
         document.getElementById("content").innerHTML = "";
         document.getElementById("content").appendChild(div);
+
+        console.log("=== END checkshowpopupguest() ===");
 
         // แสดง popup
         showpop();
@@ -531,7 +633,7 @@ async function booking() {
     console.log('💯💯💯💯💯💯goodsData: ', goodsData);
 
     try {
-        const response = await fetch('/appointment', {
+        const response = await fetch('/appointment', { // ! อยู่ที่ server.js เดี๋ยวต้องย้ายด้วย
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -595,12 +697,15 @@ async function selectDateLoggedIn(email) {
     document.getElementById("last").value = data.lastName;
     document.getElementById("tel").value = data.phoneNumber;
     document.getElementById("email").value = data.email;
-    document.getElementById("carregis").value = data.carRegisNo;
+    // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
+    document.getElementById("carregis").value = carRegisNo;
 
-    console.log('selectionDateLoggedIn: ', data);
-    console.log('selectionDateLoggedIn customerId: ', data.customerId);
+    console.log('selectDateLoggedIn: ', data);
+    console.log('selectDateLoggedIn data.customerId: ', data.customerId);
+    console.log('selectDateLoggedIn carRegisNo: ', carRegisNo);
+    
 
-    console.log('selectionDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
+    console.log('selectDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
     
     // ! ก้อปมาจาก from selectDate()
 

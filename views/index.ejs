@@ -241,18 +241,19 @@
 
                             <option value="" selected>รถของคุณ</option>
                             <% cuscars.forEach(car=> { %>
-                                <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>">
-                                    <%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>
+                                <!-- <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>"> -->
+                                <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>">
+                                    <%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>
                                 </option>
                                 <% }) %>
                         </select>
 
                         <div class="bottom" style="display: flex; justify-content: center; ">
-                            <!-- <button class="btn" id="btn-service" onclick="gotoapp2()" width="100%">ค้นหา</button> -->
-                            <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                            <button class="btn" id="btn-service" onclick="gotoapp2()" width="100%">ค้นหา</button>
+                            <!-- <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button> -->
                             <!-- <button class="btn" id="btn-service" onclick="checkSelectedCar()" width="100%">ค้นหา</button> -->
                         </div>
-                        <% } %>
+                <% } %>
                     </div>
             </div>
         </div>

@@ -163,7 +163,11 @@
 <!-- ^ ปิด ถ้าไม่ใช่ guest -->
                         <div id="but" >
                             <!-- <button class="btn" type="button" onclick="checkshowpop()">ถัดไป</button> -->
-                            <button class="btn" type="button" onclick="checkshowpopguest()">ถัดไป</button>
+                            <% if (email && email !== 'Guest') { %>
+                                <button class="btn" type="button" onclick="checkshowpopLoggedIn('<%= carRegisNo %>')">ถัดไป</button>                                
+                            <% } else {%> 
+                                <button class="btn" type="button" onclick="checkshowpopguest()">ถัดไป</button>                                
+                            <%}%>
                         </div>
                     </div>
                     <div id="popup-bg">

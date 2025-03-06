@@ -44,6 +44,7 @@ let sel5 = document.getElementById("carchoose");
 // ฟังก์ชันโชว์ pop up ใบเสนอราคา // ! ขอยาดเอาออก ติดปัญหา ไม่ได้ใส่ mileage แล้ว popup จะแสดงผลไม่ได้
 // * checkshowpop() ไม่ใช้ละ เอา popup ออก เพราะไม่ได้เลือก mileage ใน home
     // * ย้ายไป gotoapp()
+        // * เหมือนจะไม่ได้ใช้ gotoapp() ละไหม โอ้ยไม่รู้ งง
 function checkshowpop() {
     const selectedCar = sel5.value;
     if (selectedCar) {
@@ -208,6 +209,8 @@ async function checkshowpopguest() {
 
 // * START ของที่ใครสักคนเขียนไว้ก่อนหน้า ep.2 ============================================================================================
 function gotoapp2() {
+    console.log('===== START function gotoapp2() =====');
+
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
     // const sel1 = document.getElementById("sel1").value;
     // const sel2 = document.getElementById("sel2").value;
@@ -216,19 +219,30 @@ function gotoapp2() {
     // const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
     
     const selectedCar = sel5.value;
+    let carRegisNo;
+
     if (selectedCar) {
         const carParts = selectedCar.split(" - ");
-
-        if (carParts.length === 3) {
+        
+        if (carParts.length === 4) {
             sel1.value = carParts[0];
             sel2.value = carParts[1];
             sel3.value = carParts[2];
+
+            carRegisNo = carParts[3]; // ^ มาจาก index.ejs
         }
     }
     
-    const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&option4=${(sel4.value)}`;
+    console.log(carRegisNo);
+
+    // setTimeout(() => {
+    //     console.log('timeout done');
+    // }, 1000);
+
+    const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&carRegisNo=${carRegisNo}`;
     window.location.href = letsend;
 
+    console.log('===== END function gotoapp2() =====');
 }
 
 function gotoapp() {

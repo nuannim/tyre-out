@@ -108,17 +108,27 @@ const UserModel = {
     ,
     CustomerCars: async (email) => {
         return new Promise((resolve, reject) => {
-            db.all(`
-                SELECT 
-                    c.email, 
-                    r.mileage,
-                    car.carModel, 
-                    car.carYear, 
-                    car.carGrade
-                FROM RegistrationNumber r
+
+            // const query = `
+            //     SELECT 
+            //         c.email, 
+            //         r.mileage,
+            //         car.carModel, 
+            //         car.carYear, 
+            //         car.carGrade
+            //     FROM RegistrationNumber r
+            //     JOIN Cars car ON r.carId = car.carId
+            //     JOIN Customers c ON r.customerId = c.customerId
+            //     WHERE c.email = ?`;
+                
+            // * ตรงนี้เนยสดแก้เอง
+            const query = `
+                SELECT * FROM RegistrationNumber r
                 JOIN Cars car ON r.carId = car.carId
                 JOIN Customers c ON r.customerId = c.customerId
-                WHERE c.email = ?;`, [email], (err, cc) => {
+                WHERE c.email = ?`;
+            
+            db.all(query, [email], (err, cc) => {
               if (err) reject(err);
               else resolve(cc);
             });

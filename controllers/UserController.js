@@ -72,6 +72,13 @@ const UserController = {
     },
 
     getAppointmentPage: async (req, res) => { // * ของใครไม่รู้
+        // ^ อธิบาย: จาก URL /appointment จากหน้า index.ejs - function gotoapp2()
+        const {carRegisNo} = req.query; 
+
+
+        console.log('===== getAppointmentPage in UserController.js =====');
+        console.log('carRegisNo: ', carRegisNo); // ^ ข้อมูลไปออกที่ terminal
+
         const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
         const cuscar = await UserModel.CustomerCars(email);
@@ -83,7 +90,8 @@ const UserController = {
                 email: email,
                 cars: car,
                 cuscars: cuscar,
-                servicebranches: sb
+                servicebranches: sb,
+                carRegisNo
             });
         } catch (error) {
             res.status(500).send('Error fetching users');
