@@ -82,6 +82,25 @@ const EmployeeModel = {
             });
         });
     },
+    getServiceHistoryWithCustomerwithGoods: (serviceHistoryId) => {
+        return new Promise((resolve, reject) => {
+            const query = `
+              SELECT *
+                FROM Customers C
+                INNER JOIN ServiceHistory SH ON C.customerId = SH.customerId
+                INNER JOIN ServiceHistoryDetails SHD ON SH.serviceHistoryId = SHD.serviceHistoryId
+                INNER JOIN Goods G ON SHD.goodsId = G.goodsId
+                WHERE SH.serviceHistoryId = ?;
+            `;
+            db.get(query, [serviceHistoryId], (err, row) => {
+                if (err) {
+                    return reject(err);
+                }
+                console.log(row);
+                resolve(row);
+            });
+        });
+    },
     deleteServiceHistory: (serviceHistoryId) => {
         return new Promise((resolve, reject) => {
             const query = `
