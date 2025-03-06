@@ -76,9 +76,10 @@
                             <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
                             <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
                             <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                            <td id="info-service-history" data-label="วัน-เวลา" style="display: none;"><%= element.serviceHistoryId %></td>
                             <td id="action">
                                 <div class="button-con">
-                                    <button class="quotation-button"><i class='far fa-clipboard'></i></button>
+                                    <button class="quotation-button" onclick="openPopup3(this)"><i class='far'>&#xf328;</i></button>
                                     <button class="view-button"><i class="far fa-calendar-alt"></i></button>
           
                                         <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
@@ -165,29 +166,30 @@
             <i class="fa-solid fa-xmark" id="bac" onclick="bac4()"></i>
         </div>
         <div id="content">
+
             <div id="persona-container">
                 <div id="persona">
                     <div id="forinput">
                         <div class="eachinput">
                             <label for="name">ชื่อ</label>
-                            <p class="inp" id="name"></p>
+                            <input class="inp" id="name" disabled>
                         </div>
                         <div class="eachinput">
-                            <label for="name">นามสกุล</label>
-                            <p class="inp" id="last"></p>
+                            <label for="last">นามสกุล</label>
+                            <input class="inp" id="last" disabled>
                         </div>
                         <div class="eachinput">
-                            <label for="name">เบอร์โทรศัพท์</label>
-                            <p class="inp" id="tel"></p>
+                            <label for="tel">เบอร์โทรศัพท์</label>
+                            <input class="inp" id="tel" disabled>
                         </div>
                         <div class="eachinput">
-                            <label for="name">E-mail</label>
-                            <p class="inp" id="email"></p>
+                            <label for="email">E-mail</label>
+                            <input class="inp" id="email" disabled>
                         </div>
                         <div class="eachinput">
-                            <label for="name">ทะเบียนรถ</label>
-                            <p class="inp" id="carregis"></p>
-                        </div>
+                            <label for="carregis">ทะเบียนรถ</label>
+                            <input class="inp" id="carregis" disabled>
+                        </div> 
                     </div>
                     <div id="forinfor">
                         <h4>รายละเอียดการนัดหมาย</h4>
@@ -222,7 +224,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

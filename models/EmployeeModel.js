@@ -83,6 +83,7 @@ const EmployeeModel = {
         });
     },
     getServiceHistoryWithCustomerwithGoods: (serviceHistoryId) => {
+        console.log("check"+serviceHistoryId);
         return new Promise((resolve, reject) => {
             const query = `
               SELECT *
@@ -92,7 +93,7 @@ const EmployeeModel = {
                 INNER JOIN Goods G ON SHD.goodsId = G.goodsId
                 WHERE SH.serviceHistoryId = ?;
             `;
-            db.get(query, [serviceHistoryId], (err, row) => {
+            db.all(query, [serviceHistoryId], (err, row) => {
                 if (err) {
                     return reject(err);
                 }

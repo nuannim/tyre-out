@@ -93,8 +93,8 @@ const EmployeeController = {
         EmployeeModel.getServiceHistoryWithCustomer(id)
             .then(data => {
                 if (data) {
+                    console.log("successsssssss");
                     res.json(data);
-                    
                 } else {
                     res.status(404).json({ message: 'Service history not found' });
                 }
@@ -110,7 +110,7 @@ const EmployeeController = {
         EmployeeModel.getServiceHistoryWithCustomerwithGoods(id)
             .then(data => {
                 if (data) {
-                    console("success");
+                    console.log("success");
                     res.json(data);
                 } else {
                     res.status(404).json({ message: 'Service history not found' });
