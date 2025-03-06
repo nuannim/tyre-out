@@ -70,7 +70,7 @@
                     <tbody>
                         <% service.forEach((element)=> { %>
                         <tr class="info-row">
-                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.serviceHistoryId %></td>
+                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
                             <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
                             <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
                             <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
@@ -80,10 +80,10 @@
                                 <div class="button-con">
                                     <button class="quotation-button"><i class='far fa-clipboard'></i></button>
                                     <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                    <form action="/acceptCase" method="POST">
+          
                                         <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
-                                        <button type="submit" class="assign-button" id="assign-button">รับเคส</button>
-                                    </form>
+                                        <button type="button" class="assign-button" onclick="acceptcase(<%= element.serviceHistoryId %>)" id="assign-button">รับเคส</button>
+
                                 </div>
                             </td>
                         </tr>
@@ -235,7 +235,7 @@
                 <h4>ยืนยันที่จะรับเคสนี้หรือไม่</h4>
                 <div class="inform-text">
                     <button class="cancel-button" onclick="cancel()">ยกเลิก</button>
-                    <button class="confirm-button" onclick="confirm()">ยืนยัน</button>
+                    <button class="confirm-button">ยืนยัน</button>
                 </div>
             </div>
         </div>

@@ -86,6 +86,7 @@
                      <table class="table-apmt">
                         <thead>
                             <tr id="column-row">
+
                                 <th class="c" id="c1"  scope="col">วัน-เวลา</th>
                                 <th class="c" id="c2"  scope="col">เบอร์โทร</th>
                                 <th class="c" id="c3"  scope="col">ชื่อ</th>
@@ -97,21 +98,29 @@
                         </thead>
                         <tbody>
                             <% service.forEach((element)=> { %>
+                                
                             <tr class="info-row">
-                                <td id="info-date-time" data-label="วัน-เวลา"><%= element.serviceHistoryId %></td>
+                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
                             <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
                             <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
                             <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
                             <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
-                            <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                            <td id="info-branch" data-label="ศูนย์บริการ" ><%= user.centerName %></td>
+                            <td id="info-service-history" data-label="วัน-เวลา" style="display: none;"><%= element.serviceHistoryId %></td>
+                            <td id="info-customer-id" data-label="วัน-เวลา" style="display: none;"><%= element.customerId %></td>
                                 <td id="action">
                                     <div class="button-con">
                                     <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                    <form action="/update-case-status" method="POST">
+                                        <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
+                                        <button type="submit" class="update-status-button">Update Status</button>
+                                    </form>
+                                    <button class="view-button" onclick="openPopup(this)"><i class="far fa-calendar-alt"></i></button>
+                                    <button class="delete-button" onclick="deleteServiceHistory(<%= element.serviceHistoryId %>)"><i class="fa fa-trash-o"></i></button>
                                     </div>
                                 </td>
                             </tr>
+
                             <%});%>
                         </tbody>
                     </table>
@@ -132,21 +141,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="info-row">
-                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
-                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
-                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
-                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
-                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
-                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
-                                <td id="action">
-                                    <div class="button-con">
-                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% acceptedService.forEach((element) => { %>
+                                <tr class="info-row">
+                                    <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
+                                    <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
+                                    <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
+                                    <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
+                                    <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
+                                    <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="action">
+                                        <div class="button-con">
+                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }); %>
                     </table>
                 </div>
 
@@ -165,21 +176,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="info-row">
-                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
-                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
-                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
-                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
-                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
-                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
-                                <td id="action">
-                                    <div class="button-con">
-                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% allAcceptService.forEach((element) => { %>
+                                <tr class="info-row">
+                                    <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
+                                    <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
+                                    <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
+                                    <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
+                                    <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
+                                    <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="action">
+                                        <div class="button-con">
+                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }); %>
                     </table>
                 </div>
 
@@ -198,21 +211,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="info-row">
-                                <td id="info-date-time" data-label="วัน-เวลา">29 ม.ค. 2568 9.00-11.00</td>
-                                <td id="info-phone" data-label="เบอร์โทร">123 456 7899</td>
-                                <td id="info-firstname" data-label="ชื่อ">ลีอาห์</td>
-                                <td id="info-lastname" data-label="นามสกุล">แซ่ตั้ง</td>
-                                <td id="info-service" data-label="บริการ">เปลี่ยนล้อรถยนต์</td>
-                                <td id="info-branch" data-label="ศูนย์บริการ">ลาดกระบัง</td>
-                                <td id="action">
-                                    <div class="button-con">
-                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                    <button class="delete-button"><i class="fa fa-trash-o"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% allAcceptedService.forEach((element) => { %>
+                                <tr class="info-row">
+                                    <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
+                                    <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
+                                    <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
+                                    <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
+                                    <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
+                                    <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="action">
+                                        <div class="button-con">
+                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
+                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }); %>
                     </table>
                 </div>
 
@@ -289,7 +304,7 @@
     <!-- popup view -->
     <div id="popup-view">
         <div id="fori">
-            <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
+            <i class="fa-solid fa-xmark" id="bac" onclick="closeViewPopup()"></i>
         </div>
         <div id="content">
             <h4>รายละเอียดการนัดหมาย</h4>
@@ -304,6 +319,7 @@
             </div>
             <div id="inform-box">
                 <div id="left">
+                    <input type="hidden" id="servicehistoryid" class="popup-input" value="เปลี่ยนชื่อ" disabled>
                     <div class="inform-text">
                         <p class="header">บริการ</p>
                         <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์"  disabled>
@@ -327,8 +343,12 @@
                         <input type="text" id="edit-car-license"  class="popup-input" value="-" disabled>
                     </div>
                     <div class="inform-text">
-                        <p class="header">ชื่อ - สกุล</p>
-                        <input type="text" id="edit-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
+                        <p class="header">ชื่อสกุล</p>
+                        <input type="text" id="edit-first-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">สกุล</p>
+                        <input type="text" id="edit-last-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">เบอร์โทร</p>

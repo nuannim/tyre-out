@@ -58,3 +58,35 @@ function bac3(){
     document.getElementById("popup-assign").style.opacity = 0;
     document.getElementById("popup-ov").style.opacity = 0;
 }
+
+function acceptcase(serviceHistoryId) {
+    document.getElementById("popup-assign").style.visibility = "visible";
+    document.getElementById("popup-ov").style.visibility = "visible";
+    document.getElementById("popup-assign").style.opacity = 1;
+    document.getElementById("popup-ov").style.opacity = 1;
+    console.log(serviceHistoryId);
+    document.querySelector('.confirm-button').addEventListener('click', function() {
+        fetch('/acceptCase', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ serviceHistoryId })
+        })
+        .then(response => {
+            if (response.headers.get('Content-Type')?.includes('application/json')) {
+                return response.json();
+            } else {
+                throw new Error('Unexpected response format');
+            }
+        })
+        .then(data => {
+            if (data.success) {
+                alert("รับการดูแลลูกค้าสำเร็จ");
+                location.reload();
+            } else {
+                alert('Failed to update service history');
+            }
+        })
+    });
+}

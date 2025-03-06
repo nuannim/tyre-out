@@ -28,6 +28,73 @@ const EmployeeModel = {
                 resolve(row || { firstName: "Unknown" }); // กำหนดค่าเริ่มต้นถ้าไม่มีข้อมูล
             });
         });
+    },
+    updateCaseStatus: (serviceHistoryId, status) => {
+        return new Promise((resolve, reject) => {
+            const query = `
+                UPDATE ServiceHistory
+                SET status = ?
+                WHERE serviceHistoryId = ?
+            `;
+            db.run(query, [status, serviceHistoryId], function(err) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(this.changes); // Return the number of rows updated
+            });
+        });
+    },
+    updateServiceHistory: (service, dated, serviceHistoryId) => {
+        return new Promise((resolve, reject) => {
+        
+            const query = `
+                UPDATE ServiceHistory
+                SET caseCategory =?, caseStartDatetime = ?
+                WHERE serviceHistoryId = ?
+            `;
+            db.run(query, [service, dated, serviceHistoryId], function(err) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(this.changes); // Return the number of rows updated
+            });
+        });
+    },
+    getServiceHistoryWithCustomer: (serviceHistoryId) => {
+        return new Promise((resolve, reject) => {
+            const query = `
+               SELECT * FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb
+                ON sh.centerId = sb.centerId
+                INNER JOIN Customers c
+                ON sh.customerId = c.customerId
+                INNER JOIN RegistrationNumber rn
+                ON c.customerId = rn.customerId
+                INNER JOIN Cars car
+                ON rn.carId = car.carId
+                WHERE sh.serviceHistoryId = ?;
+            `;
+            db.get(query, [serviceHistoryId], (err, row) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(row);
+            });
+        });
+    },
+    deleteServiceHistory: (serviceHistoryId) => {
+        return new Promise((resolve, reject) => {
+            const query = `
+                DELETE FROM ServiceHistory
+                WHERE serviceHistoryId = ?
+            `;
+            db.run(query, [serviceHistoryId], function(err) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(this.changes); // Return the number of rows deleted
+            });
+        });
     }
     // updateHandledByEmployeeId: (serviceHistoryId, employeeId) => {
     //     return new Promise((resolve, reject) => {
