@@ -114,13 +114,20 @@ if (getQueryParam("option1") && getQueryParam("option4")){
     showkilo.textContent = kilo.options[kilo.selectedIndex].text;
 }
 
+if (model.options[model.selectedIndex].value != ""){
+    showmodel.textContent = model.options[model.selectedIndex].text;
+}
+else {
+    showmodel.textContent = "-";
+}
+
 model.addEventListener("change", function() {
-    if (model.options[model.selectedIndex].value != ""){
-        showmodel.textContent = model.options[model.selectedIndex].text;
-    }
-    else {
-        showmodel.textContent = "-";
-    }
+if (model.options[model.selectedIndex].value != ""){
+    showmodel.textContent = model.options[model.selectedIndex].text;
+}
+else {
+    showmodel.textContent = "-";
+}
 });
 
 
@@ -170,15 +177,14 @@ function bac2() {
     document.getElementById("popup-ov2").style.visibility = "hidden";
 }
 
-// function bac() {
-//     document.getElementById("hid-drop-content").style.display = "none";
-//     document.getElementById("popup-ov").style.visibility = "hidden";
-//     document.getElementById("popup-bg").style.visibility = "hidden";
-//     document.getElementById("popup-ov").style.visibility = "hidden";
-//     document.getElementById("popup-bg").style.opacity = 0;
-//     document.getElementById("popup-ov").style.opacity = 0;
+function bac() {
+    document.getElementById("hid-drop-content").style.display = "none";
+    document.getElementById("popup-ov").style.visibility = "hidden";
+    document.getElementById("popup-bg").style.visibility = "hidden";
+    document.getElementById("popup-bg").style.opacity = 0;
+    document.getElementById("popup-ov").style.opacity = 0;
 
-// }
+}
 
 
 // let centerId2 = null; // * ของเนยสด ห้ามแตะ
@@ -720,6 +726,8 @@ async function selectDateLoggedIn(email) {
     const data = await response.json();
 
     dataForBookingLoggedIn = data;
+
+    // ! ปัญหาคือ ถ้าใช้รถที่เซฟไว้
 
     // let loggedInFirstName = document.getElementById("name");
     // let loggedInLastName = document.getElementById("last");

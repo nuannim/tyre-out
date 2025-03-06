@@ -135,7 +135,7 @@ tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-.view-button, .delete-button, .quotation-button{
+.view-button, .delete-button, .quotation-button, .update-status-button{
     background: none;
     color: inherit;
     border: none;
@@ -145,6 +145,7 @@ tr:nth-child(even) {
     outline: inherit;
     font-size: 2vh;
     width: 3vh;
+    transition: ease-in-out 0.2s;
 }
 .view-button:hover {
     color: rgb(0, 162, 255);
@@ -154,6 +155,9 @@ tr:nth-child(even) {
 }
 .quotation-button:hover{
     color: rgb(0, 162, 255);
+}
+.update-status-button:hover{
+    color: rgb(74, 199, 74);
 }
 
 
@@ -499,7 +503,16 @@ tr:nth-child(even) {
     border-radius: 0 0 0 2vh;
 }
 
+.update-status-button{
+    border: 0;
+    background-color: transparent;
+    width: 3vh;
+}
 
+#update-status-form{
+    display: flex;
+    justify-content: start;
+}
 
 
 
