@@ -155,39 +155,65 @@ app.post('/appointmentLoggedIn', (req, res) => {
         goodsIdList, customerId
     } = req.body;
 
-    const values = [
-        customerId, caseCategory, slot, caseStartDatetime, centerId
-    ];
+    
+    const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
 
-    const query = `INSERT INTO ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
-        VALUES (?, ?, ?, ?, ?)`;
-
-    db.run(query, values, function (err) {
+    db.run(updateMileageQuery, [mileage, customerId], function (err) {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Error creating service history' });
+            res.status(500).json({ error: 'Error updating mileage' });
             return;
         }
 
-        const serviceHistoryId = this.lastID;
-        const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
-        const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+        const values = [
+            customerId, caseCategory, slot, caseStartDatetime, centerId
+        ];
 
-        serviceHistoryDetailsValues.forEach(values => {
-            db.run(serviceHistoryDetailsQuery, values, function (err) {
-                if (err) {
-                    console.error(err);
-                    res.status(500).json({ error: 'Error creating service history details' });
-                    return;
-                }
+        const query = `INSERT INTO ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
+            VALUES (?, ?, ?, ?, ?)`;
+
+        db.run(query, values, function (err) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Error creating service history' });
+                return;
+            }
+
+            const serviceHistoryId = this.lastID;
+            const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
+            const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+
+            serviceHistoryDetailsValues.forEach(values => {
+                db.run(serviceHistoryDetailsQuery, values, function (err) {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).json({ error: 'Error creating service history details' });
+                        return;
+                    }
+                });
             });
+
+            res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
         });
-
-        res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
     });
-
-
 });
+
+
+// app.get('/getShowDetail/:serviceHistoryId', (req, res) => {
+//     const serviceHistoryId = req.params.serviceHistoryId;
+
+//     const query = ``;
+
+//     db.all(query, [serviceHistoryId], (err, rows) => {
+        
+//         if (err) {
+//             res.status(500).json({ error: err.message });
+//             return;
+//         }
+
+//         res.json(rows);
+//     });
+// });
 
 
 

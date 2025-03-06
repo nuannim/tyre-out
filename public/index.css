@@ -11,7 +11,7 @@ body {
 
 #nav {
   width: 100%;
-  height: 14vh;
+  /* height: 14vh; */
   display: flex;
   position: fixed;
   z-index: 10;
@@ -34,6 +34,7 @@ body {
   padding-left: 5vh;
   padding-right: 5vh;
   font-size: 2.5vh;
+  z-index: 10;
 }
 
 #nav-menu a {
@@ -401,7 +402,6 @@ body {
 
 #item {
   width: 100%;
-  height: 100vh;
   background-color: #104b82;
   text-align: center;
   padding-top: 10vh;
@@ -416,11 +416,12 @@ body {
   margin: auto;
 }
 .item-pic{
-  background-image: url(img/download.jpg);
+  /* background-image: url(img/download.jpg); */
+  background-color: white;
   background-size: cover;
   background-position: center;
   width: 60vh;
-  height: 50vh;
+  height: 70vh;
   border-radius: 2vh;
   box-shadow: 2px 2px 7px #0417284e;
 }
@@ -429,9 +430,21 @@ body {
   color: #f5f6f8;
 }
 
-.item-pic:hover .overlay {
-  visibility: visible;
-  opacity: 1;
+#more{
+  width: 90%;
+  text-align: end;
+  margin: 20px;
+}
+
+#more a {
+  text-decoration: none;
+  color: #f5f6f8;
+  transition: ease-in-out 0.2s;
+}
+
+#more a:hover {
+  text-shadow: 0px 0px 2px #f5f6f8;
+
 }
 
 @media (max-width: 768px) {
@@ -447,7 +460,8 @@ body {
   .drop,
   .btn,
   .btn-p,
-  #fortext p {
+  #fortext p,
+  #more a {
     font-size: 2vh;
   }
 
@@ -472,9 +486,14 @@ body {
     font-size: 2.8vh;
   }
 
-  .pic, .item-pic {
+  .pic {
     width: 40vh;
     height: 30vh;
+  }
+
+  .item-pic{
+    width: 40vh;
+    height: 50vh;
   }
 
   .drop {
@@ -486,7 +505,10 @@ body {
   }
 }
 
-@media (max-width: 610px) {
+@media (max-width: 700px) {
+  #mid {
+    display: none;
+  }
   #typewriter {
     min-height: 100px;
     margin-top: 60px;
@@ -496,14 +518,12 @@ body {
   .drop,
   .btn,
   .btn-p,
-  #fortext p {
+  #fortext p,
+  #more a {
     font-size: 1.6vh;
   }
   h3 {
     font-size: 2.4vh;
-  }
-  #mid {
-    display: none;
   }
 
   #hid-drop {
@@ -524,7 +544,12 @@ body {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 2vh;
-    z-index: 10;
+    z-index: 1000;
+  }
+
+  #hid-drop-content i {
+    margin-right: 10px;
+    margin-top: 10px;
   }
 
   #hid-drop-content a {

@@ -18,11 +18,12 @@
 </head>
 <style>
     .disabled {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: default;
-}
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: default;
+    }
 </style>
+
 <body>
     <div id="nav">
         <div id="nav-menu">
@@ -35,15 +36,15 @@
                 <p>|</p>
                 <a href="#promotion">โปรโมชัน</a>
                 <p>|</p>
-                <a href="#item">สินค้า</a>
+                <a href="/goods">สินค้า</a>
                 <p>|</p>
                 <a href="#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
-                <% if (email && email !== 'Guest') { %>
-                <p>|</p>
-                <a href="/history">ประวัติการนัดหมาย</a>
-                <% } %>
+                <% if (email && email !=='Guest' ) { %>
+                    <p>|</p>
+                    <a href="/history">ประวัติการนัดหมาย</a>
+                    <% } %>
             </div>
             <div id="las">
                 <div id="hid-drop">
@@ -51,22 +52,26 @@
                         <i class="fa-solid fa-grip-lines"></i>
                     </div>
                     <div id="hid-drop-content">
+                        <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
                         <a href="/">หน้าหลัก</a>
                         <a href="#promotion">โปรโมชัน</a>
+                        <a href="/goods">สินค้า</a>
                         <a href="#branch">ศูนย์บริการ</a>
                         <a href="/appointment">การนัดหมาย</a>
-                    <% if (email && email !== 'Guest') { %>
-                        <a href="/history">ประวัติการนัดหมาย</a>
-                    <% } %>
+                        <% if (email && email !=='Guest' ) { %>
+                            <a href="/history">ประวัติการนัดหมาย</a>
+                            <% } %>
                     </div>
                 </div>
-                <% if (email && email !== 'Guest') { %>
+                <% if (email && email !=='Guest' ) { %>
                     <a href="/login" class="disabled"><i class="fa-regular fa-user"></i></a>
                     <a href="/logout">Logout</a>
-                <% } else { %>
-                    <a href="/login"><i class="fa-regular fa-user"></i></a>
-                    <span style="padding: 0; margin: 0; color: white;"><%= email ? email : 'Guest' %></span>
-                <% } %>
+                    <% } else { %>
+                        <a href="/login"><i class="fa-regular fa-user"></i></a>
+                        <span style="padding: 0; margin: 0; color: white;">
+                            <%= email ? email : 'Guest' %>
+                        </span>
+                        <% } %>
             </div>
         </div>
     </div>
@@ -75,23 +80,23 @@
             <h1 id="typewriter"></h1>
         </div>
         <div class="mainbot">
-        <div id="check" data-aos="fade-up" data-aos-duration="1500">
-            <p>บริการเช็กระยะตามกำหนด</p>
-            <div class="forsel">
-                <% if (email && email !== 'Guest') { %>
-                    <form action="/saveCar" id="carform" method="POST" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                    <div class="top" style="display: flex; gap: 10px; width: 100%;">
-                        <select name="sel1" class="drop" id="sel1">
-                            <option value="" selected>เลือกรุ่นรถยนต์</option>
-                                <% let uniquecarmodel = new Set();
-                                    cars.forEach((element) => {
+            <div id="check" data-aos="fade-up" data-aos-duration="1500">
+                <p>บริการเช็กระยะตามกำหนด</p>
+                <div class="forsel">
+                    <% if (email && email !=='Guest' ) { %>
+                        <form action="/saveCar" id="carform" method="POST"
+                            style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                            <div class="top" style="display: flex; gap: 10px; width: 100%;">
+                                <select name="sel1" class="drop" id="sel1">
+                                    <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                    <% let uniquecarmodel=new Set(); cars.forEach((element)=> {
                                         uniquecarmodel.add(element.carModel);
                                     });
                                 uniquecarmodel.forEach((car) => { 
                             %>
                                 <option value="<%= car %>"><%= car %></option>
                             <% }); %>
-                            <option value="atemodel">รุ่นเสว</option>
+                            <!-- <option value="atemodel">รุ่นเสว</option> -->
                         </select>
                         <select name="sel2" class="drop" id="sel2">
                             <option value="" selected>เลือกรุ่นปี</option>
@@ -103,7 +108,7 @@
                             %>
                                 <option value="<%= car %>"><%= car %></option>
                             <% }); %>
-                            <option value="2525">2525</option>
+                            <!-- <option value="2525">2525</option> -->
                         </select>
                         <select name="sel3" class="drop" id="sel3">
                             <option value="" selected>เลือกเกรด</option>
@@ -115,7 +120,7 @@
                         %>
                             <option value="<%= car %>"><%= car %></option>
                         <% }); %>
-                            <option value="4">4.00</option>
+                            <!-- <option value="4">4.00</option> -->
                         </select>
                         <select name="sel4" class="drop" id="sel4">
                             <option value="" selected>เลือกระยะทาง</option>
@@ -145,75 +150,80 @@
                     </form>
                         
 
-                <% } else { %>
-                <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                    <div class="guest" style="display: flex; gap: 10px; justify-content: space-evenly;">
-                    <select name="sel1" class="drop" id="sel1">
-                        <option value="" selected>เลือกรุ่นรถยนต์</option>
-                            <% let uniquecarmodel = new Set();
-                                cars.forEach((element) => {
-                                    uniquecarmodel.add(element.carModel);
-                                });
-                            uniquecarmodel.forEach((car) => { 
-                        %>
-                            <option value="<%= car %>"><%= car %></option>
-                        <% }); %>
-                        <!-- <option value="atemodel">รุ่นเสว</option> -->
-                    </select>
-                    <select name="sel2" class="drop" id="sel2">
-                        <option value="" selected>เลือกรุ่นปี</option>
-                        <% let uniquecaryear = new Set();
-                                cars.forEach((element) => {
-                                    uniquecaryear.add(element.carYear);
-                                });
-                            uniquecaryear.forEach((car) => { 
-                        %>
-                            <option value="<%= car %>"><%= car %></option>
-                        <% }); %>
-                        <!-- <option value="2525">2525</option> -->
-                    </select>
-                    <select name="sel3" class="drop" id="sel3">
-                        <option value="" selected>เลือกเกรด</option>
-                        <% let uniquecargrade = new Set();
-                                cars.forEach((element) => {
-                                    uniquecargrade.add(element.carGrade);
-                                });
-                            uniquecargrade.forEach((car) => { 
-                        %>
-                            <option value="<%= car %>"><%= car %></option>
-                        <% }); %>
-                        <!-- <option value="4">4.00</option> -->
-                    </select>
-                    <select name="sel4" class="drop" id="sel4">
-                        <option value="" selected>เลือกระยะทาง</option>
-                        <!-- <option value="twentythousand">20,000 กม.</option> -->
-                        <option value="15000">15,000 กม.</option>
-                        <option value="30000">30,000 กม.</option>
-                        <option value="45000">45,000 กม.</option>
-                        <option value="60000">60,000 กม.</option>
-                        <option value="75000">75,000 กม.</option>
-                        <option value="90000">90,000 กม.</option>
-                        <option value="105000">105,000 กม.</option>
-                        <option value="120000">120,000 กม.</option>
-                        <option value="135000">135,000 กม.</option>
-                        <option value="150000">150,000 กม.</option>
-                        <option value="135000">135,000 กม.</option>
-                        <option value="165000">165,000 กม.</option>
-                        <option value="180000">180,000 กม.</option>
-                        <option value="195000">195,000 กม.</option>
-                        <option value="210000">210,000 กม.</option>
-                        <option value="225000">225,000 กม.</option>
-                        <option value="240000">240,000 กม.</option>
-                    </select>
-                    <div class="bottom" style="display: flex; justify-content: center;">
-                        <button class="btn" id="btn-service" onclick="checkshowpopguest()" width="100%">ค้นหา</button>
-                    </div>
+
+                        <% } else { %>
+                            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                                <div class="guest" style="display: flex; gap: 10px; justify-content: space-evenly;">
+                                    <select name="sel1" class="drop" id="sel1">
+                                        <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                        <% let uniquecarmodel=new Set(); cars.forEach((element)=> {
+                                            uniquecarmodel.add(element.carModel);
+                                            });
+                                            uniquecarmodel.forEach((car) => {
+                                            %>
+                                            <option value="<%= car %>">
+                                                <%= car %>
+                                            </option>
+                                            <% }); %>
+                                                <!-- <option value="atemodel">รุ่นเสว</option> -->
+                                    </select>
+                                    <select name="sel2" class="drop" id="sel2">
+                                        <option value="" selected>เลือกรุ่นปี</option>
+                                        <% let uniquecaryear=new Set(); cars.forEach((element)=> {
+                                            uniquecaryear.add(element.carYear);
+                                            });
+                                            uniquecaryear.forEach((car) => {
+                                            %>
+                                            <option value="<%= car %>">
+                                                <%= car %>
+                                            </option>
+                                            <% }); %>
+                                                <!-- <option value="2525">2525</option> -->
+                                    </select>
+                                    <select name="sel3" class="drop" id="sel3">
+                                        <option value="" selected>เลือกเกรด</option>
+                                        <% let uniquecargrade=new Set(); cars.forEach((element)=> {
+                                            uniquecargrade.add(element.carGrade);
+                                            });
+                                            uniquecargrade.forEach((car) => {
+                                            %>
+                                            <option value="<%= car %>">
+                                                <%= car %>
+                                            </option>
+                                            <% }); %>
+                                                <!-- <option value="4">4.00</option> -->
+                                    </select>
+                                    <select name="sel4" class="drop" id="sel4">
+                                        <option value="" selected>เลือกระยะทาง</option>
+                                        <!-- <option value="twentythousand">20,000 กม.</option> -->
+                                        <option value="15000">15,000 กม.</option>
+                                        <option value="30000">30,000 กม.</option>
+                                        <option value="45000">45,000 กม.</option>
+                                        <option value="60000">60,000 กม.</option>
+                                        <option value="75000">75,000 กม.</option>
+                                        <option value="90000">90,000 กม.</option>
+                                        <option value="105000">105,000 กม.</option>
+                                        <option value="120000">120,000 กม.</option>
+                                        <option value="135000">135,000 กม.</option>
+                                        <option value="150000">150,000 กม.</option>
+                                        <option value="135000">135,000 กม.</option>
+                                        <option value="165000">165,000 กม.</option>
+                                        <option value="180000">180,000 กม.</option>
+                                        <option value="195000">195,000 กม.</option>
+                                        <option value="210000">210,000 กม.</option>
+                                        <option value="225000">225,000 กม.</option>
+                                        <option value="240000">240,000 กม.</option>
+                                    </select>
+                                    <div class="bottom" style="display: flex; justify-content: center;">
+                                        <button class="btn" id="btn-service" onclick="checkshowpopguest()"
+                                            width="100%">ค้นหา</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
                 </div>
-                </div>
-                    <% } %>
-            </div>
-            <% if (email && email !== 'Guest') { %>
-                <!-- <style>
+                <% if (email && email !=='Guest' ) { %>
+                    <!-- <style>
                     @media (max-width: 610px) {
                         #main{
                             height: 120vh;
@@ -225,63 +235,65 @@
                         }
                     }
                 </style> -->
-                <p>รถยนต์ของคุณ</p>
-            <div class="forsel">
-                    <select name="carchoose" width="100%"  class="drop" id="carchoose">
-                        
-                        <option value="" selected>รถของคุณ</option>
-                        <% cuscars.forEach(car => { %>
-                            <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>"><%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %></option>
-                            <% }) %>
-                    </select>
-                
-                <div class="bottom" style="display: flex; justify-content: center; ">
-                    <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
-                </div>
-            <% } %>
+                    <p>รถยนต์ของคุณ</p>
+                    <div class="forsel">
+                        <select name="carchoose" width="100%" class="drop" id="carchoose">
+
+                            <option value="" selected>รถของคุณ</option>
+                            <% cuscars.forEach(car=> { %>
+                                <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>">
+                                    <%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %>
+                                </option>
+                                <% }) %>
+                        </select>
+
+                        <div class="bottom" style="display: flex; justify-content: center; ">
+                            <!-- <button class="btn" id="btn-service" onclick="gotoapp2()" width="100%">ค้นหา</button> -->
+                            <button class="btn" id="btn-service" onclick="checkshowpop()" width="100%">ค้นหา</button>
+                            <!-- <button class="btn" id="btn-service" onclick="checkSelectedCar()" width="100%">ค้นหา</button> -->
+                        </div>
+                        <% } %>
+                    </div>
             </div>
         </div>
-    </div>
     </section>
     <section id="promotion">
         <h1>โปรโมชันที่น่าสนใจ</h1>
         <div id="container">
             <% promotions.forEach((element)=> { %>
-                <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');" data-aos="fade-up" data-aos-offset="150"
-                    data-aos-easing="ease-in-sine">
+                <div class="pic" style="background-image: url('<%=element.promotionPhotoURL%>');" data-aos="fade-up"
+                    data-aos-offset="150" data-aos-easing="ease-in-sine">
                     <div class="overlay">
                         <!-- <h3>
                             <%=element.promotionName%>
                         </h3> -->
                         <!-- <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button> -->
                         <!-- <button class="btn-p" onclick="showpop(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button> -->
-                        <button class="btn-p" onclick="showpromotion(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button>
+                        <button class="btn-p"
+                            onclick="showpromotion(<%= JSON.stringify(element) %>)">แสดงรายละเอียด</button>
                     </div>
                 </div>
-            <%});%>
-            <!-- pop up มหาชน -->
-                <div id="popup-bg">
-                    <div id="fori">
-                        <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
+                <%});%>
+                    <!-- pop up มหาชน -->
+                    <div id="popup-bg">
+                        <div id="fori">
+                            <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
+                        </div>
+
+                        <div id="content"></div>
+
                     </div>
-
-                    <div id="content"></div>
-
-                </div>
-                <div id="popup-ov" onclick="bac()"></div>
+                    <div id="popup-ov" onclick="bac()"></div>
         </div>
     </section>
 
     <section id="item">
         <h1>สินค้า</h1>
+        <div id="more"><a href="/goods">ดูเพิ่มเติม</a></div>
         <div id="item-container">
-            <div class="item-pic" data-aos="fade-up" data-aos-offset="150"
-            data-aos-easing="ease-in-sine">
-                <div class="overlay">
-                    <button class="btn-p" onclick="showpop()">แสดงรายละเอียด</button>
-                </div>
-            </div>
-            
+            <% goods.slice(3, 9).forEach((element)=> { %>
+                <div class="item-pic" style="background-image: url('<%=element.goodsPhotoURL%>');"></div>
+            <% }); %>
         </div>
     </section>
 
@@ -290,25 +302,27 @@
         <div id="select-branch">
             <select name="branchvince" class="drop" id="branchvince">
                 <option value="" selected>เลือกจังหวัด</option>
-                <% let uniqueProvinces = new Set();
-                        servicebranches.forEach((element) => {
-                            uniqueProvinces.add(element.province);
-                        });
-                        uniqueProvinces.forEach((province) => { 
-                    %>  
-                        <option value="<%= province %>"><%= province %></option>
+                <% let uniqueProvinces=new Set(); servicebranches.forEach((element)=> {
+                    uniqueProvinces.add(element.province);
+                    });
+                    uniqueProvinces.forEach((province) => {
+                    %>
+                    <option value="<%= province %>">
+                        <%= province %>
+                    </option>
                     <% }); %>
             </select>
             <select name="branch-district" class="drop" id="branch-district">
                 <option value="" selected>เลือกอำเภอ/เขต</option>
-                <% let uniqueDistricts = new Set();
-                servicebranches.forEach((element) => {
+                <% let uniqueDistricts=new Set(); servicebranches.forEach((element)=> {
                     uniqueDistricts.add(element.district);
-                        });
-                uniqueDistricts.forEach((district) => { 
-                    %>  
-                <option value="<%= district %>"><%= district %></option>
-                <% }); %>
+                    });
+                    uniqueDistricts.forEach((district) => {
+                    %>
+                    <option value="<%= district %>">
+                        <%= district %>
+                    </option>
+                    <% }); %>
             </select>
             <button class="btn" id="btn-branch">ค้นหา</button>
         </div>
@@ -322,16 +336,18 @@
                         </h3>
                         <p>
                             <%=element.address%>
-                            <%=element.subdistrict%>
-                            <%=element.district%>
-                            <%=element.province%>
-                            <%=element.postcode%>
+                                <%=element.subdistrict%>
+                                    <%=element.district%>
+                                        <%=element.province%>
+                                            <%=element.postcode%>
                         </p>
-                        <p>โทรศัพท์ <%=element.telephone%></p>
-                        <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%></p>
+                        <p>โทรศัพท์ <%=element.telephone%>
+                        </p>
+                        <p>เปิดให้บริการเวลา <%=element.openTime%> - <%=element.closedTime%>
+                        </p>
                     </div>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
 
     </section>
@@ -343,15 +359,15 @@
     <script>
         AOS.init();
 
-            document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             var typed = new Typed("#typewriter", {
-          strings: ["Tyre-Out", "ยินดีต้อนรับสู่บริการของเรา", "เช็กรถง่าย ๆ ได้ที่นี่"],
-          typeSpeed: 100,
-          backSpeed: 50,
-          backDelay: 1000,
-          startDelay: 500,
-          loop: true,
-          showCursor: false
+                strings: ["Tyre-Out", "ยินดีต้อนรับสู่บริการของเรา", "เช็กรถง่าย ๆ ได้ที่นี่"],
+                typeSpeed: 100,
+                backSpeed: 50,
+                backDelay: 1000,
+                startDelay: 500,
+                loop: true,
+                showCursor: false
             });
         });
     </script>

@@ -1,3 +1,4 @@
+// * START ของที่ใครสักคนเขียนไว้ก่อนหน้า ============================================================================================
 function bac() {
     document.getElementById("popup-bg").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";
@@ -34,14 +35,15 @@ function showpromotion(promotion) {
     showpop();
 }
 
-
-
 let sel1 = document.getElementById("sel1");
 let sel2 = document.getElementById("sel2");
 let sel3 = document.getElementById("sel3");
 let sel4 = document.getElementById("sel4");
 let sel5 = document.getElementById("carchoose");
-// ฟังก์ชันโชว์ pop up ใบเสนอราคา
+
+// ฟังก์ชันโชว์ pop up ใบเสนอราคา // ! ขอยาดเอาออก ติดปัญหา ไม่ได้ใส่ mileage แล้ว popup จะแสดงผลไม่ได้
+// * checkshowpop() ไม่ใช้ละ เอา popup ออก เพราะไม่ได้เลือก mileage ใน home
+    // * ย้ายไป gotoapp()
 function checkshowpop() {
     const selectedCar = sel5.value;
     if (selectedCar) {
@@ -83,14 +85,10 @@ function checkshowpop() {
     // if (sel1.value != "" & sel2.value != "" & sel3.value != "" & sel4.value != ""){
     //     showpop()
     // }
-
     showpop();
-
 }
 
 
-
-// * ที่ใครสักคนเขียนไว้ก่อนหน้า
 // function checkshowpopguest(){
 //     const div = document.createElement("div");
 //     div.id = "check-result";
@@ -124,8 +122,10 @@ function checkshowpop() {
 
 //     showpop();
 // }
+// * END ของที่ใครสักคนเขียนไว้ก่อนหน้า ============================================================================================
 
 
+// * START ของเนยสด ================================================================================================================
 async function checkshowpopguest() {
     // ดึงค่าที่เลือกจาก dropdown
     const carModel = document.getElementById("sel1").value; // ใช้ carModel
@@ -203,7 +203,33 @@ async function checkshowpopguest() {
     }
 }
 
+// * END ของเนยสด ================================================================================================================
 
+
+// * START ของที่ใครสักคนเขียนไว้ก่อนหน้า ep.2 ============================================================================================
+function gotoapp2() {
+    // ไว้ส่ง value ของ dropdown ไปหน้า appointment
+    // const sel1 = document.getElementById("sel1").value;
+    // const sel2 = document.getElementById("sel2").value;
+    // const sel3 = document.getElementById("sel3").value;
+    // const sel4 = document.getElementById("sel4").value;
+    // const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
+    
+    const selectedCar = sel5.value;
+    if (selectedCar) {
+        const carParts = selectedCar.split(" - ");
+
+        if (carParts.length === 3) {
+            sel1.value = carParts[0];
+            sel2.value = carParts[1];
+            sel3.value = carParts[2];
+        }
+    }
+    
+    const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&option4=${(sel4.value)}`;
+    window.location.href = letsend;
+
+}
 
 function gotoapp() {
     // ไว้ส่ง value ของ dropdown ไปหน้า appointment
@@ -212,6 +238,7 @@ function gotoapp() {
     // const sel3 = document.getElementById("sel3").value;
     // const sel4 = document.getElementById("sel4").value;
     // const letsend = `appointment.html?option1=${encodeURIComponent(sel1)}&option2=${encodeURIComponent(sel2)}&option3=${encodeURIComponent(sel3)}&option4=${encodeURIComponent(sel4)}`;
+
     const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&option4=${(sel4.value)}`;
     window.location.href = letsend;
 
@@ -260,10 +287,46 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+const findBranch = document.getElementById("btn-branch");
+findBranch.addEventListener("click", function() {
+    const provinceSelect = document.getElementById("branchvince");
+    const districtSelect = document.getElementById("branch-district");
+    const selectedProvince = provinceSelect.value;
+    const selectedDistrict = districtSelect.value;
+
+    if (selectedProvince && selectedDistrict){
+        fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("area").innerHTML = '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+    else if (selectedProvince && !selectedDistrict){
+        fetch(`/province?province=${selectedProvince}`)
+        .then(response => response.json())
+        .then(districts => {
+            document.getElementById("area").innerHTML = '';
+            districts.forEach(district => {
+                    document.getElementById("area").innerHTML += '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
+                });
+            })
+            .catch(error => console.error("Error loading districts:", error));
+    }
+});
 
 
 
 
+
+
+
+
+
+// * END ของที่ใครสักคนเขียนไว้ก่อนหน้า ep.2 ============================================================================================
 
 
 // * ของเก่า
@@ -361,45 +424,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //     showpop();
 // }
 
-
-
-
-
-
-
-const findBranch = document.getElementById("btn-branch");
-findBranch.addEventListener("click", function() {
-    const provinceSelect = document.getElementById("branchvince");
-    const districtSelect = document.getElementById("branch-district");
-    const selectedProvince = provinceSelect.value;
-    const selectedDistrict = districtSelect.value;
-
-    if (selectedProvince && selectedDistrict){
-        fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
-        .then(response => response.json())
-        .then(districts => {
-            document.getElementById("area").innerHTML = '';
-            districts.forEach(district => {
-                    document.getElementById("area").innerHTML = '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
-                });
-            })
-            .catch(error => console.error("Error loading districts:", error));
-    }
-    else if (selectedProvince && !selectedDistrict){
-        fetch(`/province?province=${selectedProvince}`)
-        .then(response => response.json())
-        .then(districts => {
-            document.getElementById("area").innerHTML = '';
-            districts.forEach(district => {
-                    document.getElementById("area").innerHTML += '<div id="branch-area" data-aos="fade-up" data-aos-offset="150">' + `<div id="forimg" style="background-image: url('` + district.branchPhotoURL + `');">` + '</div>' + '<div id="fortext">' + '<h3>' + district.centerName + '</h3>' + '<p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + '</p>' + '</div>' + '</div>';
-                });
-            })
-            .catch(error => console.error("Error loading districts:", error));
-    }
-
-
-
-});
 
 
 

@@ -8,14 +8,15 @@ const db = require('../models/dbconn.js'); // ! เดี๋ยวย้าย�
 const { get } = require('http');
 
 const UserController = {
-    getIndexPage: async (req, res) => {
+    // * ของเนยสด ==================================================================================
+    getIndexPage: async (req, res) => { // * ของเนยสด
 
         const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
         const car = await UserModel.allCars();
-
         
+        const g = await UserModel.allGoods();
             
         const cuscar = await UserModel.CustomerCars(email);
 
@@ -28,8 +29,10 @@ const UserController = {
                         email: email,
                         promotions: p,
                         servicebranches: sb,
-                    cars: car,
-                cuscars: cuscar});
+                        cars: car,
+                        cuscars: cuscar,
+                        goods: g
+        });
 
         // res.render('index', {
         //     email: email,
@@ -68,7 +71,7 @@ const UserController = {
         //   });
     },
 
-    getAppointmentPage: async (req, res) => {
+    getAppointmentPage: async (req, res) => { // * ของใครไม่รู้
         const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
         const cuscar = await UserModel.CustomerCars(email);
@@ -87,13 +90,49 @@ const UserController = {
         }
     },
 
-    getHistoryPage: async (req, res) => {
+    getHistoryPage: async (req, res) => { // * ของใครไม่รู้ แต่เนยสดแก้ข้างในนะ
+
+        if (!req.session.user) {
+            return res.redirect("/login"); // ถ้าไม่ได้ล็อกอิน ให้ redirect ไปหน้า login
+        }
+
         try {
-            res.render('history');
+            // const query = `SELECT * FROM ServiceHistory sh
+            //     INNER JOIN Customers c
+            //     ON sh.customerId = c.customerId
+            //     where c.email = ?`;
+
+            const query = `SELECT * FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb
+                ON sh.centerId = sb.centerId
+                INNER JOIN Customers c
+                ON sh.customerId = c.customerId
+                INNER JOIN RegistrationNumber rn
+                ON c.customerId = rn.customerId
+                INNER JOIN Cars car
+                ON rn.carId = car.carId
+                WHERE c.email = ?;`;
+
+            const values = [req.session.user.email]; 
+            // const values = ['max@gmail.com']; 
+
+            console.log("Before DB Query");
+            
+            db.all(query, values, (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Error fetching users');
+                }
+                console.log('rows from getHistoryPage: ', rows);
+                res.render('history', {data: rows});
+            });
+
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
     },
+
+    // * ของแม้ก ==================================================================================
     processSignin: async (req, res) => {
         let formdata = {
             username2: req.body.username,
@@ -184,52 +223,52 @@ const UserController = {
     CarsaveCustomer: async (req, res) => {
         const { sel1, sel2, sel3, sel4, email } = req.body;
 
-         console.log(req.body);
+        console.log(req.body);
 
             if (!sel1 || !sel2 || !sel3 || !sel4 || !email) {
                 return res.status(400).send('ทะลึ่ง');
             }
 
-    const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
+        const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
 
-    db.get(findcar, [sel1, sel2, sel3], (err, carRow) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Car find error');
-        }
-
-        if (!carRow) {
-            return res.status(404).send('Car not found');
-        }
-
-        const carId = carRow.carId;
-
-        const findcus = `SELECT customerId FROM Customers WHERE email = ?`;
-
-        db.get(findcus, [email], (err, customerRow) => {
+        db.get(findcar, [sel1, sel2, sel3], (err, carRow) => {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Cant find customer');
+                return res.status(500).send('Car find error');
             }
 
-            if (!customerRow) {
-                return res.status(404).send('NOt found');
+            if (!carRow) {
+                return res.status(404).send('Car not found');
             }
 
-            const customerId = customerRow.customerId;
+            const carId = carRow.carId;
 
-            const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+            const findcus = `SELECT customerId FROM Customers WHERE email = ?`;
 
-            db.run(forinsert, [carId, customerId, sel4], function (err) {
+            db.get(findcus, [email], (err, customerRow) => {
                 if (err) {
                     console.error(err);
-                    return res.status(500).send('save error');
+                    return res.status(500).send('Cant find customer');
                 }
-                console.log(`ID: ${this.lastID}`);
-                res.redirect('/');
+
+                if (!customerRow) {
+                    return res.status(404).send('NOt found');
+                }
+
+                const customerId = customerRow.customerId;
+
+                const forinsert = `INSERT INTO RegistrationNumber (carId, customerId, mileage) VALUES (?, ?, ?)`;
+
+                db.run(forinsert, [carId, customerId, sel4], function (err) {
+                    if (err) {
+                        console.error(err);
+                        return res.status(500).send('save error');
+                    }
+                    console.log(`ID: ${this.lastID}`);
+                    res.redirect('/');
+                });
             });
         });
-    });
     }
     ,
     getMaintenanceGoods: async (req, res) => { // * ของเนยสด
@@ -301,9 +340,8 @@ const UserController = {
 
 
 
-
-
-    , // แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
+    , // * แบคครั้งแรกของแคร์ ฮณี่ๆๆีๆ่ๆรีๆรีๆร่ๆรๆ่
+    // เก่งมากน้องงงง
     getDistricts: async (req, res) => {
         const { province } = req.query;
 
@@ -325,6 +363,15 @@ const UserController = {
         const result = await UserModel.selectFromProvince(province);
 
         res.send(JSON.stringify(result));
+    },
+
+    getGoods: async (req, res) => {
+        const g = await UserModel.allGoods();
+        const email = req.session.user ? req.session.user.email : 'Guest';
+        res.render('goods', {
+            goods: g,
+            email: email
+        });
     }
 
 

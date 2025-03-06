@@ -47,6 +47,15 @@ const UserModel = {
 
     }, 
 
+    allGoods: () => {
+        return new Promise((resolve, reject) => {
+            db.all("SELECT * from Goods", (err, p) => {
+              if (err) reject(err);
+              else resolve(p);
+            });
+        });
+    },
+
     allServiceBranch: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from ServiceBranch", (err, sb) => {

@@ -21,6 +21,8 @@
                 <p>|</p>
                 <a href="/#promotion">โปรโมชัน</a>
                 <p>|</p>
+                <a href="/goods">สินค้า</a>
+                <p>|</p>
                 <a href="/#branch">ศูนย์บริการ</a>
                 <p>|</p>
                 <a href="/appointment">การนัดหมาย</a>
@@ -33,8 +35,10 @@
                         <i class="fa-solid fa-grip-lines"></i>
                     </div>
                     <div id="hid-drop-content">
+                        <i class="fa-solid fa-xmark" id="bac" onclick="bac2()"></i>
                         <a href="/">หน้าหลัก</a>
                         <a href="/#promotion">โปรโมชัน</a>
+                        <a href="/goods">สินค้า</a>
                         <a href="/#branch">ศูนย์บริการ</a>
                         <a href="/appointment">การนัดหมาย</a>
                         <a href="/history">ประวัติการนัดหมาย</a>
@@ -47,78 +51,114 @@
     <section id="main">
         <div class="tab">
             <input type="radio" id="tab1" name="tab" checked="checked">
+            <!-- & tab นัดหมายยังไม่มาถึง -->
             <label for="tab1">ยังมาไม่ถึง</label>
             <div class="inside" id="coming">
                 <div class="ins">
-                    <div class="app">
-                        <h4>บริการเช็คระยะ</h4>
-                        <p>สาขาทุ่งมะขามป้อม</p>
-                        <p>32 มกราคม 2525 ช่วงเย็น</p>
-                    </div>
+                    <!-- * กล่อง ใส่ ejs ตรงนี้ -->
+                        <% data.forEach(element => { 
+                            const currentDate = new Date();
+                            const appointmentDate = new Date(element.caseStartDatetime);
+
+                            currentDate.setHours(0, 0, 0, 0);
+                            appointmentDate.setHours(0, 0, 0, 0);
+
+                            if (appointmentDate >= currentDate) { %>
+                                <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
+                                    <!-- <h4>บริการเช็คระยะ</h4>
+                                    <p>สาขาทุ่งมะขามป้อม</p>
+                                    <p>32 มกราคม 2525 ช่วงเย็น</p> -->
+                                    <h4><%= element.caseCategory %></h4>
+                                    <p><%= element.centerName %></p>
+                                    <p><%= element.caseStartDatetime %></p>
+                                </div>
+                        <% } }); %>
                 </div>
             </div>
+
+            <!-- & tab นัดหมายผ่านมาแล้ว -->
             <input type="radio" id="tab2" name="tab">
             <label for="tab2">ผ่านมาแล้ว</label>
             <div class="inside" id="finish">
                 <div class="ins">
-                    <div class="app">
+                    <!-- * กล่อง ใส่ ejs ตรงนี้ -->
+                        <% data.forEach(element => { 
+                            const currentDate = new Date();
+                            const appointmentDate = new Date(element.caseStartDatetime);
+
+                            currentDate.setHours(0, 0, 0, 0);
+                            appointmentDate.setHours(0, 0, 0, 0);
+
+                            if (appointmentDate < currentDate) { %>
+                                <div class="app" onclick='showDetail(<%= JSON.stringify(element) %>)'>
+                                    <h4><%= element.caseCategory %></h4>
+                                    <p><%= element.centerName %></p>
+                                    <p><%= element.caseStartDatetime %></p>
+                                </div>
+                    <!-- <div class="app">
                         <h4>บริการเช็คระยะ</h4>
                         <p>สาขาทุ่งมะขามป้อม</p>
                         <p>32 มกราคม 2525 ช่วงเย็น</p>
-                    </div>
+                    </div> -->
+                        <% } }); %>
                 </div>
             </div>
         </div>
+
         <div id="popup-bg">
             <div id="fori">
                 <i class="fa-solid fa-xmark" id="bac" onclick="bac()"></i>
             </div>
+
+            <!-- & สิ่งนี้คือ popup -->
+
+            <!-- อันนี้เปิดขึ้นมาเพราะกด class ที่ชื่อ app -->
             <div id="content">
                 <h4>รายละเอียดการนัดหมาย</h4>
                 <div id="branch-box">
                     <div id="image"></div>
                     <div id="branch-text">
-                        <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
-                        <p class="header">ที่อยู่</p>
-                        <p class="header">เบอร์โทร</p>
-                        <p class="header">เวลาเปิดปิด</p>
+                        <h4 class="show" id="centerName">สาขาทุ่งหนองแจ๋ม</h4>
+                        <p class="header" id="address">ที่อยู่</p>
+                        <p class="header" id="telephone">เบอร์โทร</p>
+                        <p class="header" id="time">เวลาเปิดปิด</p>
                     </div>
                 </div>
                 <div id="inform-box">
                     <div id="left">
                         <div class="inform-text">
                             <p class="header">บริการ</p>
-                            <p class="show">-</p>
+                            <p class="show" id="caseCategory">-</p>
                         </div>
                         <div class="inform-text">
-                            <p class="header">วันเวลา</p>
-                            <p class="show">-</p>
+                            <p class="header" >วันเวลา</p>
+                            <p class="show" id="caseStartDatetime">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">รุ่นรถยนต์</p>
-                            <p class="show">-</p>
+                            <p class="show" id="carModel">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">ระยะทาง</p>
-                            <p class="show">-</p>
+                            <p class="show" id="mileage">-</p>
                         </div>
                     </div>
                     <div id="right">
                         <div class="inform-text">
                             <p class="header">ทะเบียนรถ</p>
-                            <p class="show">-</p>
+                            <p class="show" id="carRegisNo">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">ชื่อ - สกุล</p>
-                            <p class="show">-</p>
+                            <p class="show" id="firstLastName">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">เบอร์โทร</p>
-                            <p class="show">-</p>
+                            <p class="show" id="phoneNumber">-</p>
                         </div>
                         <div class="inform-text">
                             <p class="header">E-mail</p>
-                            <p class="show">-</p>
+                            <p class="show" id="email">-</p>
                         </div>
                     </div>
                 </div>
@@ -128,5 +168,10 @@
         <div id="popup-ov2" onclick="bac2()"></div>
     </section>
     <script src="history.js"></script>
+
+    <script>
+        console.log("Data from server:", <%- JSON.stringify(data, null, 2) %>);
+    </script>
+
 </body>
 </html>
