@@ -59,3 +59,18 @@ INNER JOIN Cars car
     ON rn.carId = car.carId
 WHERE c.email = 'max@gmail.com';
 ```
+
+
+```sql
+SELECT * 
+FROM ServiceHistory sh
+INNER JOIN ServiceBranch sb 
+    ON sh.centerId = sb.centerId
+INNER JOIN RegistrationNumber rn  -- เชื่อม ServiceHistory กับ RegistrationNumber ผ่าน regId
+    ON sh.regId = rn.regId        
+INNER JOIN Customers c            
+    ON rn.customerId = c.customerId  -- ใช้ customerId จาก RegistrationNumber เชื่อมต่อ
+INNER JOIN Cars car 
+    ON rn.carId = car.carId
+WHERE sh.centerId = 2 and sh.handledByEmployeeId is NULL;
+```
