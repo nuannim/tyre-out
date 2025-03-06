@@ -38,6 +38,8 @@ let guestCarRegisNo;
 let LoggedIncarRegisNo;
 
 let dataForBookingLoggedIn;
+
+let regId; // * ใช้ตอนเพิ่มเข้าไปที่ ServiceHistory table
 // * ================================================================
 
 
@@ -829,6 +831,15 @@ async function selectDateLoggedIn(email) {
 
     dataForBookingLoggedIn = data;
 
+    const foundItem = data.find(item => item.carRegisNo === carRegisNo);
+
+    if (foundItem) {
+        console.log('ID ที่เจอคือ:', foundItem.regId); // ได้ 2
+        regId = foundItem.regId;
+    } else {
+        console.log('ไม่พบข้อมูล');
+    }
+
     // ! ปัญหาคือ ถ้าใช้รถที่เซฟไว้
 
     // let loggedInFirstName = document.getElementById("name");
@@ -836,10 +847,10 @@ async function selectDateLoggedIn(email) {
     // let loggedInTel = document.getElementById("tel");
     // let loggedInEmail = document.getElementById("email");
 
-    document.getElementById("name").value = data.firstName;
-    document.getElementById("last").value = data.lastName;
-    document.getElementById("tel").value = data.phoneNumber;
-    document.getElementById("email").value = data.email;
+    document.getElementById("name").value = data[0].firstName;
+    document.getElementById("last").value = data[0].lastName;
+    document.getElementById("tel").value = data[0].phoneNumber;
+    document.getElementById("email").value = data[0].email;
     // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
     document.getElementById("carregis").value = carRegisNo;
 
@@ -963,7 +974,10 @@ async function bookingLoggedIn() {
                 // guestEmail: guestEmail,
                 // guestCarRegisNo: guestCarRegisNo,
                 goodsIdList: goodsData,
-                customerId: dataForBookingLoggedIn.customerId
+                customerId: dataForBookingLoggedIn.customerId,
+                // regId: LoggedIncarRegisNo
+                // regId: dataForBookingLoggedIn.carRegisNo
+                regId: regId
             }),
         });
 

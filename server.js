@@ -86,11 +86,12 @@ app.post('/appointment', (req, res) => {
 
             // * หลังจากที่เพิ่มข้อมูลลงใน RegistrationNumber แล้ว เพิ่มข้อมูลลงใน ServiceHistory
             const values = [
-                customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0
+                customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0, mileage
             ];
 
-            const query = `insert into ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status)
-                values (?, ?, ?, ?, ?, ?, ?)`;
+            const query = `insert into ServiceHistory 
+                (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status, caseSummary)
+                values (?, ?, ?, ?, ?, ?, ?, ?)`;
 
             db.run(query, values, function (err) {
                 if (err) {
@@ -148,10 +149,12 @@ app.get('/getLoggedInUser', (req, res) => {
         }
 
         // ส่งข้อมูลที่ได้จากการ join ทั้งสองตาราง
-        // res.json(rows);
-        res.json(rows[0]);
+        res.json(rows);
+        // res.json(rows[0]);
     });
 });
+
+
 
 
 
@@ -163,7 +166,7 @@ app.post('/appointmentLoggedIn', (req, res) => {
         centerId, caseStartDatetime,
         slot, caseCategory, 
         // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
-        goodsIdList, customerId
+        goodsIdList, customerId, regId
     } = req.body;
 
     
@@ -177,11 +180,12 @@ app.post('/appointmentLoggedIn', (req, res) => {
         }
 
         const values = [
-            customerId, caseCategory, slot, caseStartDatetime, centerId
+            customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0, mileage
         ];
 
-        const query = `INSERT INTO ServiceHistory (customerId, caseCategory, slot, caseStartDatetime, centerId)
-            VALUES (?, ?, ?, ?, ?)`;
+        const query = `INSERT INTO ServiceHistory 
+            (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status, caseSummary)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
         db.run(query, values, function (err) {
             if (err) {

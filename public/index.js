@@ -41,6 +41,8 @@ let sel3 = document.getElementById("sel3");
 let sel4 = document.getElementById("sel4");
 let sel5 = document.getElementById("carchoose");
 
+let car_regis = document.getElementById("car-regis");
+
 // ฟังก์ชันโชว์ pop up ใบเสนอราคา // ! ขอยาดเอาออก ติดปัญหา ไม่ได้ใส่ mileage แล้ว popup จะแสดงผลไม่ได้
 // * checkshowpop() ไม่ใช้ละ เอา popup ออก เพราะไม่ได้เลือก mileage ใน home
     // * ย้ายไป gotoapp()
