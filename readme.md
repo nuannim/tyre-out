@@ -24,4 +24,22 @@ nodemon -v
 ```bash
 npm install -g nodemon
 ```
+<br>
+<br>
+<br>
+<br>
+<br>
 
+อันนี้ฝากส่วนตัว
+```sql
+SELECT * FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb
+                ON sh.centerId = sb.centerId
+                INNER JOIN Customers c
+                ON sh.customerId = c.customerId
+                INNER JOIN RegistrationNumber rn
+                ON c.customerId = rn.customerId
+                INNER JOIN Cars car
+                ON rn.carId = car.carId
+                WHERE c.email = ?;
+```
