@@ -110,16 +110,28 @@ const UserController = {
             //     ON sh.customerId = c.customerId
             //     where c.email = ?`;
 
-            const query = `SELECT * FROM ServiceHistory sh
-                INNER JOIN ServiceBranch sb
-                ON sh.centerId = sb.centerId
-                INNER JOIN Customers c
-                ON sh.customerId = c.customerId
+            // const query = `SELECT * FROM ServiceHistory sh
+            //     INNER JOIN ServiceBranch sb
+            //     ON sh.centerId = sb.centerId
+            //     INNER JOIN Customers c
+            //     ON sh.customerId = c.customerId
+            //     INNER JOIN RegistrationNumber rn
+            //     ON c.customerId = rn.customerId
+            //     INNER JOIN Cars car
+            //     ON rn.carId = car.carId
+            //     WHERE c.email = ?;`;
+
+            const query = `SELECT * 
+                FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb 
+                    ON sh.centerId = sb.centerId
                 INNER JOIN RegistrationNumber rn
-                ON c.customerId = rn.customerId
-                INNER JOIN Cars car
-                ON rn.carId = car.carId
-                WHERE c.email = ?;`;
+                    ON sh.regId = rn.regId        
+                INNER JOIN Customers c            
+                    ON rn.customerId = c.customerId
+                INNER JOIN Cars car 
+                    ON rn.carId = car.carId
+                where c.email = ?;`;
 
             const values = [req.session.user.email]; 
             // const values = ['max@gmail.com']; 
