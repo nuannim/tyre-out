@@ -93,8 +93,25 @@ const EmployeeController = {
         EmployeeModel.getServiceHistoryWithCustomer(id)
             .then(data => {
                 if (data) {
+                    console.log("successsssssss");
                     res.json(data);
-                    
+                } else {
+                    res.status(404).json({ message: 'Service history not found' });
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching service history:', err);
+                res.status(500).json({ message: 'Internal server error' });
+            });
+    },
+    getServiceHistorywithGoods: (req, res) => {
+        const { id } = req.query;
+        console.log(id);
+        EmployeeModel.getServiceHistoryWithCustomerwithGoods(id)
+            .then(data => {
+                if (data) {
+                    console.log("success");
+                    res.json(data);
                 } else {
                     res.status(404).json({ message: 'Service history not found' });
                 }

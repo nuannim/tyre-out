@@ -79,12 +79,17 @@ body{
   
 #mid {
     display: flex;
+    justify-content: center;
+    width: 60%;
 }
 
 #hid-drop {
     display: none;
 }
 
+#branch-text p{
+    font-size: 2vh;
+}
 
 /* ตาราง */
 .table-apmt{
@@ -110,11 +115,16 @@ table thead, table tbody tr {
     font-size: 2vh;
     font-weight: 500;
     color: #104B82;
-    text-align: center;
+    text-align: start;
     border-bottom: 1px solid rgb(224, 224, 224);
 }
 th, td{
-    text-align: center;
+    text-align: start;
+}
+
+td{
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .button-con{
     display: flex;
@@ -205,7 +215,7 @@ tr:nth-child(even) {
     color: #041728;
     margin: 0;
     text-align: left;
-    font-size: 2vh;
+    font-size: 2.5vh;
 }
 .header{
     color: #B6B6B6;
@@ -226,7 +236,7 @@ tr:nth-child(even) {
 }
 #branch-box{
     display: flex;
-    width: 95.5%;
+    width: 100%;
     height: auto;
     background-color: white;
     border-radius: 2vh;
@@ -234,12 +244,13 @@ tr:nth-child(even) {
     gap: 2vh;
 }
 #image{
-    width: 20vh;
+    width: 35vh;
     height: 20vh;
     background-image: url(img/branch_1_img.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 2vh;
 }
 #inform-box{
     display: flex;
@@ -250,7 +261,7 @@ tr:nth-child(even) {
 #left, #right{
     background-color: white;
     border-radius: 2vh;
-    width: 48%;
+    width: 50%;
     padding: 2vh;
     text-align: left;
     line-height: 5vh;
@@ -274,14 +285,14 @@ tr:nth-child(even) {
 }
 
 .save-button, .edit-button, .cancel-edit-button {
-    background-color: #000000;
+    background-color: #104B82;
 	color: white;
 	border: none;
     border-radius: 1vh;
 	padding: 1vh 2vh;
 	cursor: pointer;
-    font-size: 2.5vh;
-    opacity: 0.6;
+    font-size: 2vh;
+    /* opacity: 0.6; */
     transition: 0.5s;
     width: auto;
 }
@@ -292,7 +303,8 @@ tr:nth-child(even) {
     display: none;
 }
 .save-button:hover, .edit-button:hover, .cancel-edit-button:hover {
-    opacity: 1;
+    background-color: #093864;
+
 }
 
 /* popup-delete */
@@ -450,7 +462,7 @@ tr:nth-child(even) {
 /* tabs */
 .tab-box{
     display:flex;
-    height: 50%;
+    height: 70%;
     width: 80%;
     margin: auto;
 }
@@ -656,9 +668,9 @@ tr:nth-child(even) {
 
 @media (max-width: 630px) {
     /* nav */
-    #mid {
+    /* #mid {
         display: none;
-    }
+    } */
     #hid-drop {
         display: block;
         float: left;
@@ -698,13 +710,16 @@ tr:nth-child(even) {
         z-index: 9;
     }
     #las {
-        width: 50%;
+        width: 20%;
         display: flex;
         gap: 10px;
         justify-content: end;
     }
     #fis {
-        width: 50%;
+        width: 20%;
+    }
+    #mid{
+        width: 60%;
     }
     #branch-box {
         flex-direction: column;

@@ -37,7 +37,7 @@ module.exports = function(app) {
     app.get('/SelectedProvinceAndDistrict', UserController.getSelectedProvinceAndDistrict);
     app.get('/province', UserController.getSelectFromProvince);
     app.get('/goods', UserController.getGoods);
-
+    app.get('/getModel', UserController.getCarGrade);
     app.get('/getMaintenanceGoods', UserController.getMaintenanceGoods);
     // app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
 };

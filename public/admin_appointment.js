@@ -30,19 +30,23 @@ function shownav(){
 //POPUPS & BUTTONS FUNCTIOON
 
 //กดไอคอนคลิปบอร์ด แล้วแสดง Popup ใบเสนอราคา
-document.querySelectorAll('.quotation-button').forEach(a => {
-    a.addEventListener('click', function() {
-    document.getElementById("popup-quotation").style.visibility = "visible";
-    document.getElementById("popup-ov").style.visibility = "visible";
-    document.getElementById("popup-quotation").style.opacity = 1;
-    document.getElementById("popup-ov").style.opacity = 1;
-});
-});
+// document.querySelectorAll('.quotation-button').forEach(a => {
+//     a.addEventListener('click', function() {
+//     document.getElementById("popup-quotation").style.visibility = "visible";
+//     document.getElementById("popup-ov").style.visibility = "visible";
+//     document.getElementById("popup-quotation").style.opacity = 1;
+//     document.getElementById("popup-ov").style.opacity = 1;
+// });
+// });
 function bac1(){
     document.getElementById("popup-quotation").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";
     document.getElementById("popup-quotation").style.opacity = 0;
     document.getElementById("popup-ov").style.opacity = 0;
+
+    document.getElementById("show-price-chemi").innerHTML = "";
+    document.getElementById("show-price-labor").textContent = "";
+    document.getElementById("show-price-total").textContent = "";
 }
 
 
@@ -85,13 +89,175 @@ function closeViewPopup() {
     document.getElementById('popup-ov').style.visibility = 'hidden';
     document.getElementById('popup-view').style.opacity = 0;
     document.getElementById('popup-ov').style.opacity = 0;
+
+    
+
 }
+
+function openPopup3(button){
+    const row = button.closest('.info-row');
+
+
+
+    const service = row.querySelector('#info-service-history').textContent;
+
+    console.log(service);
+
+    document.getElementById("show-price-chemi").innerHTML = ""
+
+    fetch(`/service-history-Goods?id=${service}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data) {
+            data.forEach(element => {
+                console.log(element);
+            })
+                document.getElementById("popup-quotation").style.visibility = "visible";
+                document.getElementById("popup-ov").style.visibility = "visible";
+                document.getElementById("popup-quotation").style.opacity = 1;
+                document.getElementById("popup-ov").style.opacity = 1;
+            let sum = 500;
+            data.forEach(element => {
+                sum += element.goodsPrice;
+                let d = document.createElement('div');
+                let p1 = document.createElement('p');
+                let p2 = document.createElement('p');
+
+                p1.textContent = element.goodsName;
+                p2.textContent = element.goodsPrice + " บาท";
+
+                d.appendChild(p1);
+                d.appendChild(p2);
+                
+                d.style.display = "flex"
+                d.style.justifyContent = "space-between"
+
+                
+                document.getElementById("show-price-chemi").appendChild(d);
+            });
+            document.getElementById("show-price-labor").textContent = "500 บาท";
+            document.getElementById("show-price-total").textContent = sum + " บาท";
+
+        } else {
+            alert('No data found for this service history.');
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching service history:', error);
+        alert('An error occurred while fetching the service history.');
+    });
+
+    fetch(`/service-history?id=${service}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                console.log(data);
+                document.getElementById("popup-quotation").style.visibility = "visible";
+                document.getElementById("popup-ov").style.visibility = "visible";
+                document.getElementById("popup-quotation").style.opacity = 1;
+                document.getElementById("popup-ov").style.opacity = 1;
+
+                document.getElementById('show-branch').textContent = data.centerName;
+                document.getElementById('show-date').textContent = data.caseStartDatetime;
+                document.getElementById('show-model').textContent = data.carModel;
+                document.getElementById('show-kilo').textContent = data.mileage;
+                document.getElementById('carregis').value = data.carRegisNo;
+                document.getElementById('name').value = data.firstName;
+                document.getElementById('last').value = data.lastName;
+                document.getElementById('tel').value = data.phoneNumber;
+                document.getElementById('email').value = data.email;
+            } else {
+                alert('No data found for this service history.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching service history:', error);
+            alert('An error occurred while fetching the service history.');
+        });
+
+    
+}
+
+
+function openPopup2(button){
+    document.getElementById("popup-view").style.visibility = "visible";
+    document.getElementById("popup-ov").style.visibility = "visible";
+    document.getElementById("popup-view").style.opacity = 1;
+    document.getElementById("popup-ov").style.opacity = 1;
+
+    document.querySelector(".edit-button").style.display = "none";
+    document.querySelector(".cancel-edit-button").style.display = "none";
+    document.querySelector(".save-button").style.display = "none";
+
+    const row = button.closest('.info-row');
+    // const serviceHistoryId = row.querySelector('#info-date-time').textContent + 0;
+    // const phoneNumber = row.querySelector('#info-phone').textContent;
+    // const firstName = row.querySelector('#info-firstname').textContent;
+    // const lastName = row.querySelector('#info-lastname').textContent;
+    // const caseCategory = row.querySelector('#info-service').textContent;
+    // const centerName = row.querySelector('#info-branch').textContent;
+    const service = row.querySelector('#info-service-history').textContent;
+    // const customer = row.querySelector('#info-customer-id').textContent;
+    console.log(service);
+
+    fetch(`/service-history?id=${service}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                console.log(data);
+                const d = document.createElement('input');
+                d.value = data.serviceHistoryId;
+                d.id = 'serviceHistoryId';
+                d.type = 'hidden';
+                document.getElementById("popup-view").appendChild(d);
+                document.getElementById("popup-view").style.visibility = "visible";
+                document.getElementById("popup-ov").style.visibility = "visible";
+                document.getElementById("popup-view").style.opacity = 1;
+                document.getElementById("popup-ov").style.opacity = 1;
+                
+                document.querySelector("#image").style.backgroundImage = `url(${data.branchPhotoURL})`;
+                document.querySelector('#branch-text .show').textContent = "สาขา " + data.centerName;
+                document.querySelector('#branch-text .address').textContent = "ที่อยู่ " + data.address;
+                document.querySelector('#branch-text .telephone').textContent = "เบอร์โทร " + data.telephone;
+                document.querySelector('#branch-text .openclose .open').textContent = "เวลาเปิด - ปิด " + data.openTime;
+                document.querySelector('#branch-text .openclose .close').textContent = data.closedTime;
+                document.getElementById('edit-service').value = data.caseCategory;
+                document.getElementById('edit-date-time').value = data.caseStartDatetime;
+                document.getElementById('car').value = data.carModel;
+                document.getElementById('lenght').value = data.mileage;
+                document.getElementById('edit-car-license').value = data.carRegisNo;
+                document.getElementById('edit-first-name').value = data.firstName;
+                document.getElementById('edit-last-name').value = data.lastName;
+                document.getElementById('edit-phone').value = data.phoneNumber;
+                document.getElementById('edit-email').value = data.email;
+            } else {
+                alert('No data found for this service history.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching service history:', error);
+            alert('An error occurred while fetching the service history.');
+        });
+
+    
+
+    document.getElementById('edit-service').value = caseCategory;
+    document.getElementById('edit-date-time').value = serviceHistoryId;
+    document.getElementById('edit-branch').value = centerName;
+    document.getElementById('edit-first-name').value = firstName;
+    document.getElementById('edit-last-name').value = lastName;
+    document.getElementById('edit-phone').value = phoneNumber;
+}
+
+
 
 function openPopup(button) {
     document.getElementById("popup-view").style.visibility = "visible";
     document.getElementById("popup-ov").style.visibility = "visible";
     document.getElementById("popup-view").style.opacity = 1;
     document.getElementById("popup-ov").style.opacity = 1;
+
+    document.querySelector(".edit-button").style.display = "ิblock";
 
     const row = button.closest('.info-row');
     // const serviceHistoryId = row.querySelector('#info-date-time').textContent + 0;
@@ -118,6 +284,12 @@ function openPopup(button) {
                 document.getElementById("popup-view").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
 
+                document.querySelector("#image").style.backgroundImage = `url(${data.branchPhotoURL})`;
+                document.querySelector('#branch-text .show').textContent = "สาขา " + data.centerName;
+                document.querySelector('#branch-text .address').textContent = "ที่อยู่ " + data.address;
+                document.querySelector('#branch-text .telephone').textContent = "เบอร์โทร" + data.telephone;
+                document.querySelector('#branch-text .openclose .open').textContent = "เวลาเปิด - ปิด " + data.openTime;
+                document.querySelector('#branch-text .openclose .close').textContent = data.closedTime;
                 document.getElementById('edit-service').value = data.caseCategory;
                 document.getElementById('edit-date-time').value = data.caseStartDatetime;
                 document.getElementById('car').value = data.carModel;
@@ -226,7 +398,6 @@ function save_info(){
     alert("บันทึกข้อมูลสำเร็จ")
 }
 
-setAttribute("disabled", true);
 
 function cancel_edit(){
 
@@ -265,14 +436,20 @@ function cancel_edit(){
 }
 
 function deleteServiceHistory(serviceHistoryId) {
-    if (confirm('Are you sure you want to delete this service history?')) {
+
+    document.getElementById("popup-delete").style.visibility = "visible";
+    document.getElementById("popup-ov").style.visibility = "visible";
+    document.getElementById("popup-delete").style.opacity = 1;
+    document.getElementById("popup-ov").style.opacity = 1;
+
+
+    document.querySelector(".confirm-del-button").addEventListener('click', function() {
         fetch(`/service-history/${serviceHistoryId}`, {
             method: 'DELETE'
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Service history deleted successfully');
                 location.reload();
             } else {
                 alert('Failed to delete service history');
@@ -282,7 +459,7 @@ function deleteServiceHistory(serviceHistoryId) {
             console.error('Error deleting service history:', error);
             alert('An error occurred while deleting the service history.');
         });
-    }
+    });
 }
 
 
@@ -332,14 +509,14 @@ function updateTabContent(tabId, url) {
 
 
 //กดปุ่มลบ แล้วแสดง Popup delete
-document.querySelectorAll('.delete-button').forEach(a => {
-    a.addEventListener('click', function() {
-    document.getElementById("popup-delete").style.visibility = "visible";
-    document.getElementById("popup-ov").style.visibility = "visible";
-    document.getElementById("popup-delete").style.opacity = 1;
-    document.getElementById("popup-ov").style.opacity = 1;
-});
-});
+// document.querySelectorAll('.delete-button').forEach(a => {
+//     a.addEventListener('click', function() {
+//     document.getElementById("popup-delete").style.visibility = "visible";
+//     document.getElementById("popup-ov").style.visibility = "visible";
+//     document.getElementById("popup-delete").style.opacity = 1;
+//     document.getElementById("popup-ov").style.opacity = 1;
+// });
+// });
 //ปุ่มยกเลิกการลบข้อมูล
 function cancel_del(){
     bac3()

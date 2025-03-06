@@ -380,6 +380,15 @@ const UserController = {
             goods: g,
             email: email
         });
+    },
+
+    getCarGrade: async (req, res) => {
+        const { c } = req.query;
+
+        const result = await UserModel.CarGrades(c);
+
+        res.send(JSON.stringify(result));
+    
     }
 
 

@@ -10,5 +10,6 @@ module.exports = function(app) {
     app.post('/update-service-history', EmployeeController.updateServiceHistory);
     app.get('/service-history', EmployeeController.getServiceHistory);
     app.delete('/service-history/:serviceHistoryId', EmployeeController.deleteServiceHistory);
+    app.get('/service-history-Goods', EmployeeController.getServiceHistorywithGoods);
     // app.get('/history', EmployeeController.getHistoryPage);
 };

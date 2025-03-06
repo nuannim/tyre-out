@@ -66,10 +66,10 @@
     </div>
 
     <!-- ดัน -->
-    <div style="height: 130px;"></div> 
+    <div style="height: 13vh;"></div> 
 
     <div class="top">
-        <h1 class="show-emp" id="emp-name-1"><%= user.firstName %></h1>
+        <h1 class="show-emp" id="emp-name-1"><%= user.firstName %> <%= user.lastName %></h1>
     </div>
     
         <div class="tab-box">
@@ -110,7 +110,10 @@
                             <td id="info-customer-id" data-label="วัน-เวลา" style="display: none;"><%= element.customerId %></td>
                                 <td id="action">
                                     <div class="button-con">
-                                    <button class="quotation-button"><i class='far'>&#xf328;</i></button>
+                                    <button class="quotation-button" onclick="openPopup3(this)""><i class='far'>&#xf328;</i></button>
+                                    <form action="/update-case-status" method="POST">
+                                        <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
+                                    </form>
                                     <button class="view-button" onclick="openPopup(this)"><i class="far fa-calendar-alt"></i></button>
                                     <form action="/update-case-status" method="POST" id="update-status-form">
                                         <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
@@ -149,11 +152,12 @@
                                     <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
                                     <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
                                     <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="info-service-history" data-label="วัน-เวลา" style="display: none;"><%= element.serviceHistoryId %></td>
                                     <td id="action">
                                         <div class="button-con">
-                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                            <button class="quotation-button" onclick="openPopup3(this)"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button" onclick="openPopup2(this)"><i class="far fa-calendar-alt"></i></button>
+                                            <button class="delete-button" onclick="deleteServiceHistory(<%= element.serviceHistoryId %>)"><i class="fa fa-trash-o"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -184,11 +188,12 @@
                                     <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
                                     <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
                                     <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="info-service-history" data-label="วัน-เวลา" style="display: none;"><%= element.serviceHistoryId %></td>
                                     <td id="action">
                                         <div class="button-con">
-                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                            <button class="quotation-button" onclick="openPopup3(this)"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button" onclick="openPopup2(this)"><i class="far fa-calendar-alt"></i></button>
+                                            
                                         </div>
                                     </td>
                                 </tr>
@@ -219,11 +224,12 @@
                                     <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>
                                     <td id="info-service" data-label="บริการ"><%= element.caseCategory %></td>
                                     <td id="info-branch" data-label="ศูนย์บริการ"><%= user.centerName %></td>
+                                    <td id="info-service-history" data-label="วัน-เวลา" style="display: none;"><%= element.serviceHistoryId %></td>
                                     <td id="action">
                                         <div class="button-con">
-                                            <button class="quotation-button"><i class='far'>&#xf328;</i></button>
-                                            <button class="view-button"><i class="far fa-calendar-alt"></i></button>
-                                            <button class="delete-button"><i class="fa fa-trash-o"></i></button>
+                                            <button class="quotation-button" onclick="openPopup3(this)"><i class='far'>&#xf328;</i></button>
+                                            <button class="view-button" onclick="openPopup2(this)"><i class="far fa-calendar-alt"></i></button>
+                                            
                                         </div>
                                     </td>
                                 </tr>
@@ -312,9 +318,13 @@
                 <div id="image"></div>
                 <div id="branch-text">
                     <h4 class="show">สาขาทุ่งหนองแจ๋ม</h4>
-                    <p class="header">ที่อยู่</p>
-                    <p class="header">เบอร์โทร</p>
-                    <p class="header">เวลาเปิดปิด</p>
+                    <p class="address">ที่อยู่</p>
+                    <p class="telephone">เบอร์โทร</p>
+                    <p class="openclose">
+                        <span class="open">dd</span>
+                        <span> - </span>
+                        <span class="close">dd</span>
+                    </p>
                 </div>
             </div>
             <div id="inform-box">
@@ -322,11 +332,11 @@
                     <input type="hidden" id="servicehistoryid" class="popup-input" value="เปลี่ยนชื่อ" disabled>
                     <div class="inform-text">
                         <p class="header">บริการ</p>
-                        <input type="text" id="edit-service" class="popup-input" value="เปลี่ยนล้อรถยนต์"  disabled>
+                        <input type="text" id="edit-service" class="popup-input" value=""  disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">วันเวลา</p>
-                        <input type="datetime-local" id="edit-date-time" class="popup-input" value="2024-01-29T09:00" disabled>
+                        <input type="date" id="edit-date-time" class="popup-input" value="" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">รุ่นรถยนต์</p>
@@ -344,11 +354,11 @@
                     </div>
                     <div class="inform-text">
                         <p class="header">ชื่อสกุล</p>
-                        <input type="text" id="edit-first-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
+                        <input type="text" id="edit-first-name" class="popup-input" value="" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">สกุล</p>
-                        <input type="text" id="edit-last-name" class="popup-input" value="ลีอาห์ แซ่ตั้ง" disabled>
+                        <input type="text" id="edit-last-name" class="popup-input" value="" disabled>
                     </div>
                     <div class="inform-text">
                         <p class="header">เบอร์โทร</p>
@@ -379,7 +389,7 @@
             <h4>ยืนยันที่จะลบการนัดหมายนี้หรือไม่</h4>
             <div class="inform-text">
                 <button class="cancel-del-button" onclick="cancel_del()">ยกเลิก</button>
-                <button class="confirm-del-button" onclick="confirm_del()">ยืนยัน</button>
+                <button class="confirm-del-button">ยืนยัน</button>
             </div>
         </div>
     </div>
