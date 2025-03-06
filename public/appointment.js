@@ -584,6 +584,8 @@ async function selectDateLoggedIn(email) {
 
     dataForBookingLoggedIn = data;
 
+    // ! ปัญหาคือ ถ้าใช้รถที่เซฟไว้
+
     // let loggedInFirstName = document.getElementById("name");
     // let loggedInLastName = document.getElementById("last");
     // let loggedInTel = document.getElementById("tel");
