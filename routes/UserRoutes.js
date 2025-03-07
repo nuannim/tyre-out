@@ -43,5 +43,7 @@ module.exports = function(app) {
     
     app.post('/appointment', UserController.createAppointment);
     app.get('/getLoggedInUser' , UserController.getLoggedInUser);
-    app.post('/appointmentLoggedIn', UserController.createAppointmentLoggedIn);
+
+    // * พัง
+    // app.post('/appointmentLoggedIn', UserController.createAppointmentLoggedIn);
 };

@@ -181,19 +181,21 @@ const UserModel = {
             });
         });
     },
+
+// * ของเนยสด =========================================================
     allHistory: async (email) => {
         return new Promise((resolve, reject) => {
-            const query = `SELECT * 
-            FROM ServiceHistory sh
-            INNER JOIN ServiceBranch sb 
-                ON sh.centerId = sb.centerId
-            INNER JOIN RegistrationNumber rn
-                ON sh.regId = rn.regId        
-            INNER JOIN Customers c            
-                ON rn.customerId = c.customerId
-            INNER JOIN Cars car 
-                ON rn.carId = car.carId
-            where c.email = ?;`;
+            const query = `
+                SELECT * FROM ServiceHistory sh
+                INNER JOIN ServiceBranch sb 
+                    ON sh.centerId = sb.centerId
+                INNER JOIN RegistrationNumber rn
+                    ON sh.regId = rn.regId        
+                INNER JOIN Customers c            
+                    ON rn.customerId = c.customerId
+                INNER JOIN Cars car 
+                    ON rn.carId = car.carId
+                where c.email = ?;`;
     
             // const values = [req.session.user.email]; 
             // const values = ['max@gmail.com']; 
@@ -206,7 +208,105 @@ const UserModel = {
                 else resolve(h);
             });
         });
+    },
+    createAppointment: async (
+        mileage, 
+        centerId, caseStartDatetime, 
+        slot, caseCategory, 
+        guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+        goodsIdList,
+        customerId
+    ) => {
+        return new Promise((resolve, reject) => {
+            // const query = ``;
+            // const values = [];
+    
+            // db.all(query, values, (err, data) => {
+            //     if (err) reject(err);
+            //     else resolve(data);
+            // });
+
+            
+            const queryForCustomers = `insert into Customers 
+            (firstName, lastName, phoneNumber, email)
+            values (?, ?, ?, ?)`;
+
+            db.run(queryForCustomers, [guestFirstName, guestLastName, guestTel, guestEmail], function (err) {
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error creating customer' });
+                    return;
+                }
+                customerId = this.lastID;
+
+                const queryForRegistrationNumber = `INSERT INTO RegistrationNumber (carId, customerId, mileage, carRegisNo) 
+                                                VALUES (?, ?, ?, ?)`;
+
+                const carId = 1;  // คุณจะต้องกำหนด carId ที่จะใช้ หรือดึงจากข้อมูลที่มีอยู่
+
+                db.run(queryForRegistrationNumber, [carId, customerId, mileage, guestCarRegisNo], function (err) {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).json({ error: 'Error inserting into RegistrationNumber' });
+                        return;
+                    }
+
+                    const regId = this.lastID;
+
+                    // * หลังจากที่เพิ่มข้อมูลลงใน RegistrationNumber แล้ว เพิ่มข้อมูลลงใน ServiceHistory
+                    const values = [
+                        customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0, mileage
+                    ];
+
+                    const query = `insert into ServiceHistory 
+                        (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status, caseSummary)
+                        values (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+                    db.run(query, values, function (err) {
+                        if (err) {
+                            console.error(err);
+                            res.status(500).json({ error: 'Error creating service history' });
+                            return;
+                        }
+
+                        const serviceHistoryId = this.lastID;
+                        const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
+                        const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+
+                        serviceHistoryDetailsValues.forEach(values => {
+                            db.run(serviceHistoryDetailsQuery, values, function (err) {
+                                if (err) {
+                                    console.error(err);
+                                    // res.status(500).json({ error: 'Error creating service history details' });
+                                    // return;
+                                    reject('Error ja bruh help')
+                                }
+                            });
+                        });
+
+                        // res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
+                        resolve({ message: 'Booking created successfully', serviceHistoryId });
+                    });
+                });
+            });
+        });
     }
+    
+    // ,
+
+    // createAppointmentLoggedIn: async (
+    //     mileage, 
+    //     centerId, caseStartDatetime,
+    //     slot, caseCategory, 
+    //     goodsIdList, customerId, regId
+    // ) => {
+    //     return new Promise((resolve, reject) => {
+    //         const query = ``;
+    //         const values = [];
+
+            
+    //     });
+    // }
 
 
 };

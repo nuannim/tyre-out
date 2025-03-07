@@ -99,6 +99,7 @@ const model = document.getElementById("sel1");
 const year = document.getElementById("sel2");
 const grade = document.getElementById("sel3");
 const kilo = document.getElementById("sel4");
+const reg = document.getElementById("sel5");
 const timeinput = document.getElementsByName("timeinput");
 
 // ^ อธิบาย: getQueryParam() เป็น function ไว้ดึงค่าจาก URL
@@ -106,6 +107,7 @@ model.value = getQueryParam("option1") || "";
 year.value = getQueryParam("option2") || "";
 grade.value = getQueryParam("option3") || "";
 kilo.value = getQueryParam("option4") || "";
+reg.value = getQueryParam("carRegisNo") || "";
 
 
 
@@ -371,7 +373,7 @@ async function checkshowpopLoggedIn(regno) {
     carGrade = document.getElementById("sel3").value; // ใช้ carGrade
     mileage = document.getElementById("sel4").value; // mileage
 
-    carRegisNo = regno;
+    carRegisNo = document.getElementById("sel5").value;
 
     // const carModel = document.getElementById("sel1").value; // ใช้ carModel
     // const carYear = document.getElementById("sel2").value; // ใช้ carYear
@@ -383,8 +385,8 @@ async function checkshowpopLoggedIn(regno) {
     console.log("📏 mileage:", mileage);
     console.log("🚗 carRegis:", carRegisNo);
 
-    if (!carModel || !carYear || !mileage) {
-        alert("กรุณาเลือกรุ่นรถยนต์, ปีรถยนต์ และ ระยะทาง");
+    if (!carModel || !carYear || !mileage || !carRegisNo) {
+        alert("กรุณาเลือกรุ่นรถยนต์ ปีรถยนต์ ระยะทาง และทะเบียนรถ");
         return;
     }
 
@@ -838,6 +840,8 @@ async function selectDateLoggedIn(email) {
         regId = foundItem.regId;
     } else {
         console.log('ไม่พบข้อมูล');
+        // document.getElementById('carregis').removeAttribute('readonly');
+        // document.getElementById('carregis').setAttribute('required', 'required');
     }
 
     // ! ปัญหาคือ ถ้าใช้รถที่เซฟไว้
@@ -854,9 +858,11 @@ async function selectDateLoggedIn(email) {
     // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
     document.getElementById("carregis").value = carRegisNo;
 
+
     console.log('selectDateLoggedIn: ', data);
     console.log('selectDateLoggedIn data.customerId: ', data.customerId);
     console.log('selectDateLoggedIn carRegisNo: ', carRegisNo);
+    // console.log('selectDateLoggedIn carRegisNo: ', regId);
     
 
     console.log('selectDateLoggedIn goodsDataForNoeysod: ', goodsDataForNoeysod);
@@ -903,6 +909,7 @@ async function selectDateLoggedIn(email) {
                 'time', time, 
                 'slot:', slot, 
                 'caseCategory:', caseCategory, 
+                'carRegisNo: ', carRegisNo,
                 'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
 
 
@@ -950,8 +957,16 @@ async function bookingLoggedIn() {
     let goodsData = goodsDataForNoeysod.map(item => item.goodsId);
     console.log('💯💯💯💯💯💯goodsData: ', goodsData);
 
-    console.log('dataForBookingLoggedIn customerId: ', dataForBookingLoggedIn.customerId);
+    console.log('dataForBookingLoggedIn customerId: ', dataForBookingLoggedIn[0].customerId);
     // let customerId = dataForBookingLoggedIn.customerId;
+
+    
+    // if (carRegisNo === null) {
+    //     carRegisNo = document.getElementById('carregis').value;
+    //     console.log('if carRisNo is null: ', carRegisNo);
+    // }
+
+
 
     try {
         const response = await fetch('/appointmentLoggedIn', {
@@ -974,7 +989,7 @@ async function bookingLoggedIn() {
                 // guestEmail: guestEmail,
                 // guestCarRegisNo: guestCarRegisNo,
                 goodsIdList: goodsData,
-                customerId: dataForBookingLoggedIn.customerId,
+                customerId: dataForBookingLoggedIn[0].customerId,
                 // regId: LoggedIncarRegisNo
                 // regId: dataForBookingLoggedIn.carRegisNo
                 regId: regId
