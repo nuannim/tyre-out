@@ -224,9 +224,22 @@
                 <div class="form-step form-step-active">
                     <div id="service">
                         <div id="forsel">
-                            
+
+<!-- & dropdowm carchoose-->
+                            <% if (email && email !=='Guest' ) { %>
+                                <select name="carchoose" width="100%" class="drop" id="carchoose" onchange="carChoose()">
+                                    <option value="" selected>รถของคุณ</option>
+                                    <% cuscars.forEach(car=> { %>
+                                        <!-- <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>"> -->
+                                        <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>">
+                                            <%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            <%}%>
+
 <!-- & dropdown รถยนต์ -->
-                            <select name="sel1" class="drop" id="sel1">
+                            <select name="sel1" class="drop" id="sel1" style="display: none;">
                                 <option value="" selected>เลือกรุ่นรถยนต์</option>
                                 <% let uniquecarmodel = new Set();
                                 cars.forEach((element) => {
@@ -240,7 +253,7 @@
                             </select>
 
 <!-- & dropdown รุ่นปี -->
-                            <select name="sel2" class="drop" id="sel2">
+                            <select name="sel2" class="drop" id="sel2" style="display: none;">
                                 <option value="" selected>เลือกรุ่นปี</option>
                                 <% let uniquecaryear = new Set();
                                     cars.forEach((element) => {
@@ -254,7 +267,7 @@
                             </select>
 
 <!-- & dropdown เกรดรถ -->
-                            <select name="sel3" class="drop" id="sel3">
+                            <select name="sel3" class="drop" id="sel3" style="display: none;">
                                 <option value="" selected>เลือกเกรด</option>
                                 <% let uniquecargrade = new Set();
                                     cars.forEach((element) => {
@@ -289,8 +302,13 @@
                                 <option value="240000">240,000 กม.</option>
                             </select>
 
-                            <input name="sel5" type="text" class="drop" placeholder="ทะเบียนรถ" id="sel5">
+<!-- & dropdowm ทะเบียนรถ-->
+                            <% if (email && email !=='Guest' ) { %>
+                                <input name="sel5" type="text" class="drop" placeholder="ทะเบียนรถ" id="sel5" style="display: none;">
+                            <% } %>
 
+
+                            <a href="/" style="color: #282828; text-decoration: underline;">ยังไม่มีรถใช่ไหม? เพิ่มรถโลด🗣️🗣️🗣️🗣️🗣️</a>
 <!-- ^ ถ้าไม่ใช่ guest -->
                             
                         </div>
@@ -298,7 +316,7 @@
                         <div id="but" >
                             <!-- <button class="btn" type="button" onclick="checkshowpop()">ถัดไป</button> -->
                             <% if (email && email !== 'Guest') { %>
-                                <button class="btn" type="button" onclick="checkshowpopLoggedIn('<%= carRegisNo %>')">ถัดไป</button>                                
+                                <button class="btn" type="button" onclick="checkshowpopLoggedIn()">ถัดไป</button>                                
                             <% } else {%> 
                                 <button class="btn" type="button" onclick="checkshowpopguest()">ถัดไป</button>                                
                             <%}%>

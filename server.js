@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 require('./routes/UserRoutes.js')(app);
 require('./routes/EmployeeRoutes.js')(app);
 
-
+// * ไม่ย้ายบละไอเหี้ย
 app.post('/appointmentLoggedIn', (req, res) => {
     const {
         // carModel, carYear, carGrade, 
@@ -41,7 +41,8 @@ app.post('/appointmentLoggedIn', (req, res) => {
     } = req.body;
 
     
-    const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
+    // const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
+    const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE regId = ?`;
 
     db.run(updateMileageQuery, [mileage, customerId], function (err) {
         if (err) {

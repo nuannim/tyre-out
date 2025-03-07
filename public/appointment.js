@@ -43,6 +43,19 @@ let regId; // * ใช้ตอนเพิ่มเข้าไปที่ Ser
 // * ================================================================
 
 
+
+
+// * ของแม้ก =================================================
+let sel1 = document.getElementById("sel1");
+let sel2 = document.getElementById("sel2");
+let sel3 = document.getElementById("sel3");
+let sel4 = document.getElementById("sel4");
+// let sel5 = document.getElementById("carchoose");
+let sel5 = document.getElementById("sel5");
+// * =================================================
+
+
+
 nextbtn.forEach((btn) => {
     btn.addEventListener("click", () => {
         if (formstepnum < formstep.length-1) {
@@ -311,11 +324,6 @@ btnGuest.addEventListener("click", function (e) {
         document.getElementById("popup-ov").style.opacity = 1;
     }
 
-    let sel1 = document.getElementById("sel1");
-    let sel2 = document.getElementById("sel2");
-    let sel3 = document.getElementById("sel3");
-    let sel4 = document.getElementById("sel4");
-    let sel5 = document.getElementById("carchoose");
         // ฟังก์ชันโชว์ pop up ใบเสนอราคา
     
     // // ! ไม่ได้ใช้แล้ว
@@ -364,7 +372,7 @@ btnGuest.addEventListener("click", function (e) {
     //     showpop();
     // }
 
-async function checkshowpopLoggedIn(regno) {
+async function checkshowpopLoggedIn() {
     console.log("=== START checkshowpopupguest() ===");
 
     //^ อธิบาย: ดึงค่าที่เลือกจาก dropdown
@@ -833,7 +841,7 @@ async function selectDateLoggedIn(email) {
 
     dataForBookingLoggedIn = data;
 
-    const foundItem = data.find(item => item.carRegisNo === carRegisNo);
+    const foundItem = data.find(item => item.carRegisNo === carRegisNo); // ! ถ้ามีรถใน db จะไม่มีปัญหา แต่ตอนนี้ไม่มีรถอ่พดิ
 
     if (foundItem) {
         console.log('ID ที่เจอคือ:', foundItem.regId); // ได้ 2
@@ -851,6 +859,7 @@ async function selectDateLoggedIn(email) {
     // let loggedInTel = document.getElementById("tel");
     // let loggedInEmail = document.getElementById("email");
 
+    // * set document ไปที่หน้าสุดท้าย
     document.getElementById("name").value = data[0].firstName;
     document.getElementById("last").value = data[0].lastName;
     document.getElementById("tel").value = data[0].phoneNumber;
@@ -910,9 +919,10 @@ async function selectDateLoggedIn(email) {
                 'slot:', slot, 
                 'caseCategory:', caseCategory, 
                 'carRegisNo: ', carRegisNo,
+                'regId: ', regId,
                 'goodsDataForNoeysod:', goodsDataForNoeysod); // * json ที่ได้มาจาก popup หน้าแรกของ appointment.ejs
 
-
+    // * ใช้โชว์ราคารวม
     priceChemi = goodsDataForNoeysod.reduce((acc, item) => {
         return acc + item.goodsPrice;
     }, 0);
@@ -1155,5 +1165,24 @@ popup: 'custom-popup'
     } catch (error) {
         console.error('Error:', error);
         alert('Error:', error.message || error);
+    }
+}
+
+
+
+function carChoose() {
+    const carValue = document.getElementById('carchoose').value;
+    console.log('🤗🤗🤗🤗🤗🤗', carValue)
+    if (carValue) {
+        const carParts = carValue.split(" - ");
+        
+        if (carParts.length === 4) {
+            sel1.value = carParts[0];
+            sel2.value = carParts[1];
+            sel3.value = carParts[2];
+            sel5.value = carParts[3];
+            // console.log('🤗🤗🤗🤗🤗🤗', carParts[4]);
+            // sel5.value = carParts[4];
+        }
     }
 }
