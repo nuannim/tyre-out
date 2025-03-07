@@ -74,3 +74,18 @@ INNER JOIN Cars car
     ON rn.carId = car.carId
 WHERE sh.centerId = 2 and sh.handledByEmployeeId is NULL;
 ```
+
+
+```javascript
+    createAppointment: async () => {
+        return new Promise((resolve, reject) => {
+            const query = ``;
+            const values = [];
+    
+            db.all(query, values, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            });
+        });
+    }
+```
