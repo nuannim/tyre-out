@@ -105,47 +105,55 @@ const UserController = {
         }
 
         try {
-            // const query = `SELECT * FROM ServiceHistory sh
-            //     INNER JOIN Customers c
-            //     ON sh.customerId = c.customerId
-            //     where c.email = ?`;
+            // // const query = `SELECT * FROM ServiceHistory sh
+            // //     INNER JOIN Customers c
+            // //     ON sh.customerId = c.customerId
+            // //     where c.email = ?`;
 
-            // const query = `SELECT * FROM ServiceHistory sh
-            //     INNER JOIN ServiceBranch sb
-            //     ON sh.centerId = sb.centerId
-            //     INNER JOIN Customers c
-            //     ON sh.customerId = c.customerId
+            // // const query = `SELECT * FROM ServiceHistory sh
+            // //     INNER JOIN ServiceBranch sb
+            // //     ON sh.centerId = sb.centerId
+            // //     INNER JOIN Customers c
+            // //     ON sh.customerId = c.customerId
+            // //     INNER JOIN RegistrationNumber rn
+            // //     ON c.customerId = rn.customerId
+            // //     INNER JOIN Cars car
+            // //     ON rn.carId = car.carId
+            // //     WHERE c.email = ?;`;
+
+            // const query = `SELECT * 
+            //     FROM ServiceHistory sh
+            //     INNER JOIN ServiceBranch sb 
+            //         ON sh.centerId = sb.centerId
             //     INNER JOIN RegistrationNumber rn
-            //     ON c.customerId = rn.customerId
-            //     INNER JOIN Cars car
-            //     ON rn.carId = car.carId
-            //     WHERE c.email = ?;`;
+            //         ON sh.regId = rn.regId        
+            //     INNER JOIN Customers c            
+            //         ON rn.customerId = c.customerId
+            //     INNER JOIN Cars car 
+            //         ON rn.carId = car.carId
+            //     where c.email = ?;`;
 
-            const query = `SELECT * 
-                FROM ServiceHistory sh
-                INNER JOIN ServiceBranch sb 
-                    ON sh.centerId = sb.centerId
-                INNER JOIN RegistrationNumber rn
-                    ON sh.regId = rn.regId        
-                INNER JOIN Customers c            
-                    ON rn.customerId = c.customerId
-                INNER JOIN Cars car 
-                    ON rn.carId = car.carId
-                where c.email = ?;`;
+            // const values = [req.session.user.email]; 
+            // // const values = ['max@gmail.com']; 
 
-            const values = [req.session.user.email]; 
-            // const values = ['max@gmail.com']; 
-
-            console.log("Before DB Query");
+            // console.log("Before DB Query");
             
-            db.all(query, values, (err, rows) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send('Error fetching users');
-                }
-                console.log('rows from getHistoryPage: ', rows);
-                res.render('history', {data: rows});
-            });
+            // db.all(query, values, (err, rows) => {
+            //     if (err) {
+            //         console.error(err);
+            //         return res.status(500).send('Error fetching users');
+            //     }
+            //     console.log('rows from getHistoryPage: ', rows);
+            //     res.render('history', {data: rows});
+            // });
+
+            // * ใหม่ ----------------------------------------
+            const email = req.session.user.email;
+
+            const h = await UserModel.allHistory(email);
+            res.render('history', {data: h});
+            console.log('h: ' + h)
+            // * ใหม่ ----------------------------------------
 
         } catch (error) {
             res.status(500).send('Error fetching users');

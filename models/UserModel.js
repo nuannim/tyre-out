@@ -180,6 +180,32 @@ const UserModel = {
               else resolve(mg);
             });
         });
+    },
+    allHistory: async (email) => {
+        return new Promise((resolve, reject) => {
+            const query = `SELECT * 
+            FROM ServiceHistory sh
+            INNER JOIN ServiceBranch sb 
+                ON sh.centerId = sb.centerId
+            INNER JOIN RegistrationNumber rn
+                ON sh.regId = rn.regId        
+            INNER JOIN Customers c            
+                ON rn.customerId = c.customerId
+            INNER JOIN Cars car 
+                ON rn.carId = car.carId
+            where c.email = ?;`;
+    
+            // const values = [req.session.user.email]; 
+            // const values = ['max@gmail.com']; 
+            const values = [email];
+    
+            console.log("Before DB Query");
+
+            db.all(query, values, (err, h) => {
+                if (err) reject(err);
+                else resolve(h);
+            });
+        });
     }
 
 
