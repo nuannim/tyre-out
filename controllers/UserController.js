@@ -8,7 +8,7 @@ const db = require('../models/dbconn.js'); // ! เดี๋ยวย้าย�
 const { get } = require('http');
 
 const UserController = {
-    // * ของเนยสด ==================================================================================
+// * START ของเนยสด 1 ==================================================================================
     getIndexPage: async (req, res) => { // * ของเนยสด
 
         const email = req.session.user ? req.session.user.email : 'Guest';
@@ -151,8 +151,9 @@ const UserController = {
             res.status(500).send('Error fetching users');
         }
     },
+// * END ของเนยสด 1 ==================================================================================
 
-    // * ของแม้ก ==================================================================================
+// * START ของแม้ก ==================================================================================
     processSignin: async (req, res) => {
         let formdata = {
             username2: req.body.username,
@@ -291,8 +292,10 @@ const UserController = {
             });
         });
     }
+// * END ของแม้ก ==================================================================================
     ,
-    getMaintenanceGoods: async (req, res) => { // * ของเนยสด
+// * START ของเนยสด 2 ==================================================================================
+    getMaintenanceGoods: async (req, res) => { 
         try {
             const { carModel, carYear, carGrade, mileage } = req.query;
 
@@ -419,14 +422,94 @@ const UserController = {
                             }
                         });
                     });
-    
-                    // แก้ไขให้การตอบกลับเมื่อสร้าง booking สำเร็จเป็น JSON
+
                     res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
                 });
             });
         });
+    },
+    
+    createAppointmentLoggedIn: async (req, res) => {
+        const {
+            // carModel, carYear, carGrade, 
+            mileage, 
+            centerId, caseStartDatetime,
+            slot, caseCategory, 
+            // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
+            goodsIdList, customerId, regId
+        } = req.body;
+    
+        
+        const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
+    
+        db.run(updateMileageQuery, [mileage, customerId], function (err) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Error updating mileage' });
+                return;
+            }
+    
+            const values = [
+                customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0, mileage
+            ];
+    
+            const query = `INSERT INTO ServiceHistory 
+                (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status, caseSummary)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    
+            db.run(query, values, function (err) {
+                if (err) {
+                    console.error(err);
+                    res.status(500).json({ error: 'Error creating service history' });
+                    return;
+                }
+    
+                const serviceHistoryId = this.lastID;
+                const serviceHistoryDetailsValues = goodsIdList.map(goodsId => [serviceHistoryId, goodsId]);
+                const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+    
+                serviceHistoryDetailsValues.forEach(values => {
+                    db.run(serviceHistoryDetailsQuery, values, function (err) {
+                        if (err) {
+                            console.error(err);
+                            res.status(500).json({ error: 'Error creating service history details' });
+                            return;
+                        }
+                    });
+                });
+    
+                res.status(201).json({ message: 'Booking created successfully', serviceHistoryId });
+            });
+        });
     }
+    ,
+    getLoggedInUser: async (req, res) => { // * app.get('/getLoggedInUser')
+        const email = req.query.email;
 
+        const query = `
+            SELECT *
+            FROM Customers 
+            LEFT JOIN RegistrationNumber ON Customers.customerId = RegistrationNumber.customerId
+            WHERE Customers.email = ?`;
+        
+        db.all(query, [email], (err, rows) => {
+            
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            
+            if (rows.length === 0) {
+                res.status(404).json({ error: 'User not found' });
+                return;
+            }
+    
+            // ส่งข้อมูลที่ได้จากการ join ทั้งสองตาราง
+            res.json(rows);
+            // res.json(rows[0]);
+        });
+    }
+// * END ของเนยสด 2 ===============================================================
 
 
 
@@ -471,15 +554,7 @@ const UserController = {
         const result = await UserModel.CarGrades(c);
 
         res.send(JSON.stringify(result));
-    
     }
-
-
-
-
-
-
-
 
 
 };

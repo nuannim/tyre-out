@@ -42,6 +42,6 @@ module.exports = function(app) {
     // app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
 
     app.post('/appointment', UserController.createAppointment);
-
-
+    app.get('/getLoggedInUser' , UserController.getLoggedInUser);
+    app.post('/appointmentLoggedIn', UserController.createAppointmentLoggedIn);
 };
