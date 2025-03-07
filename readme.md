@@ -89,3 +89,18 @@ WHERE sh.centerId = 2 and sh.handledByEmployeeId is NULL;
         });
     }
 ```
+
+
+
+
+```sql
+-- ดึงประวัติบริการพร้อมสินค้า
+SELECT *
+FROM ServiceHistory SH
+JOIN Customers C ON SH.customerId = C.customerId
+JOIN ServiceBranch SB ON SH.centerId = SB.centerId
+JOIN RegistrationNumber RN ON SH.regId = RN.regId
+JOIN ServiceHistoryDetails SHD ON SH.serviceHistoryId = SHD.serviceHistoryId
+JOIN Goods G ON SHD.goodsId = G.goodsId
+```
+
