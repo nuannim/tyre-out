@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 require('./routes/UserRoutes.js')(app);
 require('./routes/EmployeeRoutes.js')(app);
 
-// * ไม่ย้ายบละไอเหี้ย
+// * ไม่ย้ายบละ
 app.post('/appointmentLoggedIn', (req, res) => {
     const {
         // carModel, carYear, carGrade, 

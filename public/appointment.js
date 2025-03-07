@@ -207,6 +207,7 @@ timeinput.forEach(radio => {
     radio.addEventListener("change", function(){
         if (radio.checked) {
             showtime.textContent = radio.value;
+            document.getElementById('nextbtnindate').style.display = 'block';
         }
     });
 });
@@ -331,9 +332,11 @@ function selectBranch(branchId, branchName) {
 
     console.log('centerId2: ' + centerId2);
 
-    console.log('===== END selectBranch() =====')
-    
+    document.getElementById('nextbtninbranch').style.display = 'block';
+
+    console.log('===== END selectBranch() =====');
 }
+
 
 
 // btnGuest.addEventListener("click", function (e) {
@@ -689,11 +692,16 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
 }
 
 async function booking() {
-    guestFirstName = document.getElementById("name").value;
-    guestLastName = document.getElementById("last").value;
-    guestTel = document.getElementById("tel").value;
-    guestEmail = document.getElementById("email").value;
-    guestCarRegisNo = document.getElementById("carregis").value;
+    guestFirstName = document.getElementById("name").value.trim();
+    guestLastName = document.getElementById("last").value.trim();
+    guestTel = document.getElementById("tel").value.trim();
+    guestEmail = document.getElementById("email").value.trim();
+    guestCarRegisNo = document.getElementById("carregis").value.trim();
+
+    if (!guestFirstName || !guestLastName || !guestTel || !guestEmail || !guestCarRegisNo) {
+        alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+        return;
+    }
 
     console.log('guestFirstName: ', guestFirstName);
     console.log('guestLastName: ', guestLastName);

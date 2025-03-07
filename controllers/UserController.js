@@ -256,7 +256,8 @@ const UserController = {
 
         console.log(req.body);
 
-            if (!sel1 || !sel2 || !sel3 || !sel4 || !email || !carRegis) {
+            // if (!sel1 || !sel2 || !sel3 || !sel4 || !email || !carRegis) {
+            if (!sel1 || !sel2 || !sel3 || !email || !carRegis) {
                 return res.status(400).send('ทะลึ่ง');
             }
 
