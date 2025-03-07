@@ -11,6 +11,17 @@ const indi = document.getElementById("indi");
 
 let formstepnum = 0;
 
+const showmodel = document.getElementById("show-model");
+const showkilo = document.getElementById("show-kilo");
+const showbranch = document.getElementById("show-branch");
+const showdate = document.getElementById("show-date");
+const showtime = document.getElementById("show-time");
+
+
+const btnGuest = document.getElementById("checklogin");
+const forinput = document.getElementById("forinput");
+const forlogin = document.querySelector(".forlogin");
+
 
 // * ของเนยสด ห้ามแตะ ================================================
 let carModel;
@@ -40,6 +51,9 @@ let LoggedIncarRegisNo;
 let dataForBookingLoggedIn;
 
 let regId; // * ใช้ตอนเพิ่มเข้าไปที่ ServiceHistory table
+
+// const checklogin = document.getElementById("checklogin");
+const button = document.querySelector(".abc");
 // * ================================================================
 
 
@@ -50,7 +64,7 @@ let sel1 = document.getElementById("sel1");
 let sel2 = document.getElementById("sel2");
 let sel3 = document.getElementById("sel3");
 let sel4 = document.getElementById("sel4");
-// let sel5 = document.getElementById("carchoose");
+let selcarchoose = document.getElementById("carchoose");
 let sel5 = document.getElementById("sel5");
 // * =================================================
 
@@ -123,13 +137,30 @@ kilo.value = getQueryParam("option4") || "";
 reg.value = getQueryParam("carRegisNo") || "";
 
 
+console.log('reg.valuee test ', reg.value);
 
-const showmodel = document.getElementById("show-model");
-const showkilo = document.getElementById("show-kilo");
-const showbranch = document.getElementById("show-branch");
-const showdate = document.getElementById("show-date");
-const showtime = document.getElementById("show-time");
+if (reg.value === '' || reg.value === null) {
+    console.log('reg.value is nulllllll')
+
+    console.log('word naaaaaaaaaaa' + word);
+        console.log('word naaa in if else' + word);
+        selcarchoose.value = '';
+} else {
+    const word = model.value + ' - ' + year.value + ' - ' + grade.value +' - '+ reg.value;
+    selcarchoose.value = word;
+
+}
+
+
+
+
 // const showBranchId = 
+
+// let showmodel = document.getElementById("show-model");
+// let showkilo = document.getElementById("show-kilo");
+// let showbranch = document.getElementById("show-branch");
+// let showdate = document.getElementById("show-date");
+// let showtime = document.getElementById("show-time");
 
 if (getQueryParam("option1") && getQueryParam("option4")){
     showmodel.textContent = model.options[model.selectedIndex].text;
@@ -167,7 +198,7 @@ dateinput.addEventListener("change", function() {
         showdate.textContent = dateinput.value;
     }
     else {
-        showdate.textContent = "-";
+        showdate.textContent = "yo";
     }
 });
 showdate.textContent = dateinput.value;
@@ -180,9 +211,7 @@ timeinput.forEach(radio => {
     });
 });
 
-// * ของเนยสด ห้ามแตะ
-// const checklogin = document.getElementById("checklogin");
-const button = document.querySelector(".abc");
+
 
 // checklogin.addEventListener("click", function() {
 //     button.style.display = "block";
@@ -280,6 +309,7 @@ findBranch.addEventListener("click", function() {
 });
 
 function selectBranch(branchId, branchName) {
+    console.log('===== START selectBranch() =====')
     console.log('centerId:'+ branchId);
     console.log('centerName:'+ branchName);
     let centerId = document.createElement("p");
@@ -300,19 +330,24 @@ function selectBranch(branchId, branchName) {
     });
 
     console.log('centerId2: ' + centerId2);
+
+    console.log('===== END selectBranch() =====')
     
 }
-const btnGuest = document.getElementById("checklogin");
-const forinput = document.getElementById("forinput");
-const forlogin = document.querySelector(".forlogin");
 
-btnGuest.addEventListener("click", function (e) {
-    e.preventDefault();
+
+// btnGuest.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     forlogin.style.display = "none";
+//     forinput.classList.remove("forinput-hidden");
+//     button.style.display = "block";
+// });
+
+function nologin() {
     forlogin.style.display = "none";
     forinput.classList.remove("forinput-hidden");
     button.style.display = "block";
-});
-    
+}
 
 
 
@@ -376,12 +411,19 @@ async function checkshowpopLoggedIn() {
     console.log("=== START checkshowpopupguest() ===");
 
     //^ อธิบาย: ดึงค่าที่เลือกจาก dropdown
-    carModel = document.getElementById("sel1").value; // ใช้ carModel
-    carYear = document.getElementById("sel2").value; // ใช้ carYear
-    carGrade = document.getElementById("sel3").value; // ใช้ carGrade
-    mileage = document.getElementById("sel4").value; // mileage
+    // carModel = document.getElementById("sel1").value; // ใช้ carModel
+    // carYear = document.getElementById("sel2").value; // ใช้ carYear
+    // carGrade = document.getElementById("sel3").value; // ใช้ carGrade
+    // mileage = document.getElementById("sel4").value; // mileage
 
-    carRegisNo = document.getElementById("sel5").value;
+    // carRegisNo = document.getElementById("sel5").value;
+    // ^ เปลี่ยนจาก ใช้ document เป็ฯใช้ .value
+    carModel = sel1.value;
+    carYear = sel2.value;
+    carGrade = sel3.value;
+    mileage = sel4.value;
+    carRegisNo = sel5.value;
+
 
     // const carModel = document.getElementById("sel1").value; // ใช้ carModel
     // const carYear = document.getElementById("sel2").value; // ใช้ carYear
@@ -567,6 +609,7 @@ async function checkshowpopguest() {
 // ! ย้ายตัวแปรไปไว้ข้างบนแทน
 
 function selectDate() { // * ปุ่มวันที่ ไฮไลท์สีชมพู
+    console.log('========== START function selectDate() ==========')
     date = document.getElementById("dateinput").value;
     let timeElements = document.getElementsByName("timeinput");
 
@@ -626,6 +669,23 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
     document.getElementById("show-price-chemi").textContent = priceChemi;
     document.getElementById("show-price-labor").textContent = priceLabor;
     document.getElementById("show-price-total").textContent = priceTotal;
+
+
+    // * set document ไปที่หน้าสุดท้าย (ไม่ได้ใช้ของแคแล้ว)
+    // document.getElementById("name").value = data[0].firstName;
+    // document.getElementById("last").value = data[0].lastName;
+    // document.getElementById("tel").value = data[0].phoneNumber;
+    // document.getElementById("email").value = data[0].email;
+    // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
+    // document.getElementById("carregis").value = carRegisNo;
+
+    document.getElementById('show-model').textContent = carModel;
+    document.getElementById('show-kilo').textContent = mileage;
+
+    document.getElementById('show-date').textContent = date;
+    document.getElementById('show-time').textContent = time;
+
+    console.log('========== END function selectDate() ==========')
 }
 
 async function booking() {
@@ -859,17 +919,11 @@ async function selectDateLoggedIn(email) {
     // let loggedInTel = document.getElementById("tel");
     // let loggedInEmail = document.getElementById("email");
 
-    // * set document ไปที่หน้าสุดท้าย
-    document.getElementById("name").value = data[0].firstName;
-    document.getElementById("last").value = data[0].lastName;
-    document.getElementById("tel").value = data[0].phoneNumber;
-    document.getElementById("email").value = data[0].email;
-    // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
-    document.getElementById("carregis").value = carRegisNo;
+
 
 
     console.log('selectDateLoggedIn: ', data);
-    console.log('selectDateLoggedIn data.customerId: ', data.customerId);
+    console.log('selectDateLoggedIn data.customerId: ', data[0].customerId);
     console.log('selectDateLoggedIn carRegisNo: ', carRegisNo);
     // console.log('selectDateLoggedIn carRegisNo: ', regId);
     
@@ -940,6 +994,20 @@ async function selectDateLoggedIn(email) {
     document.getElementById("show-price-chemi").textContent = priceChemi;
     document.getElementById("show-price-labor").textContent = priceLabor;
     document.getElementById("show-price-total").textContent = priceTotal;
+
+    // * set document ไปที่หน้าสุดท้าย (ไม่ได้ใช้ของแคแล้ว)
+    document.getElementById("name").value = data[0].firstName;
+    document.getElementById("last").value = data[0].lastName;
+    document.getElementById("tel").value = data[0].phoneNumber;
+    document.getElementById("email").value = data[0].email;
+    // document.getElementById("carregis").value = data.carRegisNo; //! ตอนนี้กำลังใช้รถที่เซฟไว้
+    document.getElementById("carregis").value = carRegisNo;
+
+    document.getElementById('show-model').textContent = carModel;
+    document.getElementById('show-kilo').textContent = mileage;
+
+    document.getElementById('show-date').textContent = date;
+    document.getElementById('show-time').textContent = time;
 
     console.log('========== END function selectDateLoggedIn() ==========')
 }
@@ -1186,3 +1254,4 @@ function carChoose() {
         }
     }
 }
+
