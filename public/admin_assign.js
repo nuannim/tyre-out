@@ -119,7 +119,7 @@ function openPopup3(button){
                 document.getElementById('show-branch').textContent = data.centerName;
                 document.getElementById('show-date').textContent = data.caseStartDatetime;
                 document.getElementById('show-model').textContent = data.carModel;
-                document.getElementById('show-kilo').textContent = data.mileage;
+                document.getElementById('show-kilo').textContent = data.caseSummary;
                 document.getElementById('carregis').value = data.carRegisNo;
                 document.getElementById('name').value = data.firstName;
                 document.getElementById('last').value = data.lastName;

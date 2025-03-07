@@ -224,7 +224,7 @@ function openPopup2(button){
                 document.getElementById('edit-service').value = data.caseCategory;
                 document.getElementById('edit-date-time').value = data.caseStartDatetime;
                 document.getElementById('car').value = data.carModel;
-                document.getElementById('lenght').value = data.mileage;
+                document.getElementById('lenght').value = data.caseSummary;
                 document.getElementById('edit-car-license').value = data.carRegisNo;
                 document.getElementById('edit-first-name').value = data.firstName;
                 document.getElementById('edit-last-name').value = data.lastName;
@@ -293,7 +293,7 @@ function openPopup(button) {
                 document.getElementById('edit-service').value = data.caseCategory;
                 document.getElementById('edit-date-time').value = data.caseStartDatetime;
                 document.getElementById('car').value = data.carModel;
-                document.getElementById('lenght').value = data.mileage;
+                document.getElementById('lenght').value = data.caseSummary;
                 document.getElementById('edit-car-license').value = data.carRegisNo;
                 document.getElementById('edit-first-name').value = data.firstName;
                 document.getElementById('edit-last-name').value = data.lastName;
