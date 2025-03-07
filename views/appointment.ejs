@@ -239,7 +239,11 @@
                             <%}%>
 
 <!-- & dropdown รถยนต์ -->
-                            <select name="sel1" class="drop" id="sel1" style="display: none;">
+                            <% if (email && email !=='Guest' ) { %> 
+                                <select name="sel1" class="drop" id="sel1" style="display: none;">
+                            <% } else { %> 
+                                <select name="sel1" class="drop" id="sel1">
+                            <% } %>
                                 <option value="" selected>เลือกรุ่นรถยนต์</option>
                                 <% let uniquecarmodel = new Set();
                                 cars.forEach((element) => {
@@ -253,7 +257,11 @@
                             </select>
 
 <!-- & dropdown รุ่นปี -->
-                            <select name="sel2" class="drop" id="sel2" style="display: none;">
+                            <% if (email && email !=='Guest' ) { %> 
+                                <select name="sel2" class="drop" id="sel2" style="display: none;">
+                            <% } else { %> 
+                                <select name="sel2" class="drop" id="sel2">
+                            <% } %>
                                 <option value="" selected>เลือกรุ่นปี</option>
                                 <% let uniquecaryear = new Set();
                                     cars.forEach((element) => {
@@ -267,7 +275,11 @@
                             </select>
 
 <!-- & dropdown เกรดรถ -->
-                            <select name="sel3" class="drop" id="sel3" style="display: none;">
+                            <% if (email && email !=='Guest' ) { %> 
+                                <select name="sel3" class="drop" id="sel3" style="display: none;">
+                            <% } else { %> 
+                                <select name="sel3" class="drop" id="sel3">
+                            <% } %>
                                 <option value="" selected>เลือกเกรด</option>
                                 <% let uniquecargrade = new Set();
                                     cars.forEach((element) => {
@@ -305,10 +317,11 @@
 <!-- & dropdowm ทะเบียนรถ-->
                             <% if (email && email !=='Guest' ) { %>
                                 <input name="sel5" type="text" class="drop" placeholder="ทะเบียนรถ" id="sel5" style="display: none;">
+                                <a href="/" style="color: #282828; text-decoration: underline;">ยังไม่มีรถใช่ไหม? เพิ่มรถโลด🗣️🗣️🗣️🗣️🗣️</a>
+
                             <% } %>
 
 
-                            <a href="/" style="color: #282828; text-decoration: underline;">ยังไม่มีรถใช่ไหม? เพิ่มรถโลด🗣️🗣️🗣️🗣️🗣️</a>
 <!-- ^ ถ้าไม่ใช่ guest -->
                             
                         </div>
@@ -458,7 +471,7 @@
                                 <div class="forlogin">
                                     <a href="/login" class="checklogin">เข้าสู่ระบบ</a>
                                     <p>หรือ</p>
-                                    <button class="checklogin" id="checklogin">ดำเนินการโดยไม่เข้าสู่ระบบ</button>
+                                    <button class="checklogin" id="checklogin" type="button" onclick="nologin()">ดำเนินการโดยไม่เข้าสู่ระบบ</button>
                                 </div>
                                 <div class="forinput forinput-hidden" id="forinput">
                                     <div class="eachinput">

@@ -601,6 +601,73 @@ const UserController = {
     //     }
     // }
     // ,
+    
+// * =====================================================
+
+
+
+
+    // createAppointmentLoggedIn: (mileage, customerId, caseCategory, slot, caseStartDatetime, centerId, regId, goodsIdList) => {
+    //     return new Promise((resolve, reject) => {
+    //         // Update mileage
+    //         const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
+            
+    //         db.run(updateMileageQuery, [mileage, customerId], function(err) {
+    //             if (err) return reject(err);
+
+    //             // Create service history
+    //             const values = [customerId, caseCategory, slot, caseStartDatetime, centerId, regId, 0, mileage];
+    //             const query = `INSERT INTO ServiceHistory 
+    //                 (customerId, caseCategory, slot, caseStartDatetime, centerId, regId, status, caseSummary)
+    //                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    //             db.run(query, values, function(err) {
+    //                 if (err) return reject(err);
+
+    //                 const serviceHistoryId = this.lastID;
+    //                 const serviceHistoryDetailsQuery = `INSERT INTO ServiceHistoryDetails (serviceHistoryId, goodsId) VALUES (?, ?)`;
+                    
+    //                 // Create service history details
+    //                 const promises = goodsIdList.map(goodsId => {
+    //                     return new Promise((resolve, reject) => {
+    //                         db.run(serviceHistoryDetailsQuery, [serviceHistoryId, goodsId], function(err) {
+    //                             if (err) reject(err);
+    //                             else resolve();
+    //                         });
+    //                     });
+    //                 });
+
+    //                 Promise.all(promises)
+    //                     .then(() => resolve(serviceHistoryId))
+    //                     .catch(err => reject(err));
+    //             });
+    //         });
+    //     });
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// * =====================================================
+
+
     getLoggedInUser: async (req, res) => { // * app.get('/getLoggedInUser')
         const email = req.query.email;
 
