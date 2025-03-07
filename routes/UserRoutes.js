@@ -40,4 +40,8 @@ module.exports = function(app) {
     app.get('/getModel', UserController.getCarGrade);
     app.get('/getMaintenanceGoods', UserController.getMaintenanceGoods);
     // app.post('/appointment', UserController.createAppointment); // ! ยังไม่ได้สร้าง createAppointment() ใน UserController.js
+
+    app.post('/appointment', UserController.createAppointment);
+
+
 };
