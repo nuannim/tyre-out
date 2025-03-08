@@ -128,9 +128,10 @@ label {
     height: auto;
     gap: 4vh;
 }
-
-.app h4,
-p {
+.app h4{
+    margin: 0;
+}
+.app p {
     margin: 0;
     font-size: 2.5vh;
 }
