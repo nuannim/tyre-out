@@ -295,13 +295,13 @@
     <section id="item">
         <div class="bg-text3">TYRE-OUT</div>
         <h1>สินค้า</h1>
-        <div id="more"><a href="/goods">ดูเพิ่มเติม</a></div>
         <div id="item-container">
             <% goods.slice(3, 9).forEach((element)=> { %>
                 <div class="item-pic" data-aos="fade-up"
                 data-aos-offset="150" data-aos-easing="ease-in-sine" style="background-image: url('<%=element.goodsPhotoURL%>');"></div>
             <% }); %>
         </div>
+        <div id="more"><a href="/goods" class="btn">ดูเพิ่มเติม</a></div>
     </section>
 
     <section id="branch">
