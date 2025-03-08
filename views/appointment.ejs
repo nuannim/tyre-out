@@ -626,7 +626,6 @@
         const sel1 = document.getElementById("sel1");
         const sel3 = document.getElementById("sel3");
         
-        sel3.disabled = true;
 
         // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
         function loadGrade() {
@@ -652,8 +651,8 @@
                 .catch(error => console.error("Error loading cars:", error));
             }
 
-            // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
-            sel3.disabled = true;
+            // // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+            // sel3.disabled = true;
 
             // โหลดอำเภอเมื่อเลือกจังหวัด
             sel1.addEventListener("change", loadGrade);
