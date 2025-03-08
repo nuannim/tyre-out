@@ -257,7 +257,7 @@ body {
 }
 
 .pic {
-  background-image: url(img/download.jpg);
+  background-color: white;
   background-size: cover;
   background-position: center;
   width: 60vh;
@@ -380,7 +380,7 @@ body {
 }
 
 #forimg {
-  background-image: url(img/download.jpg);
+  background-color: white;
   background-size: cover;
   background-position: center;
   width: 175px;
@@ -494,7 +494,6 @@ body {
   
 }
 .item-pic{
-  /* background-image: url(img/download.jpg); */
   background-color: white;
   background-size: cover;
   background-position: center;
