@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/nuannim/tyre-out/issues"
   },
-  "homepage": "https://github.com/nuannim/tyre-out#readme"
+  "homepage": "https://github.com/nuannim/tyre-out#readme",
+  "type": "commonjs"
 }

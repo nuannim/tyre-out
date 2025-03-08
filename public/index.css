@@ -9,12 +9,64 @@ body {
   background-color: #041728;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* เพิ่ม style สำหรับ background text */
+.bg-text {
+  position: absolute;
+        left: -45%;
+        top: 50%;
+        transform: rotate(90deg) translateY(-50%) translateX(-10%);
+        font-size: 350px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.267);
+        z-index: 0;
+        white-space: nowrap;
+        font-family: 'Montserrat', sans-serif;
+        pointer-events: none;
+        letter-spacing: 10px;
+}
+.bg-text3 {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 300px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.267); 
+  z-index: -2; 
+  letter-spacing: 10px;
+  white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  pointer-events: none;
+}
+.bg-text2 {
+  position: absolute; 
+        right: -45%;
+        top: 28%;
+        transform: rotate(-90deg) translateY(-30%) translateX(-10%) scale(-1, 1);
+        
+        font-size: 320px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.267);
+        z-index: 0;  
+        white-space: nowrap;
+        font-family: 'Montserrat', sans-serif;
+        pointer-events: none;
+        letter-spacing: 10px;
+}
+
 #nav {
   width: 100%;
   /* height: 14vh; */
   display: flex;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
+  position: relative;
 }
 #carchoose {
   width: 100%;
@@ -75,6 +127,7 @@ body {
 }
 
 #main {
+  position: relative;
   width: 100%;
   height: 100vh;
   background-image: url(img/index-bg.jpg);
@@ -84,6 +137,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  overflow: hidden;
 }
 
 #check p {
@@ -182,6 +237,14 @@ body {
   text-align: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+#promotion #container {
+  position: relative;
+  z-index: 1;
 }
 
 #container {
@@ -289,6 +352,7 @@ body {
 }
 
 #branch {
+  position: relative;
   width: 100%;
   height: 130vh;
   padding-top: 10vh;
@@ -296,6 +360,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #041728;
+  z-index: 2;
+  overflow: hidden;
 }
 
 #branch h1 {
@@ -404,12 +471,21 @@ body {
 }
 
 #item {
+  position: relative;
   width: 100%;
   background-color: #104b82;
   text-align: center;
   padding-top: 10vh;
   padding-bottom: 10vh;
+  z-index: 1;
 }
+
+#item-container, #more {
+  position: relative;
+  z-index: 2;
+}
+
+
 #item-container {
   width: 90%;
   display: flex;
@@ -417,6 +493,7 @@ body {
   flex-wrap: wrap;
   gap: 30px;
   margin: auto;
+  
 }
 .item-pic{
   /* background-image: url(img/download.jpg); */
