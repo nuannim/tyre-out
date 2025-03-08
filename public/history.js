@@ -10,7 +10,6 @@ function bac2(){
     document.getElementById("popup-ov2").style.visibility = "hidden";
 }
 
-
 document.querySelectorAll('.app').forEach(a => {
     a.addEventListener('click', function() {
         document.getElementById("popup-bg").style.visibility = "visible";
@@ -24,7 +23,6 @@ function shownav(){
     document.getElementById("hid-drop-content").style.display = "block";
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
-
 
 function showDetail(detailObject) {
     console.log('showDetail', detailObject);
