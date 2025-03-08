@@ -9,13 +9,7 @@ body {
   background-color: #041728;
 }
 
-.pointer-icon {
-  transition: transform 0.3s ease;
-}
 
-#announce:hover .pointer-icon {
-  transform: translate(3px, 3px);
-}
 .disabled {
   pointer-events: none;
   opacity: 0.5;
@@ -23,6 +17,7 @@ body {
 }
 
 /* เพิ่ม style สำหรับ background text */
+
 .bg-text {
   position: absolute;
         left: -45%;
@@ -36,6 +31,16 @@ body {
         font-family: 'Montserrat', sans-serif;
         pointer-events: none;
         letter-spacing: 10px;
+}
+@media (max-width: 1000px){
+  .bg-text{
+    left: -170%;
+  }
+}
+@media (max-width: 500px){
+  .bg-text{
+    left: -200%;
+  }
 }
 .bg-text3 {
   position: fixed;
@@ -51,6 +56,11 @@ body {
   font-family: 'Montserrat', sans-serif;
   pointer-events: none;
 }
+@media (max-width: 800px){
+  .bg-text3{
+    font-size: 150px;
+  }
+}
 .bg-text2 {
   position: absolute; 
         right: -45%;
@@ -65,6 +75,11 @@ body {
         font-family: 'Montserrat', sans-serif;
         pointer-events: none;
         letter-spacing: 10px;
+}
+@media (max-width: 800px){
+  .bg-text2{
+    right: -50%;
+  }
 }
 
 #nav {
@@ -173,7 +188,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
 }
 
 #check {
@@ -212,7 +227,6 @@ body {
   border-radius: 2vh;
   width: 35vh;
   padding: 1vh;
-  z-index: 1;
 }
 .top {
   display: flex;
@@ -228,7 +242,6 @@ body {
   color: white;
   transition: ease-in-out 0.2s;
   cursor: pointer;
-  z-index: 1;
 }
 
 .btn:hover {
@@ -380,7 +393,7 @@ body {
 #branch-area {
   background-color: #f5f6f8;
   width: 60%;
-  /* height: 25%; */
+  height: 25%;
   border-radius: 2vh;
   display: flex;
   align-items: center;
