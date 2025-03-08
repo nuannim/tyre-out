@@ -38,8 +38,8 @@ function showDetail(detailObject) {
     document.getElementById('image').style.backgroundImage = `url(${detailObject.branchPhotoURL})`;
     document.getElementById('centerName').innerHTML = detailObject.centerName;
     document.getElementById('address').innerHTML = detailObject.address;
-    document.getElementById('telephone').innerHTML = detailObject.telephone;
-    document.getElementById('time').innerHTML = detailObject.openTime + ' - ' + detailObject.closedTime;
+    document.getElementById('telephone').innerHTML = "โทร. " + detailObject.telephone;
+    document.getElementById('time').innerHTML = "เวลาเปิด-ปิด " + detailObject.openTime + ' - ' + detailObject.closedTime;
 
     document.getElementById('caseCategory').innerHTML = detailObject.caseCategory;
     document.getElementById('carModel').innerHTML = detailObject.carModel;
