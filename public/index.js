@@ -1,3 +1,4 @@
+
 function bac() {
     document.getElementById("popup-bg").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";
@@ -21,6 +22,8 @@ function showpop() {
 }
 
 function showpromotion(promotion) {
+
+
     console.log("popuppppppppppp");
     console.log(promotion.promotionId);
 
@@ -29,7 +32,8 @@ function showpromotion(promotion) {
                     <img class="pic" src="${promotion.promotionPhotoURL}" alt="${promotion.promotionName}">
                     `;
 
-                    document.getElementById("content").innerHTML = content;
+
+    document.getElementById("content").innerHTML = content;
     showpop();
 }
 
@@ -40,6 +44,7 @@ let sel4 = document.getElementById("sel4");
 let sel5 = document.getElementById("carchoose");
 
 let car_regis = document.getElementById("car-regis");
+
 
 function checkshowpop() {
     const selectedCar = sel5.value;
@@ -82,6 +87,9 @@ function checkshowpop() {
 }
 
 
+
+async function checkshowpopguest() {
+
     const carModel = document.getElementById("sel1").value;
     const carYear = document.getElementById("sel2").value;
     const carGrade = document.getElementById("sel3").value;
@@ -107,6 +115,7 @@ function checkshowpop() {
             alert("ไม่พบรายการสินค้า");
             return;
         }
+
 
         const div = document.createElement("div");
         div.id = "check-result";
@@ -171,6 +180,8 @@ function gotoapp2() {
             carRegisNo = carParts[3];
         }
     }
+    
+    console.log(carRegisNo);
 
 
     const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&carRegisNo=${carRegisNo}`;
@@ -182,6 +193,7 @@ function gotoapp2() {
 function gotoapp() {
     const letsend = `/appointment?option1=${(sel1.value)}&option2=${(sel2.value)}&option3=${(sel3.value)}&option4=${(sel4.value)}`;
     window.location.href = letsend;
+
 }
 
 function shownav() {
@@ -259,6 +271,8 @@ findBranch.addEventListener("click", function() {
 document.addEventListener("DOMContentLoaded", function () {
     const sel1 = document.getElementById("sel1");
     const sel3 = document.getElementById("sel3");
+    
+
 
     function loadGrade() {
         const selectedsel1 = sel1.value;
@@ -285,5 +299,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sel3.disabled = true;
 
+
     sel1.addEventListener("change", loadGrade);
 });
+
+
+
+
+
+
