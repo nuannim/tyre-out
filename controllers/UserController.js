@@ -2,7 +2,6 @@ const UserModel = require('../models/UserModel');
 const EmployeeModel = require('../models/EmployeeModel');
 const crypto = require('crypto');
 
-
 const db = require('../models/dbconn.js'); 
 
 const UserController = {
