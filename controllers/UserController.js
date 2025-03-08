@@ -7,20 +7,16 @@ const db = require('../models/dbconn.js');
 const UserController = {
 
     getIndexPage: async (req, res) => {
-
         const email = req.session.user ? req.session.user.email : 'Guest';
         const p = await UserModel.allPromotion();
         const sb = await UserModel.allServiceBranch();
         const car = await UserModel.allCars();
         
         const g = await UserModel.allGoods();
-            
         const cuscar = await UserModel.CustomerCars(email);
-
 
         console.log(p);
         console.log(sb);
-        
 
         res.render('index', {
                         email: email,
@@ -30,21 +26,15 @@ const UserController = {
                         cuscars: cuscar,
                         goods: g
         });
-
     },
 
     getAppointmentPage: async (req, res) => {
-
-
-
         console.log('===== getAppointmentPage in UserController.js =====');
-
 
         const email = req.session.user ? req.session.user.email : 'Guest';
         const car = await UserModel.allCars();
         const cuscar = await UserModel.CustomerCars(email);
         const sb = await UserModel.allServiceBranch();
-
 
         try {
             res.render('appointment',{
@@ -60,27 +50,21 @@ const UserController = {
     },
 
     getHistoryPage: async (req, res) => { 
-
         if (!req.session.user) {
             return res.redirect("/login"); 
         }
 
         try {
-
-
             const email = req.session.user.email;
 
             const h = await UserModel.allHistory(email);
             res.render('history', {data: h});
             console.log('h: ' + h)
 
-
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
     },
-
-
 
     processSignin: async (req, res) => {
         let formdata = {
@@ -93,16 +77,12 @@ const UserController = {
         if (!formdata.username2 || !formdata.password2) {
             return res.json({ success: false, message: "กรุณากรอกข้อมูลให้ครบ" });
         }
-        
-        
-        
-        try {
 
+        try {
             const [employee, customer] = await Promise.all([
                 EmployeeModel.findByEmployeeAccountId(formdata.username2),
                 UserModel.findByEmail(formdata.username2)
             ]);
-    
 
             if (employee) {
                 const hashedInputPassword = crypto.createHash('sha256').update(formdata.password2).digest('hex');
@@ -121,14 +101,12 @@ const UserController = {
     
                 return res.json({ success: true, redirect: '/admin' });
             }
-    
 
             if (customer) {
                 if (customer.phoneNumber !== formdata.password2) {
                     console.log(customer.phoneNumber);
                     return res.json({ success: false, message: "รหัสผ่านผิด" });
                 }
-
 
                 req.session.user = { email: customer.email, role: 'customer' };
     
@@ -148,8 +126,8 @@ const UserController = {
             console.error(err);
             return res.json({ success: false, message: "Server Error" });
         }
-        
     },
+
     logout: async (req, res) => {
         res.clearCookie('userSession');
         req.session.destroy((err) => {
@@ -160,23 +138,22 @@ const UserController = {
         });
     },
 
-
     getLoginPage: async (req, res) => {
         try {
             res.render('login');
         } catch (error) {
             res.status(500).send('Error fetching users');
         }
-    }
-    ,
+    },
+
     CarsaveCustomer: async (req, res) => {
         const { sel1, sel2, sel3, sel4, carRegis, email } = req.body;
 
         console.log(req.body);
 
-            if (!sel1 || !sel2 || !sel3 || !email || !carRegis) {
-                return res.status(400).send('ทะลึ่ง');
-            }
+        if (!sel1 || !sel2 || !sel3 || !email || !carRegis) {
+            return res.status(400).send('ทะลึ่ง');
+        }
 
         const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;
 
@@ -220,6 +197,7 @@ const UserController = {
             });
         });
     },
+
     getMaintenanceGoods: async (req, res) => { 
         try {
             const { carModel, carYear, carGrade, mileage } = req.query;
@@ -234,9 +212,8 @@ const UserController = {
                 error: err.message 
             });
         }
-    }
+    },
 
-    ,
     createAppointment: async (req, res) => {
         try {
             const {
@@ -260,13 +237,11 @@ const UserController = {
             console.log('rows: ', JSON.stringify(data, null, 2));
             res.status(201).json(data);
 
-    
         } catch (err) {
             res.status(500).json({ 
                 error: err.message 
             });
         }
-
     },
 
     getLoggedInUser: async (req, res) => {
@@ -289,11 +264,10 @@ const UserController = {
                 res.status(404).json({ error: 'User not found' });
                 return;
             }
-    
             res.json(rows);
-
         });
     },
+
     getDistricts: async (req, res) => {
         const { province } = req.query;
 
@@ -333,9 +307,6 @@ const UserController = {
 
         res.send(JSON.stringify(result));
     }
-
-
 };
 
 module.exports = UserController;
-
