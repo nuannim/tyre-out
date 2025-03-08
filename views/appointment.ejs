@@ -428,7 +428,7 @@
                         <div class="but-pn2">
                             <button class="btn btn-prev" type="button">ย้อนกลับ</button>
                             <% if (email && email !== 'Guest') { %>
-                                <button class="btn btn-next" type="button" onclick="selectDateLoggedIn('<%= email %>')">ถัดไป</button> 
+                                <button class="btn btn-next" id="day-btn" type="button" onclick="selectDateLoggedIn('<%= email %>')">ถัดไป</button> 
                             
                             <% } else { %>
                                 <button class="btn btn-next" id="day-btn" type="button" onclick="selectDate()">ถัดไป</button> 

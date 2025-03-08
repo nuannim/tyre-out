@@ -754,8 +754,8 @@ async function booking() {
         // // redirect('/');
         // window.location.href = "/"; 
         Swal.fire({
-            title: 'นัดหมายสำเร็จ!',
-            text: 'ในการเข้าสู่ระบบ Username คือ Email และ Password คือ เบอร์โทรศัพท์ของคุณ หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999',
+            title: 'การเข้าสู่ระบบ',
+            text: 'Username คือ Email และ Password คือ เบอร์โทรศัพท์ของคุณ หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999',
             showConfirmButton: true
         }).then(() =>{Swal.fire({
             title: 'นัดหมายสำเร็จ!',
@@ -1105,6 +1105,10 @@ async function bookingLoggedIn() {
         
         // window.location.href = "/history"; 
         Swal.fire({
+            title: 'การเข้าสู่ระบบ',
+            text: 'Username คือ Email และ Password คือ เบอร์โทรศัพท์ของคุณ หากมีข้อสงสัยเพิ่มเติม สามารถติดต่อ 099 999 9999',
+            showConfirmButton: true
+        }).then(() =>{Swal.fire({
             title: 'นัดหมายสำเร็จ!',
 html: `
 <div class="loader">
@@ -1244,8 +1248,10 @@ customClass: {
 popup: 'custom-popup'
 }
         }).then(() => {
-            window.location.href = "/history";
+            window.location.href = "/";
         });
+    });
+        
 
     } catch (error) {
         console.error('Error:', error);
