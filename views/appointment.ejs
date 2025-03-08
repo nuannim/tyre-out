@@ -234,7 +234,7 @@
                                         <option value="<%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>">
                                             <%= car.carModel %> - <%= car.carYear %> - <%= car.carGrade %> - <%= car.carRegisNo %>
                                         </option>
-                                    <% }) %>
+                                    <% }); %>
                                 </select>
                             <%}%>
 
@@ -243,16 +243,16 @@
                                 <select name="sel1" class="drop" id="sel1" style="display: none;">
                             <% } else { %> 
                                 <select name="sel1" class="drop" id="sel1">
-                            <% } %>
-                                <option value="" selected>เลือกรุ่นรถยนต์</option>
-                                <% let uniquecarmodel = new Set();
-                                cars.forEach((element) => {
-                                    uniquecarmodel.add(element.carModel);
-                                });
-                            uniquecarmodel.forEach((car) => { 
-                        %>
-                            <option value="<%= car %>"><%= car %></option>
-                        <% }); %>
+                                    <% } %>
+                                    <option value="" selected>เลือกรุ่นรถยนต์</option>
+                                    <% let uniquecarmodel = new Set();
+                                    cars.forEach((element) => {
+                                        uniquecarmodel.add(element.carModel);
+                                    });
+                                    uniquecarmodel.forEach((car) => { 
+                                        %>
+                                        <option value="<%= car %>"><%= car %></option>
+                                        <% }); %>
                                 <!-- <option value="atemodel">รุ่นเสว</option> -->
                             </select>
 
@@ -262,15 +262,15 @@
                             <% } else { %> 
                                 <select name="sel2" class="drop" id="sel2">
                             <% } %>
-                                <option value="" selected>เลือกรุ่นปี</option>
-                                <% let uniquecaryear = new Set();
-                                    cars.forEach((element) => {
-                                        uniquecaryear.add(element.carYear);
-                                    });
-                                uniquecaryear.forEach((car) => { 
-                            %>
-                                <option value="<%= car %>"><%= car %></option>
-                            <% }); %>
+                                    <option value="" selected>เลือกรุ่นปี</option>
+                                    <% let uniquecaryear = new Set();
+                                        cars.forEach((element) => {
+                                            uniquecaryear.add(element.carYear);
+                                        });
+                                    uniquecaryear.forEach((car) => { 
+                                %>
+                                    <option value="<%= car %>"><%= car %></option>
+                                <% }); %>
                                 <!-- <option value="2525">2525</option> -->
                             </select>
 
@@ -317,7 +317,7 @@
 <!-- & dropdowm ทะเบียนรถ-->
                             <% if (email && email !=='Guest' ) { %>
                                 <input name="sel5" type="text" class="drop" placeholder="ทะเบียนรถ" id="sel5" style="display: none;">
-                                <a href="/" style="color: #282828; text-decoration: underline;">กรุณาเพิ่มรถของคุณ ก่อนทำการนัดหมาย</a>
+                                <a href="/" style="color: #282828; text-decoration: underline;" id="announce">กรุณาเพิ่มรถของคุณ ก่อนทำการนัดหมาย</a>
 
                             <% } %>
 
@@ -552,5 +552,112 @@
 
     <script src="appointment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const provinceSelect = document.getElementById("branchvince");
+        const districtSelect = document.getElementById("branch-district");
+
+        // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+        function loadDistricts() {
+            const selectedProvince = provinceSelect.value;
+            if (!selectedProvince) {
+                districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                districtSelect.disabled = true;
+                return;
+            }
+            districtSelect.disabled = false;
+
+            fetch(`/district?province=${selectedProvince}`)
+                .then(response => response.json())
+                .then(districts => {
+                    districtSelect.innerHTML = '<option value="" selected>เลือกอำเภอ/เขต</option>';
+                    districts.forEach(district => {
+                        const option = document.createElement("option");
+                        option.value = district.district;
+                        option.textContent = district.district;
+                        districtSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error loading districts:", error));
+
+            // โหลดอำเภอที่เกี่ยวข้อง
+        }
+
+        // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+        districtSelect.disabled = true;
+
+        // โหลดอำเภอเมื่อเลือกจังหวัด
+        provinceSelect.addEventListener("change", loadDistricts);
+    });
+
+    const findBranch = document.getElementById("btn-branch");
+    findBranch.addEventListener("click", function() {
+        const provinceSelect = document.getElementById("branchvince");
+        const districtSelect = document.getElementById("branch-district");
+        const selectedProvince = provinceSelect.value;
+        const selectedDistrict = districtSelect.value;
+
+        if (selectedProvince && selectedDistrict){
+            fetch(`/SelectedProvinceAndDistrict?province=${selectedProvince}&district=${selectedDistrict}`)
+            .then(response => response.json())
+            .then(districts => {
+                document.getElementById("branch-area").innerHTML = '';
+                districts.forEach(district => {
+                        document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('` + district.centerId + `', '${district.centerName}')" type="button">เลือก</button></div></div>`;
+                    });
+                })
+                .catch(error => console.error("Error loading districts:", error));
+        }
+        else if (selectedProvince && !selectedDistrict){
+            fetch(`/province?province=${selectedProvince}`)
+            .then(response => response.json())
+            .then(districts => {
+                document.getElementById("branch-area").innerHTML = '';
+                districts.forEach(district => {
+                        document.getElementById("branch-area").innerHTML += `<div id="branchh"><div class="serimg"><div id="forimg" style="background-image: url('` + district.branchPhotoURL + `'); height: 20vh;"></div></div><div id="fortext"><h3 id>` + district.centerName + '</h3><p>' + district.address + ' ' + district.subdistrict + ' ' + district.district + ' ' + district.province + ' ' + district.postcode + '</p>' + '<p>' + 'โทรศัพท์ ' + district.telephone + '</p>' + '<p>' + 'เปิดให้บริการเวลา ' + district.openTime + ' - ' + district.closedTime + `</p><button class="bran-btn" id="bran-btn-nongjam" onclick="selectBranch('` + district.centerId + `', '${district.centerName}')" type="button">เลือก</button></div></div>`;
+                    });
+                })
+                .catch(error => console.error("Error loading districts:", error));
+        }
+    });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const sel1 = document.getElementById("sel1");
+        const sel3 = document.getElementById("sel3");
+        
+        sel3.disabled = true;
+
+        // ฟังก์ชันโหลดอำเภอตามจังหวัดที่เลือก
+        function loadGrade() {
+            const selectedsel1 = sel1.value;
+            if (!selectedsel1) {
+                sel3.innerHTML = '<option value="" selected>เลือกเกรด</option>';
+                sel3.disabled = true;
+                return;
+            }
+            sel3.disabled = false;
+
+            fetch(`/getModel?c=${selectedsel1}`)
+                .then(response => response.json())
+                .then(grade => {
+                    sel3.innerHTML = '<option value="" selected>เลือกเกรด</option>';
+                    grade.forEach(g => {
+                        const option2 = document.createElement("option");
+                        option2.value = g.carGrade;
+                        option2.textContent = g.carGrade;
+                        sel3.appendChild(option2);
+                    });
+                })
+                .catch(error => console.error("Error loading cars:", error));
+            }
+
+            // ตั้งค่าเริ่มต้นให้ช่องอำเภอถูกปิดใช้งาน
+            sel3.disabled = true;
+
+            // โหลดอำเภอเมื่อเลือกจังหวัด
+            sel1.addEventListener("change", loadGrade);
+        });
+    </script>
 </body>
 </html>
