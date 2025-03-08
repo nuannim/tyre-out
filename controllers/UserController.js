@@ -96,7 +96,7 @@ const UserController = {
                     httpOnly: true, 
                     secure: false, 
                     sameSite: 'strict', 
-                    maxAge: 1000 * 60 * 15
+                    maxAge: 1000 * 60 * 60
                 });
     
                 return res.json({ success: true, redirect: '/admin' });
@@ -114,7 +114,7 @@ const UserController = {
                     httpOnly: true, 
                     secure: false, 
                     sameSite: 'strict', 
-                    maxAge: 1000 * 60 * 15
+                    maxAge: 1000 * 60 * 60
                 });
     
                 return res.json({ success: true, redirect: '/' });
