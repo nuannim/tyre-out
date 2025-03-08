@@ -32,8 +32,8 @@ const UserModel = {
     allPromotion: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from Promotion", (err, p) => {
-              if (err) reject(err);
-              else resolve(p);
+                if (err) reject(err);
+                else resolve(p);
             });
         });
     },
@@ -41,8 +41,8 @@ const UserModel = {
     CarGrades: (model) => {
         return new Promise((resolve, reject) => {
             db.all(`SELECT DISTINCT carGrade from Cars WHERE carModel = "${model}";`, (err, p) => {
-              if (err) reject(err);
-              else resolve(p);
+                if (err) reject(err);
+                else resolve(p);
             });
         });
     },
@@ -50,8 +50,8 @@ const UserModel = {
     allGoods: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from Goods", (err, p) => {
-              if (err) reject(err);
-              else resolve(p);
+                if (err) reject(err);
+                else resolve(p);
             });
         });
     },
@@ -59,8 +59,8 @@ const UserModel = {
     allServiceBranch: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from ServiceBranch", (err, sb) => {
-              if (err) reject(err);
-              else resolve(sb);
+                if (err) reject(err);
+                else resolve(sb);
             });
         });
     },
@@ -80,8 +80,8 @@ const UserModel = {
     allCars: () => {
         return new Promise((resolve, reject) => {
             db.all("SELECT * from Cars", (err, c) => {
-              if (err) reject(err);
-              else resolve(c);
+                if (err) reject(err);
+                else resolve(c);
             });
         });
     },
@@ -95,8 +95,8 @@ const UserModel = {
                 WHERE c.email = ?`;
             
             db.all(query, [email], (err, cc) => {
-              if (err) reject(err);
-              else resolve(cc);
+                if (err) reject(err);
+                else resolve(cc);
             });
         });
     },
@@ -134,8 +134,8 @@ const UserModel = {
                     c.carGrade = ? AND
                     m.mileage = ?;
                 `, [carModel, carYear, carGrade, mileage], (err, mg) => {
-              if (err) reject(err);
-              else resolve(mg);
+                if (err) reject(err);
+                else resolve(mg);
             });
         });
     },
@@ -156,7 +156,7 @@ const UserModel = {
                 where c.email = ?;`;
 
             const values = [email];
-    
+
             console.log("Before DB Query");
 
             db.all(query, values, (err, h) => {
