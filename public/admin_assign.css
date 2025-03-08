@@ -32,7 +32,7 @@ body{
 
 #nav {
     width: 100%;
-    height: 14vh;
+    /* height: 14vh; */
     display: flex;
     position: fixed;
     z-index: 10;
@@ -45,7 +45,7 @@ body{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 4vh;
+    height: 8vh;
     padding: 2vh;
     padding-left: 5vh;
     padding-right: 5vh;
@@ -219,7 +219,8 @@ body{
 .table-content{
     padding: 10px;
     width: 100%;
-    /* height: 100%; */
+    min-height: 65vh;
+    height: auto;
 }
 
 /* ตาราง */
@@ -317,7 +318,7 @@ tr:nth-child(even) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    width: 80%;
     height: 80%;
     max-height: 80%;
 
@@ -379,7 +380,7 @@ tr:nth-child(even) {
     padding-left: 2vh;
     padding-right: 2vh;
     background-color: white;
-
+    font-size: 2.5vh;
     width: 80%;
     /* max-width: 80%; */
     
