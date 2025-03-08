@@ -104,3 +104,9 @@ JOIN ServiceHistoryDetails SHD ON SH.serviceHistoryId = SHD.serviceHistoryId
 JOIN Goods G ON SHD.goodsId = G.goodsId
 ```
 
+export sqlite to sql
+
+```bash
+sqlite3 your_database.db .dump > export.sql
+```
+
