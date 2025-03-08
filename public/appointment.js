@@ -691,6 +691,10 @@ function selectDate() { // * ปุ่มวันที่ ไฮไลท์�
     console.log('========== END function selectDate() ==========')
 }
 
+function showbtn(){
+    document.getElementById("day-btn").style.display = "block";
+}
+
 async function booking() {
     guestFirstName = document.getElementById("name").value.trim();
     guestLastName = document.getElementById("last").value.trim();
