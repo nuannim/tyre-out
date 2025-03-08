@@ -374,15 +374,15 @@ function save_info(){
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Service history updated successfully');
+            alert('บันทึกข้อมูลสำเร็จ');
             location.reload();
         } else {
-            alert('Failed to update service history');
+            alert('บันทึกข้อมูลไม่สำเร็จ');
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred while updating the service history.');
+        alert('เกิดข้อผิดพลาดขณะเปลี่ยนแปลงข้อมูล');
     });
 
 
@@ -395,7 +395,7 @@ function save_info(){
     
 
     isEditing = false;
-    alert("บันทึกข้อมูลสำเร็จ")
+    // alert("บันทึกข้อมูลสำเร็จ")
 }
 
 
