@@ -219,7 +219,7 @@ function selectBranch(branchId, branchName) {
     centerId.style.display = "none";
     showbranch.innerHTML = branchName;
     showbranch.appendChild(centerId);
-    centerId2 = branchId; // * ของเนยสด ห้ามแตะ
+    centerId2 = branchId; 
 
     const branches = document.querySelectorAll('#branchh');
 
@@ -255,7 +255,6 @@ function showpop() {
 async function checkshowpopLoggedIn() {
     console.log("=== START checkshowpopupguest() ===");
 
-    // ^ เปลี่ยนจาก ใช้ document เป็ฯใช้ .value
     carModel = sel1.value;
     carYear = sel2.value;
     carGrade = sel3.value;
@@ -336,14 +335,14 @@ async function checkshowpopLoggedIn() {
 async function checkshowpopguest() {
     console.log("=== START checkshowpopupguest() ===");
 
-    carModel = document.getElementById("sel1").value; // ใช้ carModel
-    carYear = document.getElementById("sel2").value; // ใช้ carYear
-    carGrade = document.getElementById("sel3").value; // ใช้ carGrade
-    mileage = document.getElementById("sel4").value; // mileage
+    carModel = document.getElementById("sel1").value;
+    carYear = document.getElementById("sel2").value;
+    carGrade = document.getElementById("sel3").value;
+    mileage = document.getElementById("sel4").value;
 
     console.log("🚗 carModel:", carModel);
     console.log("📅 carYear:", carYear);
-    console.log("📏 mileage:", mileage); // เช็คค่าที่ส่งไป
+    console.log("📏 mileage:", mileage);
 
     if (!carModel || !carYear || !mileage) {
         alert("กรุณาเลือกรุ่นรถยนต์, ปีรถยนต์ และ ระยะทาง");
@@ -503,7 +502,7 @@ async function booking() {
     console.log('💯💯💯💯💯💯goodsData: ', goodsData);
 
     try {
-        const response = await fetch('/appointment', { // ! อยู่ที่ server.js เดี๋ยวต้องย้ายด้วย
+        const response = await fetch('/appointment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
