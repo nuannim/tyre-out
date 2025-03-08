@@ -1,0 +1,154 @@
+Table "Cars" {
+  "carId" INT [pk, not null, increment]
+  "carModel" TEXT [not null]
+  "carYear" INT [not null]
+  "carGrade" TEXT [default: NULL]
+}
+
+Table "Customers" {
+  "customerId" INT [pk, not null, increment]
+  "firstName" TEXT [not null]
+  "lastName" TEXT [not null]
+  "customerBirthDate" DATE [default: NULL]
+  "firstServiceDate" DATE [default: NULL]
+  "phoneNumber" TEXT [default: NULL]
+  "email" TEXT [default: NULL]
+  "lineId" TEXT [default: NULL]
+}
+
+Table "EmployeeAccount" {
+  "employeeAccountId" INT [pk, not null, increment]
+  "employeeId" INT [default: NULL]
+  "password" TEXT [not null]
+
+  Indexes {
+    employeeId [name: "idx_employeeId"]
+  }
+}
+
+Table "Employees" {
+  "employeeId" INT [pk, not null, increment]
+  "firstName" TEXT [not null]
+  "lastName" TEXT [not null]
+  "centerId" INT [default: NULL]
+  "empBirthDate" DATE [default: NULL]
+  "hiredDate" DATE [default: NULL]
+  "terminationDate" DATE [default: NULL]
+  "role" TEXT [default: NULL]
+  "phoneNumber" TEXT [default: NULL]
+  "email" TEXT [default: NULL]
+  "lineId" TEXT [default: NULL]
+
+  Indexes {
+    centerId [name: "idx_centerId"]
+  }
+}
+
+Table "ServiceBranch" {
+  "centerId" INT [pk, not null, increment]
+  "centerName" TEXT [not null]
+  "telephone" TEXT [default: NULL]
+  "email" TEXT [default: NULL]
+  "lineId" TEXT [default: NULL]
+  "address" TEXT [default: NULL]
+  "subdistrict" TEXT [default: NULL]
+  "district" TEXT [default: NULL]
+  "province" TEXT [default: NULL]
+  "postcode" TEXT [default: NULL]
+  "openTime" TEXT [default: NULL]
+  "closedTime" TEXT [default: NULL]
+  "branchPhotoURL" TEXT [default: NULL]
+  "maxslot" INT [default: NULL]
+}
+
+Table "Goods" {
+  "goodsId" INT [pk, not null, increment]
+  "goodsBrand" TEXT [default: NULL]
+  "goodsName" TEXT [not null]
+  "goodsDescription" TEXT [default: NULL]
+  "goodsPrice" DECIMAL(10,2) [default: NULL]
+  "inStock" INT [default: NULL]
+  "isActive" INT [default: NULL]
+  "goodsPhotoURL" TEXT [default: NULL]
+}
+
+Table "Promotion" {
+  "promotionId" INT [pk, not null, increment]
+  "promotionName" TEXT [not null]
+  "promotionDescription" TEXT [default: NULL]
+  "isActive" INT [default: NULL]
+  "promotionPhotoURL" TEXT [default: NULL]
+}
+
+Table "RegistrationNumber" {
+  "regId" INT [pk, not null, increment]
+  "carId" INT [default: NULL]
+  "customerId" INT [default: NULL]
+  "mileage" INT [default: NULL]
+  "carRegisNo" TEXT
+
+  Indexes {
+    carId [name: "idx_carId"]
+    customerId [name: "idx_customerId"]
+  }
+}
+
+Table "Maintenance" {
+  "maintenanceId" INT [pk, not null, increment]
+  "carId" INT
+  "mileage" INT
+}
+
+Table "MaintenanceGoods" {
+  "maintenanceGoodsId" INT [pk, not null, increment]
+  "maintenanceId" INT
+  "goodsId" INT
+}
+
+Table "ServiceHistoryDetails" {
+  "serviceHistoryDetailsId" INT [pk, not null, increment]
+  "serviceHistoryId" INT [default: NULL]
+  "goodsId" INT [default: NULL]
+}
+
+Table "ServiceHistory" {
+  "serviceHistoryId" INT [pk, not null, increment]
+  "customerId" INT
+  "caseCategory" TEXT
+  "caseSummary" TEXT
+  "caseDetails" TEXT
+  "slot" INT
+  "status" INT
+  "caseStartDatetime" TEXT
+  "caseClosedDatetime" TEXT
+  "handledByEmployeeId" INT
+  "centerId" INT
+  "regId" INT
+}
+
+Ref:"Employees"."employeeId" < "EmployeeAccount"."employeeId"
+
+Ref:"ServiceBranch"."centerId" < "Employees"."centerId"
+
+Ref:"Cars"."carId" < "RegistrationNumber"."carId"
+
+Ref:"Customers"."customerId" < "RegistrationNumber"."customerId"
+
+Ref:"Cars"."carId" < "Maintenance"."carId"
+
+Ref:"Maintenance"."maintenanceId" < "MaintenanceGoods"."maintenanceId"
+
+Ref:"Goods"."goodsId" < "MaintenanceGoods"."goodsId"
+
+Ref:"ServiceHistory"."serviceHistoryId" < "ServiceHistoryDetails"."serviceHistoryId"
+
+Ref:"Goods"."goodsId" < "ServiceHistoryDetails"."goodsId"
+
+Ref:"Customers"."customerId" < "ServiceHistory"."customerId"
+
+Ref:"ServiceBranch"."centerId" < "ServiceHistory"."centerId"
+
+Ref:"RegistrationNumber"."regId" < "ServiceHistory"."regId"
+
+
+Ref: "Goods"."goodsPhotoURL" < "RegistrationNumber"."carId"
