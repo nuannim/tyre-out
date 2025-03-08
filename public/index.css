@@ -9,6 +9,13 @@ body {
   background-color: #041728;
 }
 
+.pointer-icon {
+  transition: transform 0.3s ease;
+}
+
+#announce:hover .pointer-icon {
+  transform: translate(3px, 3px);
+}
 .disabled {
   pointer-events: none;
   opacity: 0.5;

@@ -20,7 +20,13 @@ body {
     opacity: 0;
     transition: ease-in-out 0.2s;
   }
-  
+  .fa-hand-pointer {
+    transition: transform 0.3s ease;
+}
+
+#announce:hover .fa-hand-pointer {
+    transform: scale(120%);
+}
   #popup-bg {
     background-color: #f5f6f8;
     position: fixed;
