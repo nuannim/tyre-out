@@ -11,7 +11,11 @@ body{
     height: 100vh;
     background-color: #041728;
 }
-
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+  }
 .top{
     height: 10vh;
 }
