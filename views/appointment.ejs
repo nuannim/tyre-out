@@ -317,7 +317,7 @@
 <!-- & dropdowm ทะเบียนรถ-->
                             <% if (email && email !=='Guest' ) { %>
                                 <input name="sel5" type="text" class="drop" placeholder="ทะเบียนรถ" id="sel5" style="display: none;">
-                                <a href="/" style="color: #282828; text-decoration: underline;">ยังไม่มีรถใช่ไหม? เพิ่มรถโลด🗣️🗣️🗣️🗣️🗣️</a>
+                                <a href="/" style="color: #282828; text-decoration: underline;">กรุณาเพิ่มรถของคุณ ก่อนทำการนัดหมาย</a>
 
                             <% } %>
 
@@ -412,15 +412,15 @@
                             <div id="fortime">
                                 <label for="reserve-day">เลือกเวลา</label>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-mor" value="ช่วงเช้า">ช่วงเช้า
+                                    <input type="radio" name="timeinput" id="timeinput-mor" value="ช่วงเช้า" onclick="showbtn()">ช่วงเช้า
                                     <!-- <input type="radio" name="timeinput" id="timeinput-mor" value="morning">ช่วงเช้า -->
                                 </div>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-noon" value="ช่วงบ่าย">ช่วงบ่าย
+                                    <input type="radio" name="timeinput" id="timeinput-noon" value="ช่วงบ่าย" onclick="showbtn()">ช่วงบ่าย
                                     <!-- <input type="radio" name="timeinput" id="timeinput-noon" value="afternoon">ช่วงบ่าย -->
                                 </div>
                                 <div class="fortime-container">
-                                    <input type="radio" name="timeinput" id="timeinput-even" value="ช่วงเย็น">ช่วงเย็น
+                                    <input type="radio" name="timeinput" id="timeinput-even" value="ช่วงเย็น" onclick="showbtn()">ช่วงเย็น
                                     <!-- <input type="radio" name="timeinput" id="timeinput-even" value="evening">ช่วงเย็น -->
                                 </div>
                             </div>
@@ -431,7 +431,7 @@
                                 <button class="btn btn-next" type="button" onclick="selectDateLoggedIn('<%= email %>')">ถัดไป</button> 
                             
                             <% } else { %>
-                                <button class="btn btn-next" type="button" onclick="selectDate()">ถัดไป</button> 
+                                <button class="btn btn-next" id="day-btn" type="button" onclick="selectDate()">ถัดไป</button> 
                                 <!-- ! ตรงนี้จะมี selectDate -->
                             <% } %>
 

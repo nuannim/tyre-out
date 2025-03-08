@@ -409,6 +409,11 @@ button:hover {
     gap: 1vh;
 }
 
+
+#day-btn{
+    display: none;
+}
+
 #day-container {
     display: flex;
 }
