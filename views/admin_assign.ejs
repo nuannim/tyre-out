@@ -37,7 +37,7 @@
 
             </div>
             <div id="las">
-                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="#" class="disabled"><i class="fa-regular fa-user"></i></a>
                 <a href="/logout">Logout</a>
             </div>
         </div>
@@ -80,7 +80,6 @@
                             <td id="action">
                                 <div class="button-con">
                                     <button class="quotation-button" onclick="openPopup3(this)"><i class='far'>&#xf328;</i></button>
-                                    <button class="view-button"><i class="far fa-calendar-alt"></i></button>
           
                                         <input type="hidden" name="serviceHistoryId" value="<%= element.serviceHistoryId %>">
                                         <button type="button" class="assign-button" onclick="acceptcase(<%= element.serviceHistoryId %>)" id="assign-button">รับเคส</button>

@@ -25,6 +25,7 @@
 </style>
 
 <body>
+    
     <div id="nav">
         <div id="nav-menu">
             <div id="fis">
@@ -67,20 +68,23 @@
                     <a href="/login" class="disabled"><i class="fa-regular fa-user"></i></a>
                     <a href="/logout">Logout</a>
                     <% } else { %>
-                        <a href="/login"><i class="fa-regular fa-user"></i></a>
-                        <span style="padding: 0; margin: 0; color: white;">
-                            <%= email ? email : 'Guest' %>
-                        </span>
+                        <a href="/login"><i class="fa-regular fa-user"></i>
+                            <span style="padding: 0; margin: 0; color: white;">
+                                <%= email ? email : 'Guest' %>
+                            </span>
+                        </a>
+                        
                         <% } %>
             </div>
         </div>
     </div>
+    
     <section id="main">
         <div class="maintop" style="width: 100%; display: flex; justify-content: center; height: 80%;">
             <h1 id="typewriter"></h1>
         </div>
         <div class="mainbot">
-            <div id="check" data-aos="fade-up" data-aos-duration="1500">
+            <div id="check" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="10">
                 <p>บริการเช็กระยะตามกำหนด</p>
                 <div class="forsel">
                     <% if (email && email !=='Guest' ) { %>
@@ -258,6 +262,7 @@
         </div>
     </section>
     <section id="promotion">
+        <div class="bg-text">TYRE-OUT</div>
         <h1>โปรโมชันที่น่าสนใจ</h1>
         <div id="container">
             <% promotions.forEach((element)=> { %>
@@ -288,17 +293,19 @@
     </section>
 
     <section id="item">
+        <div class="bg-text3">TYRE-OUT</div>
         <h1>สินค้า</h1>
-        <div id="more"><a href="/goods">ดูเพิ่มเติม</a></div>
         <div id="item-container">
             <% goods.slice(3, 9).forEach((element)=> { %>
                 <div class="item-pic" data-aos="fade-up"
                 data-aos-offset="150" data-aos-easing="ease-in-sine" style="background-image: url('<%=element.goodsPhotoURL%>');"></div>
             <% }); %>
         </div>
+        <div id="more"><a href="/goods" class="btn">ดูเพิ่มเติม</a></div>
     </section>
 
     <section id="branch">
+        <div class="bg-text2">TYRE-OUT</div>
         <h1>ศูนย์บริการ</h1>
         <div id="select-branch">
             <select name="branchvince" class="drop" id="branchvince">
@@ -353,7 +360,7 @@
 
     </section>
     <div id="popup-ov2" onclick="bac2()"></div>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 

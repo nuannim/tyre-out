@@ -11,7 +11,11 @@ body{
     height: 100vh;
     background-color: #041728;
 }
-
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+  }
 .top{
     height: 10vh;
 }
@@ -421,7 +425,7 @@ tr:nth-child(even) {
 }
 
 .forwhatyouvedone {
-    width: 90%;
+    width: 100%;
     height: auto;
     background-color: white;
     border-radius: 2vh;
@@ -445,7 +449,7 @@ tr:nth-child(even) {
 }
 
 #total {
-    width: 90%;
+    width: 100%;
     height: auto;
     background-color: #104B82;
     border-radius: 1.5vh;
@@ -570,7 +574,7 @@ tr:nth-child(even) {
 }
 
 @media (max-width: 700px) {
-    #nav-menu,label, p{
+    #nav-menu,label, p, .show, .inp{
         font-size: 2vh;
     }
 
@@ -723,7 +727,7 @@ tr:nth-child(even) {
     }
     #branch-box {
         flex-direction: column;
-        width: 78%;
+        width: 85%;
         padding: 2vh;
         gap: 2vh;
     }
