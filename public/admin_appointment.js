@@ -1,4 +1,4 @@
-//swap tabs
+
 const tab_btn = document.querySelectorAll('.tab-btn');
 const tab_ctn = document.querySelectorAll('.tab-content');
 const showPan = (indx) =>{
@@ -22,22 +22,6 @@ function shownav(){
     document.getElementById("popup-ov2").style.visibility = "visible";
 }
 
-
-
-
-
-
-//POPUPS & BUTTONS FUNCTIOON
-
-//กดไอคอนคลิปบอร์ด แล้วแสดง Popup ใบเสนอราคา
-// document.querySelectorAll('.quotation-button').forEach(a => {
-//     a.addEventListener('click', function() {
-//     document.getElementById("popup-quotation").style.visibility = "visible";
-//     document.getElementById("popup-ov").style.visibility = "visible";
-//     document.getElementById("popup-quotation").style.opacity = 1;
-//     document.getElementById("popup-ov").style.opacity = 1;
-// });
-// });
 function bac1(){
     document.getElementById("popup-quotation").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";
@@ -54,36 +38,10 @@ function bac1(){
 
 
 
+let originalInfo = {};
+let isEditing = false;
 
 
-
-
-
-
-
-
-
-
-
-
-
-//กดปุ่มไอคอนดู แล้วแสดง Popup view
-let originalInfo = {}; //เก็บค่า
-let isEditing = false; //เก็บบสถานะการกำลังทำการแก้ไข
-
-// document.querySelectorAll('.view-button').forEach(a => {
-//     a.addEventListener('click', function() {
-//     document.getElementById("popup-view").style.visibility = "visible";
-//     document.getElementById("popup-ov").style.visibility = "visible";
-//     document.getElementById("popup-view").style.opacity = 1;
-//     document.getElementById("popup-ov").style.opacity = 1;
-
-//     let inputs = document.querySelectorAll(".popup-input");
-//     inputs.forEach(input => {
-//         originalInfo[input.id] = input.value; //เก็บค่าแรกเริ่มไว้
-//     });
-// });
-// });
 function closeViewPopup() {
     document.getElementById('popup-view').style.visibility = 'hidden';
     document.getElementById('popup-ov').style.visibility = 'hidden';
@@ -96,9 +54,6 @@ function closeViewPopup() {
 
 function openPopup3(button){
     const row = button.closest('.info-row');
-
-
-
     const service = row.querySelector('#info-service-history').textContent;
 
     console.log(service);
@@ -190,14 +145,7 @@ function openPopup2(button){
     document.querySelector(".save-button").style.display = "none";
 
     const row = button.closest('.info-row');
-    // const serviceHistoryId = row.querySelector('#info-date-time').textContent + 0;
-    // const phoneNumber = row.querySelector('#info-phone').textContent;
-    // const firstName = row.querySelector('#info-firstname').textContent;
-    // const lastName = row.querySelector('#info-lastname').textContent;
-    // const caseCategory = row.querySelector('#info-service').textContent;
-    // const centerName = row.querySelector('#info-branch').textContent;
     const service = row.querySelector('#info-service-history').textContent;
-    // const customer = row.querySelector('#info-customer-id').textContent;
     console.log(service);
 
     fetch(`/service-history?id=${service}`)
@@ -260,14 +208,7 @@ function openPopup(button) {
     document.querySelector(".edit-button").style.display = "ิblock";
 
     const row = button.closest('.info-row');
-    // const serviceHistoryId = row.querySelector('#info-date-time').textContent + 0;
-    // const phoneNumber = row.querySelector('#info-phone').textContent;
-    // const firstName = row.querySelector('#info-firstname').textContent;
-    // const lastName = row.querySelector('#info-lastname').textContent;
-    // const caseCategory = row.querySelector('#info-service').textContent;
-    // const centerName = row.querySelector('#info-branch').textContent;
     const service = row.querySelector('#info-service-history').textContent;
-    // const customer = row.querySelector('#info-customer-id').textContent;
 
     fetch(`/service-history?id=${service}`)
         .then(response => response.json())
@@ -308,8 +249,6 @@ function openPopup(button) {
             alert('An error occurred while fetching the service history.');
         });
 
-    
-
     document.getElementById('edit-service').value = caseCategory;
     document.getElementById('edit-date-time').value = serviceHistoryId;
     document.getElementById('edit-branch').value = centerName;
@@ -318,7 +257,6 @@ function openPopup(button) {
     document.getElementById('edit-phone').value = phoneNumber;
 
 
-    
 }
 
 
@@ -334,7 +272,7 @@ function bac2(){
     
         let inputs = document.querySelectorAll(".popup-input");
         inputs.forEach(input => {
-            input.value = originalInfo[input.id]; // ดึงค่าที่เก็บไว้
+            input.value = originalInfo[input.id];
             input.setAttribute("disabled", true);
         });
     
@@ -342,7 +280,7 @@ function bac2(){
     }
 }
 
-//ปุ่มแก้ไขข้อมูล
+
 function edit_info(){
     document.getElementById("edit-service").removeAttribute("disabled");
     document.getElementById("edit-date-time").removeAttribute("disabled");
@@ -354,7 +292,7 @@ function edit_info(){
     isEditing = true;
 }
 
-//ปุ่มบันทึกข้อมูล
+
 function save_info(){
     document.getElementById("edit-service").setAttribute("disabled", true);
     document.getElementById("edit-date-time").setAttribute("disabled", true);
@@ -395,7 +333,6 @@ function save_info(){
     
 
     isEditing = false;
-    // alert("บันทึกข้อมูลสำเร็จ")
 }
 
 
@@ -403,30 +340,6 @@ function cancel_edit(){
 
     document.getElementById("edit-service").setAttribute("disabled", true);
     document.getElementById("edit-date-time").setAttribute("disabled", true);
-
-    // fetch(`/service-history?id=${service}`)
-    // .then(response => response.json())
-    // .then(data => {
-    //     if (data) {
-    //         console.log(data);
-
-    //         document.getElementById('edit-service').value = data.caseCategory;
-    //         document.getElementById('edit-date-time').value = data.caseStartDatetime;
-    //         document.getElementById('car').value = data.carModel;
-    //         document.getElementById('lenght').value = data.mileage;
-    //         document.getElementById('edit-car-license').value = data.carRegisNo;
-    //         document.getElementById('edit-first-name').value = data.firstName;
-    //         document.getElementById('edit-last-name').value = data.lastName;
-    //         document.getElementById('edit-phone').value = data.phoneNumber;
-    //         document.getElementById('edit-email').value = data.email;
-    //     } else {
-    //         alert('No data found for this service history.');
-    //     }
-    // })
-    // .catch(error => {
-    //     console.error('Error fetching service history:', error);
-    //     alert('An error occurred while fetching the service history.');
-    // });
 
     document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "inline-block");
     document.querySelectorAll(".save-button").forEach(btn => btn.style.display = "none");
@@ -470,7 +383,7 @@ function updateTabContent(tabId, url) {
         .then(response => response.json())
         .then(data => {
             const tabContent = document.getElementById(tabId);
-            tabContent.innerHTML = ''; // Clear existing content
+            tabContent.innerHTML = '';
 
             data.forEach(element => {
                 const row = document.createElement('tr');
@@ -500,34 +413,16 @@ function updateTabContent(tabId, url) {
 
 
 
-
-
-
-
-
-
-
-
-//กดปุ่มลบ แล้วแสดง Popup delete
-// document.querySelectorAll('.delete-button').forEach(a => {
-//     a.addEventListener('click', function() {
-//     document.getElementById("popup-delete").style.visibility = "visible";
-//     document.getElementById("popup-ov").style.visibility = "visible";
-//     document.getElementById("popup-delete").style.opacity = 1;
-//     document.getElementById("popup-ov").style.opacity = 1;
-// });
-// });
-//ปุ่มยกเลิกการลบข้อมูล
 function cancel_del(){
     bac3()
 }
 
-//ปุ่มยืนยันการลบข้อมูล
+
 function confirm_del(){
     alert("ทำการยกเลิกการนัดหมายสำเร็จ")
     bac3()
 }
-//กดปิด Popup delete
+
 function bac3(){
     document.getElementById("popup-delete").style.visibility = "hidden";
     document.getElementById("popup-ov").style.visibility = "hidden";

@@ -33,9 +33,6 @@ function bac(){
 
 
 
-
-
-
 //กดปุ่มลบ แล้วแสดง Popup delete
 document.querySelectorAll('.assign-button').forEach(a => {
     a.addEventListener('click', function() {
@@ -134,7 +131,6 @@ function openPopup3(button){
             alert('An error occurred while fetching the service history.');
         });
 
-    
 }
 
 function acceptcase(serviceHistoryId) {
