@@ -1,4 +1,3 @@
-// from lab class
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -17,7 +16,6 @@ const db = require('./models/dbconn.js');
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-// & from P'Chat 
 const bodyParser = require('body-parser');
 const { queryObjects } = require('v8');
 app.use(express.urlencoded({ extended: true })); 
@@ -25,23 +23,17 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//* routing
 require('./routes/UserRoutes.js')(app);
 require('./routes/EmployeeRoutes.js')(app);
 
-// * ไม่ย้ายบละ
 app.post('/appointmentLoggedIn', (req, res) => {
     const {
-        // carModel, carYear, carGrade, 
         mileage, 
         centerId, caseStartDatetime,
         slot, caseCategory, 
-        // guestFirstName, guestLastName, guestEmail, guestTel, guestCarRegisNo,
         goodsIdList, customerId, regId
     } = req.body;
 
-    
-    // const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE customerId = ?`;
     const updateMileageQuery = `UPDATE RegistrationNumber SET mileage = ? WHERE regId = ?`;
 
     db.run(updateMileageQuery, [mileage, customerId], function (err) {
@@ -85,7 +77,6 @@ app.post('/appointmentLoggedIn', (req, res) => {
     });
 });
 
-// from lab class
 app.listen(port, () => {
     console.log('✅ Server is running on port 3000');
 });

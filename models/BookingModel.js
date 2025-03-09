@@ -23,34 +23,8 @@ WHERE sh.centerId = ${d.centerId} and sh.handledByEmployeeId is NULL;`, (err, d)
                 });
             });
         });
-        // try {
-        //     console.log('Fetching centerId for employeeId:', employeeId); // Log employeeId
-        //     const sql = `
-        //         SELECT centerId
-        //         FROM Employees
-        //         WHERE employeeId = ?
-        //     `;
-        //     const centerResult = await db.get(sql, [employeeId]); // Get single result
-        //     console.log('Center result:', centerResult); // Log centerResult
-        //     const centerId = centerResult?.centerId; // Extract centerId from the result
-        //     if (!centerId) {
-        //         throw new Error('Center ID not found for the given employee ID');
-        //     }
-
-        //     const query = `
-        //         SELECT *
-        //         FROM ServiceHistory 
-        //         WHERE centerId = ? AND status = 0
-        //     `;
-        //     const results = await db.all(query, [centerId]); // Get all results
-        //     console.log(results);
-        //     return results;
-            
-        // } catch (error) {
-        //     console.error('Error retrieving service history:', error);
-        //     throw new Error('Error retrieving service history');
-        // }
     },
+
     getAcceptServiceHistory: async (employeeId) => {
         return new Promise((resolve, reject) => {
             db.get(`SELECT centerId
@@ -140,8 +114,6 @@ WHERE sh.centerId = ${d.centerId} and sh.handledByEmployeeId = ${employeeId} AND
             });
         });
     }
-    
-    // ... existing code ...
 };
 
 module.exports = BookingModel;
