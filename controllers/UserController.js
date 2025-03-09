@@ -152,7 +152,7 @@ const UserController = {
         console.log(req.body);
 
         if (!sel1 || !sel2 || !sel3 || !email || !carRegis) {
-            return res.status(400).send('ทะลึ่ง');
+            return res.status(400).send("กรุณากรอกข้อมูลให้ครบ");
         }
 
         const findcar = `SELECT carId FROM Cars WHERE carModel = ? AND carYear = ? AND carGrade = ?`;

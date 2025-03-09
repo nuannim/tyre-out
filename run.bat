@@ -9,7 +9,7 @@ call npm install express sqlite3 ejs express-session cookie-parser
 
 echo opening server..
 
-start cmd /k nodemon server.js
+start cmd /k node server.js
 
 timeout /t 5
 
