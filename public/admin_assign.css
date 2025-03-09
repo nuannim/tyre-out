@@ -234,7 +234,7 @@ body{
 table tbody {
     display: block;
     /* max-height: 50vh; */
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 table thead, table tbody tr {
     display: table;
@@ -249,6 +249,21 @@ table thead, table tbody tr {
     color: #104B82;
     text-align: start;
     border-bottom: 1px solid rgb(224, 224, 224);
+}
+#c5, #info-service{
+    width: 40%;
+}
+#c1, #info-date-time{
+    width: 100%;
+}
+#c7, #action{
+    width: 40%;
+}
+#c7, #action{
+    width: 40%;
+}
+#c2, #info-phone, #c3, #info-firstname, #c4, #info-lastname, #c6, #info-branch{
+    width: 70%;
 }
 th, td{
     text-align: start;
@@ -520,6 +535,21 @@ tr:nth-child(even) {
 }
 
 @media (max-width: 700px) {
+    #c5, #info-service{
+        width: 100%;
+    }
+    #c1, #info-date-time{
+        width: 100%;
+    }
+    #c7, #action{
+        width: 100%;
+    }
+    #c7, #action{
+        width: 100%;
+    }
+    #c2, #info-phone, #c3, #info-firstname, #c4, #info-lastname, #c6, #info-branch{
+        width: 100%;
+    }
     #nav-menu,label, p, .show, .inp, .inform-text button{
         font-size: 2vh;
     }
