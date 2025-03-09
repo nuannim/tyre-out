@@ -106,7 +106,7 @@ body{
 
 table tbody {
     display: block;
-    min-height: 65vh;
+    min-height: 55vh;
     height: auto;
 }
 table thead, table tbody tr {
@@ -509,7 +509,7 @@ tr:nth-child(even) {
 .tab-container-box{
     border-left:1px solid rgba(0, 0, 0, 0.19);
     width:100%;
-    min-height: 65vh;
+    min-height: 55vh;
     height: auto;
     color: black;
     background-color: white;
