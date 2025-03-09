@@ -106,11 +106,12 @@ function openPopup3(button){
         .then(response => response.json())
         .then(data => {
             if (data) {
-                console.log(data);
+                console.log(data.slot);
                 document.getElementById("popup-quotation").style.visibility = "visible";
                 document.getElementById("popup-ov").style.visibility = "visible";
                 document.getElementById("popup-quotation").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
+
 
                 if (data.slot === 1){
                     document.getElementById('show-time').textContent = "ช่วงเช้า"
@@ -173,8 +174,9 @@ function openPopup2(button){
                 document.getElementById("popup-view").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
 
-                
-                document.getElementById('edit-time').value = data.slot
+
+                console.log(data.slot)
+                document.getElementById('edit-time').value = data.slot;
                 document.querySelector("#image").style.backgroundImage = `url(${data.branchPhotoURL})`;
                 document.querySelector('#branch-text .show').textContent = "สาขา " + data.centerName;
                 document.querySelector('#branch-text .address').textContent = "ที่อยู่ " + data.address;
@@ -232,6 +234,7 @@ function openPopup(button) {
                 document.getElementById("popup-view").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
 
+                document.getElementById('edit-time').value = data.slot;
                 document.querySelector("#image").style.backgroundImage = `url(${data.branchPhotoURL})`;
                 document.querySelector('#branch-text .show').textContent = "สาขา " + data.centerName;
                 document.querySelector('#branch-text .address').textContent = "ที่อยู่ " + data.address;
@@ -305,6 +308,7 @@ function save_info(){
     const service = document.getElementById('edit-service').value;
     const dated = document.getElementById('edit-date-time').value;
     const time = document.getElementById('edit-time').value;
+    console.log(time);
     
     fetch('/update-service-history', {
         method: 'POST',

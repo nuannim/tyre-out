@@ -46,18 +46,30 @@ const EmployeeModel = {
     },
     updateServiceHistory: (service, dated, serviceHistoryId, time) => {
         return new Promise((resolve, reject) => {
-        
             const query = `
                 UPDATE ServiceHistory
-                SET caseCategory =?, caseStartDatetime = ?, slot = ?
+                SET caseCategory = ?, caseStartDatetime = ?, slot = ?
                 WHERE serviceHistoryId = ?
             `;
-            db.run(query, [service, dated, serviceHistoryId, time], function(err) {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(this.changes);
-            });
+            
+            const attemptUpdate = (retries = 3) => {
+                db.run(query, [service, dated, time, serviceHistoryId], function(err) {
+                    if (err) {
+                        if (err.code === 'SQLITE_BUSY' && retries > 0) {
+                            console.warn('Database is busy, retrying...');
+                            setTimeout(() => attemptUpdate(retries - 1), 100); // Retry after 100ms
+                        } else {
+                            console.error('Error updating service history:', err);
+                            return reject(err);
+                        }
+                    } else {
+                        console.log('Rows updated:', this.changes);
+                        resolve(this.changes);
+                    }
+                });
+            };
+    
+            attemptUpdate();
         });
     },
     getServiceHistoryWithCustomer: (serviceHistoryId) => {
