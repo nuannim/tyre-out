@@ -75,8 +75,9 @@ const EmployeeController = {
     },
     updateServiceHistory: async (req, res) => {
         try {
-            const { service, dated, servicehis} = req.body;
-            const result = await EmployeeModel.updateServiceHistory(service, dated, servicehis);
+            const { service, dated, servicehis, time} = req.body;
+            console.log(time);
+            const result = await EmployeeModel.updateServiceHistory(service, dated, servicehis, time);
             if (result > 0) {
                 res.json({ success: true, message: 'Service history updated successfully' });
             } else {

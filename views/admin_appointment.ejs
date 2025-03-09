@@ -257,7 +257,7 @@
                                 <div id="showdatetime">
                                     <p class="show" id="show-date">-
                                     </p>
-                                    <p class="show" id="show-time"></p>
+                                    <p class="show" id="show-time">-</p>
                                 </div>
                             </div>
                             <div class="forwhatyouvedone">
@@ -308,8 +308,16 @@
                         <input type="text" id="edit-service" class="popup-input" value=""  disabled>
                     </div>
                     <div class="inform-text">
-                        <p class="header">วันเวลา</p>
+                        <p class="header">วัน</p>
                         <input type="date" id="edit-date-time" class="popup-input" value="" disabled>
+                    </div>
+                    <div class="inform-text">
+                        <p class="header">เวลา</p>
+                        <select name="time" id="edit-time" class="popup-input" disabled>
+                            <option value="1">ช่วงเช้า</option>
+                            <option value="2">ช่วงบ่าย</option>
+                            <option value="3">ช่วงเย็น</option>
+                        </select>
                     </div>
                     <div class="inform-text">
                         <p class="header">รุ่นรถยนต์</p>

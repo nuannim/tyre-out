@@ -113,6 +113,17 @@ function openPopup3(button){
                 document.getElementById("popup-quotation").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
 
+
+                if (data.slot === 1){
+                    document.getElementById('show-time').textContent = "ช่วงเช้า"
+                }
+                else if (data.slot === 2){
+                    document.getElementById('show-time').textContent = "ช่วงบ่าย"
+                }
+                else if (data.slot === 3){
+                    document.getElementById('show-time').textContent = "ช่วงเย็น"
+                }
+                
                 document.getElementById('show-branch').textContent = data.centerName;
                 document.getElementById('show-date').textContent = data.caseStartDatetime;
                 document.getElementById('show-model').textContent = data.carModel;

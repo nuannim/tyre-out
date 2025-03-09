@@ -44,20 +44,32 @@ const EmployeeModel = {
             });
         });
     },
-    updateServiceHistory: (service, dated, serviceHistoryId) => {
+    updateServiceHistory: (service, dated, serviceHistoryId, time) => {
         return new Promise((resolve, reject) => {
-        
             const query = `
                 UPDATE ServiceHistory
-                SET caseCategory =?, caseStartDatetime = ?
+                SET caseCategory = ?, caseStartDatetime = ?, slot = ?
                 WHERE serviceHistoryId = ?
             `;
-            db.run(query, [service, dated, serviceHistoryId], function(err) {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(this.changes); // Return the number of rows updated
-            });
+            
+            const attemptUpdate = (retries = 3) => {
+                db.run(query, [service, dated, time, serviceHistoryId], function(err) {
+                    if (err) {
+                        if (err.code === 'SQLITE_BUSY' && retries > 0) {
+                            console.warn('Database is busy, retrying...');
+                            setTimeout(() => attemptUpdate(retries - 1), 100); // Retry after 100ms
+                        } else {
+                            console.error('Error updating service history:', err);
+                            return reject(err);
+                        }
+                    } else {
+                        console.log('Rows updated:', this.changes);
+                        resolve(this.changes);
+                    }
+                });
+            };
+    
+            attemptUpdate();
         });
     },
     getServiceHistoryWithCustomer: (serviceHistoryId) => {
@@ -122,25 +134,10 @@ WHERE sh.serviceHistoryId = ${serviceHistoryId};
                 if (err) {
                     return reject(err);
                 }
-                resolve(this.changes); // Return the number of rows deleted
+                resolve(this.changes);
             });
         });
     }
-    // updateHandledByEmployeeId: (serviceHistoryId, employeeId) => {
-    //     return new Promise((resolve, reject) => {
-    //         const query = `
-    //             UPDATE ServiceHistory
-    //             SET handledByEmployeeId = ?
-    //             WHERE serviceHistoryId = ?
-    //         `;
-    //         db.run(query, [employeeId, serviceHistoryId], function(err) {
-    //             if (err) {
-    //                 return reject(err);
-    //             }
-    //             resolve(this.changes); // Return the number of rows updated
-    //         });
-    //     });
-    // }
 };
 
 module.exports = EmployeeModel;
