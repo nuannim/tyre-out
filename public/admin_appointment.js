@@ -112,6 +112,16 @@ function openPopup3(button){
                 document.getElementById("popup-quotation").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
 
+                if (data.slot === 1){
+                    document.getElementById('show-time').textContent = "ช่วงเช้า"
+                }
+                else if (data.slot === 2){
+                    document.getElementById('show-time').textContent = "ช่วงบ่าย"
+                }
+                else if (data.slot === 3){
+                    document.getElementById('show-time').textContent = "ช่วงเย็น"
+                }
+
                 document.getElementById('show-branch').textContent = data.centerName;
                 document.getElementById('show-date').textContent = data.caseStartDatetime;
                 document.getElementById('show-model').textContent = data.carModel;
@@ -162,7 +172,9 @@ function openPopup2(button){
                 document.getElementById("popup-ov").style.visibility = "visible";
                 document.getElementById("popup-view").style.opacity = 1;
                 document.getElementById("popup-ov").style.opacity = 1;
+
                 
+                document.getElementById('edit-time').value = data.slot
                 document.querySelector("#image").style.backgroundImage = `url(${data.branchPhotoURL})`;
                 document.querySelector('#branch-text .show').textContent = "สาขา " + data.centerName;
                 document.querySelector('#branch-text .address').textContent = "ที่อยู่ " + data.address;
@@ -189,12 +201,7 @@ function openPopup2(button){
 
     
 
-    document.getElementById('edit-service').value = caseCategory;
-    document.getElementById('edit-date-time').value = serviceHistoryId;
-    document.getElementById('edit-branch').value = centerName;
-    document.getElementById('edit-first-name').value = firstName;
-    document.getElementById('edit-last-name').value = lastName;
-    document.getElementById('edit-phone').value = phoneNumber;
+
 }
 
 
@@ -249,12 +256,7 @@ function openPopup(button) {
             alert('An error occurred while fetching the service history.');
         });
 
-    document.getElementById('edit-service').value = caseCategory;
-    document.getElementById('edit-date-time').value = serviceHistoryId;
-    document.getElementById('edit-branch').value = centerName;
-    document.getElementById('edit-first-name').value = firstName;
-    document.getElementById('edit-last-name').value = lastName;
-    document.getElementById('edit-phone').value = phoneNumber;
+
 
 
 }
@@ -284,6 +286,7 @@ function bac2(){
 function edit_info(){
     document.getElementById("edit-service").removeAttribute("disabled");
     document.getElementById("edit-date-time").removeAttribute("disabled");
+    document.getElementById("edit-time").removeAttribute("disabled");
 
     document.querySelectorAll(".edit-button").forEach(btn => btn.style.display = "none");
     document.querySelectorAll(".cancel-edit-button").forEach(btn => btn.style.display = "inline-block");
@@ -301,13 +304,14 @@ function save_info(){
     const servicehis = document.getElementById('serviceHistoryId').value;
     const service = document.getElementById('edit-service').value;
     const dated = document.getElementById('edit-date-time').value;
+    const time = document.getElementById('edit-time').value;
     
     fetch('/update-service-history', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ service, dated, servicehis})
+        body: JSON.stringify({ service, dated, servicehis, time})
     })
     .then(response => response.json())
     .then(data => {
@@ -428,5 +432,6 @@ function bac3(){
     document.getElementById("popup-ov").style.visibility = "hidden";
     document.getElementById("popup-delete").style.opacity = 0;
     document.getElementById("popup-ov").style.opacity = 0;
+
 }
 

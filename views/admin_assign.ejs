@@ -70,7 +70,13 @@
                     <tbody>
                         <% service.forEach((element)=> { %>
                         <tr class="info-row">
-                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %></td>
+                            <% if ( element.slot === 1 ) { %>
+                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %>  ช่วงเช้า</td>
+                            <% } else if ( element.slot === 2 ) { %>
+                            <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %>  ช่วงบ่าย</td>
+                            <% } else { %>
+                                <td id="info-date-time" data-label="วัน-เวลา"><%= element.caseStartDatetime %>  ช่วงเย็น</td>
+                                <% } %>
                             <td id="info-phone" data-label="เบอร์โทร"><%= element.phoneNumber %></td>
                             <td id="info-firstname" data-label="ชื่อ"><%= element.firstName %></td>
                             <td id="info-lastname" data-label="นามสกุล"><%= element.lastName %></td>

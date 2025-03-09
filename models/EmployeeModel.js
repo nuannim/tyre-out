@@ -44,19 +44,19 @@ const EmployeeModel = {
             });
         });
     },
-    updateServiceHistory: (service, dated, serviceHistoryId) => {
+    updateServiceHistory: (service, dated, serviceHistoryId, time) => {
         return new Promise((resolve, reject) => {
         
             const query = `
                 UPDATE ServiceHistory
-                SET caseCategory =?, caseStartDatetime = ?
+                SET caseCategory =?, caseStartDatetime = ?, slot = ?
                 WHERE serviceHistoryId = ?
             `;
-            db.run(query, [service, dated, serviceHistoryId], function(err) {
+            db.run(query, [service, dated, serviceHistoryId, time], function(err) {
                 if (err) {
                     return reject(err);
                 }
-                resolve(this.changes); // Return the number of rows updated
+                resolve(this.changes);
             });
         });
     },
