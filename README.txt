@@ -7,12 +7,12 @@
 ## วิธีการใช้งาน ?
 
 
-1.ดับเบิลคลิก run.bat ได้เลยครับ
-2.หากขึัน Window defender ให้
-3.
+1. double click ที่ไฟล์ run ได้เลยครับ
+2. หากขึัน Window defender ให้กด More info 
+3. จากนั้นกด Run anyway
+จะมีหน้าต่าง Command Prompt แสดงขึ้น โปรดรอสักครู่ เว็บจะทำการเปิดขึ้นมาเองโดยอัตโนมัติ
 
-Username Password Role ADMIN
-
+## Username และ Password ของ พนักงาน (Employee)
 
 สาขาศูนย์ที่ 1 
     Username : 1
@@ -38,12 +38,12 @@ Username Password Role ADMIN
 
 
 
-## Username Password Role USER
+## Username และ Password ของ ลูกค้า (User)
 
 User 1
 
-    Username : max@gmail
-    Password : 999157
+    Username : User01@gmail.com
+    Password : User01
 
 
 User 2
