@@ -1,112 +1,36 @@
-# Tyre-Out
-**Tyre-Out**  
-<br>
+<!-- # Tyre-Out
 06066302 Fundamental Web Programming  
 School of Information Technology, KMITL  
 Year 2/2024
 
-# how to use
-เปิด terminal แล้ว copy อันนี้ไปวาง
-```bash
-npm init -y
-npm install express ejs sqlite3 express-session
-```
-### รัน js แบบไม่ต้องกดปิดเปิดใหม่ ให้ลง `nodemon`
+--- -->
 
-ถ้าอยากรู้ว่าเคยลงในเครื่องยัง ใช้วิธีเช็ค version
+# What is Tyre-Out
 
-```bash
-nodemon -v
-```
+### Tyre-Out is a web application designed a organize car service center organizer by using Node.js with Express.js framework.
 
-พิมพ์คำสั่งใน terminal เพื่อ install nodemon
+what our web app can do:
+- customer can reserve their mileage check by themselves on this web application and see overall goods and services price
+- admin can manage their customer such as open ticket, close ticker and others
 
-```bash
-npm install -g nodemon
-```
-<br>
-<br>
-<br>
 <br>
 <br>
 
-อันนี้ฝากส่วนตัว
-```sql
-SELECT * FROM ServiceHistory sh
-                INNER JOIN ServiceBranch sb
-                ON sh.centerId = sb.centerId
-                INNER JOIN Customers c
-                ON sh.customerId = c.customerId
-                INNER JOIN RegistrationNumber rn
-                ON c.customerId = rn.customerId
-                INNER JOIN Cars car
-                ON rn.carId = car.carId
-                WHERE c.email = ?;
-```
+# some preview of our project
+
+<!-- ![alt text](./imagesformd/login.png) -->
+### homepage
+![alt text](./imagesformd/homepage.png)
+### booking page
+![alt text](./imagesformd/booking.png)
+### service center page
+![alt text](./imagesformd/center.png)
+
 <br>
-อันใหม่
+<br>
 
-```sql
-SELECT * 
-FROM ServiceHistory sh
-INNER JOIN ServiceBranch sb 
-    ON sh.centerId = sb.centerId
-INNER JOIN RegistrationNumber rn  -- เชื่อม ServiceHistory กับ RegistrationNumber ผ่าน regId
-    ON sh.regId = rn.regId        
-INNER JOIN Customers c            
-    ON rn.customerId = c.customerId  -- ใช้ customerId จาก RegistrationNumber เชื่อมต่อ
-INNER JOIN Cars car 
-    ON rn.carId = car.carId
-WHERE c.email = 'max@gmail.com';
-```
+# how to use & install
+- [demo with run.bat](./demo.md)
+- [runserver by using npm](./npm.md)
 
-
-```sql
-SELECT * 
-FROM ServiceHistory sh
-INNER JOIN ServiceBranch sb 
-    ON sh.centerId = sb.centerId
-INNER JOIN RegistrationNumber rn  -- เชื่อม ServiceHistory กับ RegistrationNumber ผ่าน regId
-    ON sh.regId = rn.regId        
-INNER JOIN Customers c            
-    ON rn.customerId = c.customerId  -- ใช้ customerId จาก RegistrationNumber เชื่อมต่อ
-INNER JOIN Cars car 
-    ON rn.carId = car.carId
-WHERE sh.centerId = 2 and sh.handledByEmployeeId is NULL;
-```
-
-
-```javascript
-    createAppointment: async () => {
-        return new Promise((resolve, reject) => {
-            const query = ``;
-            const values = [];
-    
-            db.all(query, values, (err, data) => {
-                if (err) reject(err);
-                else resolve(data);
-            });
-        });
-    }
-```
-
-
-
-
-```sql
--- ดึงประวัติบริการพร้อมสินค้า
-SELECT *
-FROM ServiceHistory SH
-JOIN Customers C ON SH.customerId = C.customerId
-JOIN ServiceBranch SB ON SH.centerId = SB.centerId
-JOIN RegistrationNumber RN ON SH.regId = RN.regId
-JOIN ServiceHistoryDetails SHD ON SH.serviceHistoryId = SHD.serviceHistoryId
-JOIN Goods G ON SHD.goodsId = G.goodsId
-```
-
-export sqlite to sql
-
-```bash
-sqlite3 your_database.db .dump > export.sql
-```
 
