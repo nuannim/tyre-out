@@ -20,20 +20,20 @@ What our web app can do?
 <!-- <br> -->
 <!-- <br> -->
 
-# some preview of our project
+# Some Preview of Our Project
 
 <!-- ![alt text](./imagesformd/login.png) -->
-### homepage
+### Home Page
 ![alt text](./imagesformd/homepage.png)
-### booking page
+### Booking Page
 ![alt text](./imagesformd/booking.png)
-### service center page
+### Service Center Page
 ![alt text](./imagesformd/center.png)
 
 <!-- <br> -->
 <!-- <br> -->
 
-# how to use & install
+# How to Use & Install
 - [demo with run.bat](./demo.md)
 - [runserver by using npm](./npm.md)
 
