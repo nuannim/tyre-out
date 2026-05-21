@@ -13,12 +13,12 @@ This project is a part of **Fundamental Web Programming** Course
 School of Information Technology, KMITL  
 Year 2/2024
 
-what our web app can do:
-- customer can reserve their mileage check by themselves on this web application and see overall goods and services price
-- admin can manage their customer such as open ticket, close ticker and others
+What our web app can do?
+- Customer can reserve their mileage check by themselves on this web application and see overall goods and services price
+- Admin can manage their customer such as open ticket, close ticker and others
 
-<br>
-<br>
+<!-- <br> -->
+<!-- <br> -->
 
 # some preview of our project
 
@@ -30,8 +30,8 @@ what our web app can do:
 ### service center page
 ![alt text](./imagesformd/center.png)
 
-<br>
-<br>
+<!-- <br> -->
+<!-- <br> -->
 
 # how to use & install
 - [demo with run.bat](./demo.md)
